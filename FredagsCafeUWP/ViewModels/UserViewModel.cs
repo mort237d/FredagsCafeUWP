@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FredagsCafeUWP.ViewModels
 {
-    class BrugerViewModel
+    class UserViewModel
     {
     }
 }

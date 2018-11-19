@@ -1,6 +1,6 @@
 ﻿namespace FredagsCafeUWP.Models
 {
-    class Bruger
+    class Stock
     {
     }
 }
