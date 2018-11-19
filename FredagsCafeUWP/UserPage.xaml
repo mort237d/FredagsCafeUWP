@@ -24,7 +24,7 @@
             </PivotItem>
             <PivotItem Header="Event">
                 <!--Pivot content goes here-->
-                <TextBlock Text="Content of section 3."/>
+                <TextBlock Text="Content of section 4."/>
             </PivotItem>
         </Pivot>
     </Grid>
