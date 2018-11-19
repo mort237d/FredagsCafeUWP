@@ -9,14 +9,87 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <Pivot x:Name="rootPivot" Title="Category Title">
+        <Pivot x:Name="rootPivot">
             <PivotItem Header="Salg">
-                <!--Pivot content goes here-->
-                <TextBlock Text="Content of section 1."/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Margin="30,30,30,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Image Source="Assets/Tuborg-Dåse.png" Width="100" Height="100"></Image>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="-"></Button>
+                                <TextBox Text="0" TextAlignment="Center"></TextBox>
+                                <Button Content="+"></Button>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <TextBlock Grid.Row="5" Grid.ColumnSpan="3" Margin="0,0,0,10" HorizontalAlignment="Left" VerticalAlignment="Bottom" Text="Total pris: kr. 100,-"></TextBlock>
+                        <Button Grid.Row="5" Grid.Column="3" Margin="0,0,0,10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Betal"></Button>
+                    </Grid>
+
+                    <ListView Margin="30,30,30,0" Header="Transaktioner" Grid.Column="1">
+                        <TextBlock Text="HEJSA!"></TextBlock>
+                    </ListView>
+                </Grid>
             </PivotItem>
             <PivotItem Header="Lager">
-                <!--Pivot content goes here-->
-                <TextBlock Text="Content of section 2."/>
+                <Grid Margin="30,30,30,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="2*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Image Source="Assets/Tuborg-Dåse.png" Width="100" Height="100"></Image>
+                        <TextBlock Text="48 stk" HorizontalAlignment="Center"></TextBlock>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="5" Grid.Column="5" Margin="0,0,0,10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,5" HorizontalAlignment="Right">
+                            <TextBox PlaceholderText="Antal rammer"></TextBox>
+                            <TextBlock Text="x" VerticalAlignment="Bottom"></TextBlock>
+                            <TextBox PlaceholderText="Ramme størrelse"></TextBox>
+                            <Button Content="Tilføj antal"></Button>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <TextBox PlaceholderText="Antal"></TextBox>
+                            <Button Content="Tilføj antal"></Button>
+                        </StackPanel>
+                    </StackPanel>
+                    
+                    
+                </Grid>
             </PivotItem>
             <PivotItem Header="Administration">
                 <!--Pivot content goes here-->
