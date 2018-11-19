@@ -6,7 +6,8 @@
         private double _buyingPrice;
         private double _sellingPrice;
         private string _name;
-        private int _amount; 
+        private int _amount;
+        private int _amountSold;
         #endregion
 
         #region Props
@@ -32,15 +33,23 @@
         {
             get { return _amount; }
             set { _amount = value; }
-        } 
+        }
+
+        public int AmountSold
+        {
+            get { return _amountSold; }
+            set { _amountSold = value; }
+        }
+
         #endregion
 
-        public Product(double buyingPrice, double sellingPrice, string name, int amount)
+        public Product(double buyingPrice, double sellingPrice, string name, int amount, int amountSold)
         {
             BuyingPrice = buyingPrice;
             SellingPrice = sellingPrice;
             Name = name;
             Amount = amount;
+            AmountSold = amountSold;
         }
     }
 }
