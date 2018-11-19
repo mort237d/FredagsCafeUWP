@@ -10,19 +10,19 @@
 
     <Grid>
         <Pivot x:Name="rootPivot" Title="Category Title">
-            <PivotItem Header="Section 1">
+            <PivotItem Header="Salg">
                 <!--Pivot content goes here-->
                 <TextBlock Text="Content of section 1."/>
             </PivotItem>
-            <PivotItem Header="Section 2">
+            <PivotItem Header="Lager">
                 <!--Pivot content goes here-->
                 <TextBlock Text="Content of section 2."/>
             </PivotItem>
-            <PivotItem Header="Section 3">
+            <PivotItem Header="Adminastation">
                 <!--Pivot content goes here-->
                 <TextBlock Text="Content of section 3."/>
             </PivotItem>
-            <PivotItem Header="Section 4">
+            <PivotItem Header="Event">
                 <!--Pivot content goes here-->
                 <TextBlock Text="Content of section 3."/>
             </PivotItem>
