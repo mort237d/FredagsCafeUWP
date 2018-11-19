@@ -18,7 +18,7 @@
                 <!--Pivot content goes here-->
                 <TextBlock Text="Content of section 2."/>
             </PivotItem>
-            <PivotItem Header="Adminastation">
+            <PivotItem Header="Administration">
                 <!--Pivot content goes here-->
                 <TextBlock Text="Content of section 3."/>
             </PivotItem>
