@@ -1,0 +1,31 @@
+﻿<Page
+    x:Class="FredagsCafeUWP.UserPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FredagsCafeUWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Pivot x:Name="rootPivot" Title="Category Title">
+            <PivotItem Header="Section 1">
+                <!--Pivot content goes here-->
+                <TextBlock Text="Content of section 1."/>
+            </PivotItem>
+            <PivotItem Header="Section 2">
+                <!--Pivot content goes here-->
+                <TextBlock Text="Content of section 2."/>
+            </PivotItem>
+            <PivotItem Header="Section 3">
+                <!--Pivot content goes here-->
+                <TextBlock Text="Content of section 3."/>
+            </PivotItem>
+            <PivotItem Header="Section 4">
+                <!--Pivot content goes here-->
+                <TextBlock Text="Content of section 3."/>
+            </PivotItem>
+        </Pivot>
+    </Grid>
+</Page>

@@ -21,6 +21,8 @@
             Password = password;
         }
 
+        #region Properties
+
         public string Name
         {
             get { return _name; }
@@ -56,5 +58,6 @@
             get { return _password; }
             set { _password = value; }
         }
+        #endregion
     }
 }
