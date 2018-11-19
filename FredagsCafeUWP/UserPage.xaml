@@ -80,10 +80,10 @@
                             <TextBox PlaceholderText="Antal rammer"></TextBox>
                             <TextBlock Text="x" VerticalAlignment="Bottom"></TextBlock>
                             <TextBox PlaceholderText="Ramme størrelse"></TextBox>
-                            <Button Content="Tilføj antal"></Button>
+                            <Button Content="Tilføj rammer"></Button>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                            <TextBox PlaceholderText="Antal"></TextBox>
+                            <TextBox PlaceholderText="Stk."></TextBox>
                             <Button Content="Tilføj antal"></Button>
                         </StackPanel>
                     </StackPanel>
