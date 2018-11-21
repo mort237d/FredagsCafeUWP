@@ -35,9 +35,9 @@
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <Image Source="Assets/Tuborg-Dåse.png" Width="100" Height="100"></Image>
                             <StackPanel Orientation="Horizontal">
-                                <Button Content="-"></Button>
-                                <TextBox Text="0" TextAlignment="Center"></TextBox>
-                                <Button Content="+"></Button>
+                                <Button Style="{StaticResource LeftRoundedButtonStyle}" Content="-"></Button>
+                                <TextBox Text="0" TextAlignment="Center"/>
+                                <Button Style="{StaticResource RightRoundedButtonStyle}" Content="+"></Button>
                             </StackPanel>
                         </StackPanel>
 
