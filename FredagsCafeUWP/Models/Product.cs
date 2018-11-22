@@ -41,7 +41,11 @@ namespace FredagsCafeUWP.Models
         public int Amount
         {
             get { return _amount; }
-            set { _amount = value; }
+            set
+            {
+                _amount = value; 
+                OnPropertyChanged();
+            }
         }
 
         public int AmountSold

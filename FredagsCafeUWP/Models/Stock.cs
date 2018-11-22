@@ -38,39 +38,98 @@ namespace FredagsCafeUWP.Models
         public string NameTB
         {
             get { return _nameTB; }
-            set { _nameTB = value; }
+            set
+            {
+                _nameTB = value; 
+                OnPropertyChanged();
+            }
         }
 
-        public double BuyingPriceTB
+        public string BuyingPriceTB
         {
             get { return _buyingPriceTB; }
-            set { _buyingPriceTB = value; }
+            set
+            {
+                _buyingPriceTB = value;
+                OnPropertyChanged();
+            }
         }
 
-        public double SellingPriceTB
+        public string SellingPriceTB
         {
             get { return _sellingPriceTB; }
-            set { _sellingPriceTB = value; }
+            set
+            {
+                _sellingPriceTB = value;
+                OnPropertyChanged();
+            }
         }
 
-        public int AmountTB
+        public string AmountTB
         {
             get { return _amountTB; }
-            set { _amountTB = value; }
+            set
+            {
+                _amountTB = value;
+                OnPropertyChanged();
+            }
         }
 
         public string ImageSourceTB
         {
             get { return _imageSourceTB; }
-            set { _imageSourceTB = value; }
+            set
+            {
+                _imageSourceTB = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string FrameAmountTB
+        {
+            get { return _frameAmountTB; }
+            set
+            {
+                _frameAmountTB = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string FrameSizeTB
+        {
+            get { return _frameSizeTB; }
+            set
+            {
+                _frameSizeTB = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string ProductAmountTB
+        {
+            get { return _productAmountTB; }
+            set
+            {
+                _productAmountTB = value; 
+                OnPropertyChanged();
+            }
         }
 
         private string _nameTB;
-        private double _buyingPriceTB;
-        private double _sellingPriceTB;
-        private int _amountTB;
+        private string _buyingPriceTB;
+        private string _sellingPriceTB;
+        private string _amountTB;
         private string _imageSourceTB;
 
+        //private int _frameAmountTB;
+        //private int _frameSizeTB;
+
+        //private int _productAmountTB;
+
+        private string _frameAmountTB;
+        private string _frameSizeTB;
+
+        private string _productAmountTB;
 
         public Stock()
         {
@@ -88,9 +147,6 @@ namespace FredagsCafeUWP.Models
                 new Product(55, 63, "Cola Zero", 2, 13, "ProductImages/Tuborg-Dåse.png"),
                 new Product(55, 63, "Squash", 2, 13, "ProductImages/Tuborg-Dåse.png")
             };
-
-            //WriteListToTxt();
-
         }
 
         public async void WriteListToTxt()
@@ -122,14 +178,58 @@ namespace FredagsCafeUWP.Models
                     break;
                 }
             }
+            
+            if (!productExist)
+            {
+                double.TryParse(BuyingPriceTB, out double doubleBuyingPriceTB);
+                double.TryParse(SellingPriceTB, out double doubleSellingPriceTB);
+                int.TryParse(AmountTB, out int intAmountTB);
 
-            if (!productExist) Products.Add(new Product(BuyingPriceTB, SellingPriceTB, NameTB, AmountTB,0, "ProductImages/Tuborg-Dåse.png"));
+                if (NameTB != null && doubleBuyingPriceTB != 0 && doubleSellingPriceTB != 0 && AmountTB != null)
+                {
+                    Products.Add(new Product(doubleBuyingPriceTB, doubleSellingPriceTB, NameTB, intAmountTB, 0, "ProductImages/Tuborg-Dåse.png"));
+
+                    NameTB = null;
+                    BuyingPriceTB = null;
+                    SellingPriceTB = null;
+                    AmountTB = null;
+                    ImageSourceTB = null;
+                }
+               
+            }
             else Debug.WriteLine("Varen findes allerede");
         }
 
         public void RemoveProductFromOBList()
         {
             Products.Remove(SelectedProduct);
+        }
+
+        public void AddAmountToProduct()
+        {
+            Int32.TryParse(FrameAmountTB, out int intFrameAmountTB);
+            Int32.TryParse(FrameSizeTB, out int intFrameSizeTB);
+            Int32.TryParse(ProductAmountTB, out int intProductAmountTB);
+
+
+            if (intFrameAmountTB != 0 && intFrameSizeTB != 0 && intProductAmountTB != 0)
+            {
+                SelectedProduct.Amount += (intFrameAmountTB * intFrameSizeTB) + intProductAmountTB;
+                FrameAmountTB = null;
+                FrameSizeTB = null;
+                ProductAmountTB = null;
+            }
+            else if (intFrameAmountTB != 0 && intFrameSizeTB != 0)
+            {
+                SelectedProduct.Amount += intFrameAmountTB * intFrameSizeTB;
+                FrameAmountTB = null;
+                FrameSizeTB = null;
+            }
+            else if (intProductAmountTB != 0)
+            {
+                SelectedProduct.Amount += intProductAmountTB;
+                ProductAmountTB = null;
+            }
         }
 
         #region INotify

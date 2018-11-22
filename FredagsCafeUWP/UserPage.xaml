@@ -67,7 +67,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <ListView ItemsSource="{Binding Stock.Products}" SelectedItem="{Binding Stock.SelectedProduct}">
+                    <ListView ItemsSource="{Binding Stock.Products}" SelectedItem="{Binding Stock.SelectedProduct, Mode=TwoWay}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -109,14 +109,14 @@
 
                     <StackPanel Grid.Row="1" Margin="0,0,0,10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Vertical">
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,5" HorizontalAlignment="Right">
-                            <TextBox PlaceholderText="Antal rammer"></TextBox>
+                            <TextBox PlaceholderText="Antal rammer" Text="{Binding Stock.FrameAmountTB, Mode=TwoWay}"></TextBox>
                             <TextBlock Text="x" VerticalAlignment="Bottom"></TextBlock>
-                            <TextBox PlaceholderText="Ramme størrelse"></TextBox>
-                            <Button Content="Tilføj rammer"></Button>
+                            <TextBox PlaceholderText="Ramme størrelse" Text="{Binding Stock.FrameSizeTB, Mode=TwoWay}"></TextBox>
+                            <Button Content="Tilføj rammer" Command="{Binding AddAmountCommand}"></Button>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                            <TextBox PlaceholderText="Stk."></TextBox>
-                            <Button Content="Tilføj antal"></Button>
+                            <TextBox PlaceholderText="Stk." Text="{Binding Stock.ProductAmountTB, Mode=TwoWay}"></TextBox>
+                            <Button Content="Tilføj antal" Command="{Binding AddAmountCommand}"></Button>
                         </StackPanel>
                     </StackPanel>
 
