@@ -54,8 +54,8 @@
 
                     <Button Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Betal"  Margin="0,0,5,5"></Button>
 
-                    <ListView Margin="30,30,30,0" Header="Transaktioner" Grid.Column="1">
-                        <TextBlock Text="HEJSA!"></TextBlock>
+                    <ListView Margin="30,30,30,0" Header="Transaktioner" Grid.Column="1" ItemsSource="{Binding Stock.Receipts}">
+                        <!--TextBlock Text="{Binding Stock.Receipts}"/-->
                     </ListView>
                 </Grid>
 

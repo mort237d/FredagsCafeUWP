@@ -20,6 +20,8 @@ namespace FredagsCafeUWP.Models
 
         private ObservableCollection<Product> _products;
 
+        private ObservableCollection<Receipt> _receipts;
+
         private Product _selectedProduct;
 
         private string _nameTB;
@@ -53,6 +55,11 @@ namespace FredagsCafeUWP.Models
                 new Product(55, 63, "Fanta", 2, 13, "ProductImages/Fanta.png")
 
             };
+            Receipts = new ObservableCollection<Receipt>()
+            {
+                new Receipt(424, "no note"),
+                new Receipt(3423, "Drugs and drugs")
+            };
         }
 
         #region Properties
@@ -62,6 +69,15 @@ namespace FredagsCafeUWP.Models
             set
             {
                 _products = value; 
+            }
+        }
+
+        public ObservableCollection<Receipt> Receipts
+        {
+            get { return _receipts; }
+            set
+            {
+                _receipts = value;
             }
         }
 
