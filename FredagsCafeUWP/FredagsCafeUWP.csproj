@@ -117,8 +117,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Profile-icon.png" />
-    <Content Include="ProductImages\TransMokai.png" />
-    <Content Include="ProductImages\Tuborg-Dåse.png" />
+    <Content Include="ProductImages\Breezer.png" />
+    <Content Include="ProductImages\Carlsberg.png" />
+    <Content Include="ProductImages\Cola.png" />
+    <Content Include="ProductImages\ColaZero.png" />
+    <Content Include="ProductImages\Fanta.png" />
+    <Content Include="ProductImages\GrønTuborg.png" />
+    <Content Include="ProductImages\Mokai.png" />
+    <Content Include="ProductImages\MokaiStrawberryLime.png" />
+    <Content Include="ProductImages\SomersbyApple.png" />
+    <Content Include="ProductImages\SomersbyPear.png" />
+    <Content Include="ProductImages\TuborgClassic.png" />
+    <Content Include="ProductImages\TuborgGuldDame.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

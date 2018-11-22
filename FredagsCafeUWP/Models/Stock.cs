@@ -39,17 +39,19 @@ namespace FredagsCafeUWP.Models
         {
             Products = new ObservableCollection<Product>()
             {
-                new Product(66, 67, "Tuborg Classic", 22, 2, "ProductImages/Tuborg-Dåse.png"),
-                new Product(55, 63, "Grøn Tuborg", 2, 13, "ProductImages/Tuborg-Dåse.png"),
-                new Product(55, 63, "Tuborg Gylden Dame", 2, 13, "ProductImages/Tuborg-Dåse.png"),
-                //new Product(55, 63, "Carlsberg", 2, 13, "ProductImages/Tuborg-Dåse.png"),
-                //new Product(55, 63, "Mokai", 2, 13, "ProductImages/Tuborg-Dåse.png"),
-                //new Product(55, 63, "Breezer", 2, 13, "ProductImages/Tuborg-Dåse.png"),
-                //new Product(55, 63, "Sommersby Apple Cider", 2, 13, "ProductImages/Tuborg-Dåse.png"),
-                //new Product(55, 63, "Sommersby Pear Cider", 2, 13, "ProductImages/Tuborg-Dåse.png"),
-                //new Product(55, 63, "Cola", 2, 13, "ProductImages/Tuborg-Dåse.png"),
-                //new Product(55, 63, "Cola Zero", 2, 13, "ProductImages/Tuborg-Dåse.png"),
-                //new Product(55, 63, "Squash", 2, 13, "ProductImages/Tuborg-Dåse.png")
+                new Product(66, 67, "Tuborg Classic", 22, 2, "ProductImages/TuborgClassic.png"),
+                new Product(55, 63, "Grøn Tuborg", 2, 13, "ProductImages/GrønTuborg.png"),
+                new Product(55, 63, "Tuborg Gylden Dame", 2, 13, "ProductImages/TuborgGuldDame.png"),
+                new Product(55, 63, "Carlsberg", 2, 13, "ProductImages/Carlsberg.png"),
+                new Product(55, 63, "Cola Zero", 2, 13, "ProductImages/ColaZero.png"),
+                new Product(55, 63, "Cola", 2, 13, "ProductImages/Cola.png"),
+                new Product(55, 63, "Mokai", 2, 13, "ProductImages/Mokai.png"),
+                new Product(55, 63, "Mokai Jordbær Lime", 2, 13, "ProductImages/MokaiStrawberryLime.png"),
+                new Product(55, 63, "Somersby Apple Cider", 2, 13, "ProductImages/SomersbyApple.png"),
+                new Product(55, 63, "Somersby Pear Cider", 2, 13, "ProductImages/SomersbyPear.png"),
+                new Product(55, 63, "Breezer", 2, 13, "ProductImages/Breezer.png"),
+                new Product(55, 63, "Fanta", 2, 13, "ProductImages/Fanta.png")
+
             };
         }
 

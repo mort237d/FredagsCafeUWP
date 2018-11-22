@@ -29,7 +29,7 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Image Source="{Binding ImageSource}"></Image>
+                                    <Image Source="{Binding ImageSource}" Width="100" Height="100"></Image>
                                     <StackPanel Orientation="Vertical">
                                         <TextBlock FontWeight="Bold" Text="{Binding Name}"></TextBlock>
                                         <StackPanel Orientation="Horizontal">
