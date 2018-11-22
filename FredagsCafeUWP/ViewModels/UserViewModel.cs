@@ -25,7 +25,7 @@ namespace FredagsCafeUWP.ViewModels
         private RelayCommand changeProductPriceCommand;
         public UserViewModel()
         {
-            AddProductCommand = new RelayCommand(stock.AddProductToOBList);
+            AddProductCommand = new RelayCommand(stock.AddProductToOBListAsync);
             RemoveProductCommand = new RelayCommand(stock.RemoveProductFromOBList);
 
             AddAmountCommand = new RelayCommand(stock.AddAmountToProduct);

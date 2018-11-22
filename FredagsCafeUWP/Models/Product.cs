@@ -81,6 +81,8 @@ namespace FredagsCafeUWP.Models
 
         }
 
+        #region INotify
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
@@ -88,5 +90,7 @@ namespace FredagsCafeUWP.Models
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        #endregion
     }
 }

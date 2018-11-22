@@ -185,23 +185,15 @@ namespace FredagsCafeUWP.Models
 
         public async void WriteListToTxt()
         {
-            Windows.Storage.StorageFolder storageFolder =
-                Windows.Storage.ApplicationData.Current.LocalFolder;
-            Windows.Storage.StorageFile sampleFile =
-                await storageFolder.CreateFileAsync("StockTextDoc.txt",
-                    Windows.Storage.CreationCollisionOption.ReplaceExisting);
+            StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
+            StorageFile sampleFile = await storageFolder.CreateFileAsync("StockTextDoc.txt", CreationCollisionOption.ReplaceExisting);
             
-            Windows.Storage.StorageFile sampleFile1 =
-                await storageFolder.GetFileAsync("StockTextDoc.txt");
+            StorageFile sampleFile1 = await storageFolder.GetFileAsync("StockTextDoc.txt");
 
-            foreach (var p in Products)
-            {
-                await Windows.Storage.FileIO.WriteTextAsync(sampleFile1, p.ToString());
-            }
-
+            foreach (var p in Products)await Windows.Storage.FileIO.WriteTextAsync(sampleFile1, p.ToString());
         }
 
-        public void AddProductToOBList()
+        public void AddProductToOBListAsync()
         {
             bool productExist = false;
             foreach (var element in Products)
@@ -231,16 +223,17 @@ namespace FredagsCafeUWP.Models
                 }
                
             }
-            else Debug.WriteLine("Varen findes allerede");
+            else Message("Varen findes allerede!", "Scroll igennem varerne, for at finde den.");
+        }
+
+        private async Task Message(string title, string content)
+        {
+            await new MessageDialog(title, content).ShowAsync();
         }
 
         public void RemoveProductFromOBList()
         {
-            if (SelectedProduct != null)
-            {
-                Products.Remove(SelectedProduct);
-            }
-           
+            if (SelectedProduct != null) YesNoMessage("Slet produkt", "Er du sikker på at du vil slette " + SelectedProduct.Name + "?");
         }
 
         public void AddAmountToProduct()
@@ -307,21 +300,13 @@ namespace FredagsCafeUWP.Models
             TextBlock outputTextBlock = new TextBlock();
 
             StorageFile file = await openPicker.PickSingleFileAsync();
-            if (file != null)
-            {
-                return outputTextBlock.Text = "ProductImages/" + file.Name;
-            }
-            else
-            {
-                return outputTextBlock.Text = "Operation cancelled.";
-            }
-
+            if (file != null) return outputTextBlock.Text = "ProductImages/" + file.Name;
+            else return outputTextBlock.Text = "Operation cancelled.";
         }
 
         public async void BrowseImageButton()
         {
             ImageSourceTB = await BrowseImageWindowTask();
-
         }
 
         public void ChangeProductPrice()
@@ -331,6 +316,37 @@ namespace FredagsCafeUWP.Models
             {
                 SelectedProduct.SellingPrice = intProductPriceChangedTB;
                 ProductPriceChangeTB = null;
+            }
+        }
+
+        private async Task YesNoMessage(string title, string content)
+        {
+            var yesCommand = new UICommand("Ja", cmd => { });
+            var noCommand = new UICommand("Nej", cmd => { });
+
+            var dialog = new MessageDialog(content, title);
+            dialog.Options = MessageDialogOptions.None;
+            dialog.Commands.Add(yesCommand);
+
+            dialog.DefaultCommandIndex = 0;
+            dialog.CancelCommandIndex = 0;
+
+            if (noCommand != null)
+            {
+                dialog.Commands.Add(noCommand);
+                dialog.CancelCommandIndex = (uint)dialog.Commands.Count - 1;
+            }
+
+            var command = await dialog.ShowAsync();
+
+            if (command == yesCommand)
+            {
+                Debug.WriteLine("Yes");
+                if(title == "Slet produkt") Products.Remove(SelectedProduct);
+            }
+            else if (command == noCommand)
+            {
+                Debug.WriteLine("No");
             }
         }
 
