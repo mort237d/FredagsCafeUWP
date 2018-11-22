@@ -28,8 +28,8 @@ namespace FredagsCafeUWP.ViewModels
             RemoveProductCommand = new RelayCommand(stock.RemoveProductFromOBList);
 
             AddAmountCommand = new RelayCommand(stock.AddAmountToProduct);
-            browseImageCommand = new RelayCommand(stock.BrowseImageButton);
             //RemoveAmountCommand = new RelayCommand(stock.RemoveAmountFromProduct);
+            browseImageCommand = new RelayCommand(stock.BrowseImageButton);
         }
 
         public string SelectedItem
@@ -68,16 +68,16 @@ namespace FredagsCafeUWP.ViewModels
             set { addAmountCommand = value; }
         }
 
-        public RelayCommand BrowseImageCommand
-        {
-            get { return browseImageCommand; }
-            set { browseImageCommand = value; }
-        }
-
         public RelayCommand RemoveAmountCommand
         {
             get { return removeAmountCommand; }
             set { removeAmountCommand = value; }
+        }
+
+        public RelayCommand BrowseImageCommand
+        {
+            get { return browseImageCommand; }
+            set { browseImageCommand = value; }
         }
     }
 }
