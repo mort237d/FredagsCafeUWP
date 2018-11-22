@@ -2,15 +2,15 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.IO;
 using System.Runtime.CompilerServices;
-using System.ServiceModel.Channels;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Pickers;
+using Windows.UI;
 using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
 using FredagsCafeUWP.Annotations;
+using Windows.UI.Xaml.Media;
 
 namespace FredagsCafeUWP.Models
 {
@@ -23,6 +23,10 @@ namespace FredagsCafeUWP.Models
         private ObservableCollection<Receipt> _receipts;
 
         private Product _selectedProduct;
+
+        private int _minAmount = 10;
+        private Brush _colorRed = new SolidColorBrush(Colors.Red);
+        private Brush _colorGreen = new SolidColorBrush(Colors.ForestGreen);
 
         private string _nameTB;
         private string _buyingPriceTB;
@@ -41,18 +45,18 @@ namespace FredagsCafeUWP.Models
         {
             Products = new ObservableCollection<Product>()
             {
-                new Product(66, 67, "Tuborg Classic", 22, 2, "ProductImages/TuborgClassic.png"),
-                new Product(55, 63, "Grøn Tuborg", 2, 13, "ProductImages/GrønTuborg.png"),
-                new Product(55, 63, "Tuborg Gylden Dame", 2, 13, "ProductImages/TuborgGuldDame.png"),
-                new Product(55, 63, "Carlsberg", 2, 13, "ProductImages/Carlsberg.png"),
-                new Product(55, 63, "Cola Zero", 2, 13, "ProductImages/ColaZero.png"),
-                new Product(55, 63, "Cola", 2, 13, "ProductImages/Cola.png"),
-                new Product(55, 63, "Mokai", 2, 13, "ProductImages/Mokai.png"),
-                new Product(55, 63, "Mokai Jordbær Lime", 2, 13, "ProductImages/MokaiStrawberryLime.png"),
-                new Product(55, 63, "Somersby Apple Cider", 2, 13, "ProductImages/SomersbyApple.png"),
-                new Product(55, 63, "Somersby Pear Cider", 2, 13, "ProductImages/SomersbyPear.png"),
-                new Product(55, 63, "Breezer", 2, 13, "ProductImages/Breezer.png"),
-                new Product(55, 63, "Fanta", 2, 13, "ProductImages/Fanta.png")
+                new Product(66, 67, "Tuborg Classic", 22, 2, "ProductImages/TuborgClassic.png", _colorGreen),
+                new Product(55, 63, "Grøn Tuborg", 21, 13, "ProductImages/GrønTuborg.png", _colorGreen),
+                new Product(55, 63, "Tuborg Gylden Dame", 24, 13, "ProductImages/TuborgGuldDame.png", _colorGreen),
+                new Product(55, 63, "Carlsberg", 32, 13, "ProductImages/Carlsberg.png", _colorGreen),
+                new Product(55, 63, "Cola Zero", 28, 13, "ProductImages/ColaZero.png", _colorGreen),
+                new Product(55, 63, "Cola", 24, 13, "ProductImages/Cola.png", _colorGreen),
+                new Product(55, 63, "Mokai", 29, 13, "ProductImages/Mokai.png", _colorGreen),
+                new Product(55, 63, "Mokai Jordbær Lime", 9, 13, "ProductImages/MokaiStrawberryLime.png", _colorRed),
+                new Product(55, 63, "Somersby Apple Cider", 42, 13, "ProductImages/SomersbyApple.png", _colorGreen),
+                new Product(55, 63, "Somersby Pear Cider", 15, 13, "ProductImages/SomersbyPear.png", _colorGreen),
+                new Product(55, 63, "Breezer", 10, 13, "ProductImages/Breezer.png", _colorGreen),
+                new Product(55, 63, "Fanta", 5, 13, "ProductImages/Fanta.png", _colorRed)
 
             };
             Receipts = new ObservableCollection<Receipt>()
@@ -180,6 +184,7 @@ namespace FredagsCafeUWP.Models
                 OnPropertyChanged();
             }
         }
+
         #endregion
       
 
@@ -213,7 +218,8 @@ namespace FredagsCafeUWP.Models
 
                 if (NameTB != null && doubleBuyingPriceTB != 0 && doubleSellingPriceTB != 0 && AmountTB != null)
                 {
-                    Products.Add(new Product(doubleBuyingPriceTB, doubleSellingPriceTB, NameTB, intAmountTB, 0,ImageSourceTB));
+                    if (intAmountTB < _minAmount) Products.Add(new Product(doubleBuyingPriceTB, doubleSellingPriceTB, NameTB, intAmountTB, 0,ImageSourceTB, _colorRed));
+                    else Products.Add(new Product(doubleBuyingPriceTB, doubleSellingPriceTB, NameTB, intAmountTB, 0, ImageSourceTB, _colorGreen));
 
                     NameTB = null;
                     BuyingPriceTB = null;
@@ -225,12 +231,7 @@ namespace FredagsCafeUWP.Models
             }
             else Message("Varen findes allerede!", "Scroll igennem varerne, for at finde den.");
         }
-
-        private async Task Message(string title, string content)
-        {
-            await new MessageDialog(title, content).ShowAsync();
-        }
-
+        
         public void RemoveProductFromOBList()
         {
             if (SelectedProduct != null) YesNoMessage("Slet produkt", "Er du sikker på at du vil slette " + SelectedProduct.Name + "?");
@@ -261,6 +262,9 @@ namespace FredagsCafeUWP.Models
                 SelectedProduct.Amount += intProductAmountTB;
                 ProductAmountTB = null;
             }
+
+            if (SelectedProduct.Amount < _minAmount) SelectedProduct.ForegroundColor = _colorRed;
+            else SelectedProduct.ForegroundColor = _colorGreen;
         }
         public void RemoveAmountFromProduct()
         {
@@ -287,6 +291,9 @@ namespace FredagsCafeUWP.Models
                 SelectedProduct.Amount -= intProductAmountTB;
                 ProductAmountTB = null;
             }
+
+            if (SelectedProduct.Amount < _minAmount) SelectedProduct.ForegroundColor = _colorRed;
+            else SelectedProduct.ForegroundColor = _colorGreen;
         }
 
         public async Task<string> BrowseImageWindowTask()
@@ -348,6 +355,11 @@ namespace FredagsCafeUWP.Models
             {
                 Debug.WriteLine("No");
             }
+        }
+
+        private async Task Message(string title, string content)
+        {
+            await new MessageDialog(title, content).ShowAsync();
         }
 
         #region INotify

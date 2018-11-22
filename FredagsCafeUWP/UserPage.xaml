@@ -73,10 +73,10 @@
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                     <Image Source="{Binding ImageSource}" Width="100" Height="100"></Image>
                                     <StackPanel Orientation="Vertical">
-                                        <TextBlock Text="{Binding Name}"></TextBlock>
+                                        <TextBlock FontWeight="Bold" Text="{Binding Name}"></TextBlock>
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="{Binding Amount}" HorizontalAlignment="Center"></TextBlock>
-                                            <TextBlock Text="stk"></TextBlock>
+                                            <TextBlock Foreground="{Binding ForegroundColor}" Text="{Binding Amount}" HorizontalAlignment="Center"></TextBlock>
+                                            <TextBlock Foreground="{Binding ForegroundColor}" Text="stk"></TextBlock>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock Text="Indkøbspris: kr."></TextBlock>

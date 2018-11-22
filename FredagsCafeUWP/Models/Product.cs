@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
 using FredagsCafeUWP.Annotations;
 
 namespace FredagsCafeUWP.Models
@@ -14,6 +15,7 @@ namespace FredagsCafeUWP.Models
         private int _amount;
         private int _amountSold;
         private string _imageSource;
+        private Brush _foregroundColor;
         #endregion
 
         #region Props
@@ -64,9 +66,19 @@ namespace FredagsCafeUWP.Models
             set { _imageSource = value; }
         }
 
+        public Brush ForegroundColor
+        {
+            get { return _foregroundColor; }
+            set
+            {
+                _foregroundColor = value; 
+                OnPropertyChanged();
+            }
+        }
+
         #endregion
 
-        public Product(double buyingPrice, double sellingPrice, string name, int amount, int amountSold, string imageSource)
+        public Product(double buyingPrice, double sellingPrice, string name, int amount, int amountSold, string imageSource, Brush foregroundColor)
         {
             BuyingPrice = buyingPrice;
             SellingPrice = sellingPrice;
@@ -74,6 +86,7 @@ namespace FredagsCafeUWP.Models
             Amount = amount;
             AmountSold = amountSold;
             ImageSource = imageSource;
+            ForegroundColor = foregroundColor;
         }
 
         public Product()
