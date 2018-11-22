@@ -52,6 +52,7 @@ namespace FredagsCafeUWP.ViewModels
             set { product = value; }
         }
 
+        #region RelayCommands
         public RelayCommand AddProductCommand
         {
             get { return addProductCommand; }
@@ -87,5 +88,6 @@ namespace FredagsCafeUWP.ViewModels
             get { return changeProductPriceCommand; }
             set { changeProductPriceCommand = value; }
         }
+        #endregion
     }
 }
