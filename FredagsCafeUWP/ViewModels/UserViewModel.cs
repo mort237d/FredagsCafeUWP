@@ -28,7 +28,7 @@ namespace FredagsCafeUWP.ViewModels
             RemoveProductCommand = new RelayCommand(stock.RemoveProductFromOBList);
 
             AddAmountCommand = new RelayCommand(stock.AddAmountToProduct);
-            //RemoveAmountCommand = new RelayCommand(stock.RemoveAmountFromProduct);
+            RemoveAmountCommand = new RelayCommand(stock.RemoveAmountFromProduct);
             browseImageCommand = new RelayCommand(stock.BrowseImageButton);
         }
 

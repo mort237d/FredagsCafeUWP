@@ -235,32 +235,32 @@ namespace FredagsCafeUWP.Models
                 ProductAmountTB = null;
             }
         }
-        //public void RemoveAmountFromProduct()
-        //{
-        //    Int32.TryParse(FrameAmountTB, out int intFrameAmountTB);
-        //    Int32.TryParse(FrameSizeTB, out int intFrameSizeTB);
-        //    Int32.TryParse(ProductAmountTB, out int intProductAmountTB);
+        public void RemoveAmountFromProduct()
+        {
+            Int32.TryParse(FrameAmountTB, out int intFrameAmountTB);
+            Int32.TryParse(FrameSizeTB, out int intFrameSizeTB);
+            Int32.TryParse(ProductAmountTB, out int intProductAmountTB);
 
 
-        //    if (intFrameAmountTB != 0 && intFrameSizeTB != 0 && intProductAmountTB != 0)
-        //    {
-        //        SelectedProduct.Amount -= (intFrameAmountTB * intFrameSizeTB) + intProductAmountTB;
-        //        FrameAmountTB = null;
-        //        FrameSizeTB = null;
-        //        ProductAmountTB = null;
-        //    }
-        //    else if (intFrameAmountTB != 0 && intFrameSizeTB != 0)
-        //    {
-        //        SelectedProduct.Amount -= intFrameAmountTB * intFrameSizeTB;
-        //        FrameAmountTB = null;
-        //        FrameSizeTB = null;
-        //    }
-        //    else if (intProductAmountTB != 0)
-        //    {
-        //        SelectedProduct.Amount -= intProductAmountTB;
-        //        ProductAmountTB = null;
-        //    }
-        //}
+            if (intFrameAmountTB != 0 && intFrameSizeTB != 0 && intProductAmountTB != 0)
+            {
+                SelectedProduct.Amount -= (intFrameAmountTB * intFrameSizeTB) + intProductAmountTB;
+                FrameAmountTB = null;
+                FrameSizeTB = null;
+                ProductAmountTB = null;
+            }
+            else if (intFrameAmountTB != 0 && intFrameSizeTB != 0)
+            {
+                SelectedProduct.Amount -= intFrameAmountTB * intFrameSizeTB;
+                FrameAmountTB = null;
+                FrameSizeTB = null;
+            }
+            else if (intProductAmountTB != 0)
+            {
+                SelectedProduct.Amount -= intProductAmountTB;
+                ProductAmountTB = null;
+            }
+        }
 
         public async Task<string> BrowseImageWindowTask()
         {
