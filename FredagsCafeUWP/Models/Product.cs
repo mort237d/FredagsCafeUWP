@@ -1,8 +1,11 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using Windows.UI.Xaml.Controls;
+using FredagsCafeUWP.Annotations;
 
 namespace FredagsCafeUWP.Models
 {
-    class Product
+    class Product : INotifyPropertyChanged
     {
         #region Fields
         private double _buyingPrice;
@@ -29,7 +32,10 @@ namespace FredagsCafeUWP.Models
         public string Name
         {
             get { return _name; }
-            set { _name = value; }
+            set
+            {
+                _name = value;
+            }
         }
 
         public int Amount
@@ -60,6 +66,19 @@ namespace FredagsCafeUWP.Models
             Amount = amount;
             AmountSold = amountSold;
             ImageSource = imageSource;
+        }
+
+        public Product()
+        {
+
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

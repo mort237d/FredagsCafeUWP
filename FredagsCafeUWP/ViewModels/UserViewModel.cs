@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FredagsCafeUWP.Models;
+using GalaSoft.MvvmLight.Command;
 
 namespace FredagsCafeUWP.ViewModels
 {
@@ -12,10 +13,15 @@ namespace FredagsCafeUWP.ViewModels
     {
         private string _selectedItem;
         private Stock stock = new Stock();
+        private Product product;
+
+        private RelayCommand addProductCommand;
+        private RelayCommand removeProductCommand;
 
         public UserViewModel()
         {
-            
+            AddProductCommand = new RelayCommand(stock.AddProductToOBList);
+            RemoveProductCommand = new RelayCommand(stock.RemoveProductFromOBList);
         }
 
         public string SelectedItem
@@ -28,6 +34,24 @@ namespace FredagsCafeUWP.ViewModels
         {
             get { return stock; }
             set { stock = value; }
+        }
+
+        public Product Product
+        {
+            get { return product; }
+            set { product = value; }
+        }
+
+        public RelayCommand AddProductCommand
+        {
+            get { return addProductCommand; }
+            set { addProductCommand = value; }
+        }
+
+        public RelayCommand RemoveProductCommand
+        {
+            get { return removeProductCommand; }
+            set { removeProductCommand = value; }
         }
     }
 }

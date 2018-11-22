@@ -67,7 +67,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <ListView ItemsSource="{Binding Stock.Products}">
+                    <ListView ItemsSource="{Binding Stock.Products}" SelectedItem="{Binding Stock.SelectedProduct}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -84,6 +84,28 @@
                         </ListView.ItemTemplate>
                     </ListView>
 
+                    <StackPanel Orientation="Vertical" Grid.Row="1">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox Width="110" PlaceholderText="Navn" Text="{Binding Stock.NameTB, Mode=TwoWay}"></TextBox>
+                            <TextBox Width="110" PlaceholderText="Købspris" Text="{Binding Stock.BuyingPriceTB, Mode=TwoWay}"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox Width="110" PlaceholderText="Salgspris" Text="{Binding Stock.SellingPriceTB, Mode=TwoWay}"></TextBox>
+                            <TextBox Width="110" PlaceholderText="Antal" Text="{Binding Stock.AmountTB, Mode=TwoWay}"></TextBox>
+                        </StackPanel>
+
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox Width="110" PlaceholderText="ImageSource" Text="{Binding Stock.ImageSourceTB, Mode=TwoWay}"></TextBox>
+                            <Button Content="Browse" Width="110" ></Button>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <Button Width="110" Content="Tilføj" Command="{Binding AddProductCommand}"></Button>
+                            <Button Width="110" Content="Slet" Command="{Binding RemoveProductCommand}"></Button>
+                        </StackPanel>
+                        
+                    </StackPanel>
 
                     <StackPanel Grid.Row="1" Margin="0,0,0,10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Vertical">
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,5" HorizontalAlignment="Right">

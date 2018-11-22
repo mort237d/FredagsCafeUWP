@@ -12,6 +12,8 @@ namespace FredagsCafeUWP.Models
 {
     class Stock : INotifyPropertyChanged
     {
+        private Product product;
+
         private ObservableCollection<Product> _products;
         public ObservableCollection<Product> Products
         {
@@ -19,9 +21,56 @@ namespace FredagsCafeUWP.Models
             set
             {
                 _products = value; 
-                
             }
         }
+
+        private Product _selectedProduct;
+        public Product SelectedProduct
+        {
+            get { return _selectedProduct; }
+            set
+            {
+                _selectedProduct = value; 
+                OnPropertyChanged();
+            }
+        }
+
+        public string NameTB
+        {
+            get { return _nameTB; }
+            set { _nameTB = value; }
+        }
+
+        public double BuyingPriceTB
+        {
+            get { return _buyingPriceTB; }
+            set { _buyingPriceTB = value; }
+        }
+
+        public double SellingPriceTB
+        {
+            get { return _sellingPriceTB; }
+            set { _sellingPriceTB = value; }
+        }
+
+        public int AmountTB
+        {
+            get { return _amountTB; }
+            set { _amountTB = value; }
+        }
+
+        public string ImageSourceTB
+        {
+            get { return _imageSourceTB; }
+            set { _imageSourceTB = value; }
+        }
+
+        private string _nameTB;
+        private double _buyingPriceTB;
+        private double _sellingPriceTB;
+        private int _amountTB;
+        private string _imageSourceTB;
+
 
         public Stock()
         {
@@ -62,25 +111,25 @@ namespace FredagsCafeUWP.Models
 
         }
 
-        public void AddProductToOBList(Product product)
+        public void AddProductToOBList()
         {
             bool productExist = false;
             foreach (var element in Products)
             {
-                if (!element.Name.ToLower().Equals(product.Name.ToLower()))
+                if (element.Name.ToLower().Equals(NameTB.ToLower()))
                 {
                     productExist = true;
                     break;
                 }
             }
 
-            if (productExist) Products.Add(product);
+            if (!productExist) Products.Add(new Product(BuyingPriceTB, SellingPriceTB, NameTB, AmountTB,0, "ProductImages/Tuborg-Dåse.png"));
             else Debug.WriteLine("Varen findes allerede");
         }
 
-        public void RemoveProductFromOBList(Product product)
+        public void RemoveProductFromOBList()
         {
-            Products.Remove(product);
+            Products.Remove(SelectedProduct);
         }
 
         #region INotify
