@@ -84,7 +84,7 @@
                         </ListView.ItemTemplate>
                     </ListView>
 
-                    <StackPanel Orientation="Vertical" Grid.Row="1">
+                    <StackPanel Orientation="Vertical" Grid.Row="1" Margin="0,-50,0,0">
                         <StackPanel Orientation="Horizontal">
                             <TextBox Width="110" PlaceholderText="Navn" Text="{Binding Stock.NameTB, Mode=TwoWay}"></TextBox>
                             <TextBox Width="110" PlaceholderText="Købspris" Text="{Binding Stock.BuyingPriceTB, Mode=TwoWay}"></TextBox>

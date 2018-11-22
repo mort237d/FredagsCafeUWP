@@ -232,6 +232,27 @@ namespace FredagsCafeUWP.Models
             }
         }
 
+        public void BrowseImage()
+        {
+//            var picker = new Windows.Storage.Pickers.FileOpenPicker();
+//            picker.ViewMode = Windows.Storage.Pickers.PickerViewMode.Thumbnail;
+//            picker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.PicturesLibrary;
+//            picker.FileTypeFilter.Add(".jpg");
+//            picker.FileTypeFilter.Add(".jpeg");
+//            picker.FileTypeFilter.Add(".png");
+//
+//            Windows.Storage.StorageFile file = await picker.PickSingleFileAsync();
+//            if (file != null)
+//            {
+//                // Application now has read/write access to the picked file
+//                this.textBlock.Text = "Picked photo: " + file.Name;
+//            }
+//            else
+//            {
+//                this.textBlock.Text = "Operation cancelled.";
+//            }
+        }
+
         #region INotify
 
         public event PropertyChangedEventHandler PropertyChanged;
