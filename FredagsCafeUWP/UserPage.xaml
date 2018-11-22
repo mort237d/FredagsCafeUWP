@@ -117,6 +117,7 @@
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <TextBox PlaceholderText="Stk." Text="{Binding Stock.ProductAmountTB, Mode=TwoWay}"></TextBox>
                             <Button Content="Tilføj antal" Command="{Binding AddAmountCommand}"></Button>
+                            <Button Content="Slet antal" Command="{Binding}" ></Button>
                         </StackPanel>
                     </StackPanel>
 

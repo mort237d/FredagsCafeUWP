@@ -19,6 +19,7 @@ namespace FredagsCafeUWP.ViewModels
         private RelayCommand removeProductCommand;
 
         private RelayCommand addAmountCommand;
+        private RelayCommand removeAmountCommand;
 
         public UserViewModel()
         {
@@ -26,6 +27,7 @@ namespace FredagsCafeUWP.ViewModels
             RemoveProductCommand = new RelayCommand(stock.RemoveProductFromOBList);
 
             AddAmountCommand = new RelayCommand(stock.AddAmountToProduct);
+            //RemoveAmountCommand = new RelayCommand(stock.RemoveAmountFromProduct);
         }
 
         public string SelectedItem
@@ -62,6 +64,12 @@ namespace FredagsCafeUWP.ViewModels
         {
             get { return addAmountCommand; }
             set { addAmountCommand = value; }
+        }
+
+        public RelayCommand RemoveAmountCommand
+        {
+            get { return removeAmountCommand; }
+            set { removeAmountCommand = value; }
         }
     }
 }
