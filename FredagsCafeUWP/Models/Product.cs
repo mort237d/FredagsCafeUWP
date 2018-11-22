@@ -26,7 +26,11 @@ namespace FredagsCafeUWP.Models
         public double SellingPrice
         {
             get { return _sellingPrice; }
-            set { _sellingPrice = value; }
+            set
+            {
+                _sellingPrice = value; 
+                OnPropertyChanged();
+            }
         }
 
         public string Name

@@ -119,6 +119,16 @@ namespace FredagsCafeUWP.Models
             }
         }
 
+        public string ProductPriceChangeTB
+        {
+            get { return _productPriceChangeTB; }
+            set
+            {
+                _productPriceChangeTB = value; 
+                OnPropertyChanged();
+            }
+        }
+
         private string _nameTB;
         private string _buyingPriceTB;
         private string _sellingPriceTB;
@@ -134,6 +144,8 @@ namespace FredagsCafeUWP.Models
         private string _frameSizeTB;
 
         private string _productAmountTB;
+
+        private string _productPriceChangeTB;
 
         public Stock()
         {
@@ -290,6 +302,15 @@ namespace FredagsCafeUWP.Models
 
         }
 
+        public void ChangeProductPrice()
+        {
+            Int32.TryParse(ProductPriceChangeTB, out int intProductPriceChangedTB);
+            if (ProductPriceChangeTB != null && intProductPriceChangedTB > 0)
+            {
+                SelectedProduct.SellingPrice = intProductPriceChangedTB;
+                ProductPriceChangeTB = null;
+            }
+        }
 
         #region INotify
 

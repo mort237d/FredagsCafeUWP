@@ -58,7 +58,7 @@
                         <TextBlock Text="HEJSA!"></TextBlock>
                     </ListView>
                 </Grid>
-                    
+
             </PivotItem>
             <PivotItem Header="Lager">
                 <Grid>
@@ -92,6 +92,8 @@
                         <StackPanel Orientation="Horizontal">
                             <TextBox Width="110" PlaceholderText="Salgspris" Text="{Binding Stock.SellingPriceTB, Mode=TwoWay}"></TextBox>
                             <TextBox Width="110" PlaceholderText="Antal" Text="{Binding Stock.AmountTB, Mode=TwoWay}"></TextBox>
+                            <TextBox Width="110" PlaceholderText="Change Price" Text="{Binding Stock.ProductPriceChangeTB, Mode=TwoWay}" Margin="300,0,0,0"/>
+                            <Button Content="Change product price" Command="{Binding ChangeProductPriceCommand}"/>
                         </StackPanel>
 
 
@@ -104,7 +106,7 @@
                             <Button Width="110" Content="Tilføj" Command="{Binding AddProductCommand}"></Button>
                             <Button Width="110" Content="Slet" Command="{Binding RemoveProductCommand}"></Button>
                         </StackPanel>
-                        
+
                     </StackPanel>
 
                     <StackPanel Grid.Row="1" Margin="0,0,0,10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Vertical">
@@ -123,8 +125,8 @@
                     </StackPanel>
 
                 </Grid>
-                
-                    
+
+
             </PivotItem>
             <PivotItem Header="Administration">
                 <Grid>
@@ -153,7 +155,7 @@
                             <TextBlock Text="12345678" HorizontalAlignment="Center"></TextBlock>
                             <TextBlock Text="mail@edu.easj.dk" HorizontalAlignment="Center"></TextBlock>
                         </StackPanel>
-                        
+
 
                         <Button Grid.Column="3" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" Content="Fjern medarbejder"></Button>
                     </Grid>
@@ -168,7 +170,7 @@
                         <TextBox PlaceholderText="Password"></TextBox>
                     </StackPanel>
                     <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" Grid.Column="1" Content="Tilføj medarbejder"></Button>
-                    
+
                 </Grid>
             </PivotItem>
             <PivotItem Header="Event">
