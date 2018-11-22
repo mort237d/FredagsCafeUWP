@@ -191,7 +191,7 @@ namespace FredagsCafeUWP.Models
 
                 if (NameTB != null && doubleBuyingPriceTB != 0 && doubleSellingPriceTB != 0 && AmountTB != null)
                 {
-                    Products.Add(new Product(doubleBuyingPriceTB, doubleSellingPriceTB, NameTB, intAmountTB, 0, "ProductImages/Tuborg-Dåse.png"));
+                    Products.Add(new Product(doubleBuyingPriceTB, doubleSellingPriceTB, NameTB, intAmountTB, 0,ImageSourceTB));
 
                     NameTB = null;
                     BuyingPriceTB = null;
@@ -275,7 +275,7 @@ namespace FredagsCafeUWP.Models
             StorageFile file = await openPicker.PickSingleFileAsync();
             if (file != null)
             {
-                return outputTextBlock.Text = file.Name;
+                return outputTextBlock.Text = "ProductImages/" + file.Name;
             }
             else
             {
