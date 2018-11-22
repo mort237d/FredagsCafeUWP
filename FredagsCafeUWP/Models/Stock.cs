@@ -138,14 +138,14 @@ namespace FredagsCafeUWP.Models
                 new Product(66, 67, "Tuborg Classic", 22, 2, "ProductImages/Tuborg-Dåse.png"),
                 new Product(55, 63, "Grøn Tuborg", 2, 13, "ProductImages/Tuborg-Dåse.png"),
                 new Product(55, 63, "Tuborg Gylden Dame", 2, 13, "ProductImages/Tuborg-Dåse.png"),
-                new Product(55, 63, "Carlsberg", 2, 13, "ProductImages/Tuborg-Dåse.png"),
-                new Product(55, 63, "Mokai", 2, 13, "ProductImages/Tuborg-Dåse.png"),
-                new Product(55, 63, "Breezer", 2, 13, "ProductImages/Tuborg-Dåse.png"),
-                new Product(55, 63, "Sommersby Apple Cider", 2, 13, "ProductImages/Tuborg-Dåse.png"),
-                new Product(55, 63, "Sommersby Pear Cider", 2, 13, "ProductImages/Tuborg-Dåse.png"),
-                new Product(55, 63, "Cola", 2, 13, "ProductImages/Tuborg-Dåse.png"),
-                new Product(55, 63, "Cola Zero", 2, 13, "ProductImages/Tuborg-Dåse.png"),
-                new Product(55, 63, "Squash", 2, 13, "ProductImages/Tuborg-Dåse.png")
+                //new Product(55, 63, "Carlsberg", 2, 13, "ProductImages/Tuborg-Dåse.png"),
+                //new Product(55, 63, "Mokai", 2, 13, "ProductImages/Tuborg-Dåse.png"),
+                //new Product(55, 63, "Breezer", 2, 13, "ProductImages/Tuborg-Dåse.png"),
+                //new Product(55, 63, "Sommersby Apple Cider", 2, 13, "ProductImages/Tuborg-Dåse.png"),
+                //new Product(55, 63, "Sommersby Pear Cider", 2, 13, "ProductImages/Tuborg-Dåse.png"),
+                //new Product(55, 63, "Cola", 2, 13, "ProductImages/Tuborg-Dåse.png"),
+                //new Product(55, 63, "Cola Zero", 2, 13, "ProductImages/Tuborg-Dåse.png"),
+                //new Product(55, 63, "Squash", 2, 13, "ProductImages/Tuborg-Dåse.png")
             };
         }
 
