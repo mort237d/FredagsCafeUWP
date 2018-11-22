@@ -23,5 +23,11 @@ namespace FredagsCafeUWP.ViewModels
             get { return _selectedItem; }
             set { _selectedItem = value; }
         }
+
+        public Stock Stock
+        {
+            get { return stock; }
+            set { stock = value; }
+        }
     }
 }

@@ -5,8 +5,12 @@
     xmlns:local="using:FredagsCafeUWP"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="using:FredagsCafeUWP.ViewModels"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.DataContext>
+        <viewModels:UserViewModel></viewModels:UserViewModel>
+    </Page.DataContext>
 
     <Grid>
         <Pivot x:Name="rootPivot">
@@ -16,66 +20,72 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Grid Margin="30,30,30,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="2*"/>
-                            <RowDefinition Height="2*"/>
-                            <RowDefinition Height="2*"/>
-                            <RowDefinition Height="2*"/>
-                            <RowDefinition Height="2*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="6*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
-                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <Image Source="Assets/Tuborg-Dåse.png" Width="100" Height="100"></Image>
-                            <StackPanel Orientation="Horizontal">
-                                <Button Style="{StaticResource LeftRoundedButtonStyle}" Content="-"></Button>
-                                <TextBox Text="0" TextAlignment="Center"/>
-                                <Button Style="{StaticResource RightRoundedButtonStyle}" Content="+"></Button>
-                            </StackPanel>
-                        </StackPanel>
+                    <ListView ItemsSource="{Binding Stock.Products}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding ImageSource}"></Image>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock FontWeight="Bold" Text="{Binding Name}"></TextBlock>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="kr."></TextBlock>
+                                            <TextBlock Text="{Binding SellingPrice}" Margin="2,0,2,0"></TextBlock>
+                                            <TextBlock Text=",-"></TextBlock>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Style="{StaticResource LeftRoundedButtonStyle}" Content="-"></Button>
+                                            <TextBox Text="0" TextAlignment="Center"></TextBox>
+                                            <Button Style="{StaticResource RightRoundedButtonStyle}" Content="+"></Button>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Margin="5,0,0,5" Grid.Row="1">
+                        <TextBlock Text="Total pris:"></TextBlock>
+                        <TextBlock Text="kr. 200 ,-"></TextBlock>
+                    </StackPanel>
 
-                        <TextBlock Grid.Row="5" Grid.ColumnSpan="3" Margin="0,0,0,10" HorizontalAlignment="Left" VerticalAlignment="Bottom" Text="Total pris: kr. 100,-"></TextBlock>
-                        <Button Grid.Row="5" Grid.Column="3" Margin="0,0,0,10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Betal"></Button>
-                    </Grid>
+                    <Button Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Betal"  Margin="0,0,5,5"></Button>
 
                     <ListView Margin="30,30,30,0" Header="Transaktioner" Grid.Column="1">
                         <TextBlock Text="HEJSA!"></TextBlock>
                     </ListView>
                 </Grid>
+                    
             </PivotItem>
             <PivotItem Header="Lager">
-                <Grid Margin="30,30,30,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
+                <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="2*"/>
-                        <RowDefinition Height="2*"/>
-                        <RowDefinition Height="2*"/>
-                        <RowDefinition Height="2*"/>
-                        <RowDefinition Height="2*"/>
-                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="6*"/>
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Image Source="Assets/Tuborg-Dåse.png" Width="100" Height="100"></Image>
-                        <TextBlock Text="48 stk" HorizontalAlignment="Center"></TextBlock>
-                    </StackPanel>
+                    <ListView ItemsSource="{Binding Stock.Products}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <Image Source="{Binding ImageSource}" Width="100" Height="100"></Image>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="{Binding Name}"></TextBlock>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Amount}" HorizontalAlignment="Center"></TextBlock>
+                                            <TextBlock Text="stk"></TextBlock>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
 
-                    <StackPanel Grid.Row="5" Grid.Column="5" Margin="0,0,0,10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Orientation="Vertical">
+
+                    <StackPanel Grid.Row="1" Margin="0,0,0,10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Vertical">
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,5" HorizontalAlignment="Right">
                             <TextBox PlaceholderText="Antal rammer"></TextBox>
                             <TextBlock Text="x" VerticalAlignment="Bottom"></TextBlock>
@@ -87,9 +97,10 @@
                             <Button Content="Tilføj antal"></Button>
                         </StackPanel>
                     </StackPanel>
-                    
-                    
+
                 </Grid>
+                
+                    
             </PivotItem>
             <PivotItem Header="Administration">
                 <Grid>

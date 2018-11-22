@@ -1,4 +1,6 @@
-﻿namespace FredagsCafeUWP.Models
+﻿using Windows.UI.Xaml.Controls;
+
+namespace FredagsCafeUWP.Models
 {
     class Product
     {
@@ -8,6 +10,7 @@
         private string _name;
         private int _amount;
         private int _amountSold;
+        private string _imageSource;
         #endregion
 
         #region Props
@@ -41,15 +44,22 @@
             set { _amountSold = value; }
         }
 
+        public string ImageSource
+        {
+            get { return _imageSource; }
+            set { _imageSource = value; }
+        }
+
         #endregion
 
-        public Product(double buyingPrice, double sellingPrice, string name, int amount, int amountSold)
+        public Product(double buyingPrice, double sellingPrice, string name, int amount, int amountSold, string imageSource)
         {
             BuyingPrice = buyingPrice;
             SellingPrice = sellingPrice;
             Name = name;
             Amount = amount;
             AmountSold = amountSold;
+            ImageSource = imageSource;
         }
     }
 }
