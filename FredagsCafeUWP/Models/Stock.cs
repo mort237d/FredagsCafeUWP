@@ -19,6 +19,41 @@ namespace FredagsCafeUWP.Models
         private Product product;
 
         private ObservableCollection<Product> _products;
+
+        private Product _selectedProduct;
+
+        private string _nameTB;
+        private string _buyingPriceTB;
+        private string _sellingPriceTB;
+        private string _amountTB;
+        private string _imageSourceTB;
+
+        private string _frameAmountTB;
+        private string _frameSizeTB;
+
+        private string _productAmountTB;
+
+        private string _productPriceChangeTB;
+
+        public Stock()
+        {
+            Products = new ObservableCollection<Product>()
+            {
+                new Product(66, 67, "Tuborg Classic", 22, 2, "ProductImages/Tuborg-Dåse.png"),
+                new Product(55, 63, "Grøn Tuborg", 2, 13, "ProductImages/Tuborg-Dåse.png"),
+                new Product(55, 63, "Tuborg Gylden Dame", 2, 13, "ProductImages/Tuborg-Dåse.png"),
+                //new Product(55, 63, "Carlsberg", 2, 13, "ProductImages/Tuborg-Dåse.png"),
+                //new Product(55, 63, "Mokai", 2, 13, "ProductImages/Tuborg-Dåse.png"),
+                //new Product(55, 63, "Breezer", 2, 13, "ProductImages/Tuborg-Dåse.png"),
+                //new Product(55, 63, "Sommersby Apple Cider", 2, 13, "ProductImages/Tuborg-Dåse.png"),
+                //new Product(55, 63, "Sommersby Pear Cider", 2, 13, "ProductImages/Tuborg-Dåse.png"),
+                //new Product(55, 63, "Cola", 2, 13, "ProductImages/Tuborg-Dåse.png"),
+                //new Product(55, 63, "Cola Zero", 2, 13, "ProductImages/Tuborg-Dåse.png"),
+                //new Product(55, 63, "Squash", 2, 13, "ProductImages/Tuborg-Dåse.png")
+            };
+        }
+
+        #region Properties
         public ObservableCollection<Product> Products
         {
             get { return _products; }
@@ -28,7 +63,6 @@ namespace FredagsCafeUWP.Models
             }
         }
 
-        private Product _selectedProduct;
         public Product SelectedProduct
         {
             get { return _selectedProduct; }
@@ -128,42 +162,8 @@ namespace FredagsCafeUWP.Models
                 OnPropertyChanged();
             }
         }
-
-        private string _nameTB;
-        private string _buyingPriceTB;
-        private string _sellingPriceTB;
-        private string _amountTB;
-        private string _imageSourceTB;
-
-        //private int _frameAmountTB;
-        //private int _frameSizeTB;
-
-        //private int _productAmountTB;
-
-        private string _frameAmountTB;
-        private string _frameSizeTB;
-
-        private string _productAmountTB;
-
-        private string _productPriceChangeTB;
-
-        public Stock()
-        {
-            Products = new ObservableCollection<Product>()
-            {
-                new Product(66, 67, "Tuborg Classic", 22, 2, "ProductImages/Tuborg-Dåse.png"),
-                new Product(55, 63, "Grøn Tuborg", 2, 13, "ProductImages/Tuborg-Dåse.png"),
-                new Product(55, 63, "Tuborg Gylden Dame", 2, 13, "ProductImages/Tuborg-Dåse.png"),
-                //new Product(55, 63, "Carlsberg", 2, 13, "ProductImages/Tuborg-Dåse.png"),
-                //new Product(55, 63, "Mokai", 2, 13, "ProductImages/Tuborg-Dåse.png"),
-                //new Product(55, 63, "Breezer", 2, 13, "ProductImages/Tuborg-Dåse.png"),
-                //new Product(55, 63, "Sommersby Apple Cider", 2, 13, "ProductImages/Tuborg-Dåse.png"),
-                //new Product(55, 63, "Sommersby Pear Cider", 2, 13, "ProductImages/Tuborg-Dåse.png"),
-                //new Product(55, 63, "Cola", 2, 13, "ProductImages/Tuborg-Dåse.png"),
-                //new Product(55, 63, "Cola Zero", 2, 13, "ProductImages/Tuborg-Dåse.png"),
-                //new Product(55, 63, "Squash", 2, 13, "ProductImages/Tuborg-Dåse.png")
-            };
-        }
+        #endregion
+      
 
         public async void WriteListToTxt()
         {
@@ -218,7 +218,11 @@ namespace FredagsCafeUWP.Models
 
         public void RemoveProductFromOBList()
         {
-            Products.Remove(SelectedProduct);
+            if (SelectedProduct != null)
+            {
+                Products.Remove(SelectedProduct);
+            }
+           
         }
 
         public void AddAmountToProduct()
