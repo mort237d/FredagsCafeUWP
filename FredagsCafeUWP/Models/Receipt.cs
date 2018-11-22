@@ -19,22 +19,21 @@ namespace FredagsCafeUWP
         private string _note;
         private List<Product> _basket;
 
-        public Receipt(DateTime saleDateTime, string cvr, string phoneNumber, int saleNumber, double subTotal, double tax, double total, string note, List<Product> basket)
+        public Receipt(double subTotal, string note)
         {
-            _saleDateTime = saleDateTime;
-            _cvr = cvr;
-            _phoneNumber = phoneNumber;
-            _saleNumber = saleNumber;
             _subTotal = subTotal;
-            _tax = tax;
-            _total = total;
             _note = note;
-            _basket = basket;
+        }
+
+        public List<Product> Basket
+        {
+            get { return _basket; }
+            set { _basket = value; }
         }
 
         public override string ToString()
         {
-            return "Sales time" + _saleDateTime.ToString();
+            return "Salgs tid:   " + _saleDateTime + "\nVirksomheds CVR " + _cvr + "\nVirksomheds nummer" + _phoneNumber + "\nSalgs nummer: " + _saleNumber + "\nTotal u. skat: " + _subTotal + "\nSkat: " + _tax + "\nTotal: " + _total + "Note: " + _note.ToString();
         }
     }
 }
