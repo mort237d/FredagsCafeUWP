@@ -5,7 +5,11 @@ using System.Diagnostics;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.ServiceModel.Channels;
+using System.Threading.Tasks;
+using Windows.Storage;
+using Windows.Storage.Pickers;
 using Windows.UI.Popups;
+using Windows.UI.Xaml.Controls;
 using FredagsCafeUWP.Annotations;
 
 namespace FredagsCafeUWP.Models
@@ -258,26 +262,34 @@ namespace FredagsCafeUWP.Models
         //    }
         //}
 
-        public void BrowseImage()
+        public async Task<string> BrowseImageWindowTask()
         {
-//            var picker = new Windows.Storage.Pickers.FileOpenPicker();
-//            picker.ViewMode = Windows.Storage.Pickers.PickerViewMode.Thumbnail;
-//            picker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.PicturesLibrary;
-//            picker.FileTypeFilter.Add(".jpg");
-//            picker.FileTypeFilter.Add(".jpeg");
-//            picker.FileTypeFilter.Add(".png");
-//
-//            Windows.Storage.StorageFile file = await picker.PickSingleFileAsync();
-//            if (file != null)
-//            {
-//                // Application now has read/write access to the picked file
-//                this.textBlock.Text = "Picked photo: " + file.Name;
-//            }
-//            else
-//            {
-//                this.textBlock.Text = "Operation cancelled.";
-//            }
+            FileOpenPicker openPicker = new FileOpenPicker();
+            openPicker.ViewMode = PickerViewMode.Thumbnail;
+            openPicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+            openPicker.FileTypeFilter.Add(".jpg");
+            openPicker.FileTypeFilter.Add(".jpeg");
+            openPicker.FileTypeFilter.Add(".png");
+            TextBlock outputTextBlock = new TextBlock();
+
+            StorageFile file = await openPicker.PickSingleFileAsync();
+            if (file != null)
+            {
+                return outputTextBlock.Text = file.Name;
+            }
+            else
+            {
+                return outputTextBlock.Text = "Operation cancelled.";
+            }
+
         }
+
+        public async void BrowseImageButton()
+        {
+            ImageSourceTB = await BrowseImageWindowTask();
+
+        }
+
 
         #region INotify
 

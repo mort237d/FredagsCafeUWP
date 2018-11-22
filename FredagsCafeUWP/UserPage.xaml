@@ -97,7 +97,7 @@
 
                         <StackPanel Orientation="Horizontal">
                             <TextBox Width="110" PlaceholderText="ImageSource" Text="{Binding Stock.ImageSourceTB, Mode=TwoWay}"></TextBox>
-                            <Button Content="Browse" Width="110" ></Button>
+                            <Button Content="Browse" Width="110" Command="{Binding BrowseImageCommand}"></Button>
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal">
