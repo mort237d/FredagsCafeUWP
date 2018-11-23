@@ -218,7 +218,7 @@ namespace FredagsCafeUWP.Models
                     double.TryParse(SellingPriceTB, out double doubleSellingPriceTB);
                     int.TryParse(AmountTB, out int intAmountTB);
 
-                    if (doubleBuyingPriceTB != 0 && doubleSellingPriceTB != 0 && AmountTB != null)
+                    if (doubleBuyingPriceTB > 0 && doubleSellingPriceTB > 0 && AmountTB != null && intAmountTB >= 0)
                     {
                         if (intAmountTB < _minAmount) Products.Add(new Product(doubleBuyingPriceTB, doubleSellingPriceTB, NameTB, intAmountTB, 0,ImageSourceTB, _colorRed));
                         else Products.Add(new Product(doubleBuyingPriceTB, doubleSellingPriceTB, NameTB, intAmountTB, 0, ImageSourceTB, _colorGreen));
