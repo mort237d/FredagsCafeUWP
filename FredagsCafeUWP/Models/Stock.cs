@@ -221,11 +221,11 @@ namespace FredagsCafeUWP.Models
                     }
                 }
 
-                new MessageDialog("Gemt").ShowAsync();
+                Message("Gemt", null);
             }
             catch
             {
-                new MessageDialog("Kan ikke gemme filen").ShowAsync();
+                Message("Kan ikke gemme filen", null);
             }
         }
 
@@ -245,11 +245,10 @@ namespace FredagsCafeUWP.Models
                         TextDoc = textReader.ReadString(textLength);
                     }
                 }
-
             }
             catch
             {
-                new MessageDialog("Kan ikke læse filen").ShowAsync();
+                Message("Kan ikke læse filen", null);
             }
         }
 
@@ -300,45 +299,50 @@ namespace FredagsCafeUWP.Models
         public void RemoveProductFromOBList()
         {
             if (SelectedProduct != null) YesNoMessage("Slet produkt", "Er du sikker på at du vil slette " + SelectedProduct.Name + "?");
+            else Message("Intet produkt valg", "Vælg venligst et produkt");
         }
 
         public void AddAmountToProduct()
         {
-            Int32.TryParse(FrameAmountTB, out int intFrameAmountTB);
-            Int32.TryParse(FrameSizeTB, out int intFrameSizeTB);
-            Int32.TryParse(ProductAmountTB, out int intProductAmountTB);
+            if (SelectedProduct != null)
+            {
+                Int32.TryParse(FrameAmountTB, out int intFrameAmountTB);
+                Int32.TryParse(FrameSizeTB, out int intFrameSizeTB);
+                Int32.TryParse(ProductAmountTB, out int intProductAmountTB);
 
 
-            if (intFrameAmountTB > 0 && intFrameSizeTB > 0 && intProductAmountTB > 0)
-            {
-                SelectedProduct.Amount += (intFrameAmountTB * intFrameSizeTB) + intProductAmountTB;
-                FrameAmountTB = null;
-                FrameSizeTB = null;
-                ProductAmountTB = null;
-            }
-            else if (intFrameAmountTB > 0 && intFrameSizeTB > 0)
-            {
-                SelectedProduct.Amount += intFrameAmountTB * intFrameSizeTB;
-                FrameAmountTB = null;
-                FrameSizeTB = null;
-            }
-            else if (intProductAmountTB > 0)
-            {
-                SelectedProduct.Amount += intProductAmountTB;
-                ProductAmountTB = null;
-            }
+                if (intFrameAmountTB > 0 && intFrameSizeTB > 0 && intProductAmountTB > 0)
+                {
+                    SelectedProduct.Amount += (intFrameAmountTB * intFrameSizeTB) + intProductAmountTB;
+                    FrameAmountTB = null;
+                    FrameSizeTB = null;
+                    ProductAmountTB = null;
+                }
+                else if (intFrameAmountTB > 0 && intFrameSizeTB > 0)
+                {
+                    SelectedProduct.Amount += intFrameAmountTB * intFrameSizeTB;
+                    FrameAmountTB = null;
+                    FrameSizeTB = null;
+                }
+                else if (intProductAmountTB > 0)
+                {
+                    SelectedProduct.Amount += intProductAmountTB;
+                    ProductAmountTB = null;
+                }
 
-            if (SelectedProduct != null && SelectedProduct.Amount < _minAmount) SelectedProduct.ForegroundColor = _colorRed;
-            else SelectedProduct.ForegroundColor = _colorGreen;
+                if (SelectedProduct != null && SelectedProduct.Amount < _minAmount) SelectedProduct.ForegroundColor = _colorRed;
+                else SelectedProduct.ForegroundColor = _colorGreen;
+            }
+            else Message("Intet produkt valg", "Vælg venligst et produkt");
         }
         public void RemoveAmountFromProduct()
         {
-            Int32.TryParse(FrameAmountTB, out int intFrameAmountTB);
-            Int32.TryParse(FrameSizeTB, out int intFrameSizeTB);
-            Int32.TryParse(ProductAmountTB, out int intProductAmountTB);
-
             if (SelectedProduct != null)
             {
+                Int32.TryParse(FrameAmountTB, out int intFrameAmountTB);
+                Int32.TryParse(FrameSizeTB, out int intFrameSizeTB);
+                Int32.TryParse(ProductAmountTB, out int intProductAmountTB);
+
                 if (intFrameAmountTB > 0 && intFrameSizeTB > 0 && intProductAmountTB > 0)
                 {
                     if (SelectedProduct.Amount >= ((intFrameAmountTB * intFrameSizeTB) + intProductAmountTB))
@@ -401,22 +405,30 @@ namespace FredagsCafeUWP.Models
 
         public void ChangeProductSellPrice()
         {
-            Int32.TryParse(ProductPriceChangeTb, out int intProductPriceChangedTB);
-            if (ProductPriceChangeTb != null && intProductPriceChangedTB > 0)
+            if (SelectedProduct != null)
             {
-                SelectedProduct.SellingPrice = intProductPriceChangedTB;
-                ProductPriceChangeTb = null;
+                Int32.TryParse(ProductPriceChangeTb, out int intProductPriceChangedTB);
+                if (ProductPriceChangeTb != null && intProductPriceChangedTB > 0)
+                {
+                    SelectedProduct.SellingPrice = intProductPriceChangedTB;
+                    ProductPriceChangeTb = null;
+                }
             }
+            else Message("Intet produkt valg", "Vælg venligst et produkt");
         }
 
         public void ChangeProductBuyPrice()
         {
-            Int32.TryParse(ProductPriceChangeTb, out int intProductPriceChangedTB);
-            if (ProductPriceChangeTb != null && intProductPriceChangedTB > 0)
+            if (SelectedProduct != null)
             {
-                SelectedProduct.BuyingPrice = intProductPriceChangedTB;
-                ProductPriceChangeTb = null;
+                Int32.TryParse(ProductPriceChangeTb, out int intProductPriceChangedTB);
+                if (ProductPriceChangeTb != null && intProductPriceChangedTB > 0)
+                {
+                    SelectedProduct.BuyingPrice = intProductPriceChangedTB;
+                    ProductPriceChangeTb = null;
+                }
             }
+            else Message("Intet produkt valg", "Vælg venligst et produkt");
         }
 
         private async Task YesNoMessage(string title, string content)
