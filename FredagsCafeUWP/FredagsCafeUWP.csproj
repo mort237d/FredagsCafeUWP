@@ -118,6 +118,7 @@
   <ItemGroup>
     <Content Include="Assets\Profile-icon.png" />
     <Content Include="hej.txt" />
+    <Content Include="ProductImages\BlankDåse.png" />
     <Content Include="ProductImages\Breezer.png" />
     <Content Include="ProductImages\Carlsberg.png" />
     <Content Include="ProductImages\Cola.png" />

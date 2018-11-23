@@ -274,10 +274,10 @@ namespace FredagsCafeUWP.Models
 
                     if (doubleBuyingPriceTB > 0 && doubleSellingPriceTB > 0 && AmountTB != null && intAmountTB >= 0)
                     {
-                        if (ImageSourceTB == "")
+                        if (ImageSourceTB == "" || ImageSourceTB == null)
                         {
-                            if (intAmountTB < _minAmount) Products.Add(new Product(doubleBuyingPriceTB, doubleSellingPriceTB, NameTB, intAmountTB, 0, "BlankDåse", _colorRed));
-                            else Products.Add(new Product(doubleBuyingPriceTB, doubleSellingPriceTB, NameTB, intAmountTB, 0, "BlankDåse", _colorGreen));
+                            if (intAmountTB < _minAmount) Products.Add(new Product(doubleBuyingPriceTB, doubleSellingPriceTB, NameTB, intAmountTB, 0, "ProductImages/BlankDåse.png", _colorRed));
+                            else Products.Add(new Product(doubleBuyingPriceTB, doubleSellingPriceTB, NameTB, intAmountTB, 0, "ProductImages/BlankDåse.png", _colorGreen));
                         }
                         else
                         {
