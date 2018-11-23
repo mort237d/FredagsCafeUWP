@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Pickers;
+using Windows.Storage.Streams;
 using Windows.UI;
 using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
@@ -41,6 +42,8 @@ namespace FredagsCafeUWP.Models
 
         private string _productPriceChangeTB;
 
+        private string _textDoc;
+
         public Stock()
         {
             Products = new ObservableCollection<Product>()
@@ -64,6 +67,9 @@ namespace FredagsCafeUWP.Models
                 new Receipt(424, "no note"),
                 new Receipt(3423, "Drugs and drugs")
             };
+
+            //WriteListToTxt();
+            ReadTxt();
         }
 
         #region Properties
@@ -185,17 +191,65 @@ namespace FredagsCafeUWP.Models
             }
         }
 
+        public string TextDoc
+        {
+            get { return _textDoc; }
+            set
+            {
+                _textDoc = value; 
+                OnPropertyChanged();
+            }
+        }
+
         #endregion
       
 
         public async void WriteListToTxt()
         {
-            StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
-            StorageFile sampleFile = await storageFolder.CreateFileAsync("StockTextDoc.txt", CreationCollisionOption.ReplaceExisting);
-            
-            StorageFile sampleFile1 = await storageFolder.GetFileAsync("StockTextDoc.txt");
+            try
+            {
+                StorageFolder localFolder = ApplicationData.Current.LocalFolder;
+                StorageFile textFile = await localFolder.CreateFileAsync("hej.txt", CreationCollisionOption.ReplaceExisting);
 
-            foreach (var p in Products)await Windows.Storage.FileIO.WriteTextAsync(sampleFile1, p.ToString());
+                using (IRandomAccessStream iRandomAccessStream = await textFile.OpenAsync(FileAccessMode.ReadWrite))
+                {
+                    using (DataWriter textWriter = new DataWriter(iRandomAccessStream))
+                    {
+                        foreach (var p in Products) textWriter.WriteString(p.ToString());
+                        await textWriter.StoreAsync();
+                    }
+                }
+
+                new MessageDialog("Gemt").ShowAsync();
+            }
+            catch
+            {
+                new MessageDialog("Kan ikke gemme filen").ShowAsync();
+            }
+        }
+
+        public async void ReadTxt()
+        {
+            try
+            {
+                StorageFolder localFolder = ApplicationData.Current.LocalFolder;
+                StorageFile textFile = await localFolder.GetFileAsync("hej.txt");
+
+                using (IRandomAccessStream textstream = await textFile.OpenReadAsync())
+                {
+                    using (DataReader textReader = new DataReader(textstream))
+                    {
+                        uint textLength = (uint)textstream.Size;
+                        await textReader.LoadAsync(textLength);
+                        TextDoc = textReader.ReadString(textLength);
+                    }
+                }
+
+            }
+            catch
+            {
+                new MessageDialog("Kan ikke læse filen").ShowAsync();
+            }
         }
 
         public void AddProductToOBListAsync()
@@ -272,28 +326,45 @@ namespace FredagsCafeUWP.Models
             Int32.TryParse(FrameSizeTB, out int intFrameSizeTB);
             Int32.TryParse(ProductAmountTB, out int intProductAmountTB);
 
+            if (SelectedProduct != null)
+            {
+                if (intFrameAmountTB != 0 && intFrameSizeTB != 0 && intProductAmountTB != 0)
+                {
+                    if (SelectedProduct.Amount >= ((intFrameAmountTB * intFrameSizeTB) + intProductAmountTB))
+                    {
+                        SelectedProduct.Amount -= (intFrameAmountTB * intFrameSizeTB) + intProductAmountTB;
+                        FrameAmountTB = null;
+                        FrameSizeTB = null;
+                        ProductAmountTB = null;
+                    }
+                    else Message("Tallene stemmer ikke", "Der er kun " + SelectedProduct.Amount + " af " + SelectedProduct.Name + "." +
+                                 "\nDerfor kan du ikke fjerne " + intFrameAmountTB + "*" + intFrameSizeTB + "+" + intProductAmountTB + "=" + ((intFrameAmountTB * intFrameSizeTB) + intProductAmountTB) + " af dette produkt.");
+                }
+                else if (intFrameAmountTB != 0 && intFrameSizeTB != 0)
+                {
+                    if (SelectedProduct.Amount >= (intFrameAmountTB * intFrameSizeTB))
+                    {
+                        SelectedProduct.Amount -= intFrameAmountTB * intFrameSizeTB;
+                        FrameAmountTB = null;
+                        FrameSizeTB = null;
+                    }
+                    else Message("Tallene stemmer ikke", "Der er kun " + SelectedProduct.Amount + " af " + SelectedProduct.Name + "." +
+                                 "\nDerfor kan du ikke fjerne " + intFrameAmountTB + "*" + intFrameSizeTB + "=" + (intFrameAmountTB * intFrameSizeTB) + " af dette produkt.");
+                }
+                else if (intProductAmountTB != 0)
+                {
+                    if (SelectedProduct.Amount >= intProductAmountTB)
+                    {
+                        SelectedProduct.Amount -= intProductAmountTB;
+                        ProductAmountTB = null;
+                    }
+                    else Message("Tallene stemmer ikke", "Der er kun " + SelectedProduct.Amount + " af " + SelectedProduct.Name + ".\nDerfor kan du ikke fjerne " + intProductAmountTB + " af dette produkt.");
+                }
 
-            if (intFrameAmountTB != 0 && intFrameSizeTB != 0 && intProductAmountTB != 0)
-            {
-                SelectedProduct.Amount -= (intFrameAmountTB * intFrameSizeTB) + intProductAmountTB;
-                FrameAmountTB = null;
-                FrameSizeTB = null;
-                ProductAmountTB = null;
+                if (SelectedProduct.Amount < _minAmount) SelectedProduct.ForegroundColor = _colorRed;
+                else SelectedProduct.ForegroundColor = _colorGreen;
             }
-            else if (intFrameAmountTB != 0 && intFrameSizeTB != 0)
-            {
-                SelectedProduct.Amount -= intFrameAmountTB * intFrameSizeTB;
-                FrameAmountTB = null;
-                FrameSizeTB = null;
-            }
-            else if (intProductAmountTB != 0)
-            {
-                SelectedProduct.Amount -= intProductAmountTB;
-                ProductAmountTB = null;
-            }
-
-            if (SelectedProduct.Amount < _minAmount) SelectedProduct.ForegroundColor = _colorRed;
-            else SelectedProduct.ForegroundColor = _colorGreen;
+            else Message("Intet produkt valg", "Vælg venligst et produkt");
         }
 
         public async Task<string> BrowseImageWindowTask()
@@ -359,7 +430,7 @@ namespace FredagsCafeUWP.Models
 
         private async Task Message(string title, string content)
         {
-            await new MessageDialog(title, content).ShowAsync();
+            await new MessageDialog(content, title).ShowAsync();
         }
 
         #region INotify
