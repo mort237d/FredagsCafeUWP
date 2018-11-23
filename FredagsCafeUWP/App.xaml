@@ -5,36 +5,22 @@
     xmlns:local="using:FredagsCafeUWP">
     <Application.Resources>
         <Style x:Key="RightRoundedButtonStyle" TargetType="Button">
-            <Setter Property="Background"
-          Value="{ThemeResource ButtonBackground}" />
-            <Setter Property="Foreground"
-          Value="{ThemeResource ButtonForeground}" />
-            <Setter Property="BorderBrush"
-          Value="{ThemeResource ButtonBorderBrush}" />
-            <Setter Property="BorderThickness"
-          Value="{ThemeResource ButtonBorderThemeThickness}" />
-            <Setter Property="Padding"
-          Value="8,4,8,4" />
-            <Setter Property="HorizontalAlignment"
-          Value="Left" />
-            <Setter Property="VerticalAlignment"
-          Value="Center" />
-            <Setter Property="FontFamily"
-          Value="{ThemeResource ContentControlThemeFontFamily}" />
-            <Setter Property="FontWeight"
-          Value="Normal" />
-            <Setter Property="FontSize"
-          Value="{ThemeResource ControlContentThemeFontSize}" />
-            <Setter Property="UseSystemFocusVisuals"
-          Value="True" />
-            <Setter Property="FocusVisualMargin"
-          Value="-3" />
+            <Setter Property="Background" Value="{ThemeResource ButtonBackground}" />
+            <Setter Property="Foreground" Value="{ThemeResource ButtonForeground}" />
+            <Setter Property="BorderBrush" Value="{ThemeResource ButtonBorderBrush}" />
+            <Setter Property="BorderThickness" Value="{ThemeResource ButtonBorderThemeThickness}" />
+            <Setter Property="Padding" Value="8,4,8,4" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
+            <Setter Property="FontWeight" Value="Normal" />
+            <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}" />
+            <Setter Property="UseSystemFocusVisuals" Value="True" />
+            <Setter Property="FocusVisualMargin" Value="-3" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Grid x:Name="RootGrid"
-              Background="{TemplateBinding Background}"
-              CornerRadius="0,100,100,0">
+                        <Grid x:Name="RootGrid" Background="{TemplateBinding Background}" CornerRadius="0,20,20,0">
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup x:Name="CommonStates">
                                     <VisualState x:Name="Normal">
@@ -46,17 +32,12 @@
                                         <Storyboard>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
                                                  Storyboard.TargetName="RootGrid">
-                                                <DiscreteObjectKeyFrame KeyTime="0"
-                                            Value="{ThemeResource ButtonBackgroundPointerOver}" />
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBackgroundPointerOver}" />
                                             </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush"
-                                                 Storyboard.TargetName="ContentPresenter">
-                                                <DiscreteObjectKeyFrame KeyTime="0"
-                                            Value="{ThemeResource ButtonBorderBrushPointerOver}" />
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="ContentPresenter">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBorderBrushPointerOver}" />
                                             </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
-                                                 Storyboard.TargetName="ContentPresenter">
-                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">                                                 <DiscreteObjectKeyFrame KeyTime="0"
                                             Value="{ThemeResource ButtonForegroundPointerOver}" />
                                             </ObjectAnimationUsingKeyFrames>
                                             <PointerUpThemeAnimation Storyboard.TargetName="RootGrid" />
@@ -114,7 +95,7 @@
                             HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                             Padding="{TemplateBinding Padding}"
                             VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                            CornerRadius="0,100,100,0" />
+                            CornerRadius="0,20,20,0" />
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
@@ -150,7 +131,7 @@
                     <ControlTemplate TargetType="Button">
                         <Grid x:Name="RootGrid"
               Background="{TemplateBinding Background}"
-              CornerRadius="100,0,0,100">
+              CornerRadius="20,0,0,20">
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup x:Name="CommonStates">
                                     <VisualState x:Name="Normal">
@@ -230,7 +211,7 @@
                             HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                             Padding="{TemplateBinding Padding}"
                             VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                            CornerRadius="100,0,0,100" />
+                            CornerRadius="20,0,0,20" />
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
