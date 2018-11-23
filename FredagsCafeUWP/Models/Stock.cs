@@ -263,7 +263,7 @@ namespace FredagsCafeUWP.Models
                 ProductAmountTB = null;
             }
 
-            if (SelectedProduct.Amount < _minAmount) SelectedProduct.ForegroundColor = _colorRed;
+            if (SelectedProduct != null && SelectedProduct.Amount < _minAmount) SelectedProduct.ForegroundColor = _colorRed;
             else SelectedProduct.ForegroundColor = _colorGreen;
         }
         public void RemoveAmountFromProduct()
@@ -308,7 +308,7 @@ namespace FredagsCafeUWP.Models
 
             StorageFile file = await openPicker.PickSingleFileAsync();
             if (file != null) return outputTextBlock.Text = "ProductImages/" + file.Name;
-            else return outputTextBlock.Text = "Operation cancelled.";
+            else return outputTextBlock.Text = "";
         }
 
         public async void BrowseImageButton()
