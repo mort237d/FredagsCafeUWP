@@ -298,20 +298,20 @@ namespace FredagsCafeUWP.Models
             Int32.TryParse(ProductAmountTB, out int intProductAmountTB);
 
 
-            if (intFrameAmountTB != 0 && intFrameSizeTB != 0 && intProductAmountTB != 0)
+            if (intFrameAmountTB > 0 && intFrameSizeTB > 0 && intProductAmountTB > 0)
             {
                 SelectedProduct.Amount += (intFrameAmountTB * intFrameSizeTB) + intProductAmountTB;
                 FrameAmountTB = null;
                 FrameSizeTB = null;
                 ProductAmountTB = null;
             }
-            else if (intFrameAmountTB != 0 && intFrameSizeTB != 0)
+            else if (intFrameAmountTB > 0 && intFrameSizeTB > 0)
             {
                 SelectedProduct.Amount += intFrameAmountTB * intFrameSizeTB;
                 FrameAmountTB = null;
                 FrameSizeTB = null;
             }
-            else if (intProductAmountTB != 0)
+            else if (intProductAmountTB > 0)
             {
                 SelectedProduct.Amount += intProductAmountTB;
                 ProductAmountTB = null;
@@ -328,7 +328,7 @@ namespace FredagsCafeUWP.Models
 
             if (SelectedProduct != null)
             {
-                if (intFrameAmountTB != 0 && intFrameSizeTB != 0 && intProductAmountTB != 0)
+                if (intFrameAmountTB > 0 && intFrameSizeTB > 0 && intProductAmountTB > 0)
                 {
                     if (SelectedProduct.Amount >= ((intFrameAmountTB * intFrameSizeTB) + intProductAmountTB))
                     {
@@ -340,7 +340,7 @@ namespace FredagsCafeUWP.Models
                     else Message("Tallene stemmer ikke", "Der er kun " + SelectedProduct.Amount + " af " + SelectedProduct.Name + "." +
                                  "\nDerfor kan du ikke fjerne " + intFrameAmountTB + "*" + intFrameSizeTB + "+" + intProductAmountTB + "=" + ((intFrameAmountTB * intFrameSizeTB) + intProductAmountTB) + " af dette produkt.");
                 }
-                else if (intFrameAmountTB != 0 && intFrameSizeTB != 0)
+                else if (intFrameAmountTB > 0 && intFrameSizeTB > 0)
                 {
                     if (SelectedProduct.Amount >= (intFrameAmountTB * intFrameSizeTB))
                     {
@@ -351,7 +351,7 @@ namespace FredagsCafeUWP.Models
                     else Message("Tallene stemmer ikke", "Der er kun " + SelectedProduct.Amount + " af " + SelectedProduct.Name + "." +
                                  "\nDerfor kan du ikke fjerne " + intFrameAmountTB + "*" + intFrameSizeTB + "=" + (intFrameAmountTB * intFrameSizeTB) + " af dette produkt.");
                 }
-                else if (intProductAmountTB != 0)
+                else if (intProductAmountTB > 0)
                 {
                     if (SelectedProduct.Amount >= intProductAmountTB)
                     {
