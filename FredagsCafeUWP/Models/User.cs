@@ -21,6 +21,12 @@
             Password = password;
         }
 
+        public User(string userName, string password)
+        {
+            UserName = userName;
+            Password = password;
+        }
+
         #region Properties
 
         public string Name
