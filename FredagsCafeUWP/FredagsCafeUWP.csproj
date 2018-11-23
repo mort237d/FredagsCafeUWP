@@ -117,6 +117,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Profile-icon.png" />
+    <Content Include="ProductImages\BlankDåse.jpg" />
     <Content Include="ProductImages\Breezer.png" />
     <Content Include="ProductImages\Carlsberg.png" />
     <Content Include="ProductImages\Cola.png" />
