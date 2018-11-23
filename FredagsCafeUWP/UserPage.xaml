@@ -107,14 +107,15 @@
                         <StackPanel Orientation="Horizontal">
                             <TextBox Width="110" PlaceholderText="Salgspris" Text="{Binding Stock.SellingPriceTB, Mode=TwoWay}"></TextBox>
                             <TextBox Width="110" PlaceholderText="Antal" Text="{Binding Stock.AmountTB, Mode=TwoWay}"></TextBox>
-                            <TextBox Width="110" PlaceholderText="Change Price" Text="{Binding Stock.ProductPriceChangeTB, Mode=TwoWay}" Margin="300,0,0,0"/>
-                            <Button Content="Change product price" Command="{Binding ChangeProductPriceCommand}"/>
+                            <TextBox Width="110" PlaceholderText="Change Price" Text="{Binding Stock.ProductPriceChangeTb, Mode=TwoWay}" Margin="300,0,0,0"/>
+                            <Button Content="Change product sell price" Command="{Binding ChangeProductSellPriceCommand}" Width="200"/>
                         </StackPanel>
 
 
                         <StackPanel Orientation="Horizontal">
                             <TextBox IsReadOnly="True" Width="110" PlaceholderText="ImageSource" Text="{Binding Stock.ImageSourceTB, Mode=TwoWay}"></TextBox>
                             <Button Content="Browse" Width="110" Command="{Binding BrowseImageCommand}"></Button>
+                            <Button Content="Change product buy price" Command="{Binding ChangeProductBuyPriceCommand}" Margin="410,0,0,0" Width="201"/>
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal">
@@ -127,7 +128,7 @@
                     <StackPanel Grid.Row="1" Margin="0,0,0,10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Vertical">
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,5" HorizontalAlignment="Right">
                             <TextBox PlaceholderText="Antal rammer" Text="{Binding Stock.FrameAmountTB, Mode=TwoWay}"></TextBox>
-                            <TextBlock Text="x" VerticalAlignment="Bottom"></TextBlock>
+                            <TextBlock Text="x" VerticalAlignment="Center"></TextBlock>
                             <TextBox PlaceholderText="Ramme størrelse" Text="{Binding Stock.FrameSizeTB, Mode=TwoWay}"></TextBox>
                             <Button Content="Tilføj rammer" Command="{Binding AddAmountCommand}"></Button>
                         </StackPanel>
@@ -135,7 +136,6 @@
                             <TextBox PlaceholderText="Stk." Text="{Binding Stock.ProductAmountTB, Mode=TwoWay}"></TextBox>
                             <Button Content="Tilføj antal" Command="{Binding AddAmountCommand}"></Button>
                             <Button Content="Slet antal" Command="{Binding RemoveAmountCommand}" ></Button>
-                            <TextBox PlaceholderText="Stk." Text="{Binding Stock.ProductAmountTB, Mode=TwoWay}"></TextBox>
                         </StackPanel>
                     </StackPanel>
 
@@ -231,6 +231,10 @@
 
 
                 <!-- https://www.c-sharpcorner.com/article/how-to-implement-graph-and-chart-control-in-windows-10-unive/ -->
+            </PivotItem>
+
+            <PivotItem Header="Text">
+                <TextBlock Text="{Binding Stock.TextDoc}"></TextBlock>
             </PivotItem>
         </Pivot>
     </Grid>

@@ -10,7 +10,7 @@ namespace FredagsCafeUWP
     class Receipt
     {
         private DateTime _saleDateTime = DateTime.Now;
-        private string _cvr;
+        private string _cvr = "000000-0000";
         private string _phoneNumber;
         private int _saleNumber;
         private double _subTotal;
@@ -57,7 +57,7 @@ namespace FredagsCafeUWP
 
         public override string ToString()
         {
-            return "Salgs tid:   " + _saleDateTime + "\nVirksomheds CVR " + _cvr + "\nVirksomheds nummer" + _phoneNumber + "\nSalgs nummer: " + _saleNumber + "\nTotal u. skat: " + _subTotal + "\nSkat: " + _tax + "\nTotal: " + _total + "Note: " + _note.ToString();
+            return "Salgs tid:   " + _saleDateTime + "\nVirksomheds CVR " + _cvr + "\nTotal u. skat: " + _subTotal + "\nMoms: " + _tax + "\nTotal: " + _total + "\nVirksomheds nummer" + _phoneNumber + "\nSalgs nummer: " + _saleNumber + "\nNote: " + _note + "\n".ToString();
         }
     }
 }
