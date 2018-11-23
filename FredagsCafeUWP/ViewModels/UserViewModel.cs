@@ -13,8 +13,9 @@ namespace FredagsCafeUWP.ViewModels
     {
         private string _selectedItem;
         private Stock stock = new Stock();
+        private User user;
         private Product product;
-        private Administration administration;
+        private Administration administration = new Administration();
 
         private RelayCommand addProductCommand;
         private RelayCommand removeProductCommand;
