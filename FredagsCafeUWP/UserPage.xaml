@@ -150,7 +150,7 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <ListView Grid.Column="0" ItemsSource="{Binding Administration.Users}" SelectedItem="{Binding Administration.SelectedUser, Mode=TwoWay}"  HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <ListView ItemsSource="{Binding Administration.Users}" SelectedItem="{Binding Administration.SelectedUser, Mode=TwoWay}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">

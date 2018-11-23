@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FredagsCafeUWP.Models;
+﻿using FredagsCafeUWP.Models;
 using GalaSoft.MvvmLight.Command;
 
 namespace FredagsCafeUWP.ViewModels
@@ -57,6 +51,12 @@ namespace FredagsCafeUWP.ViewModels
             set { product = value; }
         }
 
+        public Administration Administration
+        {
+            get { return administration; }
+            set { administration = value; }
+        }
+
         #region RelayCommands
         public RelayCommand AddProductCommand
         {
@@ -99,13 +99,6 @@ namespace FredagsCafeUWP.ViewModels
             get { return changeProductBuyPriceCommand; }
             set { changeProductBuyPriceCommand = value; }
         }
-
-        public Administration Administration
-        {
-            get { return administration; }
-            set { administration = value; }
-        }
-
         #endregion
     }
 }

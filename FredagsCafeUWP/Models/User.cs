@@ -1,6 +1,10 @@
-﻿namespace FredagsCafeUWP.Models
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using FredagsCafeUWP.Annotations;
+
+namespace FredagsCafeUWP.Models
 {
-    class User
+    class User : INotifyPropertyChanged
     {
         private string _name;
         private string _grade;
@@ -28,7 +32,10 @@
         public string Name
         {
             get { return _name; }
-            set { _name = value; }
+            set
+            {
+                _name = value;
+            }
         }
         public string Grade
         {
@@ -65,6 +72,18 @@
         {
             get { return _imageSource; }
             set { _imageSource = value; }
+        }
+
+        #endregion
+
+        #region INotify
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         #endregion
