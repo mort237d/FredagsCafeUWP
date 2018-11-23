@@ -92,7 +92,7 @@
                                             <TextBlock Text="{Binding SellingPrice}" Margin="2,0,2,0"></TextBlock>
                                             <TextBlock Text=",-"></TextBlock>
                                         </StackPanel>
-                                        
+
                                     </StackPanel>
                                 </StackPanel>
                             </DataTemplate>
@@ -216,16 +216,25 @@
                 <StackPanel Orientation="Horizontal" Margin="80" >
                     <!-- https://social.msdn.microsoft.com/Forums/windowsapps/en-US/1ad31678-320e-43e8-a28c-e8bec4cfefae/uwphow-i-can-make-bar-graphs?forum=wpdevelop -->
                     <StackPanel Orientation="Vertical" Margin="8,0" VerticalAlignment="Bottom">
-                        <Rectangle Fill="#FF222297" Stroke="Black" Height="140" Width="27"/>
-                        <TextBlock Text="Blå" HorizontalAlignment="Center"></TextBlock>
-                    </StackPanel>
-                    <StackPanel Orientation="Vertical" Margin="8,0" VerticalAlignment="Bottom">
                         <Rectangle Fill="Red" Stroke="Black" Height="160" Width="27"/>
-                        <TextBlock Text="Rød" HorizontalAlignment="Center"></TextBlock>
+                        <TextBlock Text="Køb" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                            <TextBlock.RenderTransform>
+                                <CompositeTransform Rotation="90"/>
+                            </TextBlock.RenderTransform></TextBlock>
                     </StackPanel>
                     <StackPanel Orientation="Vertical" Margin="8,0" VerticalAlignment="Bottom">
-                        <Rectangle Fill="Yellow" Stroke="Black" Height="180" Width="27"/>
-                        <TextBlock Text="Gul" HorizontalAlignment="Center"></TextBlock>
+                        <Rectangle Fill="ForestGreen" Stroke="Black" Height="180" Width="27"/>
+                        <TextBlock Text="Salg" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                            <TextBlock.RenderTransform>
+                                <CompositeTransform Rotation="90"/>
+                            </TextBlock.RenderTransform></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="8,0" VerticalAlignment="Bottom">
+                        <Rectangle Fill="Orange" Stroke="Black" Height="180" Width="27"/>
+                        <TextBlock Text="Lager værdi" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" Margin="0,0,0,0" UseLayoutRounding="False" VerticalAlignment="Stretch" d:LayoutRounding="Auto">
+                            <TextBlock.RenderTransform>
+                                <CompositeTransform Rotation="90"/>
+                            </TextBlock.RenderTransform></TextBlock>
                     </StackPanel>
                 </StackPanel>
 
