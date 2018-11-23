@@ -9,7 +9,7 @@ namespace FredagsCafeUWP
 {
     class Receipt
     {
-        private DateTime _saleDateTime;
+        private DateTime _saleDateTime = DateTime.Now;
         private string _cvr;
         private string _phoneNumber;
         private int _saleNumber;
@@ -30,6 +30,30 @@ namespace FredagsCafeUWP
             get { return _basket; }
             set { _basket = value; }
         }
+
+        public void ChangeCVR(string newCVR)
+        {
+            if (newCVR != null && newCVR != "")
+            {
+                _cvr = newCVR;
+            }
+        }
+        public void ChangePhoneNumber(string phoneNumber)
+        {
+            if (phoneNumber != null && phoneNumber != "")
+            {
+                _phoneNumber = phoneNumber;
+            }
+        }
+        public void ChangeTax(double tax)
+        {
+            if (tax != null && tax >= 0)
+            {
+                _tax = tax;
+            }
+        }
+
+
 
         public override string ToString()
         {
