@@ -9,8 +9,9 @@
         private string _telephoneNumber;
         private string _userName;
         private string _password;
+        private string _imageSource;
 
-        public User(string name, string grade, string education, string email, string telephoneNumber, string userName, string password)
+        public User(string name, string grade, string education, string email, string telephoneNumber, string userName, string password, string imageSource)
         {
             Name = name;
             Grade = grade;
@@ -19,6 +20,7 @@
             TelephoneNumber = telephoneNumber;
             UserName = userName;
             Password = password;
+            ImageSource = imageSource;
         }
 
         public User(string userName, string password)
@@ -64,6 +66,13 @@
             get { return _password; }
             set { _password = value; }
         }
+
+        public string ImageSource
+        {
+            get { return _imageSource; }
+            set { _imageSource = value; }
+        }
+
         #endregion
     }
 }
