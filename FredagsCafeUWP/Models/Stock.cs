@@ -34,7 +34,7 @@ namespace FredagsCafeUWP.Models
         private string _buyingPriceTB;
         private string _sellingPriceTB;
         private string _amountTB;
-        private string _imageSourceTB;
+        private string _imageSourceTB = "";
 
         private string _frameAmountTB;
         private string _frameSizeTB;
@@ -274,8 +274,16 @@ namespace FredagsCafeUWP.Models
 
                     if (doubleBuyingPriceTB > 0 && doubleSellingPriceTB > 0 && AmountTB != null && intAmountTB >= 0)
                     {
-                        if (intAmountTB < _minAmount) Products.Add(new Product(doubleBuyingPriceTB, doubleSellingPriceTB, NameTB, intAmountTB, 0,ImageSourceTB, _colorRed));
-                        else Products.Add(new Product(doubleBuyingPriceTB, doubleSellingPriceTB, NameTB, intAmountTB, 0, ImageSourceTB, _colorGreen));
+                        if (ImageSourceTB == "" || ImageSourceTB == null)
+                        {
+                            if (intAmountTB < _minAmount) Products.Add(new Product(doubleBuyingPriceTB, doubleSellingPriceTB, NameTB, intAmountTB, 0, "ProductImages/BlankDåse.png", _colorRed));
+                            else Products.Add(new Product(doubleBuyingPriceTB, doubleSellingPriceTB, NameTB, intAmountTB, 0, "ProductImages/BlankDåse.png", _colorGreen));
+                        }
+                        else
+                        {
+                            if (intAmountTB < _minAmount) Products.Add(new Product(doubleBuyingPriceTB, doubleSellingPriceTB, NameTB, intAmountTB, 0, ImageSourceTB, _colorRed));
+                            else Products.Add(new Product(doubleBuyingPriceTB, doubleSellingPriceTB, NameTB, intAmountTB, 0, ImageSourceTB, _colorGreen));
+                        }
 
                         NameTB = null;
                         BuyingPriceTB = null;
