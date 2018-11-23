@@ -17,6 +17,7 @@ namespace FredagsCafeUWP.Models
         private int _amountSold;
         private string _imageSource;
         private Brush _foregroundColor;
+        private int _amountToBeSold;
         #endregion
 
         #region Props
@@ -79,6 +80,12 @@ namespace FredagsCafeUWP.Models
                 _foregroundColor = value; 
                 OnPropertyChanged();
             }
+        }
+
+        public int AmountToBeSold
+        {
+            get { return _amountToBeSold; }
+            set { _amountToBeSold = value; }
         }
 
         #endregion
