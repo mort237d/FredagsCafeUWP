@@ -24,21 +24,18 @@ namespace FredagsCafeUWP
         public RelayCommand LoginRelayCommand { get; set; }
 
 
-
+        private Administration administration = new Administration();
         ObservableCollection<User> _users = new ObservableCollection<User>();
 
         public LoginPageViewModel()
         {
-            Users.Add(new User("hej", "hej"));
-            Users.Add(new User("h", "h"));
-            Users.Add(new User("f", "f"));
             LoginRelayCommand = new RelayCommand(CheckLogin);
         }
 
         private void CheckLogin()
         {
 
-            foreach (var User in _users)
+            foreach (var User in administration.Users)
             {
                 if (User.UserName == UserName && User.Password == PassWord)
                 {
