@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using FredagsCafeUWP.Models;
 
 namespace FredagsCafeUWP
@@ -11,7 +8,7 @@ namespace FredagsCafeUWP
     {
         private DateTime _saleDateTime = DateTime.Now;
         private string _cvr = "000000-0000";
-        private string _phoneNumber;
+        private string _phoneNumber = "+45 0000 0000";
         private int _saleNumber;
         private double _subTotal;
         private double _tax;
@@ -47,7 +44,7 @@ namespace FredagsCafeUWP
         }
         public void ChangeTax(double tax)
         {
-            if (tax != null && tax >= 0)
+            if (tax >= 0)
             {
                 _tax = tax;
             }
