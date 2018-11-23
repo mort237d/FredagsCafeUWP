@@ -107,14 +107,15 @@
                         <StackPanel Orientation="Horizontal">
                             <TextBox Width="110" PlaceholderText="Salgspris" Text="{Binding Stock.SellingPriceTB, Mode=TwoWay}"></TextBox>
                             <TextBox Width="110" PlaceholderText="Antal" Text="{Binding Stock.AmountTB, Mode=TwoWay}"></TextBox>
-                            <TextBox Width="110" PlaceholderText="Change Price" Text="{Binding Stock.ProductPriceChangeTB, Mode=TwoWay}" Margin="300,0,0,0"/>
-                            <Button Content="Change product price" Command="{Binding ChangeProductPriceCommand}"/>
+                            <TextBox Width="110" PlaceholderText="Change Price" Text="{Binding Stock.ProductPriceChangeTb, Mode=TwoWay}" Margin="300,0,0,0"/>
+                            <Button Content="Change product sell price" Command="{Binding ChangeProductSellPriceCommand}" Width="200"/>
                         </StackPanel>
 
 
                         <StackPanel Orientation="Horizontal">
                             <TextBox IsReadOnly="True" Width="110" PlaceholderText="ImageSource" Text="{Binding Stock.ImageSourceTB, Mode=TwoWay}"></TextBox>
                             <Button Content="Browse" Width="110" Command="{Binding BrowseImageCommand}"></Button>
+                            <Button Content="Change product buy price" Command="{Binding ChangeProductBuyPriceCommand}" Margin="410,0,0,0" Width="201"/>
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal">

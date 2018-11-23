@@ -175,7 +175,7 @@ namespace FredagsCafeUWP.Models
             }
         }
 
-        public string ProductPriceChangeTB
+        public string ProductPriceChangeTb
         {
             get { return _productPriceChangeTB; }
             set
@@ -184,7 +184,6 @@ namespace FredagsCafeUWP.Models
                 OnPropertyChanged();
             }
         }
-
         #endregion
       
 
@@ -318,13 +317,23 @@ namespace FredagsCafeUWP.Models
             ImageSourceTB = await BrowseImageWindowTask();
         }
 
-        public void ChangeProductPrice()
+        public void ChangeProductSellPrice()
         {
-            Int32.TryParse(ProductPriceChangeTB, out int intProductPriceChangedTB);
-            if (ProductPriceChangeTB != null && intProductPriceChangedTB > 0)
+            Int32.TryParse(ProductPriceChangeTb, out int intProductPriceChangedTB);
+            if (ProductPriceChangeTb != null && intProductPriceChangedTB > 0)
             {
                 SelectedProduct.SellingPrice = intProductPriceChangedTB;
-                ProductPriceChangeTB = null;
+                ProductPriceChangeTb = null;
+            }
+        }
+
+        public void ChangeProductBuyPrice()
+        {
+            Int32.TryParse(ProductPriceChangeTb, out int intProductPriceChangedTB);
+            if (ProductPriceChangeTb != null && intProductPriceChangedTB > 0)
+            {
+                SelectedProduct.BuyingPrice = intProductPriceChangedTB;
+                ProductPriceChangeTb = null;
             }
         }
 
