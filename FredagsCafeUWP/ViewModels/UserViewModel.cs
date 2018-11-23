@@ -22,7 +22,8 @@ namespace FredagsCafeUWP.ViewModels
         private RelayCommand removeAmountCommand;
         private RelayCommand browseImageCommand;
 
-        private RelayCommand changeProductPriceCommand;
+        private RelayCommand changeProductSellPriceCommand;
+        private RelayCommand changeProductBuyPriceCommand;
         public UserViewModel()
         {
             AddProductCommand = new RelayCommand(stock.AddProductToOBListAsync);
@@ -30,8 +31,11 @@ namespace FredagsCafeUWP.ViewModels
 
             AddAmountCommand = new RelayCommand(stock.AddAmountToProduct);
             RemoveAmountCommand = new RelayCommand(stock.RemoveAmountFromProduct);
+
             BrowseImageCommand = new RelayCommand(stock.BrowseImageButton);
-            ChangeProductPriceCommand = new RelayCommand(stock.ChangeProductPrice);
+
+            ChangeProductSellPriceCommand = new RelayCommand(stock.ChangeProductSellPrice);
+            ChangeProductBuyPriceCommand = new RelayCommand(stock.ChangeProductBuyPrice);
         }
 
         public string SelectedItem
@@ -83,11 +87,18 @@ namespace FredagsCafeUWP.ViewModels
             set { browseImageCommand = value; }
         }
 
-        public RelayCommand ChangeProductPriceCommand
+        public RelayCommand ChangeProductSellPriceCommand
         {
-            get { return changeProductPriceCommand; }
-            set { changeProductPriceCommand = value; }
+            get { return changeProductSellPriceCommand; }
+            set { changeProductSellPriceCommand = value; }
         }
+
+        public RelayCommand ChangeProductBuyPriceCommand
+        {
+            get { return changeProductBuyPriceCommand; }
+            set { changeProductBuyPriceCommand = value; }
+        }
+
         #endregion
     }
 }

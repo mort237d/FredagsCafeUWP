@@ -181,7 +181,7 @@ namespace FredagsCafeUWP.Models
             }
         }
 
-        public string ProductPriceChangeTB
+        public string ProductPriceChangeTb
         {
             get { return _productPriceChangeTB; }
             set
@@ -255,35 +255,37 @@ namespace FredagsCafeUWP.Models
         public void AddProductToOBListAsync()
         {
             bool productExist = false;
-            foreach (var element in Products)
+            if (NameTB != null)
             {
-                if (element.Name.ToLower().Equals(NameTB.ToLower()))
+                foreach (var element in Products)
                 {
-                    productExist = true;
-                    break;
+                    if (element.Name.ToLower().Equals(NameTB.ToLower()))
+                    {
+                        productExist = true;
+                        break;
+                    }
                 }
-            }
-            
-            if (!productExist)
-            {
-                double.TryParse(BuyingPriceTB, out double doubleBuyingPriceTB);
-                double.TryParse(SellingPriceTB, out double doubleSellingPriceTB);
-                int.TryParse(AmountTB, out int intAmountTB);
-
-                if (NameTB != null && doubleBuyingPriceTB != 0 && doubleSellingPriceTB != 0 && AmountTB != null)
+                
+                if (!productExist)
                 {
-                    if (intAmountTB < _minAmount) Products.Add(new Product(doubleBuyingPriceTB, doubleSellingPriceTB, NameTB, intAmountTB, 0,ImageSourceTB, _colorRed));
-                    else Products.Add(new Product(doubleBuyingPriceTB, doubleSellingPriceTB, NameTB, intAmountTB, 0, ImageSourceTB, _colorGreen));
+                    double.TryParse(BuyingPriceTB, out double doubleBuyingPriceTB);
+                    double.TryParse(SellingPriceTB, out double doubleSellingPriceTB);
+                    int.TryParse(AmountTB, out int intAmountTB);
 
-                    NameTB = null;
-                    BuyingPriceTB = null;
-                    SellingPriceTB = null;
-                    AmountTB = null;
-                    ImageSourceTB = null;
+                    if (doubleBuyingPriceTB > 0 && doubleSellingPriceTB > 0 && AmountTB != null && intAmountTB >= 0)
+                    {
+                        if (intAmountTB < _minAmount) Products.Add(new Product(doubleBuyingPriceTB, doubleSellingPriceTB, NameTB, intAmountTB, 0,ImageSourceTB, _colorRed));
+                        else Products.Add(new Product(doubleBuyingPriceTB, doubleSellingPriceTB, NameTB, intAmountTB, 0, ImageSourceTB, _colorGreen));
+
+                        NameTB = null;
+                        BuyingPriceTB = null;
+                        SellingPriceTB = null;
+                        AmountTB = null;
+                        ImageSourceTB = null;
+                    }
                 }
-               
+                else Message("Varen findes allerede!", "Scroll igennem varerne, for at finde den.");
             }
-            else Message("Varen findes allerede!", "Scroll igennem varerne, for at finde den.");
         }
         
         public void RemoveProductFromOBList()
@@ -387,13 +389,23 @@ namespace FredagsCafeUWP.Models
             ImageSourceTB = await BrowseImageWindowTask();
         }
 
-        public void ChangeProductPrice()
+        public void ChangeProductSellPrice()
         {
-            Int32.TryParse(ProductPriceChangeTB, out int intProductPriceChangedTB);
-            if (ProductPriceChangeTB != null && intProductPriceChangedTB > 0)
+            Int32.TryParse(ProductPriceChangeTb, out int intProductPriceChangedTB);
+            if (ProductPriceChangeTb != null && intProductPriceChangedTB > 0)
             {
                 SelectedProduct.SellingPrice = intProductPriceChangedTB;
-                ProductPriceChangeTB = null;
+                ProductPriceChangeTb = null;
+            }
+        }
+
+        public void ChangeProductBuyPrice()
+        {
+            Int32.TryParse(ProductPriceChangeTb, out int intProductPriceChangedTB);
+            if (ProductPriceChangeTb != null && intProductPriceChangedTB > 0)
+            {
+                SelectedProduct.BuyingPrice = intProductPriceChangedTB;
+                ProductPriceChangeTb = null;
             }
         }
 
