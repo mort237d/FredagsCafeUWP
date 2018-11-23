@@ -14,6 +14,7 @@ namespace FredagsCafeUWP.ViewModels
         private string _selectedItem;
         private Stock stock = new Stock();
         private Product product;
+        private Administration administration;
 
         private RelayCommand addProductCommand;
         private RelayCommand removeProductCommand;
@@ -97,6 +98,12 @@ namespace FredagsCafeUWP.ViewModels
         {
             get { return changeProductBuyPriceCommand; }
             set { changeProductBuyPriceCommand = value; }
+        }
+
+        public Administration Administration
+        {
+            get { return administration; }
+            set { administration = value; }
         }
 
         #endregion
