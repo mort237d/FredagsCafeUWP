@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
-using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using FredagsCafeUWP.Annotations;
 
@@ -101,11 +100,6 @@ namespace FredagsCafeUWP.Models
             ForegroundColor = foregroundColor;
         }
 
-        public Product()
-        {
-
-        }
-
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
@@ -121,7 +115,7 @@ namespace FredagsCafeUWP.Models
             sb.Append(" ");
             sb.Append("Image Source: " + ImageSource);
             sb.Append(" ");
-            sb.Append("ForegroundColor: " + ForegroundColor); //TODO Convert color to a string..
+            sb.Append("ForegroundColor: " + ForegroundColor);
             sb.Append("\n");
 
             return sb.ToString();

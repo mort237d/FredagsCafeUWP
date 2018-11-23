@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -18,8 +17,6 @@ namespace FredagsCafeUWP.Models
 {
     class Stock : INotifyPropertyChanged
     {
-        private Product product;
-
         private ObservableCollection<Product> _products;
 
         private ObservableCollection<Receipt> _receipts;
@@ -61,7 +58,6 @@ namespace FredagsCafeUWP.Models
                 new Product(55, 63, "Somersby Pear Cider", 15, 13, "ProductImages/SomersbyPear.png", _colorGreen),
                 new Product(55, 63, "Breezer", 10, 13, "ProductImages/Breezer.png", _colorGreen),
                 new Product(55, 63, "Fanta", 5, 13, "ProductImages/Fanta.png", _colorRed)
-
             };
             Receipts = new ObservableCollection<Receipt>()
             {
@@ -70,7 +66,7 @@ namespace FredagsCafeUWP.Models
             };
 
             //WriteListToTxt();
-            ReadTxt();
+            //ReadTxt();
         }
 
         #region Properties
@@ -335,6 +331,7 @@ namespace FredagsCafeUWP.Models
             }
             else Message("Intet produkt valg", "Vælg venligst et produkt");
         }
+
         public void RemoveAmountFromProduct()
         {
             if (SelectedProduct != null)
@@ -396,8 +393,7 @@ namespace FredagsCafeUWP.Models
             if (file != null) return outputTextBlock.Text = "ProductImages/" + file.Name;
             else return outputTextBlock.Text = "";
         }
-
-
+        
         public async void BrowseImageButton()
         {
             ImageSourceTB = await BrowseImageWindowTask();

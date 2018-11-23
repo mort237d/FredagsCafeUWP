@@ -18,6 +18,8 @@ namespace FredagsCafeUWP.Models
         private ObservableCollection<User> _users;
         private User _selectedUser;
 
+        #region Props
+
         public string NameTb
         {
             get { return _nameTB; }
@@ -63,7 +65,11 @@ namespace FredagsCafeUWP.Models
         public ObservableCollection<User> Users
         {
             get { return _users; }
-            set { _users = value; }
+            set
+            {
+                _users = value;
+                OnPropertyChanged();
+            }
         }
 
         public User SelectedUser
@@ -71,6 +77,8 @@ namespace FredagsCafeUWP.Models
             get { return _selectedUser; }
             set { _selectedUser = value; }
         }
+
+        #endregion
 
         public Administration()
         {
