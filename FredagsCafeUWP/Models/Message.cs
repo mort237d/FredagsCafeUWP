@@ -14,6 +14,15 @@ namespace FredagsCafeUWP.Models
         private Stock stock;
         private Administration administration;
 
+        public Message(Administration administration)
+        {
+            this.administration = administration;
+        }
+        public Message(Stock stock)
+        {
+            this.stock = stock;
+        }
+
         public async Task Error(string title, string content)
         {
             await new MessageDialog(content, title).ShowAsync();
@@ -43,6 +52,7 @@ namespace FredagsCafeUWP.Models
             {
                 Debug.WriteLine("Yes");
                 if (title == "Slet produkt") stock.Products.Remove(stock.SelectedProduct);
+                if (title == "Slet bruger") administration.Users.Remove(administration.SelectedUser);
             }
             else if (command == noCommand)
             {

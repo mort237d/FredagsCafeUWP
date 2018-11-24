@@ -164,7 +164,7 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                    <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" Content="Fjern medarbejder"></Button>
+                    <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" Content="Fjern medarbejder" Command="{Binding RemoveUserCommand}"></Button>
 
                     <StackPanel Grid.Column="1">
                         <TextBox PlaceholderText="Navn" Text="{Binding Administration.NameTb, Mode=TwoWay}"></TextBox>

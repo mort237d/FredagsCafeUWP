@@ -17,7 +17,7 @@ namespace FredagsCafeUWP.Models
 {
     class Stock : INotifyPropertyChanged
     {
-        private Message message = new Message();
+        private Message message;
 
         private ObservableCollection<Product> _products;
 
@@ -46,6 +46,8 @@ namespace FredagsCafeUWP.Models
 
         public Stock()
         {
+            message = new Message(this);
+
             Products = new ObservableCollection<Product>()
             {
                 new Product(66, 67, "Tuborg Classic", 22, 2, "ProductImages/TuborgClassic.png", _colorGreen),

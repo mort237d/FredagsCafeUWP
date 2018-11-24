@@ -22,6 +22,7 @@ namespace FredagsCafeUWP.ViewModels
         private RelayCommand changeProductBuyPriceCommand;
 
         private RelayCommand addUserCommand;
+        private RelayCommand removeUserCommand;
 
         public UserViewModel()
         {
@@ -37,6 +38,7 @@ namespace FredagsCafeUWP.ViewModels
             ChangeProductBuyPriceCommand = new RelayCommand(stock.ChangeProductBuyPrice);
 
             AddUserCommand = new RelayCommand(administration.AddUser);
+            RemoveUserCommand = new RelayCommand(administration.RemoveUser);
         }
 
         public string SelectedItem
@@ -110,6 +112,12 @@ namespace FredagsCafeUWP.ViewModels
         {
             get { return addUserCommand; }
             set { addUserCommand = value; }
+        }
+
+        public RelayCommand RemoveUserCommand
+        {
+            get { return removeUserCommand; }
+            set { removeUserCommand = value; }
         }
 
         #endregion

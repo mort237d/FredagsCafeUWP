@@ -7,7 +7,7 @@ namespace FredagsCafeUWP.Models
 {
     class Administration : INotifyPropertyChanged
     {
-        private Message message = new Message();
+        private Message message;
 
         private string _nameTB;
         private string _gradeTB;
@@ -80,13 +80,19 @@ namespace FredagsCafeUWP.Models
         public User SelectedUser
         {
             get { return _selectedUser; }
-            set { _selectedUser = value; }
+            set
+            {
+                _selectedUser = value;
+                OnPropertyChanged();
+            }
         }
 
         #endregion
 
         public Administration()
         {
+            message = new Message(this);
+
             Users = new ObservableCollection<User>()
             {
                 new User("Morten", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Morten", "Morten", "Assets/Profile-icon.png"),
@@ -108,6 +114,12 @@ namespace FredagsCafeUWP.Models
                 }
                 else message.Error("Forkert email", "Du skal bruge en \"@edu.easj.dk\" eller en \"@easj.dk\" mail.");
             }
+        }
+
+        public void RemoveUser()
+        {
+            if (SelectedUser != null) message.YesNo("Slet bruger", "Er du sikker på at du vil slette " + SelectedUser.Name + "?");
+            else message.Error("Ingen bruger valgt", "Vælg venligst en bruger.");
         }
 
         #region INotify
