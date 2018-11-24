@@ -173,7 +173,8 @@
                         <TextBox PlaceholderText="email" Text="{Binding Administration.EmailTb, Mode=TwoWay}"></TextBox>
                         <TextBox PlaceholderText="Tlf. nummer" Text="{Binding Administration.TelephoneNumberTb, Mode=TwoWay}"></TextBox>
                         <TextBox PlaceholderText="Username" Text="{Binding Administration.UserNameTb, Mode=TwoWay}"></TextBox>
-                        <TextBox PlaceholderText="Password" Text="{Binding Administration.PasswordTb, Mode=TwoWay}"></TextBox>
+                        <PasswordBox PlaceholderText="Password" Password="{Binding Administration.PasswordTb, Mode=TwoWay}"></PasswordBox>
+                        <PasswordBox PlaceholderText="Confirm Password" Password="{Binding Administration.ConfirmPasswordTb, Mode=TwoWay}"></PasswordBox>
                     </StackPanel>
                     <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" Grid.Column="1" Content="Tilføj medarbejder" Command="{Binding AddUserCommand}"></Button>
 

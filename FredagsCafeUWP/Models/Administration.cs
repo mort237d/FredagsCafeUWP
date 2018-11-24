@@ -16,6 +16,7 @@ namespace FredagsCafeUWP.Models
         private string _telephoneNumberTB;
         private string _userNameTB;
         private string _passwordTB;
+        private string _confirmPasswordTB;
 
         private ObservableCollection<User> _users;
         private User _selectedUser;
@@ -67,6 +68,12 @@ namespace FredagsCafeUWP.Models
             set { _passwordTB = value; }
         }
 
+        public string ConfirmPasswordTb
+        {
+            get { return _confirmPasswordTB; }
+            set { _confirmPasswordTB = value; }
+        }
+
         public ObservableCollection<User> Users
         {
             get { return _users; }
@@ -105,12 +112,17 @@ namespace FredagsCafeUWP.Models
 
         public void AddUser()
         {
+            //TODO check for same user
             if (NameTb != null && GradeTb != null && EducationTb != null && EmailTb != null && TelephoneNumberTb != null && UserNameTb != null && PasswordTb != null)
             {
                 if (EmailTb.Contains("@edu.easj.dk") || EmailTb.Contains("@easj.dk"))
                 {
-                    Users.Add(new User(NameTb, GradeTb, EducationTb, EmailTb, TelephoneNumberTb, UserNameTb, PasswordTb,
-                        "Assets/Profile-icon.png"));
+                    if (PasswordTb == ConfirmPasswordTb)
+                    {
+                        Users.Add(new User(NameTb, GradeTb, EducationTb, EmailTb, TelephoneNumberTb, UserNameTb,
+                            PasswordTb, "Assets/Profile-icon.png"));
+                    }
+                    else message.Error("Uoverensstemmelser", "Password stemmer ikke over ens med confirm password");
                 }
                 else message.Error("Forkert email", "Du skal bruge en \"@edu.easj.dk\" eller en \"@easj.dk\" mail.");
             }
