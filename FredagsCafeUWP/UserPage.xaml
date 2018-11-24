@@ -156,9 +156,9 @@
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="{Binding ImageSource}" Height="150" Width="150"></Image>
                                     <StackPanel>
-                                        <TextBlock Text="{Binding Name}" HorizontalAlignment="Center"></TextBlock>
-                                        <TextBlock Text="{Binding TelephoneNumber}" HorizontalAlignment="Center"></TextBlock>
-                                        <TextBlock Text="{Binding Email}" HorizontalAlignment="Center"></TextBlock>
+                                        <TextBlock Text="{Binding Name}"></TextBlock>
+                                        <TextBlock Text="{Binding TelephoneNumber}" ></TextBlock>
+                                        <TextBlock Text="{Binding Email}" ></TextBlock>
                                     </StackPanel>
                                 </StackPanel>
                             </DataTemplate>

@@ -26,19 +26,27 @@ namespace FredagsCafeUWP.Models
         public string NameTb
         {
             get { return _nameTB; }
-            set { _nameTB = value; }
+            set
+            {
+                _nameTB = value;
+                OnPropertyChanged();
+            }
         }
 
         public string GradeTb
         {
             get { return _gradeTB; }
-            set { _gradeTB = value; }
+            set { _gradeTB = value;
+                OnPropertyChanged();
+            }
         }
 
         public string EducationTb
         {
             get { return _educationTB; }
-            set { _educationTB = value; }
+            set { _educationTB = value;
+                OnPropertyChanged();
+            }
         }
 
         public string EmailTb
@@ -46,32 +54,41 @@ namespace FredagsCafeUWP.Models
             get { return _emailTB; }
             set
             {
-                _emailTB = value; 
+                _emailTB = value;
+                OnPropertyChanged();
             }
         }
 
         public string TelephoneNumberTb
         {
             get { return _telephoneNumberTB; }
-            set { _telephoneNumberTB = value; }
+            set { _telephoneNumberTB = value;
+                OnPropertyChanged();
+            }
         }
 
         public string UserNameTb
         {
             get { return _userNameTB; }
-            set { _userNameTB = value; }
+            set { _userNameTB = value;
+                OnPropertyChanged();
+            }
         }
 
         public string PasswordTb
         {
             get { return _passwordTB; }
-            set { _passwordTB = value; }
+            set { _passwordTB = value;
+                OnPropertyChanged();
+            }
         }
 
         public string ConfirmPasswordTb
         {
             get { return _confirmPasswordTB; }
-            set { _confirmPasswordTB = value; }
+            set { _confirmPasswordTB = value;
+                OnPropertyChanged();
+            }
         }
 
         public ObservableCollection<User> Users
@@ -121,6 +138,15 @@ namespace FredagsCafeUWP.Models
                     {
                         Users.Add(new User(NameTb, GradeTb, EducationTb, EmailTb, TelephoneNumberTb, UserNameTb,
                             PasswordTb, "Assets/Profile-icon.png"));
+
+                        NameTb = null;
+                        GradeTb = null;
+                        EducationTb = null;
+                        EmailTb = null;
+                        TelephoneNumberTb = null;
+                        UserNameTb = null;
+                        PasswordTb = null;
+                        ConfirmPasswordTb = null;
                     }
                     else message.Error("Uoverensstemmelser", "Password stemmer ikke over ens med confirm password");
                 }
