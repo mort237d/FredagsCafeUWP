@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using FredagsCafeUWP.Annotations;
 
@@ -134,6 +135,14 @@ namespace FredagsCafeUWP.Models
             {
                 if (EmailTb.Contains("@edu.easj.dk") || EmailTb.Contains("@easj.dk"))
                 {
+                    foreach (var u in Users)
+                    {
+                        if (u.Email.Equals(EmailTb))
+                        {
+                            message.Error("Email findes allerede", u.Email + " findes allerede til en anden bruger");
+                            return;
+                        }
+                    }
                     if (PasswordTb == ConfirmPasswordTb)
                     {
                         Users.Add(new User(NameTb, GradeTb, EducationTb, EmailTb, TelephoneNumberTb, UserNameTb,
