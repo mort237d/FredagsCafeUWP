@@ -7,6 +7,8 @@ namespace FredagsCafeUWP.Models
 {
     class Administration : INotifyPropertyChanged
     {
+        private Message message = new Message();
+
         private string _nameTB;
         private string _gradeTB;
         private string _educationTB;
@@ -41,7 +43,10 @@ namespace FredagsCafeUWP.Models
         public string EmailTb
         {
             get { return _emailTB; }
-            set { _emailTB = value; }
+            set
+            {
+                _emailTB = value; 
+            }
         }
 
         public string TelephoneNumberTb
@@ -90,6 +95,19 @@ namespace FredagsCafeUWP.Models
                 new User("Lucas", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Lucas", "Lucas", "Assets/Profile-icon.png"),
                 new User("Christian", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Christian", "Christian", "Assets/Profile-icon.png")
             };
+        }
+
+        public void AddUser()
+        {
+            if (NameTb != null && GradeTb != null && EducationTb != null && EmailTb != null && TelephoneNumberTb != null && UserNameTb != null && PasswordTb != null)
+            {
+                if (EmailTb.Contains("@edu.easj.dk") || EmailTb.Contains("@easj.dk"))
+                {
+                    Users.Add(new User(NameTb, GradeTb, EducationTb, EmailTb, TelephoneNumberTb, UserNameTb, PasswordTb,
+                        "Assets/Profile-icon.png"));
+                }
+                else message.Error("Forkert email", "Du skal bruge en \"@edu.easj.dk\" eller en \"@easj.dk\" mail.");
+            }
         }
 
         #region INotify

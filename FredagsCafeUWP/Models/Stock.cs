@@ -17,6 +17,8 @@ namespace FredagsCafeUWP.Models
 {
     class Stock : INotifyPropertyChanged
     {
+        private Message message = new Message();
+
         private ObservableCollection<Product> _products;
 
         private ObservableCollection<Receipt> _receipts;
@@ -217,11 +219,11 @@ namespace FredagsCafeUWP.Models
                     }
                 }
 
-                Message("Gemt", null);
+                message.Error("Gemt", null);
             }
             catch
             {
-                Message("Kan ikke gemme filen", null);
+                message.Error("Kan ikke gemme filen", null);
             }
         }
 
@@ -244,7 +246,7 @@ namespace FredagsCafeUWP.Models
             }
             catch
             {
-                Message("Kan ikke læse filen", null);
+                message.Error("Kan ikke læse filen", null);
             }
         }
 
@@ -288,14 +290,14 @@ namespace FredagsCafeUWP.Models
                         ImageSourceTB = null;
                     }
                 }
-                else Message("Varen findes allerede!", "Scroll igennem varerne, for at finde den.");
+                else message.Error("Varen findes allerede!", "Scroll igennem varerne, for at finde den.");
             }
         }
         
         public void RemoveProductFromOBList()
         {
-            if (SelectedProduct != null) YesNoMessage("Slet produkt", "Er du sikker på at du vil slette " + SelectedProduct.Name + "?");
-            else Message("Intet produkt valg", "Vælg venligst et produkt");
+            if (SelectedProduct != null) message.YesNo("Slet produkt", "Er du sikker på at du vil slette " + SelectedProduct.Name + "?");
+            else message.Error("Intet produkt valg", "Vælg venligst et produkt");
         }
 
         public void AddAmountToProduct()
@@ -329,7 +331,7 @@ namespace FredagsCafeUWP.Models
                 if (SelectedProduct != null && SelectedProduct.Amount < _minAmount) SelectedProduct.ForegroundColor = _colorRed;
                 else SelectedProduct.ForegroundColor = _colorGreen;
             }
-            else Message("Intet produkt valg", "Vælg venligst et produkt");
+            else message.Error("Intet produkt valg", "Vælg venligst et produkt");
         }
 
         public void RemoveAmountFromProduct()
@@ -349,7 +351,7 @@ namespace FredagsCafeUWP.Models
                         FrameSizeTB = null;
                         ProductAmountTB = null;
                     }
-                    else Message("Tallene stemmer ikke", "Der er kun " + SelectedProduct.Amount + " af " + SelectedProduct.Name + "." +
+                    else message.Error("Tallene stemmer ikke", "Der er kun " + SelectedProduct.Amount + " af " + SelectedProduct.Name + "." +
                                  "\nDerfor kan du ikke fjerne " + intFrameAmountTB + "*" + intFrameSizeTB + "+" + intProductAmountTB + "=" + ((intFrameAmountTB * intFrameSizeTB) + intProductAmountTB) + " af dette produkt.");
                 }
                 else if (intFrameAmountTB > 0 && intFrameSizeTB > 0)
@@ -360,7 +362,7 @@ namespace FredagsCafeUWP.Models
                         FrameAmountTB = null;
                         FrameSizeTB = null;
                     }
-                    else Message("Tallene stemmer ikke", "Der er kun " + SelectedProduct.Amount + " af " + SelectedProduct.Name + "." +
+                    else message.Error("Tallene stemmer ikke", "Der er kun " + SelectedProduct.Amount + " af " + SelectedProduct.Name + "." +
                                  "\nDerfor kan du ikke fjerne " + intFrameAmountTB + "*" + intFrameSizeTB + "=" + (intFrameAmountTB * intFrameSizeTB) + " af dette produkt.");
                 }
                 else if (intProductAmountTB > 0)
@@ -370,13 +372,13 @@ namespace FredagsCafeUWP.Models
                         SelectedProduct.Amount -= intProductAmountTB;
                         ProductAmountTB = null;
                     }
-                    else Message("Tallene stemmer ikke", "Der er kun " + SelectedProduct.Amount + " af " + SelectedProduct.Name + ".\nDerfor kan du ikke fjerne " + intProductAmountTB + " af dette produkt.");
+                    else message.Error("Tallene stemmer ikke", "Der er kun " + SelectedProduct.Amount + " af " + SelectedProduct.Name + ".\nDerfor kan du ikke fjerne " + intProductAmountTB + " af dette produkt.");
                 }
 
                 if (SelectedProduct.Amount < _minAmount) SelectedProduct.ForegroundColor = _colorRed;
                 else SelectedProduct.ForegroundColor = _colorGreen;
             }
-            else Message("Intet produkt valg", "Vælg venligst et produkt");
+            else message.Error("Intet produkt valg", "Vælg venligst et produkt");
         }
 
         public async Task<string> BrowseImageWindowTask()
@@ -410,7 +412,7 @@ namespace FredagsCafeUWP.Models
                     ProductPriceChangeTb = null;
                 }
             }
-            else Message("Intet produkt valg", "Vælg venligst et produkt");
+            else message.Error("Intet produkt valg", "Vælg venligst et produkt");
         }
 
         public void ChangeProductBuyPrice()
@@ -424,43 +426,7 @@ namespace FredagsCafeUWP.Models
                     ProductPriceChangeTb = null;
                 }
             }
-            else Message("Intet produkt valg", "Vælg venligst et produkt");
-        }
-
-        private async Task YesNoMessage(string title, string content)
-        {
-            var yesCommand = new UICommand("Ja", cmd => { });
-            var noCommand = new UICommand("Nej", cmd => { });
-
-            var dialog = new MessageDialog(content, title);
-            dialog.Options = MessageDialogOptions.None;
-            dialog.Commands.Add(yesCommand);
-
-            dialog.DefaultCommandIndex = 0;
-            dialog.CancelCommandIndex = 0;
-
-            if (noCommand != null)
-            {
-                dialog.Commands.Add(noCommand);
-                dialog.CancelCommandIndex = (uint)dialog.Commands.Count - 1;
-            }
-
-            var command = await dialog.ShowAsync();
-
-            if (command == yesCommand)
-            {
-                Debug.WriteLine("Yes");
-                if(title == "Slet produkt") Products.Remove(SelectedProduct);
-            }
-            else if (command == noCommand)
-            {
-                Debug.WriteLine("No");
-            }
-        }
-
-        private async Task Message(string title, string content)
-        {
-            await new MessageDialog(content, title).ShowAsync();
+            else message.Error("Intet produkt valg", "Vælg venligst et produkt");
         }
 
         #region INotify

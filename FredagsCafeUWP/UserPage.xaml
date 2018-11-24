@@ -175,7 +175,7 @@
                         <TextBox PlaceholderText="Username" Text="{Binding Administration.UserNameTb, Mode=TwoWay}"></TextBox>
                         <TextBox PlaceholderText="Password" Text="{Binding Administration.PasswordTb, Mode=TwoWay}"></TextBox>
                     </StackPanel>
-                    <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" Grid.Column="1" Content="Tilføj medarbejder"></Button>
+                    <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" Grid.Column="1" Content="Tilføj medarbejder" Command="{Binding AddUserCommand}"></Button>
 
                 </Grid>
             </PivotItem>

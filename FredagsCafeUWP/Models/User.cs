@@ -56,7 +56,10 @@ namespace FredagsCafeUWP.Models
         public string Email
         {
             get { return _email; }
-            set { _email = value; }
+            set
+            {
+                _email = value;
+            }
         }
         public string TelephoneNumber
         {

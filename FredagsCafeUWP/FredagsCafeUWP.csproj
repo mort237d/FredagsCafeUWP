@@ -98,6 +98,7 @@
     <Compile Include="LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Message.cs" />
     <Compile Include="ViewModels\LoginPageViewModel.cs" />
     <Compile Include="Models\Administration.cs" />
     <Compile Include="Models\User.cs" />
@@ -165,9 +166,7 @@
       <Version>5.3.0</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
