@@ -28,6 +28,7 @@ namespace FredagsCafeUWP.Models
         private int _minAmount = 10;
         private Brush _colorRed = new SolidColorBrush(Colors.Red);
         private Brush _colorGreen = new SolidColorBrush(Colors.ForestGreen);
+        private Brush _amountColor;
 
         private string _nameTB;
         private string _buyingPriceTB;
@@ -243,8 +244,7 @@ namespace FredagsCafeUWP.Models
                         uint textLength = (uint)textstream.Size;
                         await textReader.LoadAsync(textLength);
                         TextDoc = textReader.ReadString(textLength);
-
-                        //TRY START
+                        
                         string[] lines = TextDoc.Split(
                             new[] { "\r\n", "\r", "\n" },
                             StringSplitOptions.None
@@ -252,6 +252,11 @@ namespace FredagsCafeUWP.Models
 
                         foreach (var line in lines)
                         {
+                            if ((int.Parse(line.Substring(line.IndexOf("Antal: ") + "Antal: ".Length,
+                                    (line.LastIndexOf("Antal solgt: ")) -
+                                    (line.IndexOf("Antal: ") + "Antal: ".Length)))) < 10)
+                            _amountColor = _colorRed;
+                            else _amountColor = _colorGreen;
                             Products.Add(new Product(
                                 double.Parse(line.Substring(line.IndexOf("Købspris: ") + "Købspris: ".Length, (line.LastIndexOf("Salgspris: ")) - (line.IndexOf("Købspris: ") + "Købspris: ".Length))),
                                 double.Parse(line.Substring(line.IndexOf("Salgspris: ") + "Salgspris: ".Length, (line.LastIndexOf("Antal: ")) - (line.IndexOf("Salgspris: ") + "Salgspris: ".Length))),
@@ -259,10 +264,9 @@ namespace FredagsCafeUWP.Models
                                 int.Parse(line.Substring(line.IndexOf("Antal: ") + "Antal: ".Length, (line.LastIndexOf("Antal solgt: ")) - (line.IndexOf("Antal: ") + "Antal: ".Length))),
                                 int.Parse(line.Substring(line.IndexOf("Antal solgt: ") + "Antal solgt: ".Length, (line.LastIndexOf("Image Source: ")) - (line.IndexOf("Antal solgt: ") + "Antal solgt: ".Length))),
                                 line.Substring(line.IndexOf("Image Source: ") + "Image Source: ".Length, (line.LastIndexOf("ForegroundColor: ")) - (line.IndexOf("Image Source: ") + "Image Source: ".Length)),
-                                new SolidColorBrush(Colors.ForestGreen)
+                                _amountColor
                                 ));
                         }
-                        //TRY END
                     }
                 }
             }
@@ -310,6 +314,8 @@ namespace FredagsCafeUWP.Models
                         SellingPriceTB = null;
                         AmountTB = null;
                         ImageSourceTB = null;
+
+                        WriteListToTxt();
                     }
                 }
                 else message.Error("Varen findes allerede!", "Scroll igennem varerne, for at finde den.");
@@ -318,7 +324,11 @@ namespace FredagsCafeUWP.Models
         
         public void RemoveProductFromOBList()
         {
-            if (SelectedProduct != null) message.YesNo("Slet produkt", "Er du sikker på at du vil slette " + SelectedProduct.Name + "?");
+            if (SelectedProduct != null)
+            {
+                message.YesNo("Slet produkt", "Er du sikker på at du vil slette " + SelectedProduct.Name + "?");
+                WriteListToTxt();
+            }
             else message.Error("Intet produkt valg", "Vælg venligst et produkt");
         }
 
@@ -352,6 +362,8 @@ namespace FredagsCafeUWP.Models
 
                 if (SelectedProduct != null && SelectedProduct.Amount < _minAmount) SelectedProduct.ForegroundColor = _colorRed;
                 else SelectedProduct.ForegroundColor = _colorGreen;
+
+                WriteListToTxt();
             }
             else message.Error("Intet produkt valg", "Vælg venligst et produkt");
         }
@@ -399,6 +411,8 @@ namespace FredagsCafeUWP.Models
 
                 if (SelectedProduct.Amount < _minAmount) SelectedProduct.ForegroundColor = _colorRed;
                 else SelectedProduct.ForegroundColor = _colorGreen;
+
+                WriteListToTxt();
             }
             else message.Error("Intet produkt valg", "Vælg venligst et produkt");
         }
@@ -432,6 +446,8 @@ namespace FredagsCafeUWP.Models
                 {
                     SelectedProduct.SellingPrice = intProductPriceChangedTB;
                     ProductPriceChangeTb = null;
+
+                    WriteListToTxt();
                 }
             }
             else message.Error("Intet produkt valg", "Vælg venligst et produkt");
@@ -446,6 +462,8 @@ namespace FredagsCafeUWP.Models
                 {
                     SelectedProduct.BuyingPrice = intProductPriceChangedTB;
                     ProductPriceChangeTb = null;
+
+                    WriteListToTxt();
                 }
             }
             else message.Error("Intet produkt valg", "Vælg venligst et produkt");
