@@ -50,18 +50,18 @@ namespace FredagsCafeUWP.Models
 
             Products = new ObservableCollection<Product>()
             {
-                new Product(66, 67, "Tuborg Classic", 22, 2, "ProductImages/TuborgClassic.png", _colorGreen),
-                new Product(55, 63, "Grøn Tuborg", 21, 13, "ProductImages/GrønTuborg.png", _colorGreen),
-                new Product(55, 63, "Tuborg Gylden Dame", 24, 13, "ProductImages/TuborgGuldDame.png", _colorGreen),
-                new Product(55, 63, "Carlsberg", 32, 13, "ProductImages/Carlsberg.png", _colorGreen),
-                new Product(55, 63, "Cola Zero", 28, 13, "ProductImages/ColaZero.png", _colorGreen),
-                new Product(55, 63, "Cola", 24, 13, "ProductImages/Cola.png", _colorGreen),
-                new Product(55, 63, "Mokai", 29, 13, "ProductImages/Mokai.png", _colorGreen),
-                new Product(55, 63, "Mokai Jordbær Lime", 9, 13, "ProductImages/MokaiStrawberryLime.png", _colorRed),
-                new Product(55, 63, "Somersby Apple Cider", 42, 13, "ProductImages/SomersbyApple.png", _colorGreen),
-                new Product(55, 63, "Somersby Pear Cider", 15, 13, "ProductImages/SomersbyPear.png", _colorGreen),
-                new Product(55, 63, "Breezer", 10, 13, "ProductImages/Breezer.png", _colorGreen),
-                new Product(55, 63, "Fanta", 5, 13, "ProductImages/Fanta.png", _colorRed)
+                //new Product(66, 67, "Tuborg Classic", 22, 2, "ProductImages/TuborgClassic.png", _colorGreen),
+                //new Product(55, 63, "Grøn Tuborg", 21, 13, "ProductImages/GrønTuborg.png", _colorGreen),
+                //new Product(55, 63, "Tuborg Gylden Dame", 24, 13, "ProductImages/TuborgGuldDame.png", _colorGreen),
+                //new Product(55, 63, "Carlsberg", 32, 13, "ProductImages/Carlsberg.png", _colorGreen),
+                //new Product(55, 63, "Cola Zero", 28, 13, "ProductImages/ColaZero.png", _colorGreen),
+                //new Product(55, 63, "Cola", 24, 13, "ProductImages/Cola.png", _colorGreen),
+                //new Product(55, 63, "Mokai", 29, 13, "ProductImages/Mokai.png", _colorGreen),
+                //new Product(55, 63, "Mokai Jordbær Lime", 9, 13, "ProductImages/MokaiStrawberryLime.png", _colorRed),
+                //new Product(55, 63, "Somersby Apple Cider", 42, 13, "ProductImages/SomersbyApple.png", _colorGreen),
+                //new Product(55, 63, "Somersby Pear Cider", 15, 13, "ProductImages/SomersbyPear.png", _colorGreen),
+                //new Product(55, 63, "Breezer", 10, 13, "ProductImages/Breezer.png", _colorGreen),
+                //new Product(55, 63, "Fanta", 5, 13, "ProductImages/Fanta.png", _colorRed)
             };
             Receipts = new ObservableCollection<Receipt>()
             {
@@ -70,7 +70,7 @@ namespace FredagsCafeUWP.Models
             };
 
             //WriteListToTxt();
-            //ReadTxt();
+            ReadTxt();
         }
 
         #region Properties
@@ -210,7 +210,7 @@ namespace FredagsCafeUWP.Models
             try
             {
                 StorageFolder localFolder = ApplicationData.Current.LocalFolder;
-                StorageFile textFile = await localFolder.CreateFileAsync("hej.txt", CreationCollisionOption.ReplaceExisting);
+                StorageFile textFile = await localFolder.CreateFileAsync("Stock.txt", CreationCollisionOption.ReplaceExisting);
 
                 using (IRandomAccessStream iRandomAccessStream = await textFile.OpenAsync(FileAccessMode.ReadWrite))
                 {
@@ -234,7 +234,7 @@ namespace FredagsCafeUWP.Models
             try
             {
                 StorageFolder localFolder = ApplicationData.Current.LocalFolder;
-                StorageFile textFile = await localFolder.GetFileAsync("hej.txt");
+                StorageFile textFile = await localFolder.GetFileAsync("Stock.txt");
 
                 using (IRandomAccessStream textstream = await textFile.OpenReadAsync())
                 {
@@ -243,6 +243,26 @@ namespace FredagsCafeUWP.Models
                         uint textLength = (uint)textstream.Size;
                         await textReader.LoadAsync(textLength);
                         TextDoc = textReader.ReadString(textLength);
+
+                        //TRY START
+                        string[] lines = TextDoc.Split(
+                            new[] { "\r\n", "\r", "\n" },
+                            StringSplitOptions.None
+                        );
+
+                        foreach (var line in lines)
+                        {
+                            Products.Add(new Product(
+                                double.Parse(line.Substring(line.IndexOf("Købspris: ") + "Købspris: ".Length, (line.LastIndexOf("Salgspris: ")) - (line.IndexOf("Købspris: ") + "Købspris: ".Length))),
+                                double.Parse(line.Substring(line.IndexOf("Salgspris: ") + "Salgspris: ".Length, (line.LastIndexOf("Antal: ")) - (line.IndexOf("Salgspris: ") + "Salgspris: ".Length))),
+                                line.Substring(line.IndexOf("Navn: ") + "Navn: ".Length, (line.LastIndexOf("Købspris: ")) - (line.IndexOf("Navn: ") + "Navn: ".Length)),
+                                int.Parse(line.Substring(line.IndexOf("Antal: ") + "Antal: ".Length, (line.LastIndexOf("Antal solgt: ")) - (line.IndexOf("Antal: ") + "Antal: ".Length))),
+                                int.Parse(line.Substring(line.IndexOf("Antal solgt: ") + "Antal solgt: ".Length, (line.LastIndexOf("Image Source: ")) - (line.IndexOf("Antal solgt: ") + "Antal solgt: ".Length))),
+                                line.Substring(line.IndexOf("Image Source: ") + "Image Source: ".Length, (line.LastIndexOf("ForegroundColor: ")) - (line.IndexOf("Image Source: ") + "Image Source: ".Length)),
+                                new SolidColorBrush(Colors.ForestGreen)
+                                ));
+                        }
+                        //TRY END
                     }
                 }
             }

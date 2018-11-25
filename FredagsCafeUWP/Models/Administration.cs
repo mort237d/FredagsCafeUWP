@@ -10,6 +10,8 @@ namespace FredagsCafeUWP.Models
     {
         private Message message;
 
+        private string standardImage = "Assets/Profile-icon.png";
+
         private string _nameTB;
         private string _gradeTB;
         private string _educationTB;
@@ -120,17 +122,17 @@ namespace FredagsCafeUWP.Models
 
             Users = new ObservableCollection<User>()
             {
-                new User("Morten", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Morten", "Morten", "Assets/Profile-icon.png"),
-                new User("Daniel", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Daniel", "Daniel", "Assets/Profile-icon.png"),
-                new User("Jacob", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Jacob", "Jacob", "Assets/Profile-icon.png"),
-                new User("Lucas", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Lucas", "Lucas", "Assets/Profile-icon.png"),
-                new User("Christian", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Christian", "Christian", "Assets/Profile-icon.png")
+                new User("Morten", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Morten", "Morten", standardImage),
+                new User("Daniel", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Daniel", "Daniel", standardImage),
+                new User("Jacob", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Jacob", "Jacob", standardImage),
+                new User("Lucas", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Lucas", "Lucas", standardImage),
+                new User("Christian", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Christian", "Christian", standardImage)
             };
         }
 
         public void AddUser()
         {
-            //TODO check for same user
+            //TODO add image
             if (NameTb != null && GradeTb != null && EducationTb != null && EmailTb != null && TelephoneNumberTb != null && UserNameTb != null && PasswordTb != null)
             {
                 if (EmailTb.Contains("@edu.easj.dk") || EmailTb.Contains("@easj.dk"))
@@ -145,8 +147,7 @@ namespace FredagsCafeUWP.Models
                     }
                     if (PasswordTb == ConfirmPasswordTb)
                     {
-                        Users.Add(new User(NameTb, GradeTb, EducationTb, EmailTb, TelephoneNumberTb, UserNameTb,
-                            PasswordTb, "Assets/Profile-icon.png"));
+                        Users.Add(new User(NameTb, GradeTb, EducationTb, EmailTb, TelephoneNumberTb, UserNameTb, PasswordTb, standardImage));
 
                         NameTb = null;
                         GradeTb = null;
