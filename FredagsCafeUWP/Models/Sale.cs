@@ -93,7 +93,7 @@ namespace FredagsCafeUWP
             {
                 if (product.AmountToBeSold > 0)
                 {
-                    for (int i = product.AmountToBeSold; i >= 0; i--)
+                    for (int i = product.AmountToBeSold; i > 0; i--)
                     {
                         subTotal += product.SellingPrice;
                     }
