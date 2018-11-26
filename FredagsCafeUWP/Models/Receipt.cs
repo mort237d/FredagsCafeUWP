@@ -11,15 +11,14 @@ namespace FredagsCafeUWP
         private string _phoneNumber = "+45 0000 0000";
         private int _saleNumber;
         private double _subTotal;
-        private double _tax;
-        private double _total;
-        private string _note;
+        private string _note = "";
         private List<Product> _basket;
 
-        public Receipt(double subTotal, string note)
+        public Receipt(double subTotal, string note, int saleNumber)
         {
             _subTotal = subTotal;
             _note = note;
+            _saleNumber = saleNumber;
         }
 
         public List<Product> Basket
@@ -42,19 +41,10 @@ namespace FredagsCafeUWP
                 _phoneNumber = phoneNumber;
             }
         }
-        public void ChangeTax(double tax)
-        {
-            if (tax >= 0)
-            {
-                _tax = tax;
-            }
-        }
-
-
 
         public override string ToString()
         {
-            return "Salgs tid:   " + _saleDateTime + "\nVirksomheds CVR " + _cvr + "\nTotal u. skat: " + _subTotal + "\nMoms: " + _tax + "\nTotal: " + _total + "\nVirksomheds nummer" + _phoneNumber + "\nSalgs nummer: " + _saleNumber + "\nNote: " + _note + "\n".ToString();
+            return "Salgs tid:   " + _saleDateTime + "\nVirksomheds CVR " + _cvr + "\nTotal: " + _subTotal + "\nVirksomheds nummer" + _phoneNumber + "\nSalgs nummer: " + _saleNumber + "\nNote: " + _note + "\n".ToString();
         }
     }
 }

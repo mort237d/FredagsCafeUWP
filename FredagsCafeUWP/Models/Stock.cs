@@ -21,8 +21,6 @@ namespace FredagsCafeUWP.Models
 
         private ObservableCollection<Product> _products;
 
-        private ObservableCollection<Receipt> _receipts;
-
         private Product _selectedProduct;
 
         private int _minAmount = 10;
@@ -82,19 +80,7 @@ namespace FredagsCafeUWP.Models
         public ObservableCollection<Product> Products
         {
             get { return _products; }
-            set
-            {
-                _products = value; 
-            }
-        }
-
-        public ObservableCollection<Receipt> Receipts
-        {
-            get { return _receipts; }
-            set
-            {
-                _receipts = value;
-            }
+            set {_products = value; }
         }
 
         public Product SelectedProduct

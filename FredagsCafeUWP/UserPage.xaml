@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="using:FredagsCafeUWP.ViewModels"
+    xmlns:Charting="using:WinRTXamlToolkit.Controls.DataVisualization.Charting"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <Page.DataContext>
@@ -14,6 +15,8 @@
 
     <Grid>
         <Pivot x:Name="rootPivot">
+
+            <!--#region SalgRegion-->
             <PivotItem Header="Salg">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -38,28 +41,31 @@
                                             <TextBlock Text=",-"></TextBlock>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal">
-                                            <Button Style="{StaticResource LeftRoundedButtonStyle}" Content="-"></Button>
-                                            <TextBox Text="0" TextAlignment="Center"></TextBox>
-                                            <Button Style="{StaticResource RightRoundedButtonStyle}" Content="+"></Button>
+                                            <Button Style="{StaticResource LeftRoundedButtonStyle}" Content="-"/>
+                                            <TextBox Text="0" TextAlignment="Center"/>
+                                            <Button Style="{StaticResource RightRoundedButtonStyle}" Content="+"/>
                                         </StackPanel>
                                     </StackPanel>
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Margin="5,0,0,5" Grid.Row="1">
-                        <TextBlock Text="Total pris:"></TextBlock>
-                        <TextBlock Text="kr. 200 ,-"></TextBlock>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Margin="5,0,0.4,5" Grid.Row="1">
+                        <TextBlock Text="Total pris: "/>
+                        <TextBlock Text="{Binding Sale.Total, Mode=TwoWay}"/>
                     </StackPanel>
 
-                    <Button Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Betal"  Margin="0,0,5,5"></Button>
+                    <Button Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Betal" Command="{Binding CompelteSaleCommand}"  Margin="0,0,5,5"/>
 
-                    <ListView Margin="30,30,30,0" Header="Transaktioner" Grid.Column="1" ItemsSource="{Binding Stock.Receipts}">
+                    <ListView Margin="30,30,30,0" Header="Transaktioner" Grid.Column="1" ItemsSource="{Binding Sale.Receipts}">
                         <!--TextBlock Text="{Binding Stock.Receipts}"/-->
                     </ListView>
                 </Grid>
 
             </PivotItem>
+            <!--#endregion-->
+
+            <!--#region LagerRegion-->
             <PivotItem Header="Lager">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -140,9 +146,9 @@
                     </StackPanel>
                 </Grid>
             </PivotItem>
+            <!--#endregion-->
 
-
-
+            <!--#region AdminstrationRegion-->
             <PivotItem Header="Administration">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -180,8 +186,9 @@
 
                 </Grid>
             </PivotItem>
+            <!--#endregion-->
 
-
+            <!--#region EventRegion-->
 
             <PivotItem Header="Event">
                 <Grid>
@@ -206,12 +213,19 @@
 
                 </Grid>
             </PivotItem>
+            <!--#endregion-->
 
-
+            <!--#region StatistikRegion-->
 
             <PivotItem Header="Statistik">
 
                 <StackPanel Orientation="Horizontal" Margin="80" >
+                    <Charting:Chart Width="700">
+                        <Charting:ColumnSeries ItemsSource="{Binding Stock.Products}" IndependentValuePath="Name" DependentValuePath="Amount" />
+
+                    </Charting:Chart>
+
+
                     <!-- https://social.msdn.microsoft.com/Forums/windowsapps/en-US/1ad31678-320e-43e8-a28c-e8bec4cfefae/uwphow-i-can-make-bar-graphs?forum=wpdevelop -->
                     <StackPanel Orientation="Vertical" Margin="8,0" VerticalAlignment="Bottom">
                         <Rectangle Fill="Red" Stroke="Black" Height="160" Width="27"/>
@@ -235,17 +249,20 @@
                             </TextBlock.RenderTransform></TextBlock>
                     </StackPanel>
                 </StackPanel>
-    
+
 
                 <!-- https://www.c-sharpcorner.com/article/how-to-implement-graph-and-chart-control-in-windows-10-unive/ -->
             </PivotItem>
+            <!--#endregion-->
 
+            <!--#region Text-->
             <PivotItem Header="Text">
                 <StackPanel Orientation="Vertical">
                     <TextBlock Text="{Binding Stock.TextDoc}"></TextBlock>
                     <TextBlock Text="{Binding Administration.UserTextDoc}"></TextBlock>
                 </StackPanel>
             </PivotItem>
+            <!--#endregion-->
         </Pivot>
     </Grid>
 </Page>

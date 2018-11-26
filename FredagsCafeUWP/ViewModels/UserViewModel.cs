@@ -1,4 +1,5 @@
-﻿using FredagsCafeUWP.Models;
+﻿using System.Collections.Generic;
+using FredagsCafeUWP.Models;
 using GalaSoft.MvvmLight.Command;
 
 namespace FredagsCafeUWP.ViewModels
@@ -9,6 +10,7 @@ namespace FredagsCafeUWP.ViewModels
         private Stock stock = new Stock();
         private User user;
         private Product product;
+        private Sale sale = new Sale();
         private Administration administration = new Administration();
 
         private RelayCommand addProductCommand;
@@ -23,6 +25,8 @@ namespace FredagsCafeUWP.ViewModels
 
         private RelayCommand addUserCommand;
         private RelayCommand removeUserCommand;
+
+        private RelayCommand compelteSaleCommand;
 
         public UserViewModel()
         {
@@ -39,6 +43,8 @@ namespace FredagsCafeUWP.ViewModels
 
             AddUserCommand = new RelayCommand(administration.AddUser);
             RemoveUserCommand = new RelayCommand(administration.RemoveUser);
+
+            CompelteSaleCommand = new RelayCommand(Sale.CompleteSale);
         }
 
         public string SelectedItem
@@ -118,6 +124,18 @@ namespace FredagsCafeUWP.ViewModels
         {
             get { return removeUserCommand; }
             set { removeUserCommand = value; }
+        }
+
+        public Sale Sale
+        {
+            get { return sale; }
+            set { sale = value; }
+        }
+
+        public RelayCommand CompelteSaleCommand
+        {
+            get { return compelteSaleCommand; }
+            set { compelteSaleCommand = value; }
         }
 
         #endregion

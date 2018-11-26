@@ -84,7 +84,11 @@ namespace FredagsCafeUWP.Models
         public int AmountToBeSold
         {
             get { return _amountToBeSold; }
-            set { _amountToBeSold = value; }
+            set
+            {
+                _amountToBeSold = value;
+                OnPropertyChanged();
+            }
         }
 
         #endregion
