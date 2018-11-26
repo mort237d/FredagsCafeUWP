@@ -19,7 +19,7 @@ namespace FredagsCafeUWP.Models
     {
         private Message message;
 
-        private ObservableCollection<Product> _products;
+        private static ObservableCollection<Product> _products;
 
         private Product _selectedProduct;
 

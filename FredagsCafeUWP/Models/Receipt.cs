@@ -16,7 +16,7 @@ namespace FredagsCafeUWP
 
         public Receipt(double subTotal, string note, int saleNumber)
         {
-            _subTotal = subTotal;
+            SubTotal = subTotal;
             _note = note;
             _saleNumber = saleNumber;
         }
@@ -25,6 +25,12 @@ namespace FredagsCafeUWP
         {
             get { return _basket; }
             set { _basket = value; }
+        }
+
+        public double SubTotal
+        {
+            get { return _subTotal; }
+            set { _subTotal = value; }
         }
 
         public void ChangeCVR(string newCVR)

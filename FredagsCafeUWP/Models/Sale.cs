@@ -14,19 +14,31 @@ namespace FredagsCafeUWP
         private ObservableCollection<Receipt> _receipts;
         private ObservableCollection<Product> _basket;
 
+        private Brush _colorRed = new SolidColorBrush(Colors.Red);
+        private Brush _colorGreen = new SolidColorBrush(Colors.ForestGreen);
 
         private Stock stock = new Stock();
         private Product _selectedProduct;
 
 
-        private double _total;
+        private double _totalTB;
 
         public Sale()
         {
             Receipts = new ObservableCollection<Receipt>()
             {
-                new Receipt(424, "no note", 0),
-                new Receipt(3423, "Drugs and drugs", 1)
+                new Receipt(424, "no note", 1),
+                new Receipt(3423, "Drugs and drugs", 0)
+            };
+            Basket = new ObservableCollection<Product>()
+            {
+                new Product(66, 67, "Tuborg Classic", 22, 2, "ProductImages/TuborgClassic.png", _colorGreen),
+                new Product(55, 63, "Grøn Tuborg", 21, 13, "ProductImages/GrønTuborg.png", _colorGreen),
+                new Product(55, 63, "Tuborg Gylden Dame", 24, 13, "ProductImages/TuborgGuldDame.png", _colorGreen),
+                new Product(55, 63, "Carlsberg", 32, 13, "ProductImages/Carlsberg.png", _colorGreen),
+                new Product(55, 63, "Cola Zero", 28, 13, "ProductImages/ColaZero.png", _colorGreen),
+                new Product(55, 63, "Cola", 24, 13, "ProductImages/Cola.png", _colorGreen),
+                new Product(55, 63, "Mokai", 29, 13, "ProductImages/Mokai.png", _colorGreen),
             };
         }
 
@@ -54,12 +66,12 @@ namespace FredagsCafeUWP
             set { _basket = value; }
         }
 
-        public double Total
+        public double TotalTB
         {
-            get { return _total; }
+            get { return _totalTB; }
             set
             {
-                _total = value; 
+                _totalTB = SubTotal(); 
                 OnPropertyChanged();
             }
         }
@@ -77,13 +89,13 @@ namespace FredagsCafeUWP
         public double SubTotal()
         {
             double subTotal = 0;
-            foreach (var item in Stock.Products)
+            foreach (var product in Stock.Products)
             {
-                if (item.AmountToBeSold > 0)
+                if (product.AmountToBeSold > 0)
                 {
-                    for (int i = item.AmountToBeSold; i >= 0; i--)
+                    for (int i = product.AmountToBeSold; i >= 0; i--)
                     {
-                        subTotal += item.SellingPrice;
+                        subTotal += product.SellingPrice;
                     }
                 }
             }
@@ -93,6 +105,10 @@ namespace FredagsCafeUWP
         public void CompleteSale()
         {
             Receipts.Insert(0, new Receipt(SubTotal(), "", Receipts.Count));
+            foreach (var product in Stock.Products)
+            {
+                product.AmountToBeSold = 0;
+            }
         }
 
         #region PropertyChanged
