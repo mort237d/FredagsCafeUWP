@@ -89,25 +89,45 @@ namespace FredagsCafeUWP
         public double SubTotal()
         {
             double subTotal = 0;
+            bool isNotInstuck = false;
+
             foreach (var product in Stock.Products)
             {
-                if (product.AmountToBeSold > 0)
+                if (product.AmountToBeSold > product.Amount)
                 {
-                    for (int i = product.AmountToBeSold; i > 0; i--)
-                    {
-                        subTotal += product.SellingPrice;
-                    }
+                    isNotInstuck = true;
+                    break;
                 }
             }
+
+            if (!isNotInstuck)
+            {
+                foreach (var product in Stock.Products)
+                {
+                    if (product.AmountToBeSold > 0)
+                    {
+                        for (int i = product.AmountToBeSold; i > 0; i--)
+                        {
+                            subTotal += product.SellingPrice;
+                            product.Amount--;
+                        }
+                    }
+            }
+            }
             return Math.Round(subTotal);
+            
         }
 
         public void CompleteSale()
         {
-            Receipts.Insert(0, new Receipt(SubTotal(), "", Receipts.Count));
-            foreach (var product in Stock.Products)
+            double temp = SubTotal();
+            if (temp > 0)
             {
-                product.AmountToBeSold = 0;
+                Receipts.Insert(0, new Receipt(SubTotal(), "", Receipts.Count));
+                foreach (var product in Stock.Products)
+                {
+                    product.AmountToBeSold = 0;
+                }
             }
         }
 
