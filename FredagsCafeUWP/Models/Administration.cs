@@ -1,14 +1,21 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
+using Windows.Storage;
+using Windows.Storage.Streams;
 using FredagsCafeUWP.Annotations;
+using Newtonsoft.Json;
 
 namespace FredagsCafeUWP.Models
 {
     class Administration : INotifyPropertyChanged
     {
-        private Message message;
+        private static Message message;
 
         private string standardImage = "Assets/Profile-icon.png";
 
@@ -23,6 +30,8 @@ namespace FredagsCafeUWP.Models
 
         private ObservableCollection<User> _users;
         private User _selectedUser;
+
+        private string _userTextDoc;
 
         #region Props
 
@@ -114,20 +123,30 @@ namespace FredagsCafeUWP.Models
             }
         }
 
+        public string UserTextDoc
+        {
+            get { return _userTextDoc; }
+            set { _userTextDoc = value; }
+        }
+
         #endregion
 
         public Administration()
         {
             message = new Message(this);
 
-            Users = new ObservableCollection<User>()
-            {
-                new User("Morten", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Morten", "Morten", standardImage),
-                new User("Daniel", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Daniel", "Daniel", standardImage),
-                new User("Jacob", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Jacob", "Jacob", standardImage),
-                new User("Lucas", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Lucas", "Lucas", standardImage),
-                new User("Christian", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Christian", "Christian", standardImage)
-            };
+            //Users = new ObservableCollection<User>();
+            //Users = new ObservableCollection<User>()
+            //{
+            //    new User("Morten", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Morten", "Morten", standardImage),
+            //    new User("Daniel", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Daniel", "Daniel", standardImage),
+            //    new User("Jacob", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Jacob", "Jacob", standardImage),
+            //    new User("Lucas", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Lucas", "Lucas", standardImage),
+            //    new User("Christian", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Christian", "Christian", standardImage)
+            //};
+
+            //SaveNotesAsJsonAsync(Users);
+            //LoadNotesFromJsonAsync();
         }
 
         public void AddUser()
@@ -166,9 +185,51 @@ namespace FredagsCafeUWP.Models
 
         public void RemoveUser()
         {
-            if (SelectedUser != null) message.YesNo("Slet bruger", "Er du sikker på at du vil slette " + SelectedUser.Name + "?");
+            if (SelectedUser != null)
+            {
+                message.YesNo("Slet bruger", "Er du sikker på at du vil slette " + SelectedUser.Name + "?");
+                SaveNotesAsJsonAsync(Users);
+            }
             else message.Error("Ingen bruger valgt", "Vælg venligst en bruger.");
         }
+
+        #region JSON
+        private static string JsonFileName = "Administration.json";
+
+        public static async void SaveNotesAsJsonAsync(ObservableCollection<User> users)
+        {
+            string JsonString = JsonConvert.SerializeObject(users);
+            SerializeNotesFileAsync(JsonString, JsonFileName);
+        }
+        private static async void SerializeNotesFileAsync(string JsonString, string fileName)
+        {
+            StorageFile localFile = await ApplicationData.Current.LocalFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
+            await FileIO.WriteTextAsync(localFile, JsonString);
+        }
+        
+
+        public static async Task<List<User>> LoadNotesFromJsonAsync()
+        {
+            string JsonString = await DeserializeNotesFileAsync(JsonFileName);
+            if (JsonString != null)
+                return (List<User>)JsonConvert.DeserializeObject(JsonString, typeof(List<User>));
+            return null;
+        }
+        private static async Task<string> DeserializeNotesFileAsync(string fileName)
+        {
+            try
+            {
+                StorageFile localFile = await ApplicationData.Current.LocalFolder.GetFileAsync(fileName);
+                return await FileIO.ReadTextAsync(localFile);
+            }
+            catch (FileNotFoundException ex)
+            {
+                message.Error("File not Found", "Loading for the first time? - Try Add and Save some Notes before trying to Save for the first time");
+                return null;
+            }
+        }
+        
+        #endregion
 
         #region INotify
 

@@ -49,29 +49,33 @@ namespace FredagsCafeUWP.Models
         {
             message = new Message(this);
 
-            Products = new ObservableCollection<Product>()
+            Products = new ObservableCollection<Product>();
+
+            ReadTxt();
+
+            if (Products.Count == 0)
             {
-                //new Product(66, 67, "Tuborg Classic", 22, 2, "ProductImages/TuborgClassic.png", _colorGreen),
-                //new Product(55, 63, "Grøn Tuborg", 21, 13, "ProductImages/GrønTuborg.png", _colorGreen),
-                //new Product(55, 63, "Tuborg Gylden Dame", 24, 13, "ProductImages/TuborgGuldDame.png", _colorGreen),
-                //new Product(55, 63, "Carlsberg", 32, 13, "ProductImages/Carlsberg.png", _colorGreen),
-                //new Product(55, 63, "Cola Zero", 28, 13, "ProductImages/ColaZero.png", _colorGreen),
-                //new Product(55, 63, "Cola", 24, 13, "ProductImages/Cola.png", _colorGreen),
-                //new Product(55, 63, "Mokai", 29, 13, "ProductImages/Mokai.png", _colorGreen),
-                //new Product(55, 63, "Mokai Jordbær Lime", 9, 13, "ProductImages/MokaiStrawberryLime.png", _colorRed),
-                //new Product(55, 63, "Somersby Apple Cider", 42, 13, "ProductImages/SomersbyApple.png", _colorGreen),
-                //new Product(55, 63, "Somersby Pear Cider", 15, 13, "ProductImages/SomersbyPear.png", _colorGreen),
-                //new Product(55, 63, "Breezer", 10, 13, "ProductImages/Breezer.png", _colorGreen),
-                //new Product(55, 63, "Fanta", 5, 13, "ProductImages/Fanta.png", _colorRed)
-            };
+                Products.Add(new Product(2, 5, "Tuborg Classic", 48, 0, "ProductImages/TuborgClassic.png",_colorGreen));
+                Products.Add(new Product(2, 5, "Grøn Tuborg", 48, 0, "ProductImages/GrønTuborg.png", _colorGreen));
+                Products.Add(new Product(2, 5, "Tuborg Gylden Dame", 48, 0, "ProductImages/TuborgGuldDame.png", _colorGreen));
+                Products.Add(new Product(2, 5, "Carlsberg", 48, 0, "ProductImages/Carlsberg.png", _colorGreen));
+                Products.Add(new Product(2, 5, "Cola Zero", 48, 0, "ProductImages/ColaZero.png", _colorGreen));
+                Products.Add(new Product(2, 5, "Cola", 48, 0, "ProductImages/Cola.png", _colorGreen));
+                Products.Add(new Product(2, 5, "Mokai", 48, 0, "ProductImages/Mokai.png", _colorGreen));
+                Products.Add(new Product(2, 5, "Mokai Jordbær Lime", 48, 0, "ProductImages/MokaiStrawberryLime.png", _colorGreen));
+                Products.Add(new Product(2, 5, "Somersby Apple Cider", 48, 0, "ProductImages/SomersbyApple.png", _colorGreen));
+                Products.Add(new Product(2, 5, "Somersby Pear Cider", 48, 0, "ProductImages/SomersbyPear.png", _colorGreen));
+                Products.Add(new Product(2, 5, "Breezer", 48, 0, "ProductImages/Breezer.png", _colorGreen));
+                Products.Add(new Product(2, 5, "Fanta", 48, 0, "ProductImages/Fanta.png", _colorGreen));
+
+                WriteListToTxt();
+            }
+
             Receipts = new ObservableCollection<Receipt>()
             {
                 new Receipt(424, "no note"),
                 new Receipt(3423, "Drugs and drugs")
             };
-
-            //WriteListToTxt();
-            ReadTxt();
         }
 
         #region Properties
@@ -211,7 +215,7 @@ namespace FredagsCafeUWP.Models
             try
             {
                 StorageFolder localFolder = ApplicationData.Current.LocalFolder;
-                StorageFile textFile = await localFolder.CreateFileAsync("Stock.txt", CreationCollisionOption.ReplaceExisting);
+                StorageFile textFile = await localFolder.CreateFileAsync(@"Data\Stock.txt", CreationCollisionOption.ReplaceExisting);
 
                 using (IRandomAccessStream iRandomAccessStream = await textFile.OpenAsync(FileAccessMode.ReadWrite))
                 {
@@ -235,7 +239,7 @@ namespace FredagsCafeUWP.Models
             try
             {
                 StorageFolder localFolder = ApplicationData.Current.LocalFolder;
-                StorageFile textFile = await localFolder.GetFileAsync("Stock.txt");
+                StorageFile textFile = await localFolder.GetFileAsync(@"Data\Stock.txt");
 
                 using (IRandomAccessStream textstream = await textFile.OpenReadAsync())
                 {
@@ -470,7 +474,6 @@ namespace FredagsCafeUWP.Models
         }
 
         #region INotify
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
@@ -478,7 +481,6 @@ namespace FredagsCafeUWP.Models
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
         #endregion
     }
 }
