@@ -220,7 +220,7 @@
             <PivotItem Header="Statistik">
 
                 <StackPanel Orientation="Horizontal" Margin="80" >
-                    <Charting:Chart>
+                    <Charting:Chart Width="700">
                         <Charting:ColumnSeries ItemsSource="{Binding Stock.Products}" IndependentValuePath="Name" DependentValuePath="Amount" />
 
                     </Charting:Chart>
