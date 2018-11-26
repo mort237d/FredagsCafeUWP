@@ -11,14 +11,15 @@ namespace FredagsCafeUWP
     class Sale
     {
         private ObservableCollection<Receipt> _receipts;
+
         private Stock stock = new Stock();
         private Product _selectedProduct;
         public Sale()
         {
             Receipts = new ObservableCollection<Receipt>()
             {
-                new Receipt(424, "no note"),
-                new Receipt(3423, "Drugs and drugs")
+                new Receipt(424, "no note", 0),
+                new Receipt(3423, "Drugs and drugs", 1)
             };
         }
 
@@ -42,15 +43,28 @@ namespace FredagsCafeUWP
 
         public void AddOneFromToBeSold()
         {
-            if (SelectedProduct != null)
-            {
-                SelectedProduct.AmountToBeSold++;
-            }
+            if (SelectedProduct != null) SelectedProduct.AmountToBeSold++;
         }
 
         public void RemoveOneFromToBeSold()
         {
             if (SelectedProduct != null && SelectedProduct.AmountToBeSold > 0) SelectedProduct.AmountToBeSold--;
+        }
+
+        //public void SubTotal()
+        //{
+        //    foreach (var VARIABLE in Stock)
+        //    {
+        //        if (VARIABLE.Basket > 0)
+        //        {
+                    
+        //        }
+        //    }
+        //}
+
+        public void CompleteSale(double subtotal, string note)
+        {
+            Receipts.Insert(0, new Receipt(subtotal, note, Receipts.Count));
         }
     }
 }

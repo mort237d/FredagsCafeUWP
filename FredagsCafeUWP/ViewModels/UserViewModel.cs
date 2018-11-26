@@ -9,6 +9,7 @@ namespace FredagsCafeUWP.ViewModels
         private Stock stock = new Stock();
         private User user;
         private Product product;
+        private Sale sale = new Sale();
         private Administration administration = new Administration();
 
         private RelayCommand addProductCommand;
@@ -118,6 +119,12 @@ namespace FredagsCafeUWP.ViewModels
         {
             get { return removeUserCommand; }
             set { removeUserCommand = value; }
+        }
+
+        public Sale Sale
+        {
+            get { return sale; }
+            set { sale = value; }
         }
 
         #endregion
