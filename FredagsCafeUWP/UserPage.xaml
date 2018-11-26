@@ -15,12 +15,30 @@
         <viewModels:UserViewModel></viewModels:UserViewModel>
     </Page.DataContext>
 
-    <Grid>
-        <Pivot x:Name="rootPivot">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
 
-            <!--#region SalgRegion-->
+        <!--#region CommandBar-->
+        <CommandBar Background="#6CA0DC">
+            <AppBarSeparator/>
+            <AppBarButton Icon="Help" Label="Help"/>
+
+        <CommandBar.SecondaryCommands>
+            <AppBarButton Label="Like"/>
+            <AppBarButton Label="Dislike"/>
+        </CommandBar.SecondaryCommands>
+
+        </CommandBar>
+    <!--#endregion-->
+
+    <Pivot x:Name="rootPivot" Grid.Row="1">
+
+        <!--#region SalgRegion-->
             <PivotItem Header="Salg">
-                <Grid>
+                <Grid Margin="10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
@@ -33,7 +51,7 @@
                     <GridView ItemsSource="{Binding Stock.Products}">
                         <GridView.ItemTemplate>
                             <DataTemplate x:DataType="models:Product">
-                                <StackPanel>
+                                <StackPanel Margin="10">
                                     <Image Source="{Binding ImageSource}" Width="100" Height="100"/>
                                     <StackPanel Orientation="Vertical">
                                         <TextBlock FontWeight="Bold" Text="{Binding Name}"/>
@@ -90,7 +108,7 @@
 
             <!--#region LagerRegion-->
             <PivotItem Header="Lager">
-                <Grid>
+                <Grid Margin="10">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="6*"/>
                         <RowDefinition Height="*"/>
@@ -99,7 +117,7 @@
                     <GridView ItemsSource="{Binding Stock.Products}">
                         <GridView.ItemTemplate>
                             <DataTemplate x:DataType="models:Product">
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <StackPanel Orientation="Horizontal" Margin="10">
                                     <Image Source="{Binding ImageSource}" Width="100" Height="100"></Image>
                                     <StackPanel Orientation="Vertical">
                                         <TextBlock FontWeight="Bold" Text="{Binding Name}"></TextBlock>
@@ -205,7 +223,7 @@
 
             <!--#region AdminstrationRegion-->
             <PivotItem Header="Administration">
-                <Grid>
+                <Grid Margin="10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
@@ -214,8 +232,8 @@
                     <GridView ItemsSource="{Binding Administration.Users}">
                         <GridView.ItemTemplate>
                             <DataTemplate x:DataType="models:Product">
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="{Binding ImageSource}" Height="150" Width="150"></Image>
+                                <StackPanel Orientation="Horizontal" Margin="10">
+                                    <Image Source="{Binding ImageSource}" Height="100" Width="100"></Image>
                                     <StackPanel>
                                         <TextBlock Text="{Binding Name}"></TextBlock>
                                         <TextBlock Text="{Binding TelephoneNumber}" ></TextBlock>
@@ -261,7 +279,7 @@
             <!--#region EventRegion-->
 
             <PivotItem Header="Event">
-                <Grid>
+                <Grid Margin="10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
