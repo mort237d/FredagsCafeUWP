@@ -211,7 +211,22 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <ListView ItemsSource="{Binding Administration.Users}" SelectedItem="{Binding Administration.SelectedUser, Mode=TwoWay}">
+                    <GridView ItemsSource="{Binding Administration.Users}">
+                        <GridView.ItemTemplate>
+                            <DataTemplate x:DataType="models:Product">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding ImageSource}" Height="150" Width="150"></Image>
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding Name}"></TextBlock>
+                                        <TextBlock Text="{Binding TelephoneNumber}" ></TextBlock>
+                                        <TextBlock Text="{Binding Email}" ></TextBlock>
+                                    </StackPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridView.ItemTemplate>
+                    </GridView>
+
+                    <!--<ListView ItemsSource="{Binding Administration.Users}" SelectedItem="{Binding Administration.SelectedUser, Mode=TwoWay}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -224,7 +239,7 @@
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
-                    </ListView>
+                    </ListView>-->
                     <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" Content="Fjern medarbejder" Command="{Binding RemoveUserCommand}"></Button>
 
                     <StackPanel Grid.Column="1">
