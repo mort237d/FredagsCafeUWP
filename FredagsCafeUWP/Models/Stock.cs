@@ -391,7 +391,11 @@ namespace FredagsCafeUWP.Models
                     else message.Error("Tallene stemmer ikke", "Der er kun " + SelectedProduct.Amount + " af " + SelectedProduct.Name + ".\nDerfor kan du ikke fjerne " + intProductAmountTB + " af dette produkt.");
                 }
 
-                if (SelectedProduct.Amount < _minAmount) SelectedProduct.ForegroundColor = _colorRed;
+                if (SelectedProduct.Amount < _minAmount)
+                {
+                    SelectedProduct.ForegroundColor = _colorRed;
+                    message.Error("Advarsel", "Lageret er næsten tomt");
+                }
                 else SelectedProduct.ForegroundColor = _colorGreen;
 
                 WriteListToTxt();
