@@ -6,6 +6,7 @@ using Windows.UI;
 using Windows.UI.Xaml.Media;
 using FredagsCafeUWP.Annotations;
 using FredagsCafeUWP.Models;
+using Newtonsoft.Json.Serialization;
 
 namespace FredagsCafeUWP
 {
@@ -112,8 +113,9 @@ namespace FredagsCafeUWP
                             product.Amount--;
                         }
                     }
+                }
             }
-            }
+            //Todo else if isNotInstuck error not in stock foreach
             return Math.Round(subTotal);
             
         }
@@ -129,6 +131,7 @@ namespace FredagsCafeUWP
                     product.AmountToBeSold = 0;
                 }
             }
+            //ToDO else error nothing to sell
         }
 
         #region PropertyChanged
