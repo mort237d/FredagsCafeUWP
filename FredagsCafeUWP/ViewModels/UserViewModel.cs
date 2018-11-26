@@ -1,4 +1,5 @@
-﻿using FredagsCafeUWP.Models;
+﻿using System.Collections.Generic;
+using FredagsCafeUWP.Models;
 using GalaSoft.MvvmLight.Command;
 
 namespace FredagsCafeUWP.ViewModels
