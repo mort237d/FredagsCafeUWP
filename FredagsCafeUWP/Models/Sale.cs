@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+using Windows.UI;
+using Windows.UI.Xaml.Media;
 using FredagsCafeUWP.Annotations;
 using FredagsCafeUWP.Models;
 
@@ -19,6 +17,7 @@ namespace FredagsCafeUWP
 
         private Stock stock = new Stock();
         private Product _selectedProduct;
+
 
         private double _total;
 
@@ -60,7 +59,7 @@ namespace FredagsCafeUWP
             get { return _total; }
             set
             {
-                _total = SubTotal(); 
+                _total = value; 
                 OnPropertyChanged();
             }
         }
@@ -78,7 +77,7 @@ namespace FredagsCafeUWP
         public double SubTotal()
         {
             double subTotal = 0;
-            foreach (var item in Basket)
+            foreach (var item in Stock.Products)
             {
                 if (item.AmountToBeSold > 0)
                 {
