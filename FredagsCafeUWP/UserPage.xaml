@@ -255,7 +255,10 @@
 
             <!--#region Text-->
             <PivotItem Header="Text">
-                <TextBlock Text="{Binding Stock.TextDoc}"></TextBlock>
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="{Binding Stock.TextDoc}"></TextBlock>
+                    <TextBlock Text="{Binding Administration.UserTextDoc}"></TextBlock>
+                </StackPanel>
             </PivotItem>
             <!--#endregion-->
         </Pivot>
