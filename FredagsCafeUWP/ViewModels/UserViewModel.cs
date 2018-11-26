@@ -1,4 +1,5 @@
-﻿using FredagsCafeUWP.Models;
+﻿using System.Collections.Generic;
+using FredagsCafeUWP.Models;
 using GalaSoft.MvvmLight.Command;
 
 namespace FredagsCafeUWP.ViewModels
@@ -24,6 +25,8 @@ namespace FredagsCafeUWP.ViewModels
         private RelayCommand addUserCommand;
         private RelayCommand removeUserCommand;
 
+        
+
         public UserViewModel()
         {
             AddProductCommand = new RelayCommand(stock.AddProductToOBListAsync);
@@ -39,6 +42,8 @@ namespace FredagsCafeUWP.ViewModels
 
             AddUserCommand = new RelayCommand(administration.AddUser);
             RemoveUserCommand = new RelayCommand(administration.RemoveUser);
+
+            
         }
 
         public string SelectedItem
