@@ -21,8 +21,6 @@ namespace FredagsCafeUWP.Models
 
         private ObservableCollection<Product> _products;
 
-        private ObservableCollection<Receipt> _receipts;
-
         private Product _selectedProduct;
 
         private int _minAmount = 10;
@@ -64,11 +62,7 @@ namespace FredagsCafeUWP.Models
                 //new Product(55, 63, "Breezer", 10, 13, "ProductImages/Breezer.png", _colorGreen),
                 //new Product(55, 63, "Fanta", 5, 13, "ProductImages/Fanta.png", _colorRed)
             };
-            Receipts = new ObservableCollection<Receipt>()
-            {
-                new Receipt(424, "no note"),
-                new Receipt(3423, "Drugs and drugs")
-            };
+
 
             //WriteListToTxt();
             ReadTxt();
@@ -78,19 +72,7 @@ namespace FredagsCafeUWP.Models
         public ObservableCollection<Product> Products
         {
             get { return _products; }
-            set
-            {
-                _products = value; 
-            }
-        }
-
-        public ObservableCollection<Receipt> Receipts
-        {
-            get { return _receipts; }
-            set
-            {
-                _receipts = value;
-            }
+            set {_products = value; }
         }
 
         public Product SelectedProduct

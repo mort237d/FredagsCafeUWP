@@ -28,17 +28,36 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <ListView>
-                        <Grid/>
+                    <ListView ItemsSource="{Binding Stock.Products}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding ImageSource}" Width="100" Height="100"></Image>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock FontWeight="Bold" Text="{Binding Name}"></TextBlock>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="kr."></TextBlock>
+                                            <TextBlock Text="{Binding SellingPrice}" Margin="2,0,2,0"></TextBlock>
+                                            <TextBlock Text=",-"></TextBlock>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Style="{StaticResource LeftRoundedButtonStyle}" Content="-"/>
+                                            <TextBox Text="0" TextAlignment="Center"></TextBox>
+                                            <Button Style="{StaticResource RightRoundedButtonStyle}" Content="+"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
                     </ListView>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Margin="5,0,0,5" Grid.Row="1">
-                        <TextBlock Text="Total pris:"></TextBlock>
-                        <TextBlock Text="kr. 200 ,-"></TextBlock>
+                        <TextBlock Text="Total pris: "/>
+                        <TextBlock Text="{Binding Sale.Total, Mode=TwoWay}"/>
                     </StackPanel>
 
-                    <Button Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Betal"  Margin="0,0,5,5"></Button>
+                    <Button Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Betal"  Margin="0,0,5,5"/>
 
-                    <ListView Margin="30,30,30,0" Header="Transaktioner" Grid.Column="1" ItemsSource="{Binding Stock.Receipts}">
+                    <ListView Margin="30,30,30,0" Header="Transaktioner" Grid.Column="1" ItemsSource="{Binding Sale.Receipts}">
                         <!--TextBlock Text="{Binding Stock.Receipts}"/-->
                     </ListView>
                 </Grid>
