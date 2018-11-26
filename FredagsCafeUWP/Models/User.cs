@@ -28,12 +28,6 @@ namespace FredagsCafeUWP.Models
             ImageSource = imageSource;
         }
 
-        public User(string userName, string password)
-        {
-            UserName = userName;
-            Password = password;
-        }
-
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();

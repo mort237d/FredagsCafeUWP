@@ -68,12 +68,6 @@ namespace FredagsCafeUWP.Models
 
                 WriteListToTxt();
             }
-
-            Receipts = new ObservableCollection<Receipt>()
-            {
-                new Receipt(424, "no note"),
-                new Receipt(3423, "Drugs and drugs")
-            };
         }
 
         #region Properties
