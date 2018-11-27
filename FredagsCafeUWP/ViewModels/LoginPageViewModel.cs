@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using FredagsCafeUWP.Annotations;
@@ -14,7 +9,7 @@ using GalaSoft.MvvmLight.Command;
 
 namespace FredagsCafeUWP
 {
-    class LoginPageViewModel : INotifyPropertyChanged
+    internal class LoginPageViewModel : INotifyPropertyChanged
     {
         
         public string UserName { get; set; }
@@ -24,8 +19,8 @@ namespace FredagsCafeUWP
         public RelayCommand LoginRelayCommand { get; set; }
 
 
-        private Administration administration = new Administration();
-        ObservableCollection<User> _users = new ObservableCollection<User>();
+        private readonly Administration _administration = new Administration();
+        private ObservableCollection<User> _users = new ObservableCollection<User>();
 
         public LoginPageViewModel()
         {
@@ -35,9 +30,9 @@ namespace FredagsCafeUWP
         private void CheckLogin()
         {
 
-            foreach (var User in administration.Users)
+            foreach (var user in _administration.Users)
             {
-                if (User.UserName == UserName && User.Password == PassWord)
+                if (user.UserName == UserName && user.Password == PassWord)
                 {
                     Frame currentFrame = Window.Current.Content as Frame;
                     currentFrame.Navigate(typeof(UserPage));
@@ -53,13 +48,13 @@ namespace FredagsCafeUWP
 
         public ObservableCollection<User> Users
         {
-            get { return _users; }
-            set { _users = value; }
+            get => _users;
+            set => _users = value;
         }
 
         public string WrongLogin
         {
-            get { return _wrongLogin; }
+            get => _wrongLogin;
             set
             {
                 _wrongLogin = value;
@@ -69,13 +64,15 @@ namespace FredagsCafeUWP
 
         public string WrongLoginColor
         {
-            get { return _wrongLoginColor; }
+            get => _wrongLoginColor;
             set
             {
                 _wrongLoginColor = value;
                 OnPropertyChanged();
             }
         }
+
+        #region INotify
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -84,6 +81,8 @@ namespace FredagsCafeUWP
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        #endregion
     
     }
 }

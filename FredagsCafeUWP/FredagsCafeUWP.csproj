@@ -99,7 +99,6 @@
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\Message.cs" />
-    <Compile Include="Persistency\PersistencyService.cs" />
     <Compile Include="ViewModels\LoginPageViewModel.cs" />
     <Compile Include="Models\Administration.cs" />
     <Compile Include="Models\User.cs" />
@@ -113,7 +112,7 @@
       <DependentUpon>UserPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\UserViewModel.cs" />
-    <Compile Include="XMLReadWriteClass.cs" />
+    <Compile Include="Models\XMLReadWriteClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -163,7 +162,6 @@
     <Content Include="Assets\Wide310x150Logo.scale-125.png" />
     <Content Include="Assets\Wide310x150Logo.scale-150.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
-    <Content Include="hej.txt" />
     <Content Include="Views\ProductImages\BlankDåse.png" />
     <Content Include="Views\ProductImages\Breezer.png" />
     <Content Include="Views\ProductImages\Carlsberg.png" />
