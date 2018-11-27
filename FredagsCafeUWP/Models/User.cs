@@ -5,7 +5,7 @@ using FredagsCafeUWP.Annotations;
 
 namespace FredagsCafeUWP.Models
 {
-    class User : INotifyPropertyChanged
+    public class User : INotifyPropertyChanged
     {
         private string _name;
         private string _grade;
@@ -26,6 +26,11 @@ namespace FredagsCafeUWP.Models
             UserName = userName;
             Password = password;
             ImageSource = imageSource;
+        }
+
+        public User()
+        {
+            
         }
 
         public override string ToString()
