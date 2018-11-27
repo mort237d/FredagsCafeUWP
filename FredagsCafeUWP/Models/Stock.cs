@@ -20,7 +20,7 @@ namespace FredagsCafeUWP.Models
     {
         private Message message;
 
-        private ObservableCollection<Product> _products;
+        private static ObservableCollection<Product> _products;
 
         private UserViewModel _userViewModel;
 
@@ -374,7 +374,8 @@ namespace FredagsCafeUWP.Models
                     SelectedProduct.BuyingPrice = intProductPriceChangedTB;
                     ProductPriceChangeTb = null;
 
-                    saveAsync();                }
+                    saveAsync();
+                }
             }
             else message.Error("Intet produkt valg", "Vælg venligst et produkt");
         }

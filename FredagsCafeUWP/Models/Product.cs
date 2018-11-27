@@ -97,7 +97,8 @@ namespace FredagsCafeUWP.Models
             {
                 _amountToBeSold = value;
                 OnPropertyChanged();
-               // userViewModel.Sale.TotalTB = TotalTBMethod();
+                //if(userViewModel != null)
+                    userViewModel.Sale.TotalTB = TotalTBMethod();
             }
         }
 
@@ -136,6 +137,7 @@ namespace FredagsCafeUWP.Models
             Name = name;
             AmountToBeSold = amountToBeSold;
         }
+        
         public Product()
         {
             
