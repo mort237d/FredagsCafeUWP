@@ -20,7 +20,7 @@ namespace FredagsCafeUWP.Models
 
         
 
-        private readonly UserViewModel _userViewModel;
+        private UserViewModel _userViewModel;
         #endregion
 
         #region Props
@@ -98,7 +98,7 @@ namespace FredagsCafeUWP.Models
                 _amountToBeSold = value;
                 OnPropertyChanged();
                 //if(userViewModel != null)
-                    userViewModel.Sale.TotalTB = TotalTBMethod();
+                _userViewModel.Sale.TotalTb = TotalTbMethod();
             }
         }
 

@@ -375,7 +375,7 @@ namespace FredagsCafeUWP.Models
 
                     //saveAsync();
                 }
-
+            }
             else await _message.Error("Intet produkt valg", "Vælg venligst et produkt");
         }
 
