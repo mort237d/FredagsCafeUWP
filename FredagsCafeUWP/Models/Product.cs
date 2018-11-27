@@ -1,14 +1,12 @@
 ﻿using System.ComponentModel;
-using System.Diagnostics;
 using System.Runtime.CompilerServices;
-using System.Text;
-using Windows.UI.Xaml.Media;
+using Windows.UI;
 using FredagsCafeUWP.Annotations;
 using FredagsCafeUWP.ViewModels;
 
 namespace FredagsCafeUWP.Models
 {
-    class Product : INotifyPropertyChanged
+    public class Product : INotifyPropertyChanged
     {
         #region Fields
         private double _buyingPrice;
@@ -17,8 +15,10 @@ namespace FredagsCafeUWP.Models
         private int _amount;
         private int _amountSold;
         private string _imageSource;
-        private Brush _foregroundColor;
+        private Color _foregroundColor;
         private int _amountToBeSold = 1;
+
+        
 
         private UserViewModel userViewModel;
         #endregion
@@ -80,7 +80,7 @@ namespace FredagsCafeUWP.Models
             set { _imageSource = value; }
         }
 
-        public Brush ForegroundColor
+        public Color ForegroundColor
         {
             get { return _foregroundColor; }
             set
@@ -97,7 +97,7 @@ namespace FredagsCafeUWP.Models
             {
                 _amountToBeSold = value;
                 OnPropertyChanged();
-                userViewModel.Sale.TotalTB = TotalTBMethod();
+               // userViewModel.Sale.TotalTB = TotalTBMethod();
             }
         }
 
@@ -116,7 +116,7 @@ namespace FredagsCafeUWP.Models
 
         #endregion
 
-        public Product(double buyingPrice, double sellingPrice, string name, int amount, int amountSold, string imageSource, Brush foregroundColor, UserViewModel userViewModel)
+        public Product(double buyingPrice, double sellingPrice, string name, int amount, int amountSold, string imageSource, Color foregroundColor, UserViewModel userViewModel)
         {
             BuyingPrice = buyingPrice;
             SellingPrice = sellingPrice;
@@ -135,6 +135,10 @@ namespace FredagsCafeUWP.Models
             SellingPrice = sellingPrice;
             Name = name;
             AmountToBeSold = amountToBeSold;
+        }
+        public Product()
+        {
+            
         }
 
         #region INotify

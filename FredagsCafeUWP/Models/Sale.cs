@@ -12,13 +12,13 @@ using Newtonsoft.Json.Serialization;
 
 namespace FredagsCafeUWP
 {
-    class Sale : INotifyPropertyChanged
+    public class Sale : INotifyPropertyChanged
     {
         private ObservableCollection<Receipt> _receipts;
         private static List<Product> _basket;
 
-        private Brush _colorRed = new SolidColorBrush(Colors.Red);
-        private Brush _colorGreen = new SolidColorBrush(Colors.ForestGreen);
+        private Color _colorRed = Colors.Red;
+        private Color _colorGreen = Colors.ForestGreen;
 
         private Message message;
         private Stock stock = new Stock();
@@ -30,6 +30,8 @@ namespace FredagsCafeUWP
         public Sale()
         {
             message = new Message(this);
+
+            Basket = new List<Product>();
 
             Receipts = new ObservableCollection<Receipt>()
             {
@@ -152,7 +154,7 @@ namespace FredagsCafeUWP
 
                 foreach (var product in Stock.Products)
                 {
-                    product.AmountToBeSold = 0;
+                    //product.AmountToBeSold = 0;
                     if (product.Amount < 10 && product.ForegroundColor != _colorRed)
                     {
                         product.ForegroundColor = _colorRed;

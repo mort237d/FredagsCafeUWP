@@ -15,7 +15,7 @@ using Newtonsoft.Json;
 
 namespace FredagsCafeUWP.Models
 {
-    class Administration : INotifyPropertyChanged
+    public class Administration : INotifyPropertyChanged
     {
         private static Message message;
 
@@ -136,7 +136,7 @@ namespace FredagsCafeUWP.Models
         public Administration()
         {
             message = new Message(this);
-            
+
             loadAsync();
         }
 
@@ -184,7 +184,7 @@ namespace FredagsCafeUWP.Models
         public async void saveAsync()
         {
             Debug.WriteLine("Saving list async...");
-            await XMLReadWriteClass.SaveObjectToXml<ObservableCollection<User>>(Users, "list.xml");
+            await XMLReadWriteClass.SaveObjectToXml<ObservableCollection<User>>(Users, "administration.xml");
             Debug.WriteLine("list.count: " + Users.Count);
         }
         private async void loadAsync()
@@ -192,7 +192,7 @@ namespace FredagsCafeUWP.Models
             try
             {
             Debug.WriteLine("loading list async...");
-            Users = await XMLReadWriteClass.ReadObjectFromXmlFileAsync<ObservableCollection<User>>("list.xml");
+            Users = await XMLReadWriteClass.ReadObjectFromXmlFileAsync<ObservableCollection<User>>("administration.xml");
             Debug.WriteLine("list.count:" + Users.Count);
             OnPropertyChanged("_users");
             }
