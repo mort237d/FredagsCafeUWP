@@ -191,11 +191,7 @@ namespace FredagsCafeUWP.Models
 
         public async void RemoveUser()
         {
-            if (SelectedUser != null)
-            {
-                await message.YesNo("Slet bruger", "Er du sikker på at du vil slette " + SelectedUser.Name + "?");
-                saveAsync();
-            }
+            if (SelectedUser != null) await message.YesNo("Slet bruger", "Er du sikker på at du vil slette " + SelectedUser.Name + "?");
             else message.Error("Ingen bruger valgt", "Vælg venligst en bruger.");
         }
 

@@ -57,7 +57,11 @@ namespace FredagsCafeUWP.Models
             {
                 Debug.WriteLine("Yes");
                 if (title == "Slet produkt") stock.Products.Remove(stock.SelectedProduct);
-                if (title == "Slet bruger") administration.Users.Remove(administration.SelectedUser);
+                if (title == "Slet bruger")
+                {
+                    administration.Users.Remove(administration.SelectedUser);
+                    administration.saveAsync();
+                }
             }
             else if (command == noCommand)
             {
