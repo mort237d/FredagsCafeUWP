@@ -14,11 +14,12 @@ namespace FredagsCafeUWP
         private string _note = "";
         private List<Product> _basket;
 
-        public Receipt(double subTotal, string note, int saleNumber)
+        public Receipt(double subTotal, string note, int saleNumber, List<Product> basket)
         {
             SubTotal = subTotal;
             _note = note;
             _saleNumber = saleNumber;
+            _basket = basket;
         }
 
         public List<Product> Basket

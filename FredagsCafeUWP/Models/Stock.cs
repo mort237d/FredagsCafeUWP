@@ -12,6 +12,7 @@ using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
 using FredagsCafeUWP.Annotations;
 using Windows.UI.Xaml.Media;
+using FredagsCafeUWP.ViewModels;
 
 namespace FredagsCafeUWP.Models
 {
@@ -19,7 +20,9 @@ namespace FredagsCafeUWP.Models
     {
         private Message message;
 
-        private static ObservableCollection<Product> _products;
+        private ObservableCollection<Product> _products;
+
+        private UserViewModel _userViewModel;
 
         private Product _selectedProduct;
 
@@ -43,30 +46,53 @@ namespace FredagsCafeUWP.Models
 
         private string _textDoc;
 
+        public Stock(UserViewModel userViewModel)
+        {
+            message = new Message(this);
+
+            _userViewModel = userViewModel;
+
+            Products = new ObservableCollection<Product>();
+
+
+            if (Products.Count == 0)
+            {
+                Products.Add(new Product(2, 5, "Tuborg Classic", 48, 0, "ProductImages/TuborgClassic.png",_colorGreen, _userViewModel));
+                Products.Add(new Product(2, 5, "Grøn Tuborg", 48, 0, "ProductImages/GrønTuborg.png", _colorGreen, _userViewModel));
+                Products.Add(new Product(2, 5, "Tuborg Gylden Dame", 48, 0, "ProductImages/TuborgGuldDame.png", _colorGreen, _userViewModel));
+                Products.Add(new Product(2, 5, "Carlsberg", 48, 0, "ProductImages/Carlsberg.png", _colorGreen, _userViewModel));
+                Products.Add(new Product(2, 5, "Cola Zero", 48, 0, "ProductImages/ColaZero.png", _colorGreen, _userViewModel));
+                Products.Add(new Product(2, 5, "Cola", 48, 0, "ProductImages/Cola.png", _colorGreen, _userViewModel));
+                Products.Add(new Product(2, 5, "Mokai", 48, 0, "ProductImages/Mokai.png", _colorGreen, _userViewModel));
+                Products.Add(new Product(2, 5, "Mokai Jordbær Lime", 48, 0, "ProductImages/MokaiStrawberryLime.png", _colorGreen, _userViewModel));
+                Products.Add(new Product(2, 5, "Somersby Apple Cider", 48, 0, "ProductImages/SomersbyApple.png", _colorGreen, _userViewModel));
+                Products.Add(new Product(2, 5, "Somersby Pear Cider", 48, 0, "ProductImages/SomersbyPear.png", _colorGreen, _userViewModel));
+                Products.Add(new Product(2, 5, "Breezer", 48, 0, "ProductImages/Breezer.png", _colorGreen, _userViewModel));
+                Products.Add(new Product(2, 5, "Fanta", 48, 0, "ProductImages/Fanta.png", _colorGreen, _userViewModel));
+            }
+        }
+
         public Stock()
         {
             message = new Message(this);
 
             Products = new ObservableCollection<Product>();
 
-            ReadTxt();
 
             if (Products.Count == 0)
             {
-                Products.Add(new Product(2, 5, "Tuborg Classic", 48, 0, "ProductImages/TuborgClassic.png",_colorGreen));
-                Products.Add(new Product(2, 5, "Grøn Tuborg", 48, 0, "ProductImages/GrønTuborg.png", _colorGreen));
-                Products.Add(new Product(2, 5, "Tuborg Gylden Dame", 48, 0, "ProductImages/TuborgGuldDame.png", _colorGreen));
-                Products.Add(new Product(2, 5, "Carlsberg", 48, 0, "ProductImages/Carlsberg.png", _colorGreen));
-                Products.Add(new Product(2, 5, "Cola Zero", 48, 0, "ProductImages/ColaZero.png", _colorGreen));
-                Products.Add(new Product(2, 5, "Cola", 48, 0, "ProductImages/Cola.png", _colorGreen));
-                Products.Add(new Product(2, 5, "Mokai", 48, 0, "ProductImages/Mokai.png", _colorGreen));
-                Products.Add(new Product(2, 5, "Mokai Jordbær Lime", 48, 0, "ProductImages/MokaiStrawberryLime.png", _colorGreen));
-                Products.Add(new Product(2, 5, "Somersby Apple Cider", 48, 0, "ProductImages/SomersbyApple.png", _colorGreen));
-                Products.Add(new Product(2, 5, "Somersby Pear Cider", 48, 0, "ProductImages/SomersbyPear.png", _colorGreen));
-                Products.Add(new Product(2, 5, "Breezer", 48, 0, "ProductImages/Breezer.png", _colorGreen));
-                Products.Add(new Product(2, 5, "Fanta", 48, 0, "ProductImages/Fanta.png", _colorGreen));
-
-                WriteListToTxt();
+                Products.Add(new Product(2, 5, "Tuborg Classic", 48, 0, "ProductImages/TuborgClassic.png", _colorGreen, _userViewModel));
+                Products.Add(new Product(2, 5, "Grøn Tuborg", 48, 0, "ProductImages/GrønTuborg.png", _colorGreen, _userViewModel));
+                Products.Add(new Product(2, 5, "Tuborg Gylden Dame", 48, 0, "ProductImages/TuborgGuldDame.png", _colorGreen, _userViewModel));
+                Products.Add(new Product(2, 5, "Carlsberg", 48, 0, "ProductImages/Carlsberg.png", _colorGreen, _userViewModel));
+                Products.Add(new Product(2, 5, "Cola Zero", 48, 0, "ProductImages/ColaZero.png", _colorGreen, _userViewModel));
+                Products.Add(new Product(2, 5, "Cola", 48, 0, "ProductImages/Cola.png", _colorGreen, _userViewModel));
+                Products.Add(new Product(2, 5, "Mokai", 48, 0, "ProductImages/Mokai.png", _colorGreen, _userViewModel));
+                Products.Add(new Product(2, 5, "Mokai Jordbær Lime", 48, 0, "ProductImages/MokaiStrawberryLime.png", _colorGreen, _userViewModel));
+                Products.Add(new Product(2, 5, "Somersby Apple Cider", 48, 0, "ProductImages/SomersbyApple.png", _colorGreen, _userViewModel));
+                Products.Add(new Product(2, 5, "Somersby Pear Cider", 48, 0, "ProductImages/SomersbyPear.png", _colorGreen, _userViewModel));
+                Products.Add(new Product(2, 5, "Breezer", 48, 0, "ProductImages/Breezer.png", _colorGreen, _userViewModel));
+                Products.Add(new Product(2, 5, "Fanta", 48, 0, "ProductImages/Fanta.png", _colorGreen, _userViewModel));
             }
         }
 
@@ -188,77 +214,7 @@ namespace FredagsCafeUWP.Models
         }
 
         #endregion
-      
-
-        public async void WriteListToTxt()
-        {
-            try
-            {
-                StorageFolder localFolder = ApplicationData.Current.LocalFolder;
-                StorageFile textFile = await localFolder.CreateFileAsync(@"Data\Stock.txt", CreationCollisionOption.ReplaceExisting);
-
-                using (IRandomAccessStream iRandomAccessStream = await textFile.OpenAsync(FileAccessMode.ReadWrite))
-                {
-                    using (DataWriter textWriter = new DataWriter(iRandomAccessStream))
-                    {
-                        foreach (var p in Products) textWriter.WriteString(p.ToString());
-                        await textWriter.StoreAsync();
-                    }
-                }
-
-                message.Error("Gemt", null);
-            }
-            catch
-            {
-                message.Error("Kan ikke gemme filen", null);
-            }
-        }
-
-        public async void ReadTxt()
-        {
-            try
-            {
-                StorageFolder localFolder = ApplicationData.Current.LocalFolder;
-                StorageFile textFile = await localFolder.GetFileAsync(@"Data\Stock.txt");
-
-                using (IRandomAccessStream textstream = await textFile.OpenReadAsync())
-                {
-                    using (DataReader textReader = new DataReader(textstream))
-                    {
-                        uint textLength = (uint)textstream.Size;
-                        await textReader.LoadAsync(textLength);
-                        TextDoc = textReader.ReadString(textLength);
-                        
-                        string[] lines = TextDoc.Split(
-                            new[] { "\r\n", "\r", "\n" },
-                            StringSplitOptions.None
-                        );
-
-                        foreach (var line in lines)
-                        {
-                            if ((int.Parse(line.Substring(line.IndexOf("Antal: ") + "Antal: ".Length,
-                                    (line.LastIndexOf("Antal solgt: ")) -
-                                    (line.IndexOf("Antal: ") + "Antal: ".Length)))) < 10)
-                            _amountColor = _colorRed;
-                            else _amountColor = _colorGreen;
-                            Products.Add(new Product(
-                                double.Parse(line.Substring(line.IndexOf("Købspris: ") + "Købspris: ".Length, (line.LastIndexOf("Salgspris: ")) - (line.IndexOf("Købspris: ") + "Købspris: ".Length))),
-                                double.Parse(line.Substring(line.IndexOf("Salgspris: ") + "Salgspris: ".Length, (line.LastIndexOf("Antal: ")) - (line.IndexOf("Salgspris: ") + "Salgspris: ".Length))),
-                                line.Substring(line.IndexOf("Navn: ") + "Navn: ".Length, (line.LastIndexOf("Købspris: ")) - (line.IndexOf("Navn: ") + "Navn: ".Length)),
-                                int.Parse(line.Substring(line.IndexOf("Antal: ") + "Antal: ".Length, (line.LastIndexOf("Antal solgt: ")) - (line.IndexOf("Antal: ") + "Antal: ".Length))),
-                                int.Parse(line.Substring(line.IndexOf("Antal solgt: ") + "Antal solgt: ".Length, (line.LastIndexOf("Image Source: ")) - (line.IndexOf("Antal solgt: ") + "Antal solgt: ".Length))),
-                                line.Substring(line.IndexOf("Image Source: ") + "Image Source: ".Length, (line.LastIndexOf("ForegroundColor: ")) - (line.IndexOf("Image Source: ") + "Image Source: ".Length)),
-                                _amountColor
-                                ));
-                        }
-                    }
-                }
-            }
-            catch
-            {
-                message.Error("Kan ikke læse filen", null);
-            }
-        }
+     
 
         public void AddProductToOBListAsync()
         {
@@ -284,13 +240,13 @@ namespace FredagsCafeUWP.Models
                     {
                         if (ImageSourceTB == "" || ImageSourceTB == null)
                         {
-                            if (intAmountTB < _minAmount) Products.Add(new Product(doubleBuyingPriceTB, doubleSellingPriceTB, NameTB, intAmountTB, 0, "ProductImages/BlankDåse.png", _colorRed));
-                            else Products.Add(new Product(doubleBuyingPriceTB, doubleSellingPriceTB, NameTB, intAmountTB, 0, "ProductImages/BlankDåse.png", _colorGreen));
+                            if (intAmountTB < _minAmount) Products.Add(new Product(doubleBuyingPriceTB, doubleSellingPriceTB, NameTB, intAmountTB, 0, "ProductImages/BlankDåse.png", _colorRed, _userViewModel));
+                            else Products.Add(new Product(doubleBuyingPriceTB, doubleSellingPriceTB, NameTB, intAmountTB, 0, "ProductImages/BlankDåse.png", _colorGreen, _userViewModel));
                         }
                         else
                         {
-                            if (intAmountTB < _minAmount) Products.Add(new Product(doubleBuyingPriceTB, doubleSellingPriceTB, NameTB, intAmountTB, 0, ImageSourceTB, _colorRed));
-                            else Products.Add(new Product(doubleBuyingPriceTB, doubleSellingPriceTB, NameTB, intAmountTB, 0, ImageSourceTB, _colorGreen));
+                            if (intAmountTB < _minAmount) Products.Add(new Product(doubleBuyingPriceTB, doubleSellingPriceTB, NameTB, intAmountTB, 0, ImageSourceTB, _colorRed, _userViewModel));
+                            else Products.Add(new Product(doubleBuyingPriceTB, doubleSellingPriceTB, NameTB, intAmountTB, 0, ImageSourceTB, _colorGreen, _userViewModel));
                         }
 
                         NameTB = null;
@@ -299,7 +255,6 @@ namespace FredagsCafeUWP.Models
                         AmountTB = null;
                         ImageSourceTB = null;
 
-                        WriteListToTxt();
                     }
                 }
                 else message.Error("Varen findes allerede!", "Scroll igennem varerne, for at finde den.");
@@ -311,7 +266,6 @@ namespace FredagsCafeUWP.Models
             if (SelectedProduct != null)
             {
                 message.YesNo("Slet produkt", "Er du sikker på at du vil slette " + SelectedProduct.Name + "?");
-                WriteListToTxt();
             }
             else message.Error("Intet produkt valg", "Vælg venligst et produkt");
         }
@@ -347,7 +301,6 @@ namespace FredagsCafeUWP.Models
                 if (SelectedProduct != null && SelectedProduct.Amount < _minAmount) SelectedProduct.ForegroundColor = _colorRed;
                 else SelectedProduct.ForegroundColor = _colorGreen;
 
-                WriteListToTxt();
             }
             else message.Error("Intet produkt valg", "Vælg venligst et produkt");
         }
@@ -400,7 +353,6 @@ namespace FredagsCafeUWP.Models
                 }
                 else SelectedProduct.ForegroundColor = _colorGreen;
 
-                WriteListToTxt();
             }
             else message.Error("Intet produkt valg", "Vælg venligst et produkt");
         }
@@ -435,7 +387,6 @@ namespace FredagsCafeUWP.Models
                     SelectedProduct.SellingPrice = intProductPriceChangedTB;
                     ProductPriceChangeTb = null;
 
-                    WriteListToTxt();
                 }
             }
             else message.Error("Intet produkt valg", "Vælg venligst et produkt");
@@ -451,7 +402,6 @@ namespace FredagsCafeUWP.Models
                     SelectedProduct.BuyingPrice = intProductPriceChangedTB;
                     ProductPriceChangeTb = null;
 
-                    WriteListToTxt();
                 }
             }
             else message.Error("Intet produkt valg", "Vælg venligst et produkt");

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -14,7 +15,7 @@ namespace FredagsCafeUWP
     class Sale : INotifyPropertyChanged
     {
         private ObservableCollection<Receipt> _receipts;
-        private ObservableCollection<Product> _basket;
+        private static List<Product> _basket;
 
         private Brush _colorRed = new SolidColorBrush(Colors.Red);
         private Brush _colorGreen = new SolidColorBrush(Colors.ForestGreen);
@@ -32,20 +33,9 @@ namespace FredagsCafeUWP
 
             Receipts = new ObservableCollection<Receipt>()
             {
-                new Receipt(424, "no note", 1),
-                new Receipt(3423, "Drugs and drugs", 0)
+                //new Receipt(424, "no note", 1),
+                //new Receipt(3423, "Drugs and drugs", 0)
             };
-            Basket = new ObservableCollection<Product>()
-            {
-                new Product(66, 67, "Tuborg Classic", 22, 2, "ProductImages/TuborgClassic.png", _colorGreen),
-                new Product(55, 63, "Grøn Tuborg", 21, 13, "ProductImages/GrønTuborg.png", _colorGreen),
-                new Product(55, 63, "Tuborg Gylden Dame", 24, 13, "ProductImages/TuborgGuldDame.png", _colorGreen),
-                new Product(55, 63, "Carlsberg", 32, 13, "ProductImages/Carlsberg.png", _colorGreen),
-                new Product(55, 63, "Cola Zero", 28, 13, "ProductImages/ColaZero.png", _colorGreen),
-                new Product(55, 63, "Cola", 24, 13, "ProductImages/Cola.png", _colorGreen),
-                new Product(55, 63, "Mokai", 29, 13, "ProductImages/Mokai.png", _colorGreen),
-            };
-            
         }
 
         public ObservableCollection<Receipt> Receipts
@@ -66,7 +56,7 @@ namespace FredagsCafeUWP
             set { stock = value; }
         }
 
-        public ObservableCollection<Product> Basket
+        public List<Product> Basket
         {
             get { return _basket; }
             set { _basket = value; }
@@ -77,11 +67,6 @@ namespace FredagsCafeUWP
             get { return _totalTB; }
             set
             {
-                foreach (var product in stock.Products)
-                {
-                    value += product.AmountToBeSold * product.SellingPrice;
-                }
-
                 _totalTB = value;
                 OnPropertyChanged();
             }
@@ -102,6 +87,17 @@ namespace FredagsCafeUWP
             {
                 SelectedProduct.AmountToBeSold--;
                 TotalTB -= SelectedProduct.SellingPrice;
+            }
+        }
+
+        public void AddItemsToBasket()
+        {
+            foreach (var product in stock.Products)
+            {
+                if (product.AmountToBeSold != 0)
+                {
+                    Basket.Add(new Product(product.BuyingPrice,product.SellingPrice,product.Name,product.AmountToBeSold));       
+                }
             }
         }
 
@@ -150,7 +146,10 @@ namespace FredagsCafeUWP
             double temp = SubTotal();
             if (temp > 0)
             {
-                Receipts.Insert(0, new Receipt(temp, "", Receipts.Count));
+                AddItemsToBasket();
+                Receipts.Insert(0, new Receipt(temp, "", Receipts.Count, Basket));
+                Basket.Clear();
+
                 foreach (var product in Stock.Products)
                 {
                     product.AmountToBeSold = 0;
@@ -164,7 +163,6 @@ namespace FredagsCafeUWP
                 if (productAmountLow != null) message.Error("Lavt lager", "Der er lavt lager af:\n" + productAmountLow);
             }
             else if (temp != -1) message.Error("Ingen vare tilføjet", "Tilføj venligst vare for at betale.");
-
         }
 
         #region PropertyChanged

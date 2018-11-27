@@ -1,8 +1,10 @@
 ﻿using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Windows.UI.Xaml.Media;
 using FredagsCafeUWP.Annotations;
+using FredagsCafeUWP.ViewModels;
 
 namespace FredagsCafeUWP.Models
 {
@@ -17,6 +19,8 @@ namespace FredagsCafeUWP.Models
         private string _imageSource;
         private Brush _foregroundColor;
         private int _amountToBeSold = 1;
+
+        private UserViewModel userViewModel;
         #endregion
 
         #region Props
@@ -93,12 +97,26 @@ namespace FredagsCafeUWP.Models
             {
                 _amountToBeSold = value;
                 OnPropertyChanged();
+                userViewModel.Sale.TotalTB = TotalTBMethod();
             }
+        }
+
+        public double TotalTBMethod()
+        {
+            double temp = 0;
+            foreach (var product in userViewModel.Stock.Products)
+            {
+                if (product.AmountToBeSold != 0)
+                {
+                    temp += product.AmountToBeSold * product.SellingPrice;
+                }
+            }
+            return temp;
         }
 
         #endregion
 
-        public Product(double buyingPrice, double sellingPrice, string name, int amount, int amountSold, string imageSource, Brush foregroundColor)
+        public Product(double buyingPrice, double sellingPrice, string name, int amount, int amountSold, string imageSource, Brush foregroundColor, UserViewModel userViewModel)
         {
             BuyingPrice = buyingPrice;
             SellingPrice = sellingPrice;
@@ -107,6 +125,16 @@ namespace FredagsCafeUWP.Models
             AmountSold = amountSold;
             ImageSource = imageSource;
             ForegroundColor = foregroundColor;
+
+            this.userViewModel = userViewModel;
+        }
+
+        public Product(double buyingPrice, double sellingPrice, string name, int amountToBeSold)
+        {
+            BuyingPrice = buyingPrice;
+            SellingPrice = sellingPrice;
+            Name = name;
+            AmountToBeSold = amountToBeSold;
         }
 
         //public override string ToString()
