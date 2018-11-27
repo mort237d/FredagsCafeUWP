@@ -20,6 +20,8 @@ namespace FredagsCafeUWP.Models
         private Color _foregroundColor;
         private int _amountToBeSold = 1;
 
+        
+
         private UserViewModel userViewModel;
         #endregion
 
@@ -97,7 +99,7 @@ namespace FredagsCafeUWP.Models
             {
                 _amountToBeSold = value;
                 OnPropertyChanged();
-                userViewModel.Sale.TotalTB = TotalTBMethod();
+               // userViewModel.Sale.TotalTB = TotalTBMethod();
             }
         }
 
