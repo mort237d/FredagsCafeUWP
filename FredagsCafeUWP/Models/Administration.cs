@@ -1,113 +1,103 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
-using Windows.Storage;
-using Windows.Storage.Streams;
 using FredagsCafeUWP.Annotations;
-using FredagsCafeUWP.Persistency;
-using Newtonsoft.Json;
 
 namespace FredagsCafeUWP.Models
 {
     public class Administration : INotifyPropertyChanged
     {
-        private static Message message;
+        private static Message _message;
 
-        private string standardImage = "UserImages/Profile-icon.png";
+        private readonly string _standardImage = "UserImages/Profile-icon.png";
 
-        private string _nameTB;
-        private string _gradeTB;
-        private string _educationTB;
-        private string _emailTB;
-        private string _telephoneNumberTB;
-        private string _userNameTB;
-        private string _passwordTB;
-        private string _confirmPasswordTB;
+        private string _nameTb;
+        private string _gradeTb;
+        private string _educationTb;
+        private string _emailTb;
+        private string _telephoneNumberTb;
+        private string _userNameTb;
+        private string _passwordTb;
+        private string _confirmPasswordTb;
 
         private ObservableCollection<User> _users;
         private User _selectedUser;
-
-        private string _userTextDoc;
 
         #region Props
 
         public string NameTb
         {
-            get { return _nameTB; }
+            get => _nameTb;
             set
             {
-                _nameTB = value;
+                _nameTb = value;
                 OnPropertyChanged();
             }
         }
 
         public string GradeTb
         {
-            get { return _gradeTB; }
-            set { _gradeTB = value;
+            get => _gradeTb;
+            set { _gradeTb = value;
                 OnPropertyChanged();
             }
         }
 
         public string EducationTb
         {
-            get { return _educationTB; }
-            set { _educationTB = value;
+            get => _educationTb;
+            set { _educationTb = value;
                 OnPropertyChanged();
             }
         }
 
         public string EmailTb
         {
-            get { return _emailTB; }
+            get => _emailTb;
             set
             {
-                _emailTB = value;
+                _emailTb = value;
                 OnPropertyChanged();
             }
         }
 
         public string TelephoneNumberTb
         {
-            get { return _telephoneNumberTB; }
-            set { _telephoneNumberTB = value;
+            get => _telephoneNumberTb;
+            set { _telephoneNumberTb = value;
                 OnPropertyChanged();
             }
         }
 
         public string UserNameTb
         {
-            get { return _userNameTB; }
-            set { _userNameTB = value;
+            get => _userNameTb;
+            set { _userNameTb = value;
                 OnPropertyChanged();
             }
         }
 
         public string PasswordTb
         {
-            get { return _passwordTB; }
-            set { _passwordTB = value;
+            get => _passwordTb;
+            set { _passwordTb = value;
                 OnPropertyChanged();
             }
         }
 
         public string ConfirmPasswordTb
         {
-            get { return _confirmPasswordTB; }
-            set { _confirmPasswordTB = value;
+            get => _confirmPasswordTb;
+            set { _confirmPasswordTb = value;
                 OnPropertyChanged();
             }
         }
 
         public ObservableCollection<User> Users
         {
-            get { return _users; }
+            get => _users;
             set
             {
                 _users = value;
@@ -117,7 +107,7 @@ namespace FredagsCafeUWP.Models
 
         public User SelectedUser
         {
-            get { return _selectedUser; }
+            get => _selectedUser;
             set
             {
                 _selectedUser = value;
@@ -125,22 +115,16 @@ namespace FredagsCafeUWP.Models
             }
         }
 
-        public string UserTextDoc
-        {
-            get { return _userTextDoc; }
-            set { _userTextDoc = value; }
-        }
-
         #endregion
 
         public Administration()
         {
-            message = new Message(this);
+            _message = new Message(this);
 
-            loadAsync();
+            LoadAsync();
         }
 
-        public void AddUser()
+        public async void AddUser()
         {
             //TODO add image
             if (NameTb != null && GradeTb != null && EducationTb != null && EmailTb != null && TelephoneNumberTb != null && UserNameTb != null && PasswordTb != null)
@@ -151,13 +135,13 @@ namespace FredagsCafeUWP.Models
                     {
                         if (u.Email.Equals(EmailTb))
                         {
-                            message.Error("Email findes allerede", u.Email + " findes allerede til en anden bruger");
+                            await _message.Error("Email findes allerede", u.Email + " findes allerede til en anden bruger");
                             return;
                         }
                     }
                     if (PasswordTb == ConfirmPasswordTb)
                     {
-                        Users.Add(new User(NameTb, GradeTb, EducationTb, EmailTb, TelephoneNumberTb, UserNameTb, PasswordTb, standardImage));
+                        Users.Add(new User(NameTb, GradeTb, EducationTb, EmailTb, TelephoneNumberTb, UserNameTb, PasswordTb, _standardImage));
 
                         NameTb = null;
                         GradeTb = null;
@@ -167,46 +151,45 @@ namespace FredagsCafeUWP.Models
                         UserNameTb = null;
                         PasswordTb = null;
                         ConfirmPasswordTb = null;
-                        saveAsync();
+                        SaveAsync();
                     }
-                    else message.Error("Uoverensstemmelser", "Password stemmer ikke over ens med confirm password");
+                    else await _message.Error("Uoverensstemmelser", "Password stemmer ikke over ens med confirm password");
                 }
-                else message.Error("Forkert email", "Du skal bruge en \"@edu.easj.dk\" eller en \"@easj.dk\" mail.");
+                else await _message.Error("Forkert email", "Du skal bruge en \"@edu.easj.dk\" eller en \"@easj.dk\" mail.");
             }
         }
 
         public async void RemoveUser()
         {
-            if (SelectedUser != null) await message.YesNo("Slet bruger", "Er du sikker på at du vil slette " + SelectedUser.Name + "?");
-            else message.Error("Ingen bruger valgt", "Vælg venligst en bruger.");
+            if (SelectedUser != null) await _message.YesNo("Slet bruger", "Er du sikker på at du vil slette " + SelectedUser.Name + "?");
+            else await _message.Error("Ingen bruger valgt", "Vælg venligst en bruger.");
         }
 
-        public async void saveAsync()
+        public async void SaveAsync()
         {
             Debug.WriteLine("Saving list async...");
-            await XMLReadWriteClass.SaveObjectToXml<ObservableCollection<User>>(Users, "administration.xml");
+            await XmlReadWriteClass.SaveObjectToXml(Users, "administration.xml");
             Debug.WriteLine("list.count: " + Users.Count);
         }
-        private async void loadAsync()
+        private async void LoadAsync()
         {
             try
             {
             Debug.WriteLine("loading list async...");
-            Users = await XMLReadWriteClass.ReadObjectFromXmlFileAsync<ObservableCollection<User>>("administration.xml");
+            Users = await XmlReadWriteClass.ReadObjectFromXmlFileAsync<ObservableCollection<User>>("administration.xml");
             Debug.WriteLine("list.count:" + Users.Count);
-            OnPropertyChanged("_users");
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Users = new ObservableCollection<User>()
                 {
-                    new User("Morten", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Morten", "Morten", standardImage),
-                    new User("Daniel", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Daniel", "Daniel", standardImage),
-                    new User("Jacob", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Jacob", "Jacob", standardImage),
-                    new User("Lucas", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Lucas", "Lucas", standardImage),
-                    new User("Christian", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Christian", "Christian", standardImage)
+                    new User("Morten", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Morten", "Morten", _standardImage),
+                    new User("Daniel", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Daniel", "Daniel", _standardImage),
+                    new User("Jacob", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Jacob", "Jacob", _standardImage),
+                    new User("Lucas", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Lucas", "Lucas", _standardImage),
+                    new User("Christian", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Christian", "Christian", _standardImage)
                 };
-                saveAsync();
+                SaveAsync();
             }
 
         }

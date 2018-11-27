@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using FredagsCafeUWP.Annotations;
 using FredagsCafeUWP.Models;
@@ -11,155 +9,155 @@ namespace FredagsCafeUWP.ViewModels
     public class UserViewModel : INotifyPropertyChanged
     {
         private string _selectedItem;
-        private Stock stock;
-        private User user;
-        private Product product;
-        private Sale sale = new Sale();
-        private Administration administration = new Administration();
+        private Stock _stock;
+        private User _user;
+        private Product _product;
+        private Sale _sale = new Sale();
+        private Administration _administration = new Administration();
 
-        private RelayCommand addProductCommand;
-        private RelayCommand removeProductCommand;
+        private RelayCommand _addProductCommand;
+        private RelayCommand _removeProductCommand;
 
-        private RelayCommand addAmountCommand;
-        private RelayCommand removeAmountCommand;
-        private RelayCommand browseImageCommand;
+        private RelayCommand _addAmountCommand;
+        private RelayCommand _removeAmountCommand;
+        private RelayCommand _browseImageCommand;
 
-        private RelayCommand changeProductSellPriceCommand;
-        private RelayCommand changeProductBuyPriceCommand;
+        private RelayCommand _changeProductSellPriceCommand;
+        private RelayCommand _changeProductBuyPriceCommand;
 
-        private RelayCommand addUserCommand;
-        private RelayCommand removeUserCommand;
+        private RelayCommand _addUserCommand;
+        private RelayCommand _removeUserCommand;
 
-        private RelayCommand saveCommand;
-        private RelayCommand loadCommand;
+        private RelayCommand _saveCommand;
+        private RelayCommand _loadCommand;
 
-        private RelayCommand compelteSaleCommand;
+        private RelayCommand _completeSaleCommand;
 
-        private RelayCommand addOneToSaleCommand;
-        private RelayCommand removeeOneFromSaleCommand;
+        private RelayCommand _addOneToSaleCommand;
+        private RelayCommand _removeeOneFromSaleCommand;
 
         public UserViewModel()
         {
-            stock = new Stock(this);
+            _stock = new Stock(this);
 
-            AddProductCommand = new RelayCommand(stock.AddProductToOBListAsync);
-            RemoveProductCommand = new RelayCommand(stock.RemoveProductFromOBList);
+            AddProductCommand = new RelayCommand(_stock.AddProductToObListAsync);
+            RemoveProductCommand = new RelayCommand(_stock.RemoveProductFromObList);
 
-            AddAmountCommand = new RelayCommand(stock.AddAmountToProduct);
-            RemoveAmountCommand = new RelayCommand(stock.RemoveAmountFromProduct);
+            AddAmountCommand = new RelayCommand(_stock.AddAmountToProduct);
+            RemoveAmountCommand = new RelayCommand(_stock.RemoveAmountFromProduct);
 
-            BrowseImageCommand = new RelayCommand(stock.BrowseImageButton);
+            BrowseImageCommand = new RelayCommand(_stock.BrowseImageButton);
 
-            ChangeProductSellPriceCommand = new RelayCommand(stock.ChangeProductSellPrice);
-            ChangeProductBuyPriceCommand = new RelayCommand(stock.ChangeProductBuyPrice);
+            ChangeProductSellPriceCommand = new RelayCommand(_stock.ChangeProductSellPrice);
+            ChangeProductBuyPriceCommand = new RelayCommand(_stock.ChangeProductBuyPrice);
 
-            AddUserCommand = new RelayCommand(administration.AddUser);
-            RemoveUserCommand = new RelayCommand(administration.RemoveUser);
+            AddUserCommand = new RelayCommand(_administration.AddUser);
+            RemoveUserCommand = new RelayCommand(_administration.RemoveUser);
 
             CompelteSaleCommand = new RelayCommand(Sale.CompleteSale);
         }
       
         public string SelectedItem
         {
-            get { return _selectedItem; }
-            set { _selectedItem = value; }
+            get => _selectedItem;
+            set => _selectedItem = value;
         }
 
         public Stock Stock
         {
-            get { return stock; }
-            set { stock = value; }
+            get => _stock;
+            set => _stock = value;
         }
 
         public Product Product
         {
-            get { return product; }
-            set { product = value; }
+            get => _product;
+            set => _product = value;
         }
 
         public Administration Administration
         {
-            get { return administration; }
-            set { administration = value; }
+            get => _administration;
+            set => _administration = value;
         }
 
         #region RelayCommands
         public RelayCommand AddProductCommand
         {
-            get { return addProductCommand; }
-            set { addProductCommand = value; }
+            get => _addProductCommand;
+            set => _addProductCommand = value;
         }
 
         public RelayCommand RemoveProductCommand
         {
-            get { return removeProductCommand; }
-            set { removeProductCommand = value; }
+            get => _removeProductCommand;
+            set => _removeProductCommand = value;
         }
 
         public RelayCommand AddAmountCommand
         {
-            get { return addAmountCommand; }
-            set { addAmountCommand = value; }
+            get => _addAmountCommand;
+            set => _addAmountCommand = value;
         }
 
         public RelayCommand RemoveAmountCommand
         {
-            get { return removeAmountCommand; }
-            set { removeAmountCommand = value; }
+            get => _removeAmountCommand;
+            set => _removeAmountCommand = value;
         }
 
         public RelayCommand BrowseImageCommand
         {
-            get { return browseImageCommand; }
-            set { browseImageCommand = value; }
+            get => _browseImageCommand;
+            set => _browseImageCommand = value;
         }
 
         public RelayCommand ChangeProductSellPriceCommand
         {
-            get { return changeProductSellPriceCommand; }
-            set { changeProductSellPriceCommand = value; }
+            get => _changeProductSellPriceCommand;
+            set => _changeProductSellPriceCommand = value;
         }
 
         public RelayCommand ChangeProductBuyPriceCommand
         {
-            get { return changeProductBuyPriceCommand; }
-            set { changeProductBuyPriceCommand = value; }
+            get => _changeProductBuyPriceCommand;
+            set => _changeProductBuyPriceCommand = value;
         }
 
         public RelayCommand AddUserCommand
         {
-            get { return addUserCommand; }
-            set { addUserCommand = value; }
+            get => _addUserCommand;
+            set => _addUserCommand = value;
         }
 
         public RelayCommand RemoveUserCommand
         {
-            get { return removeUserCommand; }
-            set { removeUserCommand = value; }
+            get => _removeUserCommand;
+            set => _removeUserCommand = value;
         }
 
         public Sale Sale
         {
-            get { return sale; }
-            set { sale = value; }
+            get => _sale;
+            set => _sale = value;
         }
 
         public RelayCommand CompelteSaleCommand
         {
-            get { return compelteSaleCommand; }
-            set { compelteSaleCommand = value; }
+            get => _completeSaleCommand;
+            set => _completeSaleCommand = value;
         }
 
         public RelayCommand SaveCommand
         {
-            get { return saveCommand; }
-            set { saveCommand = value; }
+            get => _saveCommand;
+            set => _saveCommand = value;
         }
 
         public RelayCommand LoadCommand
         {
-            get { return loadCommand; }
-            set { loadCommand = value; }
+            get => _loadCommand;
+            set => _loadCommand = value;
         }
 
         #endregion

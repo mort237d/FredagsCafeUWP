@@ -6,9 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Pickers;
-using Windows.Storage.Streams;
 using Windows.UI;
-using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
 using FredagsCafeUWP.Annotations;
 using Windows.UI.Xaml.Media;
@@ -18,46 +16,46 @@ namespace FredagsCafeUWP.Models
 {
     public class Stock : INotifyPropertyChanged
     {
-        private Message message;
+        private readonly Message _message;
 
         private ObservableCollection<Product> _products;
 
-        private UserViewModel _userViewModel;
+        private readonly UserViewModel _userViewModel;
 
         private Product _selectedProduct;
 
         private int _minAmount = 10;
 
-        private Color _colorRed = Colors.Red;
-        private Color _colorGreen = Colors.ForestGreen;
+        private readonly Color _colorRed = Colors.Red;
+        private readonly Color _colorGreen = Colors.ForestGreen;
         //private Brush _colorRed = new SolidColorBrush(Colors.Red);
         //private Brush _colorGreen = new SolidColorBrush(Colors.ForestGreen);
         private Brush _amountColor;
 
-        private string _nameTB;
-        private string _buyingPriceTB;
-        private string _sellingPriceTB;
-        private string _amountTB;
-        private string _imageSourceTB = "";
+        private string _nameTb;
+        private string _buyingPriceTb;
+        private string _sellingPriceTb;
+        private string _amountTb;
+        private string _imageSourceTb = "";
 
-        private string _frameAmountTB;
-        private string _frameSizeTB;
+        private string _frameAmountTb;
+        private string _frameSizeTb;
 
-        private string _productAmountTB;
+        private string _productAmountTb;
 
-        private string _productPriceChangeTB;
+        private string _productPriceChangeTb;
 
         private string _textDoc;
 
         public Stock(UserViewModel userViewModel)
         {
-            message = new Message(this);
+            _message = new Message(this);
 
             _userViewModel = userViewModel;
 
             Products = new ObservableCollection<Product>();
 
-            loadAsync();
+            LoadAsync();
         }
 
         public Stock()
@@ -68,13 +66,13 @@ namespace FredagsCafeUWP.Models
         #region Properties
         public ObservableCollection<Product> Products
         {
-            get { return _products; }
-            set {_products = value; }
+            get => _products;
+            set => _products = value;
         }
 
         public Product SelectedProduct
         {
-            get { return _selectedProduct; }
+            get => _selectedProduct;
             set
             {
                 _selectedProduct = value; 
@@ -82,99 +80,99 @@ namespace FredagsCafeUWP.Models
             }
         }
 
-        public string NameTB
+        public string NameTb
         {
-            get { return _nameTB; }
+            get => _nameTb;
             set
             {
-                _nameTB = value; 
+                _nameTb = value; 
                 OnPropertyChanged();
             }
         }
 
-        public string BuyingPriceTB
+        public string BuyingPriceTb
         {
-            get { return _buyingPriceTB; }
+            get => _buyingPriceTb;
             set
             {
-                _buyingPriceTB = value;
+                _buyingPriceTb = value;
                 OnPropertyChanged();
             }
         }
 
-        public string SellingPriceTB
+        public string SellingPriceTb
         {
-            get { return _sellingPriceTB; }
+            get => _sellingPriceTb;
             set
             {
-                _sellingPriceTB = value;
+                _sellingPriceTb = value;
                 OnPropertyChanged();
             }
         }
 
-        public string AmountTB
+        public string AmountTb
         {
-            get { return _amountTB; }
+            get => _amountTb;
             set
             {
-                _amountTB = value;
+                _amountTb = value;
                 OnPropertyChanged();
             }
         }
 
-        public string ImageSourceTB
+        public string ImageSourceTb
         {
-            get { return _imageSourceTB; }
+            get => _imageSourceTb;
             set
             {
-                _imageSourceTB = value;
+                _imageSourceTb = value;
                 OnPropertyChanged();
             }
         }
 
-        public string FrameAmountTB
+        public string FrameAmountTb
         {
-            get { return _frameAmountTB; }
+            get => _frameAmountTb;
             set
             {
-                _frameAmountTB = value;
+                _frameAmountTb = value;
                 OnPropertyChanged();
             }
         }
 
-        public string FrameSizeTB
+        public string FrameSizeTb
         {
-            get { return _frameSizeTB; }
+            get => _frameSizeTb;
             set
             {
-                _frameSizeTB = value;
+                _frameSizeTb = value;
                 OnPropertyChanged();
             }
         }
 
-        public string ProductAmountTB
+        public string ProductAmountTb
         {
-            get { return _productAmountTB; }
+            get => _productAmountTb;
             set
             {
-                _productAmountTB = value; 
+                _productAmountTb = value; 
                 OnPropertyChanged();
             }
         }
 
         public string ProductPriceChangeTb
         {
-            get { return _productPriceChangeTB; }
+            get => _productPriceChangeTb;
             set
             {
-                _productPriceChangeTB = value; 
+                _productPriceChangeTb = value; 
                 OnPropertyChanged();
             }
         }
 
         public string TextDoc
         {
-            get { return _textDoc; }
+            get => _textDoc;
             set
             {
                 _textDoc = value; 
@@ -183,14 +181,14 @@ namespace FredagsCafeUWP.Models
         }
 
         #endregion
-        public void AddProductToOBListAsync()
+        public async void AddProductToObListAsync()
         {
             bool productExist = false;
-            if (NameTB != null)
+            if (NameTb != null)
             {
                 foreach (var element in Products)
                 {
-                    if (element.Name.ToLower().Equals(NameTB.ToLower()))
+                    if (element.Name.ToLower().Equals(NameTb.ToLower()))
                     {
                         productExist = true;
                         break;
@@ -199,133 +197,133 @@ namespace FredagsCafeUWP.Models
                 
                 if (!productExist)
                 {
-                    double.TryParse(BuyingPriceTB, out double doubleBuyingPriceTB);
-                    double.TryParse(SellingPriceTB, out double doubleSellingPriceTB);
-                    int.TryParse(AmountTB, out int intAmountTB);
+                    double.TryParse(BuyingPriceTb, out double doubleBuyingPriceTb);
+                    double.TryParse(SellingPriceTb, out double doubleSellingPriceTb);
+                    int.TryParse(AmountTb, out int intAmountTb);
 
-                    if (doubleBuyingPriceTB > 0 && doubleSellingPriceTB > 0 && AmountTB != null && intAmountTB >= 0)
+                    if (doubleBuyingPriceTb > 0 && doubleSellingPriceTb > 0 && AmountTb != null && intAmountTb >= 0)
                     {
-                        if (ImageSourceTB == "" || ImageSourceTB == null)
+                        if (string.IsNullOrEmpty(ImageSourceTb))
                         {
-                            if (intAmountTB < _minAmount) Products.Add(new Product(doubleBuyingPriceTB, doubleSellingPriceTB, NameTB, intAmountTB, 0, "ProductImages/BlankDåse.png", _colorRed, _userViewModel));
-                            else Products.Add(new Product(doubleBuyingPriceTB, doubleSellingPriceTB, NameTB, intAmountTB, 0, "ProductImages/BlankDåse.png", _colorGreen, _userViewModel));
+                            if (intAmountTb < _minAmount) Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, NameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", _colorRed, _userViewModel));
+                            else Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, NameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", _colorGreen, _userViewModel));
                         }
                         else
                         {
-                            if (intAmountTB < _minAmount) Products.Add(new Product(doubleBuyingPriceTB, doubleSellingPriceTB, NameTB, intAmountTB, 0, ImageSourceTB, _colorRed, _userViewModel));
-                            else Products.Add(new Product(doubleBuyingPriceTB, doubleSellingPriceTB, NameTB, intAmountTB, 0, ImageSourceTB, _colorGreen, _userViewModel));
+                            if (intAmountTb < _minAmount) Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, NameTb, intAmountTb, 0, ImageSourceTb, _colorRed, _userViewModel));
+                            else Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, NameTb, intAmountTb, 0, ImageSourceTb, _colorGreen, _userViewModel));
                         }
 
-                        NameTB = null;
-                        BuyingPriceTB = null;
-                        SellingPriceTB = null;
-                        AmountTB = null;
-                        ImageSourceTB = null;
+                        NameTb = null;
+                        BuyingPriceTb = null;
+                        SellingPriceTb = null;
+                        AmountTb = null;
+                        ImageSourceTb = null;
 
-                        saveAsync();
+                        SaveAsync();
                     }
                 }
-                else message.Error("Varen findes allerede!", "Scroll igennem varerne, for at finde den.");
+                else await _message.Error("Varen findes allerede!", "Scroll igennem varerne, for at finde den.");
             }
         }
         
-        public void RemoveProductFromOBList()
+        public async void RemoveProductFromObList()
         {
             if (SelectedProduct != null)
             {
-                message.YesNo("Slet produkt", "Er du sikker på at du vil slette " + SelectedProduct.Name + "?");
-                saveAsync();
+                await _message.YesNo("Slet produkt", "Er du sikker på at du vil slette " + SelectedProduct.Name + "?");
+                SaveAsync();
             }
-            else message.Error("Intet produkt valg", "Vælg venligst et produkt");
+            else await _message.Error("Intet produkt valg", "Vælg venligst et produkt");
         }
 
-        public void AddAmountToProduct()
+        public async void AddAmountToProduct()
         {
             if (SelectedProduct != null)
             {
-                Int32.TryParse(FrameAmountTB, out int intFrameAmountTB);
-                Int32.TryParse(FrameSizeTB, out int intFrameSizeTB);
-                Int32.TryParse(ProductAmountTB, out int intProductAmountTB);
+                Int32.TryParse(FrameAmountTb, out int intFrameAmountTb);
+                Int32.TryParse(FrameSizeTb, out int intFrameSizeTb);
+                Int32.TryParse(ProductAmountTb, out int intProductAmountTb);
 
 
-                if (intFrameAmountTB > 0 && intFrameSizeTB > 0 && intProductAmountTB > 0)
+                if (intFrameAmountTb > 0 && intFrameSizeTb > 0 && intProductAmountTb > 0)
                 {
-                    SelectedProduct.Amount += (intFrameAmountTB * intFrameSizeTB) + intProductAmountTB;
-                    FrameAmountTB = null;
-                    FrameSizeTB = null;
-                    ProductAmountTB = null;
+                    SelectedProduct.Amount += (intFrameAmountTb * intFrameSizeTb) + intProductAmountTb;
+                    FrameAmountTb = null;
+                    FrameSizeTb = null;
+                    ProductAmountTb = null;
                 }
-                else if (intFrameAmountTB > 0 && intFrameSizeTB > 0)
+                else if (intFrameAmountTb > 0 && intFrameSizeTb > 0)
                 {
-                    SelectedProduct.Amount += intFrameAmountTB * intFrameSizeTB;
-                    FrameAmountTB = null;
-                    FrameSizeTB = null;
+                    SelectedProduct.Amount += intFrameAmountTb * intFrameSizeTb;
+                    FrameAmountTb = null;
+                    FrameSizeTb = null;
                 }
-                else if (intProductAmountTB > 0)
+                else if (intProductAmountTb > 0)
                 {
-                    SelectedProduct.Amount += intProductAmountTB;
-                    ProductAmountTB = null;
+                    SelectedProduct.Amount += intProductAmountTb;
+                    ProductAmountTb = null;
                 }
 
                 if (SelectedProduct != null && SelectedProduct.Amount < _minAmount) SelectedProduct.ForegroundColor = _colorRed;
                 else SelectedProduct.ForegroundColor = _colorGreen;
 
-                saveAsync();
+                SaveAsync();
             }
-            else message.Error("Intet produkt valg", "Vælg venligst et produkt");
+            else await _message.Error("Intet produkt valg", "Vælg venligst et produkt");
         }
 
-        public void RemoveAmountFromProduct()
+        public async void RemoveAmountFromProduct()
         {
             if (SelectedProduct != null)
             {
-                Int32.TryParse(FrameAmountTB, out int intFrameAmountTB);
-                Int32.TryParse(FrameSizeTB, out int intFrameSizeTB);
-                Int32.TryParse(ProductAmountTB, out int intProductAmountTB);
+                Int32.TryParse(FrameAmountTb, out int intFrameAmountTb);
+                Int32.TryParse(FrameSizeTb, out int intFrameSizeTb);
+                Int32.TryParse(ProductAmountTb, out int intProductAmountTb);
 
-                if (intFrameAmountTB > 0 && intFrameSizeTB > 0 && intProductAmountTB > 0)
+                if (intFrameAmountTb > 0 && intFrameSizeTb > 0 && intProductAmountTb > 0)
                 {
-                    if (SelectedProduct.Amount >= ((intFrameAmountTB * intFrameSizeTB) + intProductAmountTB))
+                    if (SelectedProduct.Amount >= ((intFrameAmountTb * intFrameSizeTb) + intProductAmountTb))
                     {
-                        SelectedProduct.Amount -= (intFrameAmountTB * intFrameSizeTB) + intProductAmountTB;
-                        FrameAmountTB = null;
-                        FrameSizeTB = null;
-                        ProductAmountTB = null;
+                        SelectedProduct.Amount -= (intFrameAmountTb * intFrameSizeTb) + intProductAmountTb;
+                        FrameAmountTb = null;
+                        FrameSizeTb = null;
+                        ProductAmountTb = null;
                     }
-                    else message.Error("Tallene stemmer ikke", "Der er kun " + SelectedProduct.Amount + " af " + SelectedProduct.Name + "." +
-                                 "\nDerfor kan du ikke fjerne " + intFrameAmountTB + "*" + intFrameSizeTB + "+" + intProductAmountTB + "=" + ((intFrameAmountTB * intFrameSizeTB) + intProductAmountTB) + " af dette produkt.");
+                    else await _message.Error("Tallene stemmer ikke", "Der er kun " + SelectedProduct.Amount + " af " + SelectedProduct.Name + "." +
+                                 "\nDerfor kan du ikke fjerne " + intFrameAmountTb + "*" + intFrameSizeTb + "+" + intProductAmountTb + "=" + ((intFrameAmountTb * intFrameSizeTb) + intProductAmountTb) + " af dette produkt.");
                 }
-                else if (intFrameAmountTB > 0 && intFrameSizeTB > 0)
+                else if (intFrameAmountTb > 0 && intFrameSizeTb > 0)
                 {
-                    if (SelectedProduct.Amount >= (intFrameAmountTB * intFrameSizeTB))
+                    if (SelectedProduct.Amount >= (intFrameAmountTb * intFrameSizeTb))
                     {
-                        SelectedProduct.Amount -= intFrameAmountTB * intFrameSizeTB;
-                        FrameAmountTB = null;
-                        FrameSizeTB = null;
+                        SelectedProduct.Amount -= intFrameAmountTb * intFrameSizeTb;
+                        FrameAmountTb = null;
+                        FrameSizeTb = null;
                     }
-                    else message.Error("Tallene stemmer ikke", "Der er kun " + SelectedProduct.Amount + " af " + SelectedProduct.Name + "." +
-                                 "\nDerfor kan du ikke fjerne " + intFrameAmountTB + "*" + intFrameSizeTB + "=" + (intFrameAmountTB * intFrameSizeTB) + " af dette produkt.");
+                    else await _message.Error("Tallene stemmer ikke", "Der er kun " + SelectedProduct.Amount + " af " + SelectedProduct.Name + "." +
+                                 "\nDerfor kan du ikke fjerne " + intFrameAmountTb + "*" + intFrameSizeTb + "=" + (intFrameAmountTb * intFrameSizeTb) + " af dette produkt.");
                 }
-                else if (intProductAmountTB > 0)
+                else if (intProductAmountTb > 0)
                 {
-                    if (SelectedProduct.Amount >= intProductAmountTB)
+                    if (SelectedProduct.Amount >= intProductAmountTb)
                     {
-                        SelectedProduct.Amount -= intProductAmountTB;
-                        ProductAmountTB = null;
+                        SelectedProduct.Amount -= intProductAmountTb;
+                        ProductAmountTb = null;
                     }
-                    else message.Error("Tallene stemmer ikke", "Der er kun " + SelectedProduct.Amount + " af " + SelectedProduct.Name + ".\nDerfor kan du ikke fjerne " + intProductAmountTB + " af dette produkt.");
+                    else await _message.Error("Tallene stemmer ikke", "Der er kun " + SelectedProduct.Amount + " af " + SelectedProduct.Name + ".\nDerfor kan du ikke fjerne " + intProductAmountTb + " af dette produkt.");
                 }
 
                 if (SelectedProduct.Amount < _minAmount)
                 {
                     SelectedProduct.ForegroundColor = _colorRed;
-                    message.Error("Advarsel", "Lageret er næsten tomt");
+                    await _message.Error("Advarsel", "Lageret er næsten tomt");
                 }
                 else SelectedProduct.ForegroundColor = _colorGreen;
 
-                saveAsync();
+                SaveAsync();
             }
-            else message.Error("Intet produkt valg", "Vælg venligst et produkt");
+            else await _message.Error("Intet produkt valg", "Vælg venligst et produkt");
         }
 
         public async Task<string> BrowseImageWindowTask()
@@ -345,56 +343,55 @@ namespace FredagsCafeUWP.Models
         
         public async void BrowseImageButton()
         {
-            ImageSourceTB = await BrowseImageWindowTask();
+            ImageSourceTb = await BrowseImageWindowTask();
         }
 
-        public void ChangeProductSellPrice()
+        public async void ChangeProductSellPrice()
         {
             if (SelectedProduct != null)
             {
-                Int32.TryParse(ProductPriceChangeTb, out int intProductPriceChangedTB);
-                if (ProductPriceChangeTb != null && intProductPriceChangedTB > 0)
+                Int32.TryParse(ProductPriceChangeTb, out int intProductPriceChangedTb);
+                if (ProductPriceChangeTb != null && intProductPriceChangedTb > 0)
                 {
-                    SelectedProduct.SellingPrice = intProductPriceChangedTB;
+                    SelectedProduct.SellingPrice = intProductPriceChangedTb;
                     ProductPriceChangeTb = null;
 
-                    saveAsync();
+                    SaveAsync();
                 }
             }
-            else message.Error("Intet produkt valg", "Vælg venligst et produkt");
+            else await _message.Error("Intet produkt valg", "Vælg venligst et produkt");
         }
 
-        public void ChangeProductBuyPrice()
+        public async void ChangeProductBuyPrice()
         {
             if (SelectedProduct != null)
             {
-                Int32.TryParse(ProductPriceChangeTb, out int intProductPriceChangedTB);
-                if (ProductPriceChangeTb != null && intProductPriceChangedTB > 0)
+                Int32.TryParse(ProductPriceChangeTb, out int intProductPriceChangedTb);
+                if (ProductPriceChangeTb != null && intProductPriceChangedTb > 0)
                 {
-                    SelectedProduct.BuyingPrice = intProductPriceChangedTB;
+                    SelectedProduct.BuyingPrice = intProductPriceChangedTb;
                     ProductPriceChangeTb = null;
 
-                    saveAsync();                }
+                    SaveAsync();                }
             }
-            else message.Error("Intet produkt valg", "Vælg venligst et produkt");
+            else await _message.Error("Intet produkt valg", "Vælg venligst et produkt");
         }
 
-        public async void saveAsync()
+        public async void SaveAsync()
         {
             Debug.WriteLine("Saving product async...");
-            await XMLReadWriteClass.SaveObjectToXml<ObservableCollection<Product>>(Products, "stock.xml");
+            await XmlReadWriteClass.SaveObjectToXml(Products, "stock.xml");
             Debug.WriteLine("products.count: " + Products.Count);
         }
-        private async void loadAsync()
+        private async void LoadAsync()
         {
             try
             {
                 Debug.WriteLine("loading product async...");
-                Products = await XMLReadWriteClass.ReadObjectFromXmlFileAsync<ObservableCollection<Product>>("stock.xml");
+                Products = await XmlReadWriteClass.ReadObjectFromXmlFileAsync<ObservableCollection<Product>>("stock.xml");
                 Debug.WriteLine("products.count:" + Products.Count);
-                OnPropertyChanged("_products");
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Products.Add(new Product(2, 5, "Tuborg Classic", 48, 0, "ProductImages/TuborgClassic.png", _colorGreen, _userViewModel));
                 Products.Add(new Product(2, 5, "Grøn Tuborg", 48, 0, "ProductImages/GrønTuborg.png", _colorGreen, _userViewModel));
@@ -409,7 +406,7 @@ namespace FredagsCafeUWP.Models
                 Products.Add(new Product(2, 5, "Breezer", 48, 0, "ProductImages/Breezer.png", _colorGreen, _userViewModel));
                 Products.Add(new Product(2, 5, "Fanta", 48, 0, "ProductImages/Fanta.png", _colorGreen, _userViewModel));
 
-                saveAsync();
+                SaveAsync();
             }
             
         }

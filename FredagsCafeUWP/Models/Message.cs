@@ -1,31 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Windows.Foundation.Diagnostics;
 using Windows.UI.Popups;
 
 namespace FredagsCafeUWP.Models
 {
-    class Message
+    internal class Message
     {
-        private Stock stock;
-        private Administration administration;
-        private Sale sale;
+        private readonly Stock _stock;
+        private readonly Administration _administration;
+        private Sale _sale;
 
         public Message(Administration administration)
         {
-            this.administration = administration;
+            _administration = administration;
         }
         public Message(Stock stock)
         {
-            this.stock = stock;
+            _stock = stock;
         }
         public Message(Sale sale)
         {
-            this.sale = sale;
+            _sale = sale;
         }
 
         public async Task Error(string title, string content)
@@ -38,8 +34,7 @@ namespace FredagsCafeUWP.Models
             var yesCommand = new UICommand("Ja", cmd => { });
             var noCommand = new UICommand("Nej", cmd => { });
 
-            var dialog = new MessageDialog(content, title);
-            dialog.Options = MessageDialogOptions.None;
+            var dialog = new MessageDialog(content, title) {Options = MessageDialogOptions.None};
             dialog.Commands.Add(yesCommand);
 
             dialog.DefaultCommandIndex = 0;
@@ -56,11 +51,11 @@ namespace FredagsCafeUWP.Models
             if (command == yesCommand)
             {
                 Debug.WriteLine("Yes");
-                if (title == "Slet produkt") stock.Products.Remove(stock.SelectedProduct);
+                if (title == "Slet produkt") _stock.Products.Remove(_stock.SelectedProduct);
                 if (title == "Slet bruger")
                 {
-                    administration.Users.Remove(administration.SelectedUser);
-                    administration.saveAsync();
+                    _administration.Users.Remove(_administration.SelectedUser);
+                    _administration.SaveAsync();
                 }
             }
             else if (command == noCommand)

@@ -7,7 +7,7 @@ namespace FredagsCafeUWP
     {
         public UserPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
 
             var titleBar = ApplicationView.GetForCurrentView().TitleBar;
             titleBar.ForegroundColor = Windows.UI.Colors.White;

@@ -4,11 +4,8 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Windows.UI;
-using Windows.UI.Composition;
-using Windows.UI.Xaml.Media;
 using FredagsCafeUWP.Annotations;
 using FredagsCafeUWP.Models;
-using Newtonsoft.Json.Serialization;
 
 namespace FredagsCafeUWP
 {
@@ -17,19 +14,19 @@ namespace FredagsCafeUWP
         private ObservableCollection<Receipt> _receipts;
         private static List<Product> _basket;
 
-        private Color _colorRed = Colors.Red;
-        private Color _colorGreen = Colors.ForestGreen;
+        private readonly Color _colorRed = Colors.Red;
+        private readonly Color _colorGreen = Colors.ForestGreen;
 
-        private Message message;
-        private Stock stock = new Stock();
+        private readonly Message _message;
+        private Stock _stock = new Stock();
         private Product _selectedProduct;
 
-        private double _totalTB;
+        private double _totalTb;
         
 
         public Sale()
         {
-            message = new Message(this);
+            _message = new Message(this);
 
             Basket = new List<Product>();
 
@@ -42,34 +39,34 @@ namespace FredagsCafeUWP
 
         public ObservableCollection<Receipt> Receipts
         {
-            get { return _receipts; }
-            set { _receipts = value; }
+            get => _receipts;
+            set => _receipts = value;
         }
 
         public Product SelectedProduct
         {
-            get { return _selectedProduct; }
-            set { _selectedProduct = value; }
+            get => _selectedProduct;
+            set => _selectedProduct = value;
         }
 
         public Stock Stock
         {
-            get { return stock; }
-            set { stock = value; }
+            get => _stock;
+            set => _stock = value;
         }
 
         public List<Product> Basket
         {
-            get { return _basket; }
-            set { _basket = value; }
+            get => _basket;
+            set => _basket = value;
         }
 
-        public double TotalTB
+        public double TotalTb
         {
-            get { return _totalTB; }
+            get => _totalTb;
             set
             {
-                _totalTB = value;
+                _totalTb = value;
                 OnPropertyChanged();
             }
         }
@@ -79,7 +76,7 @@ namespace FredagsCafeUWP
             if (SelectedProduct != null)
             {
                 SelectedProduct.AmountToBeSold++;
-                TotalTB += SelectedProduct.SellingPrice;
+                TotalTb += SelectedProduct.SellingPrice;
             }
         }
 
@@ -88,13 +85,13 @@ namespace FredagsCafeUWP
             if (SelectedProduct != null && SelectedProduct.AmountToBeSold > 0)
             {
                 SelectedProduct.AmountToBeSold--;
-                TotalTB -= SelectedProduct.SellingPrice;
+                TotalTb -= SelectedProduct.SellingPrice;
             }
         }
 
         public void AddItemsToBasket()
         {
-            foreach (var product in stock.Products)
+            foreach (var product in _stock.Products)
             {
                 if (product.AmountToBeSold != 0)
                 {
@@ -134,14 +131,14 @@ namespace FredagsCafeUWP
             }
             else
             {
-                message.Error("Ikke nok på lager", "Det gælder disse produkter:\n" + productsNotInStuck);
+                _message.Error("Ikke nok på lager", "Det gælder disse produkter:\n" + productsNotInStuck);
                 return -1;
             }
             return Math.Round(subTotal);
             
         }
 
-        public void CompleteSale()
+        public async void CompleteSale()
         {
             string productAmountLow = null;
 
@@ -162,9 +159,9 @@ namespace FredagsCafeUWP
                     }
                 }
 
-                if (productAmountLow != null) message.Error("Lavt lager", "Der er lavt lager af:\n" + productAmountLow);
+                if (productAmountLow != null) await _message.Error("Lavt lager", "Der er lavt lager af:\n" + productAmountLow);
             }
-            else if (temp != -1) message.Error("Ingen vare tilføjet", "Tilføj venligst vare for at betale.");
+            else if (temp != -1) await _message.Error("Ingen vare tilføjet", "Tilføj venligst vare for at betale.");
         }
 
         #region PropertyChanged

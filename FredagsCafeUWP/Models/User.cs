@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
 using FredagsCafeUWP.Annotations;
 
 namespace FredagsCafeUWP.Models
@@ -37,50 +36,44 @@ namespace FredagsCafeUWP.Models
 
         public string Name
         {
-            get { return _name; }
-            set
-            {
-                _name = value;
-            }
+            get => _name;
+            set => _name = value;
         }
         public string Grade
         {
-            get { return _grade; }
-            set { _grade = value; }
+            get => _grade;
+            set => _grade = value;
         }
         public string Education
         {
-            get { return _education; }
-            set { _education = value; }
+            get => _education;
+            set => _education = value;
         }
         public string Email
         {
-            get { return _email; }
-            set
-            {
-                _email = value;
-            }
+            get => _email;
+            set => _email = value;
         }
         public string TelephoneNumber
         {
-            get { return _telephoneNumber; }
-            set { _telephoneNumber = value; }
+            get => _telephoneNumber;
+            set => _telephoneNumber = value;
         }
         public string UserName
         {
-            get { return _userName; }
-            set { _userName = value; }
+            get => _userName;
+            set => _userName = value;
         }
         public string Password
         {
-            get { return _password; }
-            set { _password = value; }
+            get => _password;
+            set => _password = value;
         }
 
         public string ImageSource
         {
-            get { return _imageSource; }
-            set { _imageSource = value; }
+            get => _imageSource;
+            set => _imageSource = value;
         }
 
         #endregion

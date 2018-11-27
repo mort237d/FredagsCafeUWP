@@ -20,13 +20,13 @@ namespace FredagsCafeUWP.Models
 
         
 
-        private UserViewModel userViewModel;
+        private readonly UserViewModel _userViewModel;
         #endregion
 
         #region Props
         public double BuyingPrice
         {
-            get { return _buyingPrice; }
+            get => _buyingPrice;
             set
             {
                 _buyingPrice = value; 
@@ -36,7 +36,7 @@ namespace FredagsCafeUWP.Models
 
         public double SellingPrice
         {
-            get { return _sellingPrice; }
+            get => _sellingPrice;
             set
             {
                 _sellingPrice = value; 
@@ -46,7 +46,7 @@ namespace FredagsCafeUWP.Models
 
         public string Name
         {
-            get { return _name; }
+            get => _name;
             set
             {
                 _name = value;
@@ -56,7 +56,7 @@ namespace FredagsCafeUWP.Models
 
         public int Amount
         {
-            get { return _amount; }
+            get => _amount;
             set
             {
                 _amount = value; 
@@ -66,7 +66,7 @@ namespace FredagsCafeUWP.Models
 
         public int AmountSold
         {
-            get { return _amountSold; }
+            get => _amountSold;
             set
             {
                 _amountSold = value; 
@@ -76,13 +76,13 @@ namespace FredagsCafeUWP.Models
 
         public string ImageSource
         {
-            get { return _imageSource; }
-            set { _imageSource = value; }
+            get => _imageSource;
+            set => _imageSource = value;
         }
 
         public Color ForegroundColor
         {
-            get { return _foregroundColor; }
+            get => _foregroundColor;
             set
             {
                 _foregroundColor = value; 
@@ -92,7 +92,7 @@ namespace FredagsCafeUWP.Models
 
         public int AmountToBeSold
         {
-            get { return _amountToBeSold; }
+            get => _amountToBeSold;
             set
             {
                 _amountToBeSold = value;
@@ -101,10 +101,10 @@ namespace FredagsCafeUWP.Models
             }
         }
 
-        public double TotalTBMethod()
+        public double TotalTbMethod()
         {
             double temp = 0;
-            foreach (var product in userViewModel.Stock.Products)
+            foreach (var product in _userViewModel.Stock.Products)
             {
                 if (product.AmountToBeSold != 0)
                 {
@@ -126,7 +126,7 @@ namespace FredagsCafeUWP.Models
             ImageSource = imageSource;
             ForegroundColor = foregroundColor;
 
-            this.userViewModel = userViewModel;
+            _userViewModel = userViewModel;
         }
 
         public Product(double buyingPrice, double sellingPrice, string name, int amountToBeSold)
