@@ -6,19 +6,39 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="using:FredagsCafeUWP.ViewModels"
-    xmlns:Charting="using:WinRTXamlToolkit.Controls.DataVisualization.Charting"
+    xmlns:charting="using:WinRTXamlToolkit.Controls.DataVisualization.Charting"
+    xmlns:models="using:FredagsCafeUWP.Models"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
     <Page.DataContext>
         <viewModels:UserViewModel></viewModels:UserViewModel>
     </Page.DataContext>
 
     <Grid>
-        <Pivot x:Name="rootPivot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <!--#region CommandBar-->
+        <CommandBar Background="#6CA0DC">
+            <AppBarSeparator/>
+            <AppBarButton Icon="Help" Label="Help"/>
+
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Label="Like"/>
+                <AppBarButton Label="Dislike"/>
+            </CommandBar.SecondaryCommands>
+
+        </CommandBar>
+        <!--#endregion-->
+
+        <Pivot x:Name="rootPivot" Grid.Row="1">
 
             <!--#region SalgRegion-->
             <PivotItem Header="Salg">
-                <Grid>
+                <Grid Margin="10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
@@ -28,7 +48,30 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <ListView ItemsSource="{Binding Stock.Products}">
+                    <GridView ItemsSource="{Binding Stock.Products}">
+                        <GridView.ItemTemplate>
+                            <DataTemplate x:DataType="models:Product">
+                                <StackPanel Margin="10">
+                                    <Image Source="{Binding ImageSource}" Width="100" Height="100"/>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock FontWeight="Bold" Text="{Binding Name}"/>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="kr."/>
+                                            <TextBlock Text="{Binding SellingPrice}" Margin="2,0,2,0"></TextBlock>
+                                            <TextBlock Text=",-"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Background="#6CA0DC" Style="{StaticResource LeftRoundedButtonStyle}" Content="-"/>
+                                            <TextBox BorderBrush="#6CA0DC" PlaceholderText="0" TextAlignment="Center" Text="{Binding AmountToBeSold, Mode=TwoWay}"/>
+                                            <Button Background="#6CA0DC" Style="{StaticResource RightRoundedButtonStyle}" Content="+"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridView.ItemTemplate>
+                    </GridView>
+
+                    <!--<ListView ItemsSource="{Binding Stock.Products}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -49,13 +92,15 @@
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
-                    </ListView>
+                    </ListView>-->
+
+                    <Rectangle Fill="#6CA0DC" Grid.Row="1" Grid.ColumnSpan="2" Margin="-20,0,-20,-10"/>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Margin="5,0,0.4,5" Grid.Row="1">
-                        <TextBlock Text="Total pris: "/>
-                        <TextBlock Text="{Binding Sale.TotalTB, Mode=TwoWay}"/>
+                        <TextBlock Foreground="White" Text="Total pris: "/>
+                        <TextBlock Foreground="White" Text="{Binding Sale.TotalTB, Mode=TwoWay}"/>
                     </StackPanel>
 
-                    <Button Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Betal" Command="{Binding CompelteSaleCommand}"  Margin="0,0,5,5"/>
+                    <Button  Foreground="White" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Betal" Command="{Binding CompelteSaleCommand}"  Margin="0,0,5,5"/>
 
                     <ListView Margin="30,30,30,0" Header="Transaktioner" Grid.Column="1" ItemsSource="{Binding Sale.Receipts}"/>
                 </Grid>
@@ -71,7 +116,39 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <ListView ItemsSource="{Binding Stock.Products}" SelectedItem="{Binding Stock.SelectedProduct, Mode=TwoWay}" Height="500" VerticalAlignment="top" >
+                    <GridView ItemsSource="{Binding Stock.Products}" Margin="10,10,10,0">
+                        <GridView.ItemTemplate>
+                            <DataTemplate x:DataType="models:Product">
+                                <StackPanel Orientation="Horizontal" Margin="10">
+                                    <Image Source="{Binding ImageSource}" Width="100" Height="100"></Image>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock FontWeight="Bold" Text="{Binding Name}"></TextBlock>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Foreground="{Binding ForegroundColor}" Text="{Binding Amount}" HorizontalAlignment="Center"></TextBlock>
+                                            <TextBlock Foreground="{Binding ForegroundColor}" Text="stk"></TextBlock>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="Solgt: "></TextBlock>
+                                            <TextBlock Text="{Binding AmountSold}" Margin="2,0,2,0"></TextBlock>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="Indkøbspris: kr."></TextBlock>
+                                            <TextBlock Text="{Binding BuyingPrice}" Margin="2,0,2,0"></TextBlock>
+                                            <TextBlock Text=",-"></TextBlock>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="Salgspris: kr."></TextBlock>
+                                            <TextBlock Text="{Binding SellingPrice}" Margin="2,0,2,0"></TextBlock>
+                                            <TextBlock Text=",-"></TextBlock>
+                                        </StackPanel>
+
+                                    </StackPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridView.ItemTemplate>
+                    </GridView>
+
+                    <!--<ListView ItemsSource="{Binding Stock.Products}" SelectedItem="{Binding Stock.SelectedProduct, Mode=TwoWay}" Height="500" VerticalAlignment="top" >
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -101,60 +178,77 @@
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
-                    </ListView>
+                    </ListView>-->
 
-                    <StackPanel Orientation="Vertical" Grid.Row="1" Margin="0,-50,0,0">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBox Width="110" PlaceholderText="Navn" Text="{Binding Stock.NameTB, Mode=TwoWay}"></TextBox>
-                            <TextBox Width="110" PlaceholderText="Købspris" Text="{Binding Stock.BuyingPriceTB, Mode=TwoWay}"></TextBox>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBox Width="110" PlaceholderText="Salgspris" Text="{Binding Stock.SellingPriceTB, Mode=TwoWay}"></TextBox>
-                            <TextBox Width="110" PlaceholderText="Antal" Text="{Binding Stock.AmountTB, Mode=TwoWay}"></TextBox>
-                            <TextBox Width="110" PlaceholderText="Change Price" Text="{Binding Stock.ProductPriceChangeTb, Mode=TwoWay}" Margin="300,0,0,0"/>
-                            <Button Content="Change product sell price" Command="{Binding ChangeProductSellPriceCommand}" Width="200"/>
-                        </StackPanel>
+                    <Rectangle Fill="#6CA0DC" Grid.Row="1" Margin="-11,0,-11,0"/>
+                    <Grid Grid.Row="1" Margin="10,0,10,10">
+                        <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0,0,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox Width="80" PlaceholderText="Navn" Text="{Binding Stock.NameTB, Mode=TwoWay}"></TextBox>
+                                <TextBox Width="80" PlaceholderText="Købspris" Text="{Binding Stock.BuyingPriceTB, Mode=TwoWay}"></TextBox>
+                                <TextBox Width="80" PlaceholderText="Salgspris" Text="{Binding Stock.SellingPriceTB, Mode=TwoWay}"></TextBox>
+                                <TextBox Width="80" PlaceholderText="Antal" Text="{Binding Stock.AmountTB, Mode=TwoWay}"></TextBox>
+                            </StackPanel>
 
-
-                        <StackPanel Orientation="Horizontal">
-                            <TextBox IsReadOnly="True" Width="110" PlaceholderText="ImageSource" Text="{Binding Stock.ImageSourceTB, Mode=TwoWay}"></TextBox>
-                            <Button Content="Browse" Width="110" Command="{Binding BrowseImageCommand}"></Button>
-                            <Button Content="Change product buy price" Command="{Binding ChangeProductBuyPriceCommand}" Margin="410,0,0,0" Width="201"/>
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal">
-                            <Button Width="110" Content="Tilføj" Command="{Binding AddProductCommand}"></Button>
-                            <Button Width="110" Content="Slet" Command="{Binding RemoveProductCommand}"></Button>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox IsReadOnly="True" Width="110" PlaceholderText="ImageSource" Text="{Binding Stock.ImageSourceTB, Mode=TwoWay}"></TextBox>
+                                <Button Content="..." Width="40" Command="{Binding BrowseImageCommand}"></Button>
+                                <Button Width="85" Content="Tilføj" Command="{Binding AddProductCommand}"></Button>
+                                <Button Width="85" Content="Slet" Command="{Binding RemoveProductCommand}"></Button>
+                            </StackPanel>
                         </StackPanel>
 
-                    </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="10,0,0,0" HorizontalAlignment="Center">
+                            <TextBox Width="280" PlaceholderText="Change Price" Text="{Binding Stock.ProductPriceChangeTb, Mode=TwoWay}" Margin="0,0,0,0"/>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="Change sell price" Command="{Binding ChangeProductSellPriceCommand}" Width="140"/>
+                                <Button Content="Change buy price" Command="{Binding ChangeProductBuyPriceCommand}" Margin="0,0,0,0" Width="140"/>
+                            </StackPanel>
+                        </StackPanel>
 
-                    <StackPanel Grid.Row="1" Margin="0,0,0,10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Vertical">
-                        <StackPanel Orientation="Horizontal" Margin="0,0,0,5" HorizontalAlignment="Right">
-                            <TextBox PlaceholderText="Antal rammer" Text="{Binding Stock.FrameAmountTB, Mode=TwoWay}"></TextBox>
-                            <TextBlock Text="x" VerticalAlignment="Center"></TextBlock>
-                            <TextBox PlaceholderText="Ramme størrelse" Text="{Binding Stock.FrameSizeTB, Mode=TwoWay}"></TextBox>
-                            <Button Content="Tilføj rammer" Command="{Binding AddAmountCommand}"></Button>
+                        <StackPanel Margin="10,0,0,0" VerticalAlignment="Bottom" HorizontalAlignment="Right" Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,5" HorizontalAlignment="Right">
+                                <TextBox PlaceholderText="Antal rammer" Text="{Binding Stock.FrameAmountTB, Mode=TwoWay}"></TextBox>
+                                <TextBlock Text="x" VerticalAlignment="Center"></TextBlock>
+                                <TextBox PlaceholderText="Ramme størrelse" Text="{Binding Stock.FrameSizeTB, Mode=TwoWay}"></TextBox>
+                                <Button Content="Tilføj rammer" Command="{Binding AddAmountCommand}"></Button>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <TextBox PlaceholderText="Stk." Text="{Binding Stock.ProductAmountTB, Mode=TwoWay}"></TextBox>
+                                <Button Content="Tilføj antal" Command="{Binding AddAmountCommand}"></Button>
+                                <Button Content="Slet antal" Command="{Binding RemoveAmountCommand}" ></Button>
+                            </StackPanel>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                            <TextBox PlaceholderText="Stk." Text="{Binding Stock.ProductAmountTB, Mode=TwoWay}"></TextBox>
-                            <Button Content="Tilføj antal" Command="{Binding AddAmountCommand}"></Button>
-                            <Button Content="Slet antal" Command="{Binding RemoveAmountCommand}" ></Button>
-                        </StackPanel>
-                    </StackPanel>
+                    </Grid>
+
                 </Grid>
             </PivotItem>
             <!--#endregion-->
 
             <!--#region AdminstrationRegion-->
             <PivotItem Header="Administration">
-                <Grid>
+                <Grid Margin="10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <ListView ItemsSource="{Binding Administration.Users}" SelectedItem="{Binding Administration.SelectedUser, Mode=TwoWay}">
+                    <GridView ItemsSource="{Binding Administration.Users}">
+                        <GridView.ItemTemplate>
+                            <DataTemplate x:DataType="models:Product">
+                                <StackPanel Orientation="Horizontal" Margin="10">
+                                    <Image Source="{Binding ImageSource}" Height="100" Width="100"></Image>
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding Name}"></TextBlock>
+                                        <TextBlock Text="{Binding TelephoneNumber}" ></TextBlock>
+                                        <TextBlock Text="{Binding Email}" ></TextBlock>
+                                    </StackPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridView.ItemTemplate>
+                    </GridView>
+
+                    <!--<ListView ItemsSource="{Binding Administration.Users}" SelectedItem="{Binding Administration.SelectedUser, Mode=TwoWay}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -167,7 +261,7 @@
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
-                    </ListView>
+                    </ListView>-->
                     <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" Content="Fjern medarbejder" Command="{Binding RemoveUserCommand}"></Button>
 
                     <StackPanel Grid.Column="1">
@@ -189,7 +283,7 @@
             <!--#region EventRegion-->
 
             <PivotItem Header="Event">
-                <Grid>
+                <Grid Margin="10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
@@ -218,10 +312,10 @@
             <PivotItem Header="Statistik">
 
                 <StackPanel Orientation="Horizontal" Margin="80" >
-                    <Charting:Chart Width="700">
-                        <Charting:ColumnSeries ItemsSource="{Binding Stock.Products}" IndependentValuePath="Name" DependentValuePath="Amount" />
+                    <charting:Chart Width="700">
+                        <charting:ColumnSeries ItemsSource="{Binding Stock.Products}" IndependentValuePath="Name" DependentValuePath="Amount" />
 
-                    </Charting:Chart>
+                    </charting:Chart>
 
 
                     <!-- https://social.msdn.microsoft.com/Forums/windowsapps/en-US/1ad31678-320e-43e8-a28c-e8bec4cfefae/uwphow-i-can-make-bar-graphs?forum=wpdevelop -->

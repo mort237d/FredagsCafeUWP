@@ -18,6 +18,7 @@ namespace FredagsCafeUWP
         private Brush _colorRed = new SolidColorBrush(Colors.Red);
         private Brush _colorGreen = new SolidColorBrush(Colors.ForestGreen);
 
+        private Message message;
         private Stock stock = new Stock();
         private Product _selectedProduct;
 
@@ -132,6 +133,7 @@ namespace FredagsCafeUWP
                 }
             }
             //ToDO else error nothing to sell
+
         }
 
         #region PropertyChanged
