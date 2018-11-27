@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Windows.UI;
+using Windows.UI.Composition;
 using Windows.UI.Xaml.Media;
 using FredagsCafeUWP.Annotations;
 using FredagsCafeUWP.Models;
@@ -22,11 +23,13 @@ namespace FredagsCafeUWP
         private Stock stock = new Stock();
         private Product _selectedProduct;
 
-
         private double _totalTB;
+        
 
         public Sale()
         {
+            message = new Message(this);
+
             Receipts = new ObservableCollection<Receipt>()
             {
                 new Receipt(424, "no note", 1),
@@ -42,6 +45,7 @@ namespace FredagsCafeUWP
                 new Product(55, 63, "Cola", 24, 13, "ProductImages/Cola.png", _colorGreen),
                 new Product(55, 63, "Mokai", 29, 13, "ProductImages/Mokai.png", _colorGreen),
             };
+            
         }
 
         public ObservableCollection<Receipt> Receipts
@@ -73,32 +77,46 @@ namespace FredagsCafeUWP
             get { return _totalTB; }
             set
             {
-                _totalTB = SubTotal(); 
+                foreach (var product in stock.Products)
+                {
+                    value += product.AmountToBeSold * product.SellingPrice;
+                }
+
+                _totalTB = value;
                 OnPropertyChanged();
             }
         }
 
         public void AddOneFromToBeSold()
         {
-            if (SelectedProduct != null) SelectedProduct.AmountToBeSold++;
+            if (SelectedProduct != null)
+            {
+                SelectedProduct.AmountToBeSold++;
+                TotalTB += SelectedProduct.SellingPrice;
+            }
         }
 
         public void RemoveOneFromToBeSold()
         {
-            if (SelectedProduct != null && SelectedProduct.AmountToBeSold > 0) SelectedProduct.AmountToBeSold--;
+            if (SelectedProduct != null && SelectedProduct.AmountToBeSold > 0)
+            {
+                SelectedProduct.AmountToBeSold--;
+                TotalTB -= SelectedProduct.SellingPrice;
+            }
         }
 
         public double SubTotal()
         {
             double subTotal = 0;
             bool isNotInstuck = false;
+            string productsNotInStuck = null;
 
             foreach (var product in Stock.Products)
             {
                 if (product.AmountToBeSold > product.Amount)
                 {
                     isNotInstuck = true;
-                    break;
+                    productsNotInStuck += product.Name + ": " + product.Amount + " stk.\n";
                 }
             }
 
@@ -116,23 +134,36 @@ namespace FredagsCafeUWP
                     }
                 }
             }
-            //Todo else if isNotInstuck error not in stock foreach
+            else
+            {
+                message.Error("Ikke nok på lager", "Det gælder disse produkter:\n" + productsNotInStuck);
+                return -1;
+            }
             return Math.Round(subTotal);
             
         }
 
         public void CompleteSale()
         {
+            string productAmountLow = null;
+
             double temp = SubTotal();
             if (temp > 0)
             {
-                Receipts.Insert(0, new Receipt(SubTotal(), "", Receipts.Count));
+                Receipts.Insert(0, new Receipt(temp, "", Receipts.Count));
                 foreach (var product in Stock.Products)
                 {
                     product.AmountToBeSold = 0;
+                    if (product.Amount < 10 && product.ForegroundColor != _colorRed)
+                    {
+                        product.ForegroundColor = _colorRed;
+                        productAmountLow += product.Name + ": " + product.Amount + " stk.\n";
+                    }
                 }
+
+                if (productAmountLow != null) message.Error("Lavt lager", "Der er lavt lager af:\n" + productAmountLow);
             }
-            //ToDO else error nothing to sell
+            else if (temp != -1) message.Error("Ingen vare tilføjet", "Tilføj venligst vare for at betale.");
 
         }
 
