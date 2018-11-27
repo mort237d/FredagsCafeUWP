@@ -31,6 +31,8 @@ namespace FredagsCafeUWP
         {
             message = new Message(this);
 
+            Basket = new List<Product>();
+
             Receipts = new ObservableCollection<Receipt>()
             {
                 //new Receipt(424, "no note", 1),
@@ -152,7 +154,7 @@ namespace FredagsCafeUWP
 
                 foreach (var product in Stock.Products)
                 {
-                    product.AmountToBeSold = 0;
+                    //product.AmountToBeSold = 0;
                     if (product.Amount < 10 && product.ForegroundColor != _colorRed)
                     {
                         product.ForegroundColor = _colorRed;
