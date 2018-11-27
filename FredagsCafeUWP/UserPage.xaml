@@ -71,36 +71,13 @@
                         </GridView.ItemTemplate>
                     </GridView>
 
-                    <!--<ListView ItemsSource="{Binding Stock.Products}">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="{Binding ImageSource}" Width="100" Height="100"/>
-                                    <StackPanel Orientation="Vertical">
-                                        <TextBlock FontWeight="Bold" Text="{Binding Name}"/>
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="kr."/>
-                                            <TextBlock Text="{Binding SellingPrice}" Margin="2,0,2,0"></TextBlock>
-                                            <TextBlock Text=",-"/>
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal">
-                                            <Button Style="{StaticResource LeftRoundedButtonStyle}" Content="-"/>
-                                            <TextBox PlaceholderText="0" TextAlignment="Center" Text="{Binding AmountToBeSold, Mode=TwoWay}"/>
-                                            <Button Style="{StaticResource RightRoundedButtonStyle}" Content="+"/>
-                                        </StackPanel>
-                                    </StackPanel>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>-->
-
                     <Rectangle Fill="#6CA0DC" Grid.Row="1" Grid.ColumnSpan="2" Margin="-20,0,-20,-10"/>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Margin="5,0,0.4,5" Grid.Row="1">
                         <TextBlock Foreground="White" Text="Total pris: "/>
-                        <TextBlock Foreground="White" Text="{Binding Sale.TotalTB, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Margin="10,0,0,0" Foreground="White" Text="{Binding Sale.TotalTB, Mode=TwoWay}"/>
                     </StackPanel>
 
-                    <Button  Foreground="White" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Betal" Command="{Binding CompelteSaleCommand}"  Margin="0,0,5,5"/>
+                    <Button Style="{StaticResource RoundedButtonStyle}" Foreground="White" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Betal" Command="{Binding CompelteSaleCommand}"  Margin="0,0,5,5"/>
 
                     <ListView Margin="30,30,30,0" Header="Transaktioner" Grid.Column="1" ItemsSource="{Binding Sale.Receipts}"/>
                 </Grid>
@@ -116,7 +93,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <GridView ItemsSource="{Binding Stock.Products}" Margin="10,10,10,0">
+                    <GridView ItemsSource="{Binding Stock.Products}" SelectedItem="{Binding Stock.SelectedProduct, Mode=TwoWay}" Margin="10,10,10,0">
                         <GridView.ItemTemplate>
                             <DataTemplate x:DataType="models:Product">
                                 <StackPanel Orientation="Horizontal" Margin="10">
@@ -211,10 +188,10 @@
                                 <TextBox PlaceholderText="Antal rammer" Text="{Binding Stock.FrameAmountTB, Mode=TwoWay}"></TextBox>
                                 <TextBlock Text="x" VerticalAlignment="Center"></TextBlock>
                                 <TextBox PlaceholderText="Ramme størrelse" Text="{Binding Stock.FrameSizeTB, Mode=TwoWay}"></TextBox>
-                                <Button Content="Tilføj rammer" Command="{Binding AddAmountCommand}"></Button>
+                                <!--<Button Content="Tilføj rammer" Command="{Binding AddAmountCommand}"></Button>-->
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <TextBox PlaceholderText="Stk." Text="{Binding Stock.ProductAmountTB, Mode=TwoWay}"></TextBox>
+                                <TextBox Width="75" PlaceholderText="Stk." Text="{Binding Stock.ProductAmountTB, Mode=TwoWay}"></TextBox>
                                 <Button Content="Tilføj antal" Command="{Binding AddAmountCommand}"></Button>
                                 <Button Content="Slet antal" Command="{Binding RemoveAmountCommand}" ></Button>
                             </StackPanel>
@@ -232,10 +209,14 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="6*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
-                    <GridView ItemsSource="{Binding Administration.Users}">
+                    <GridView ItemsSource="{Binding Administration.Users}" SelectedItem="{Binding Administration.SelectedUser, Mode=TwoWay}">
                         <GridView.ItemTemplate>
-                            <DataTemplate x:DataType="models:Product">
+                            <DataTemplate x:DataType="models:User">
                                 <StackPanel Orientation="Horizontal" Margin="10">
                                     <Image Source="{Binding ImageSource}" Height="100" Width="100"></Image>
                                     <StackPanel>
@@ -248,21 +229,8 @@
                         </GridView.ItemTemplate>
                     </GridView>
 
-                    <!--<ListView ItemsSource="{Binding Administration.Users}" SelectedItem="{Binding Administration.SelectedUser, Mode=TwoWay}">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="{Binding ImageSource}" Height="150" Width="150"></Image>
-                                    <StackPanel>
-                                        <TextBlock Text="{Binding Name}"></TextBlock>
-                                        <TextBlock Text="{Binding TelephoneNumber}" ></TextBlock>
-                                        <TextBlock Text="{Binding Email}" ></TextBlock>
-                                    </StackPanel>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>-->
-                    <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" Content="Fjern medarbejder" Command="{Binding RemoveUserCommand}"></Button>
+                    <Rectangle Fill="#6CA0DC" Grid.Row="1" Grid.ColumnSpan="2" Margin="-20,0,-20,-10"/>
+                    <Button Style="{StaticResource RoundedButtonStyle}" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" Content="Fjern medarbejder" Command="{Binding RemoveUserCommand}"></Button>
 
                     <StackPanel Grid.Column="1">
                         <TextBox PlaceholderText="Navn" Text="{Binding Administration.NameTb, Mode=TwoWay}"></TextBox>
@@ -274,7 +242,7 @@
                         <PasswordBox PlaceholderText="Password" Password="{Binding Administration.PasswordTb, Mode=TwoWay}"></PasswordBox>
                         <PasswordBox PlaceholderText="Confirm Password" Password="{Binding Administration.ConfirmPasswordTb, Mode=TwoWay}"></PasswordBox>
                     </StackPanel>
-                    <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" Grid.Column="1" Content="Tilføj medarbejder" Command="{Binding AddUserCommand}"></Button>
+                    <Button Style="{StaticResource RoundedButtonStyle}" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" Grid.Column="1" Content="Tilføj medarbejder" Command="{Binding AddUserCommand}"></Button>
 
                 </Grid>
             </PivotItem>
@@ -289,11 +257,67 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="6*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
-                    <ListView Header="Events"></ListView>
+                    <ListView Header="Events:" ItemsSource="{Binding Stock.Products}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding ImageSource}" Width="100" Height="100"/>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock FontWeight="Bold" Text="{Binding Name}"/>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="kr."/>
+                                            <TextBlock Text="{Binding SellingPrice}" Margin="2,0,2,0"></TextBlock>
+                                            <TextBlock Text=",-"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Style="{StaticResource LeftRoundedButtonStyle}" Content="-"/>
+                                            <TextBox PlaceholderText="0" TextAlignment="Center" Text="{Binding AmountToBeSold, Mode=TwoWay}"/>
+                                            <Button Style="{StaticResource RightRoundedButtonStyle}" Content="+"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
 
-                    <ListView Grid.Column="1" Header="Deltagere"></ListView>
-                    <Button Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" Content="Fjern deltager"></Button>
+                    <ListView Grid.Column="1" Header="Deltagere:" ItemsSource="{Binding Stock.Products}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding ImageSource}" Width="100" Height="100"/>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock FontWeight="Bold" Text="{Binding Name}"/>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="kr."/>
+                                            <TextBlock Text="{Binding SellingPrice}" Margin="2,0,2,0"></TextBlock>
+                                            <TextBlock Text=",-"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Style="{StaticResource LeftRoundedButtonStyle}" Content="-"/>
+                                            <TextBox PlaceholderText="0" TextAlignment="Center" Text="{Binding AmountToBeSold, Mode=TwoWay}"/>
+                                            <Button Style="{StaticResource RightRoundedButtonStyle}" Content="+"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                    <Rectangle Fill="#6CA0DC" Grid.ColumnSpan="3" Grid.Row="1" Margin="-20,0,-20,-10"/>
+
+                    <Button Style="{StaticResource RoundedButtonStyle}" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" Content="Fjern event"></Button>
+
+                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
+                        <Button Style="{StaticResource RoundedButtonStyle}" VerticalAlignment="Bottom" Margin="0,0,10,10" Content="Fjern deltager"></Button>
+                        <Button Style="{StaticResource RoundedButtonStyle}" VerticalAlignment="Bottom" Margin="0,0,10,10" Content="Tilføj deltager"></Button>
+                    </StackPanel>
+
+                    <Button Style="{StaticResource RoundedButtonStyle}" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" Content="Tilføj event"></Button>
 
                     <StackPanel Grid.Column="2">
                         <TextBlock Text="Opret nyt event"></TextBlock>
@@ -302,7 +326,6 @@
                         <TextBox PlaceholderText="Maks antal deltager"></TextBox>
                         <TextBox PlaceholderText="Beskrivelse"></TextBox>
                     </StackPanel>
-
                 </Grid>
             </PivotItem>
             <!--#endregion-->
