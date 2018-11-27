@@ -11,7 +11,7 @@ namespace FredagsCafeUWP.ViewModels
     class UserViewModel : INotifyPropertyChanged
     {
         private string _selectedItem;
-        private Stock stock = new Stock();
+        private Stock stock;
         private User user;
         private Product product;
         private Sale sale = new Sale();
@@ -40,6 +40,8 @@ namespace FredagsCafeUWP.ViewModels
 
         public UserViewModel()
         {
+            stock = new Stock(this);
+
             AddProductCommand = new RelayCommand(stock.AddProductToOBListAsync);
             RemoveProductCommand = new RelayCommand(stock.RemoveProductFromOBList);
 
