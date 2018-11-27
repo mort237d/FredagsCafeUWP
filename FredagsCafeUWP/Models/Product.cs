@@ -109,27 +109,6 @@ namespace FredagsCafeUWP.Models
             ForegroundColor = foregroundColor;
         }
 
-        //public override string ToString()
-        //{
-        //    StringBuilder sb = new StringBuilder();
-        //    sb.Append("Navn: " + Name);
-        //    sb.Append(" ");
-        //    sb.Append("Købspris: " + BuyingPrice);
-        //    sb.Append(" ");
-        //    sb.Append("Salgspris: " + SellingPrice);
-        //    sb.Append(" ");
-        //    sb.Append("Antal: " + Amount);
-        //    sb.Append(" ");
-        //    sb.Append("Antal solgt: " + AmountSold);
-        //    sb.Append(" ");
-        //    sb.Append("Image Source: " + ImageSource);
-        //    sb.Append(" ");
-        //    sb.Append("ForegroundColor: " + ForegroundColor);
-        //    sb.Append("\n");
-
-        //    return sb.ToString();
-        //}
-
         #region INotify
 
         public event PropertyChangedEventHandler PropertyChanged;
