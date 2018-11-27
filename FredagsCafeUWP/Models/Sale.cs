@@ -16,8 +16,8 @@ namespace FredagsCafeUWP
         private ObservableCollection<Receipt> _receipts;
         private ObservableCollection<Product> _basket;
 
-        private Brush _colorRed = new SolidColorBrush(Colors.Red);
-        private Brush _colorGreen = new SolidColorBrush(Colors.ForestGreen);
+        private Color _colorRed = Colors.Red;
+        private Color _colorGreen = Colors.ForestGreen;
 
         private Message message;
         private Stock stock = new Stock();

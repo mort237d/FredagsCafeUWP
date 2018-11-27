@@ -1,12 +1,12 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
+using Windows.UI;
 using Windows.UI.Xaml.Media;
 using FredagsCafeUWP.Annotations;
 
 namespace FredagsCafeUWP.Models
 {
-    class Product : INotifyPropertyChanged
+    public class Product : INotifyPropertyChanged
     {
         #region Fields
         private double _buyingPrice;
@@ -15,7 +15,7 @@ namespace FredagsCafeUWP.Models
         private int _amount;
         private int _amountSold;
         private string _imageSource;
-        private Brush _foregroundColor;
+        private Color _foregroundColor;
         private int _amountToBeSold = 1;
         #endregion
 
@@ -76,7 +76,7 @@ namespace FredagsCafeUWP.Models
             set { _imageSource = value; }
         }
 
-        public Brush ForegroundColor
+        public Color ForegroundColor
         {
             get { return _foregroundColor; }
             set
@@ -98,7 +98,7 @@ namespace FredagsCafeUWP.Models
 
         #endregion
 
-        public Product(double buyingPrice, double sellingPrice, string name, int amount, int amountSold, string imageSource, Brush foregroundColor)
+        public Product(double buyingPrice, double sellingPrice, string name, int amount, int amountSold, string imageSource, Color foregroundColor)
         {
             BuyingPrice = buyingPrice;
             SellingPrice = sellingPrice;
@@ -109,26 +109,10 @@ namespace FredagsCafeUWP.Models
             ForegroundColor = foregroundColor;
         }
 
-        //public override string ToString()
-        //{
-        //    StringBuilder sb = new StringBuilder();
-        //    sb.Append("Navn: " + Name);
-        //    sb.Append(" ");
-        //    sb.Append("Købspris: " + BuyingPrice);
-        //    sb.Append(" ");
-        //    sb.Append("Salgspris: " + SellingPrice);
-        //    sb.Append(" ");
-        //    sb.Append("Antal: " + Amount);
-        //    sb.Append(" ");
-        //    sb.Append("Antal solgt: " + AmountSold);
-        //    sb.Append(" ");
-        //    sb.Append("Image Source: " + ImageSource);
-        //    sb.Append(" ");
-        //    sb.Append("ForegroundColor: " + ForegroundColor);
-        //    sb.Append("\n");
-
-        //    return sb.ToString();
-        //}
+        public Product()
+        {
+            
+        }
 
         #region INotify
 

@@ -198,13 +198,13 @@ namespace FredagsCafeUWP.Models
         public async void saveAsync()
         {
             Debug.WriteLine("Saving list async...");
-            await XMLReadWriteClass.SaveObjectToXml<ObservableCollection<User>>(Users, "list.xml");
+            await XMLReadWriteClass.SaveObjectToXml<ObservableCollection<User>>(Users, "administration.xml");
             Debug.WriteLine("list.count: " + Users.Count);
         }
         private async void loadAsync()
         {
             Debug.WriteLine("loading list async...");
-            Users = await XMLReadWriteClass.ReadObjectFromXmlFileAsync<ObservableCollection<User>>("list.xml");
+            Users = await XMLReadWriteClass.ReadObjectFromXmlFileAsync<ObservableCollection<User>>("administration.xml");
             Debug.WriteLine("list.count:" + Users.Count);
             OnPropertyChanged("_users");
         }
