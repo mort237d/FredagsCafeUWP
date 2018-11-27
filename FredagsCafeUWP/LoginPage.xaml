@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="#6CA0DC">
     <Page.DataContext>
         <local:LoginPageViewModel/>
     </Page.DataContext>
@@ -18,7 +18,7 @@
                     <TextBox Margin="0,0,20,0" FontSize="25" Height="50" Width="300" PlaceholderText="Username" Text="{Binding UserName,Mode=TwoWay}"/>
                     <PasswordBox Margin="0,0,20,0" FontSize="25" Height="50" Width="300" PlaceholderText="Password" PasswordChar="*" Password="{Binding PassWord,Mode=TwoWay}"/>
                 </StackPanel>
-                <Button Content="Login" FontSize="25"  Width="100" Height="50" Command="{Binding LoginRelayCommand}"/>
+                <Button Style="{StaticResource RoundedButtonStyle}" Content="Login" FontSize="25"  Width="100" Height="50" Command="{Binding LoginRelayCommand}"/>
             </StackPanel>
             <TextBlock FontSize="18" FontWeight="Bold" Text="{Binding WrongLogin,Mode=TwoWay}" Foreground="Red"/>
         </StackPanel>

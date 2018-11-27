@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -136,14 +137,15 @@ namespace FredagsCafeUWP.Models
         {
             message = new Message(this);
 
-            Users = new ObservableCollection<User>()
-            {
-                new User("Morten", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Morten", "Morten", standardImage),
-                new User("Daniel", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Daniel", "Daniel", standardImage),
-                new User("Jacob", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Jacob", "Jacob", standardImage),
-                new User("Lucas", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Lucas", "Lucas", standardImage),
-                new User("Christian", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Christian", "Christian", standardImage)
-            };
+            //Users = new ObservableCollection<User>()
+            //{
+            //    new User("Morten", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Morten", "Morten", standardImage),
+            //    new User("Daniel", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Daniel", "Daniel", standardImage),
+            //    new User("Jacob", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Jacob", "Jacob", standardImage),
+            //    new User("Lucas", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Lucas", "Lucas", standardImage),
+            //    new User("Christian", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Christian", "Christian", standardImage)
+            //};
+            loadAsync();
 
 
             //SaveNotesAsJsonAsync(Users);
@@ -179,6 +181,7 @@ namespace FredagsCafeUWP.Models
                         UserNameTb = null;
                         PasswordTb = null;
                         ConfirmPasswordTb = null;
+                        saveAsync();
                     }
                     else message.Error("Uoverensstemmelser", "Password stemmer ikke over ens med confirm password");
                 }
@@ -186,13 +189,24 @@ namespace FredagsCafeUWP.Models
             }
         }
 
-        public void RemoveUser()
+        public async void RemoveUser()
         {
-            if (SelectedUser != null)
-            {
-                message.YesNo("Slet bruger", "Er du sikker på at du vil slette " + SelectedUser.Name + "?");
-            }
+            if (SelectedUser != null) await message.YesNo("Slet bruger", "Er du sikker på at du vil slette " + SelectedUser.Name + "?");
             else message.Error("Ingen bruger valgt", "Vælg venligst en bruger.");
+        }
+
+        public async void saveAsync()
+        {
+            Debug.WriteLine("Saving list async...");
+            await XMLReadWriteClass.SaveObjectToXml<ObservableCollection<User>>(Users, "list.xml");
+            Debug.WriteLine("list.count: " + Users.Count);
+        }
+        private async void loadAsync()
+        {
+            Debug.WriteLine("loading list async...");
+            Users = await XMLReadWriteClass.ReadObjectFromXmlFileAsync<ObservableCollection<User>>("list.xml");
+            Debug.WriteLine("list.count:" + Users.Count);
+            OnPropertyChanged("_users");
         }
 
         #region INotify
