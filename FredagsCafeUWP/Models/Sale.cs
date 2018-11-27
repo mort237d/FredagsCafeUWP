@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Windows.UI;
+using Windows.UI.Composition;
 using Windows.UI.Xaml.Media;
 using FredagsCafeUWP.Annotations;
 using FredagsCafeUWP.Models;
@@ -130,6 +131,8 @@ namespace FredagsCafeUWP
 
         public void CompleteSale()
         {
+            string productAmountLow = null;
+
             double temp = SubTotal();
             if (temp > 0)
             {
@@ -137,7 +140,14 @@ namespace FredagsCafeUWP
                 foreach (var product in Stock.Products)
                 {
                     product.AmountToBeSold = 0;
+                    if (product.Amount < 10 && product.ForegroundColor != _colorRed)
+                    {
+                        product.ForegroundColor = _colorRed;
+                        productAmountLow += product.Name + ": " + product.Amount + " stk.\n";
+                    }
                 }
+
+                if (productAmountLow != null) message.Error("Lavt lager", "Der er lavt lager af:\n" + productAmountLow);
             }
             else if (temp != -1) message.Error("Ingen vare tilføjet", "Tilføj venligst vare for at betale.");
 
