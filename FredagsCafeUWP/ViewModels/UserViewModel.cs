@@ -1,10 +1,14 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
+using FredagsCafeUWP.Annotations;
 using FredagsCafeUWP.Models;
 using GalaSoft.MvvmLight.Command;
 
 namespace FredagsCafeUWP.ViewModels
 {
-    class UserViewModel
+    class UserViewModel : INotifyPropertyChanged
     {
         private string _selectedItem;
         private Stock stock = new Stock();
@@ -26,7 +30,13 @@ namespace FredagsCafeUWP.ViewModels
         private RelayCommand addUserCommand;
         private RelayCommand removeUserCommand;
 
+        private RelayCommand saveCommand;
+        private RelayCommand loadCommand;
+
         private RelayCommand compelteSaleCommand;
+
+        private RelayCommand addOneToSaleCommand;
+        private RelayCommand removeeOneFromSaleCommand;
 
         public UserViewModel()
         {
@@ -46,7 +56,7 @@ namespace FredagsCafeUWP.ViewModels
 
             CompelteSaleCommand = new RelayCommand(Sale.CompleteSale);
         }
-
+      
         public string SelectedItem
         {
             get { return _selectedItem; }
@@ -138,6 +148,28 @@ namespace FredagsCafeUWP.ViewModels
             set { compelteSaleCommand = value; }
         }
 
+        public RelayCommand SaveCommand
+        {
+            get { return saveCommand; }
+            set { saveCommand = value; }
+        }
+
+        public RelayCommand LoadCommand
+        {
+            get { return loadCommand; }
+            set { loadCommand = value; }
+        }
+
+        #endregion
+
+        #region INotify
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
         #endregion
     }
 }

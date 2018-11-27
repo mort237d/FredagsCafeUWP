@@ -14,6 +14,7 @@ namespace FredagsCafeUWP
             titleBar.BackgroundColor = Windows.UI.Color.FromArgb(1,108,160,220);
             titleBar.ButtonForegroundColor = Windows.UI.Colors.White;
             titleBar.ButtonBackgroundColor = Windows.UI.Color.FromArgb(1, 108, 160, 220);
+            
         }
     }
 }
