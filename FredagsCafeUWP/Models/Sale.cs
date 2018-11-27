@@ -12,7 +12,7 @@ using Newtonsoft.Json.Serialization;
 
 namespace FredagsCafeUWP
 {
-    class Sale : INotifyPropertyChanged
+    public class Sale : INotifyPropertyChanged
     {
         private ObservableCollection<Receipt> _receipts;
         private static List<Product> _basket;

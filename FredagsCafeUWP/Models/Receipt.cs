@@ -4,7 +4,7 @@ using FredagsCafeUWP.Models;
 
 namespace FredagsCafeUWP
 {
-    class Receipt
+    public class Receipt
     {
         private DateTime _saleDateTime = DateTime.Now;
         private string _cvr = "000000-0000";

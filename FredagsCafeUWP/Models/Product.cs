@@ -116,8 +116,7 @@ namespace FredagsCafeUWP.Models
 
         #endregion
 
-        public Product(double buyingPrice, double sellingPrice, string name, int amount, int amountSold, string imageSource, Brush foregroundColor, UserViewModel userViewModel)
-        public Product(double buyingPrice, double sellingPrice, string name, int amount, int amountSold, string imageSource, Color foregroundColor)
+        public Product(double buyingPrice, double sellingPrice, string name, int amount, int amountSold, string imageSource, Color foregroundColor, UserViewModel userViewModel)
         {
             BuyingPrice = buyingPrice;
             SellingPrice = sellingPrice;

@@ -8,7 +8,7 @@ using GalaSoft.MvvmLight.Command;
 
 namespace FredagsCafeUWP.ViewModels
 {
-    class UserViewModel : INotifyPropertyChanged
+    public class UserViewModel : INotifyPropertyChanged
     {
         private string _selectedItem;
         private Stock stock;

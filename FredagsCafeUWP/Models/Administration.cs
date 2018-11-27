@@ -15,7 +15,7 @@ using Newtonsoft.Json;
 
 namespace FredagsCafeUWP.Models
 {
-    class Administration : INotifyPropertyChanged
+    public class Administration : INotifyPropertyChanged
     {
         private static Message message;
 

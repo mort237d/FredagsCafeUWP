@@ -16,7 +16,7 @@ using FredagsCafeUWP.ViewModels;
 
 namespace FredagsCafeUWP.Models
 {
-    class Stock : INotifyPropertyChanged
+    public class Stock : INotifyPropertyChanged
     {
         private Message message;
 
