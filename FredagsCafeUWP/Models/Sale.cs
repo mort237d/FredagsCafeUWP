@@ -22,8 +22,8 @@ namespace FredagsCafeUWP
         private Stock stock = new Stock();
         private Product _selectedProduct;
 
-
         private double _totalTB;
+        
 
         public Sale()
         {
@@ -42,6 +42,7 @@ namespace FredagsCafeUWP
                 new Product(55, 63, "Cola", 24, 13, "ProductImages/Cola.png", _colorGreen),
                 new Product(55, 63, "Mokai", 29, 13, "ProductImages/Mokai.png", _colorGreen),
             };
+            
         }
 
         public ObservableCollection<Receipt> Receipts
@@ -73,19 +74,32 @@ namespace FredagsCafeUWP
             get { return _totalTB; }
             set
             {
-                _totalTB = SubTotal();
+                foreach (var product in stock.Products)
+                {
+                    value += product.AmountToBeSold * product.SellingPrice;
+                }
+
+                _totalTB = value;
                 OnPropertyChanged();
             }
         }
 
         public void AddOneFromToBeSold()
         {
-            if (SelectedProduct != null) SelectedProduct.AmountToBeSold++;
+            if (SelectedProduct != null)
+            {
+                SelectedProduct.AmountToBeSold++;
+                TotalTB += SelectedProduct.SellingPrice;
+            }
         }
 
         public void RemoveOneFromToBeSold()
         {
-            if (SelectedProduct != null && SelectedProduct.AmountToBeSold > 0) SelectedProduct.AmountToBeSold--;
+            if (SelectedProduct != null && SelectedProduct.AmountToBeSold > 0)
+            {
+                SelectedProduct.AmountToBeSold--;
+                TotalTB -= SelectedProduct.SellingPrice;
+            }
         }
 
         public double SubTotal()

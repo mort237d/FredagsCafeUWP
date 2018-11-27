@@ -28,6 +28,9 @@ namespace FredagsCafeUWP.ViewModels
 
         private RelayCommand compelteSaleCommand;
 
+        private RelayCommand addOneToSaleCommand;
+        private RelayCommand removeeOneFromSaleCommand;
+
         public UserViewModel()
         {
             AddProductCommand = new RelayCommand(stock.AddProductToOBListAsync);
@@ -45,6 +48,9 @@ namespace FredagsCafeUWP.ViewModels
             RemoveUserCommand = new RelayCommand(administration.RemoveUser);
 
             CompelteSaleCommand = new RelayCommand(Sale.CompleteSale);
+
+            AddOneToSaleCommand = new RelayCommand(Sale.AddOneFromToBeSold);
+            RemoveeOneFromSaleCommand = new RelayCommand(Sale.RemoveOneFromToBeSold);
         }
 
         public string SelectedItem
@@ -136,6 +142,18 @@ namespace FredagsCafeUWP.ViewModels
         {
             get { return compelteSaleCommand; }
             set { compelteSaleCommand = value; }
+        }
+
+        public RelayCommand AddOneToSaleCommand
+        {
+            get { return addOneToSaleCommand; }
+            set { addOneToSaleCommand = value; }
+        }
+
+        public RelayCommand RemoveeOneFromSaleCommand
+        {
+            get { return removeeOneFromSaleCommand; }
+            set { removeeOneFromSaleCommand = value; }
         }
 
         #endregion
