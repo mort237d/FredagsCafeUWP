@@ -72,7 +72,7 @@ namespace FredagsCafeUWP
             get { return _totalTB; }
             set
             {
-                _totalTB = SubTotal(); 
+                _totalTB = SubTotal();
                 OnPropertyChanged();
             }
         }
