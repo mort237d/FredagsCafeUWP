@@ -146,7 +146,6 @@ namespace FredagsCafeUWP.Models
             //    new User("Christian", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Christian", "Christian", standardImage)
             //};
             loadAsync();
-            //saveAsync();
 
 
             //SaveNotesAsJsonAsync(Users);
@@ -182,6 +181,7 @@ namespace FredagsCafeUWP.Models
                         UserNameTb = null;
                         PasswordTb = null;
                         ConfirmPasswordTb = null;
+                        saveAsync();
                     }
                     else message.Error("Uoverensstemmelser", "Password stemmer ikke over ens med confirm password");
                 }
@@ -189,11 +189,12 @@ namespace FredagsCafeUWP.Models
             }
         }
 
-        public void RemoveUser()
+        public async void RemoveUser()
         {
             if (SelectedUser != null)
             {
-                message.YesNo("Slet bruger", "Er du sikker på at du vil slette " + SelectedUser.Name + "?");
+                await message.YesNo("Slet bruger", "Er du sikker på at du vil slette " + SelectedUser.Name + "?");
+                saveAsync();
             }
             else message.Error("Ingen bruger valgt", "Vælg venligst en bruger.");
         }

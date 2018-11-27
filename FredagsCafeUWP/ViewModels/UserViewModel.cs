@@ -55,9 +55,6 @@ namespace FredagsCafeUWP.ViewModels
             RemoveUserCommand = new RelayCommand(administration.RemoveUser);
 
             CompelteSaleCommand = new RelayCommand(Sale.CompleteSale);
-
-            AddOneToSaleCommand = new RelayCommand(Sale.AddOneFromToBeSold);
-            RemoveeOneFromSaleCommand = new RelayCommand(Sale.RemoveOneFromToBeSold);
         }
       
         public string SelectedItem
