@@ -27,6 +27,8 @@ namespace FredagsCafeUWP
 
         public Sale()
         {
+            message = new Message(this);
+
             Receipts = new ObservableCollection<Receipt>()
             {
                 new Receipt(424, "no note", 1),
@@ -92,13 +94,14 @@ namespace FredagsCafeUWP
         {
             double subTotal = 0;
             bool isNotInstuck = false;
+            string productsNotInStuck = null;
 
             foreach (var product in Stock.Products)
             {
                 if (product.AmountToBeSold > product.Amount)
                 {
                     isNotInstuck = true;
-                    break;
+                    productsNotInStuck += product.Name + ": " + product.Amount + " stk.\n";
                 }
             }
 
@@ -116,7 +119,11 @@ namespace FredagsCafeUWP
                     }
                 }
             }
-            //Todo else if isNotInstuck error not in stock foreach
+            else
+            {
+                message.Error("Ikke nok på lager", "Det gælder disse produkter:\n" + productsNotInStuck);
+                return -1;
+            }
             return Math.Round(subTotal);
             
         }
@@ -126,13 +133,13 @@ namespace FredagsCafeUWP
             double temp = SubTotal();
             if (temp > 0)
             {
-                Receipts.Insert(0, new Receipt(SubTotal(), "", Receipts.Count));
+                Receipts.Insert(0, new Receipt(temp, "", Receipts.Count));
                 foreach (var product in Stock.Products)
                 {
                     product.AmountToBeSold = 0;
                 }
             }
-            //ToDO else error nothing to sell
+            else if (temp != -1) message.Error("Ingen vare tilføjet", "Tilføj venligst vare for at betale.");
 
         }
 

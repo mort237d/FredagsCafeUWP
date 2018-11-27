@@ -13,6 +13,7 @@ namespace FredagsCafeUWP.Models
     {
         private Stock stock;
         private Administration administration;
+        private Sale sale;
 
         public Message(Administration administration)
         {
@@ -21,6 +22,10 @@ namespace FredagsCafeUWP.Models
         public Message(Stock stock)
         {
             this.stock = stock;
+        }
+        public Message(Sale sale)
+        {
+            this.sale = sale;
         }
 
         public async Task Error(string title, string content)
