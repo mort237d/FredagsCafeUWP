@@ -136,7 +136,7 @@ namespace FredagsCafeUWP.Models
         public Administration()
         {
             message = new Message(this);
-            
+
             loadAsync();
         }
 

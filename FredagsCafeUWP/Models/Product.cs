@@ -1,8 +1,6 @@
 ﻿using System.ComponentModel;
-using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using Windows.UI;
-using Windows.UI.Xaml.Media;
 using FredagsCafeUWP.Annotations;
 using FredagsCafeUWP.ViewModels;
 
