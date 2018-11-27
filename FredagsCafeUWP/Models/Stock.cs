@@ -12,6 +12,7 @@ using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
 using FredagsCafeUWP.Annotations;
 using Windows.UI.Xaml.Media;
+using FredagsCafeUWP.ViewModels;
 
 namespace FredagsCafeUWP.Models
 {
@@ -20,6 +21,8 @@ namespace FredagsCafeUWP.Models
         private Message message;
 
         private ObservableCollection<Product> _products;
+
+        private UserViewModel _userViewModel;
 
         private Product _selectedProduct;
 
@@ -45,6 +48,32 @@ namespace FredagsCafeUWP.Models
         private string _productPriceChangeTB;
 
         private string _textDoc;
+
+        public Stock(UserViewModel userViewModel)
+        {
+            message = new Message(this);
+
+            _userViewModel = userViewModel;
+
+            Products = new ObservableCollection<Product>();
+
+
+            if (Products.Count == 0)
+            {
+                Products.Add(new Product(2, 5, "Tuborg Classic", 48, 0, "ProductImages/TuborgClassic.png",_colorGreen, _userViewModel));
+                Products.Add(new Product(2, 5, "Grøn Tuborg", 48, 0, "ProductImages/GrønTuborg.png", _colorGreen, _userViewModel));
+                Products.Add(new Product(2, 5, "Tuborg Gylden Dame", 48, 0, "ProductImages/TuborgGuldDame.png", _colorGreen, _userViewModel));
+                Products.Add(new Product(2, 5, "Carlsberg", 48, 0, "ProductImages/Carlsberg.png", _colorGreen, _userViewModel));
+                Products.Add(new Product(2, 5, "Cola Zero", 48, 0, "ProductImages/ColaZero.png", _colorGreen, _userViewModel));
+                Products.Add(new Product(2, 5, "Cola", 48, 0, "ProductImages/Cola.png", _colorGreen, _userViewModel));
+                Products.Add(new Product(2, 5, "Mokai", 48, 0, "ProductImages/Mokai.png", _colorGreen, _userViewModel));
+                Products.Add(new Product(2, 5, "Mokai Jordbær Lime", 48, 0, "ProductImages/MokaiStrawberryLime.png", _colorGreen, _userViewModel));
+                Products.Add(new Product(2, 5, "Somersby Apple Cider", 48, 0, "ProductImages/SomersbyApple.png", _colorGreen, _userViewModel));
+                Products.Add(new Product(2, 5, "Somersby Pear Cider", 48, 0, "ProductImages/SomersbyPear.png", _colorGreen, _userViewModel));
+                Products.Add(new Product(2, 5, "Breezer", 48, 0, "ProductImages/Breezer.png", _colorGreen, _userViewModel));
+                Products.Add(new Product(2, 5, "Fanta", 48, 0, "ProductImages/Fanta.png", _colorGreen, _userViewModel));
+            }
+        }
 
         public Stock()
         {
@@ -216,13 +245,13 @@ namespace FredagsCafeUWP.Models
                     {
                         if (ImageSourceTB == "" || ImageSourceTB == null)
                         {
-                            if (intAmountTB < _minAmount) Products.Add(new Product(doubleBuyingPriceTB, doubleSellingPriceTB, NameTB, intAmountTB, 0, "ProductImages/BlankDåse.png", _colorRed));
-                            else Products.Add(new Product(doubleBuyingPriceTB, doubleSellingPriceTB, NameTB, intAmountTB, 0, "ProductImages/BlankDåse.png", _colorGreen));
+                            if (intAmountTB < _minAmount) Products.Add(new Product(doubleBuyingPriceTB, doubleSellingPriceTB, NameTB, intAmountTB, 0, "ProductImages/BlankDåse.png", _colorRed, _userViewModel));
+                            else Products.Add(new Product(doubleBuyingPriceTB, doubleSellingPriceTB, NameTB, intAmountTB, 0, "ProductImages/BlankDåse.png", _colorGreen, _userViewModel));
                         }
                         else
                         {
-                            if (intAmountTB < _minAmount) Products.Add(new Product(doubleBuyingPriceTB, doubleSellingPriceTB, NameTB, intAmountTB, 0, ImageSourceTB, _colorRed));
-                            else Products.Add(new Product(doubleBuyingPriceTB, doubleSellingPriceTB, NameTB, intAmountTB, 0, ImageSourceTB, _colorGreen));
+                            if (intAmountTB < _minAmount) Products.Add(new Product(doubleBuyingPriceTB, doubleSellingPriceTB, NameTB, intAmountTB, 0, ImageSourceTB, _colorRed, _userViewModel));
+                            else Products.Add(new Product(doubleBuyingPriceTB, doubleSellingPriceTB, NameTB, intAmountTB, 0, ImageSourceTB, _colorGreen, _userViewModel));
                         }
 
                         NameTB = null;

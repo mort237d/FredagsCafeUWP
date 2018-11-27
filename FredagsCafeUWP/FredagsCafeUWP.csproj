@@ -95,7 +95,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LoginPage.xaml.cs">
+    <Compile Include="Views\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\Message.cs" />
@@ -109,7 +109,7 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Receipt.cs" />
     <Compile Include="Models\Sale.cs" />
-    <Compile Include="UserPage.xaml.cs">
+    <Compile Include="Views\UserPage.xaml.cs">
       <DependentUpon>UserPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\UserViewModel.cs" />
@@ -127,7 +127,7 @@
     <Content Include="Assets\LargeTile.scale-150.png" />
     <Content Include="Assets\LargeTile.scale-200.png" />
     <Content Include="Assets\LargeTile.scale-400.png" />
-    <Content Include="Assets\Profile-icon.png" />
+    <Content Include="Views\UserImages\Profile-icon.png" />
     <Content Include="Assets\SmallTile.scale-100.png" />
     <Content Include="Assets\SmallTile.scale-125.png" />
     <Content Include="Assets\SmallTile.scale-150.png" />
@@ -164,19 +164,19 @@
     <Content Include="Assets\Wide310x150Logo.scale-150.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
     <Content Include="hej.txt" />
-    <Content Include="ProductImages\BlankDåse.png" />
-    <Content Include="ProductImages\Breezer.png" />
-    <Content Include="ProductImages\Carlsberg.png" />
-    <Content Include="ProductImages\Cola.png" />
-    <Content Include="ProductImages\ColaZero.png" />
-    <Content Include="ProductImages\Fanta.png" />
-    <Content Include="ProductImages\GrønTuborg.png" />
-    <Content Include="ProductImages\Mokai.png" />
-    <Content Include="ProductImages\MokaiStrawberryLime.png" />
-    <Content Include="ProductImages\SomersbyApple.png" />
-    <Content Include="ProductImages\SomersbyPear.png" />
-    <Content Include="ProductImages\TuborgClassic.png" />
-    <Content Include="ProductImages\TuborgGuldDame.png" />
+    <Content Include="Views\ProductImages\BlankDåse.png" />
+    <Content Include="Views\ProductImages\Breezer.png" />
+    <Content Include="Views\ProductImages\Carlsberg.png" />
+    <Content Include="Views\ProductImages\Cola.png" />
+    <Content Include="Views\ProductImages\ColaZero.png" />
+    <Content Include="Views\ProductImages\Fanta.png" />
+    <Content Include="Views\ProductImages\GrønTuborg.png" />
+    <Content Include="Views\ProductImages\Mokai.png" />
+    <Content Include="Views\ProductImages\MokaiStrawberryLime.png" />
+    <Content Include="Views\ProductImages\SomersbyApple.png" />
+    <Content Include="Views\ProductImages\SomersbyPear.png" />
+    <Content Include="Views\ProductImages\TuborgClassic.png" />
+    <Content Include="Views\ProductImages\TuborgGuldDame.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -190,11 +190,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="LoginPage.xaml">
+    <Page Include="Views\LoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserPage.xaml">
+    <Page Include="Views\UserPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -19,7 +19,7 @@ namespace FredagsCafeUWP.Models
     {
         private static Message message;
 
-        private string standardImage = "Assets/Profile-icon.png";
+        private string standardImage = "UserImages/Profile-icon.png";
 
         private string _nameTB;
         private string _gradeTB;
@@ -136,22 +136,8 @@ namespace FredagsCafeUWP.Models
         public Administration()
         {
             message = new Message(this);
-
-            //Users = new ObservableCollection<User>()
-            //{
-            //    new User("Morten", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Morten", "Morten", standardImage),
-            //    new User("Daniel", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Daniel", "Daniel", standardImage),
-            //    new User("Jacob", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Jacob", "Jacob", standardImage),
-            //    new User("Lucas", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Lucas", "Lucas", standardImage),
-            //    new User("Christian", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Christian", "Christian", standardImage)
-            //};
+            
             loadAsync();
-
-
-            //SaveNotesAsJsonAsync(Users);
-            //LoadNotesFromJsonAsync();
-            //PersistencyService.SaveCollectionAsJsonAsync(Users);
-            //PersistencyService.LoadCollectionFromJsonAsync(typeof(User));
         }
 
         public void AddUser()
@@ -203,10 +189,26 @@ namespace FredagsCafeUWP.Models
         }
         private async void loadAsync()
         {
+            try
+            {
             Debug.WriteLine("loading list async...");
             Users = await XMLReadWriteClass.ReadObjectFromXmlFileAsync<ObservableCollection<User>>("administration.xml");
             Debug.WriteLine("list.count:" + Users.Count);
             OnPropertyChanged("_users");
+            }
+            catch (Exception e)
+            {
+                Users = new ObservableCollection<User>()
+                {
+                    new User("Morten", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Morten", "Morten", standardImage),
+                    new User("Daniel", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Daniel", "Daniel", standardImage),
+                    new User("Jacob", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Jacob", "Jacob", standardImage),
+                    new User("Lucas", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Lucas", "Lucas", standardImage),
+                    new User("Christian", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Christian", "Christian", standardImage)
+                };
+                saveAsync();
+            }
+
         }
 
         #region INotify
