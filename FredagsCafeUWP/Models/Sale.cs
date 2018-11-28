@@ -106,7 +106,8 @@ namespace FredagsCafeUWP
             {
                 if (product.AmountToBeSold != 0)
                 {
-                    Basket.Add(new Product(product.BuyingPrice,product.SellingPrice,product.Name,product.AmountToBeSold));       
+                    //Basket.Add(new Product(product.BuyingPrice,product.SellingPrice,product.Name,product.AmountToBeSold));
+                    Basket.Add(product);
                 }
             }
         }
@@ -162,7 +163,7 @@ namespace FredagsCafeUWP
 
                 foreach (var product in Stock.Products)
                 {
-                    //product.AmountToBeSold = 0;
+                    product.AmountToBeSold = 0;
                     if (product.Amount < 10 && product.ForegroundColor != _colorRed)
                     {
                         product.ForegroundColor = _colorRed;
