@@ -160,6 +160,7 @@ namespace FredagsCafeUWP
                 AddItemsToBasket();
                 Receipts.Insert(0, new Receipt(temp, "", Receipts.Count, Basket));
                 Basket.Clear();
+                Stock.SaveAsync();
 
                 foreach (var product in Stock.Products)
                 {

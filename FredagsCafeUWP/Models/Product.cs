@@ -127,7 +127,7 @@ namespace FredagsCafeUWP.Models
                 _amountToBeSold = value;
                 OnPropertyChanged();
                 //if(userViewModel != null)
-                _userViewModel.Sale.TotalTb = TotalTbMethod();
+                //_userViewModel.Sale.TotalTb = TotalTbMethod();
             }
         }
         #endregion

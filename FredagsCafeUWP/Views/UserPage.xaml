@@ -309,7 +309,7 @@
                     </charting:Chart>
                 </StackPanel>
             </PivotItem>
-            <!--#endregion
+            <!--#endregion-->
         </Pivot>
     </Grid>
 </Page>
