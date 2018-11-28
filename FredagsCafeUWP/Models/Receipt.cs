@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using FredagsCafeUWP.Annotations;
 using FredagsCafeUWP.Models;
 
 namespace FredagsCafeUWP
 {
-    public class Receipt
+    public class Receipt : INotifyPropertyChanged
     {
         #region Fields
 
@@ -24,6 +27,11 @@ namespace FredagsCafeUWP
             _note = note;
             _saleNumber = saleNumber;
             _basket = basket;
+        }
+
+        public Receipt()
+        {
+            
         }
 
         #region Props
@@ -61,5 +69,17 @@ namespace FredagsCafeUWP
         {
             return "Salgs tid:   " + _saleDateTime + "\nVirksomheds CVR " + _cvr + "\nTotal: " + _subTotal + "\nVirksomheds nummer" + _phoneNumber + "\nSalgs nummer: " + _saleNumber + "\nNote: " + _note + "\n";
         }
+
+        #region Inotify
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        #endregion
+
     }
 }
