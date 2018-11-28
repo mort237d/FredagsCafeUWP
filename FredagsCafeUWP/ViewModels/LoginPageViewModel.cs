@@ -11,11 +11,10 @@ namespace FredagsCafeUWP
 {
     internal class LoginPageViewModel : INotifyPropertyChanged
     {
-        
-        public string UserName { get; set; }
-        public string PassWord { get; set; }
         private string _wrongLogin;
         private string _wrongLoginColor;
+        public string UserName { get; set; }
+        public string PassWord { get; set; }
         public RelayCommand LoginRelayCommand { get; set; }
 
 

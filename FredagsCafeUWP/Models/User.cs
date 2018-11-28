@@ -6,6 +6,8 @@ namespace FredagsCafeUWP.Models
 {
     public class User : INotifyPropertyChanged
     {
+        #region Field
+
         private string _name;
         private string _grade;
         private string _education;
@@ -14,6 +16,10 @@ namespace FredagsCafeUWP.Models
         private string _userName;
         private string _password;
         private string _imageSource;
+
+        #endregion
+
+        #region Constructors
 
         public User(string name, string grade, string education, string email, string telephoneNumber, string userName, string password, string imageSource)
         {
@@ -31,6 +37,8 @@ namespace FredagsCafeUWP.Models
         {
             
         }
+
+        #endregion
 
         #region Properties
 

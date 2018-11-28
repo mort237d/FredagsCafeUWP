@@ -9,6 +9,8 @@ namespace FredagsCafeUWP.Models
 {
     public class Administration : INotifyPropertyChanged
     {
+        #region Field
+
         private static Message _message;
 
         private readonly string _standardImage = "UserImages/Profile-icon.png";
@@ -24,6 +26,8 @@ namespace FredagsCafeUWP.Models
 
         private ObservableCollection<User> _users;
         private User _selectedUser;
+
+        #endregion
 
         #region Props
 
@@ -124,6 +128,8 @@ namespace FredagsCafeUWP.Models
             LoadAsync();
         }
 
+        #region ButtonMethods
+
         public async void AddUser()
         {
             //TODO add image
@@ -165,6 +171,10 @@ namespace FredagsCafeUWP.Models
             else await _message.Error("Ingen bruger valgt", "Vælg venligst en bruger.");
         }
 
+        #endregion
+
+        #region Save/Load
+
         public async void SaveAsync()
         {
             Debug.WriteLine("Saving list async...");
@@ -175,9 +185,9 @@ namespace FredagsCafeUWP.Models
         {
             try
             {
-            Debug.WriteLine("loading list async...");
-            Users = await XmlReadWriteClass.ReadObjectFromXmlFileAsync<ObservableCollection<User>>("administration.xml");
-            Debug.WriteLine("list.count:" + Users.Count);
+                Debug.WriteLine("loading list async...");
+                Users = await XmlReadWriteClass.ReadObjectFromXmlFileAsync<ObservableCollection<User>>("administration.xml");
+                Debug.WriteLine("list.count:" + Users.Count);
             }
             catch (Exception)
             {
@@ -193,6 +203,8 @@ namespace FredagsCafeUWP.Models
             }
 
         }
+
+        #endregion
 
         #region INotify
 

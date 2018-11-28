@@ -16,6 +16,8 @@ namespace FredagsCafeUWP.Models
 {
     public class Stock : INotifyPropertyChanged
     {
+        #region Field
+
         private readonly Message _message;
 
         private ObservableCollection<Product> _products;
@@ -27,7 +29,7 @@ namespace FredagsCafeUWP.Models
         private int _minAmount = 10;
 
         private readonly Color _colorRed = Colors.Red;
-        private readonly Color _colorGreen = Colors.ForestGreen;
+        private readonly Color _colorGreen = Colors.ForestGreen; //TODO Ændre til brush, så farven træder frem i programmet
         //private Brush _colorRed = new SolidColorBrush(Colors.Red);
         //private Brush _colorGreen = new SolidColorBrush(Colors.ForestGreen);
         private Brush _amountColor;
@@ -45,7 +47,9 @@ namespace FredagsCafeUWP.Models
 
         private string _productPriceChangeTb;
 
-        private string _textDoc;
+        #endregion
+
+        #region Constructors
 
         public Stock(UserViewModel userViewModel)
         {
@@ -53,15 +57,17 @@ namespace FredagsCafeUWP.Models
 
             _userViewModel = userViewModel;
 
-            Products = new ObservableCollection<Product>();
-
             LoadAsync();
         }
 
         public Stock()
         {
-            
+            _message = new Message(this);
+
+            LoadAsync();
         }
+
+        #endregion
 
         #region Properties
         public ObservableCollection<Product> Products
@@ -170,17 +176,10 @@ namespace FredagsCafeUWP.Models
             }
         }
 
-        public string TextDoc
-        {
-            get => _textDoc;
-            set
-            {
-                _textDoc = value; 
-                OnPropertyChanged();
-            }
-        }
-
         #endregion
+
+        #region ButtonMethods
+
         public async void AddProductToObListAsync()
         {
             bool productExist = false;
@@ -291,7 +290,7 @@ namespace FredagsCafeUWP.Models
                         ProductAmountTb = null;
                     }
                     else await _message.Error("Tallene stemmer ikke", "Der er kun " + SelectedProduct.Amount + " af " + SelectedProduct.Name + "." +
-                                 "\nDerfor kan du ikke fjerne " + intFrameAmountTb + "*" + intFrameSizeTb + "+" + intProductAmountTb + "=" + ((intFrameAmountTb * intFrameSizeTb) + intProductAmountTb) + " af dette produkt.");
+                                                                      "\nDerfor kan du ikke fjerne " + intFrameAmountTb + "*" + intFrameSizeTb + "+" + intProductAmountTb + "=" + ((intFrameAmountTb * intFrameSizeTb) + intProductAmountTb) + " af dette produkt.");
                 }
                 else if (intFrameAmountTb > 0 && intFrameSizeTb > 0)
                 {
@@ -302,7 +301,7 @@ namespace FredagsCafeUWP.Models
                         FrameSizeTb = null;
                     }
                     else await _message.Error("Tallene stemmer ikke", "Der er kun " + SelectedProduct.Amount + " af " + SelectedProduct.Name + "." +
-                                 "\nDerfor kan du ikke fjerne " + intFrameAmountTb + "*" + intFrameSizeTb + "=" + (intFrameAmountTb * intFrameSizeTb) + " af dette produkt.");
+                                                                      "\nDerfor kan du ikke fjerne " + intFrameAmountTb + "*" + intFrameSizeTb + "=" + (intFrameAmountTb * intFrameSizeTb) + " af dette produkt.");
                 }
                 else if (intProductAmountTb > 0)
                 {
@@ -377,6 +376,10 @@ namespace FredagsCafeUWP.Models
             else await _message.Error("Intet produkt valg", "Vælg venligst et produkt");
         }
 
+        #endregion
+
+        #region Save/Load
+
         public async void SaveAsync()
         {
             Debug.WriteLine("Saving product async...");
@@ -393,23 +396,27 @@ namespace FredagsCafeUWP.Models
             }
             catch (Exception)
             {
-                Products.Add(new Product(2, 5, "Tuborg Classic", 48, 0, "ProductImages/TuborgClassic.png", _colorGreen, _userViewModel));
-                Products.Add(new Product(2, 5, "Grøn Tuborg", 48, 0, "ProductImages/GrønTuborg.png", _colorGreen, _userViewModel));
-                Products.Add(new Product(2, 5, "Tuborg Gylden Dame", 48, 0, "ProductImages/TuborgGuldDame.png", _colorGreen, _userViewModel));
-                Products.Add(new Product(2, 5, "Carlsberg", 48, 0, "ProductImages/Carlsberg.png", _colorGreen, _userViewModel));
-                Products.Add(new Product(2, 5, "Cola Zero", 48, 0, "ProductImages/ColaZero.png", _colorGreen, _userViewModel));
-                Products.Add(new Product(2, 5, "Cola", 48, 0, "ProductImages/Cola.png", _colorGreen, _userViewModel));
-                Products.Add(new Product(2, 5, "Mokai", 48, 0, "ProductImages/Mokai.png", _colorGreen, _userViewModel));
-                Products.Add(new Product(2, 5, "Mokai Jordbær Lime", 48, 0, "ProductImages/MokaiStrawberryLime.png", _colorGreen, _userViewModel));
-                Products.Add(new Product(2, 5, "Somersby Apple Cider", 48, 0, "ProductImages/SomersbyApple.png", _colorGreen, _userViewModel));
-                Products.Add(new Product(2, 5, "Somersby Pear Cider", 48, 0, "ProductImages/SomersbyPear.png", _colorGreen, _userViewModel));
-                Products.Add(new Product(2, 5, "Breezer", 48, 0, "ProductImages/Breezer.png", _colorGreen, _userViewModel));
-                Products.Add(new Product(2, 5, "Fanta", 48, 0, "ProductImages/Fanta.png", _colorGreen, _userViewModel));
-
+                Products = new ObservableCollection<Product>()
+                {
+                    new Product(2, 5, "Tuborg Classic", 48, 0, "ProductImages/TuborgClassic.png", _colorGreen, _userViewModel),
+                    new Product(2, 5, "Grøn Tuborg", 48, 0, "ProductImages/GrønTuborg.png", _colorGreen, _userViewModel),
+                    new Product(2, 5, "Tuborg Gylden Dame", 48, 0, "ProductImages/TuborgGuldDame.png", _colorGreen, _userViewModel),
+                    new Product(2, 5, "Carlsberg", 48, 0, "ProductImages/Carlsberg.png", _colorGreen, _userViewModel),
+                    new Product(2, 5, "Cola Zero", 48, 0, "ProductImages/ColaZero.png", _colorGreen, _userViewModel),
+                    new Product(2, 5, "Cola", 48, 0, "ProductImages/Cola.png", _colorGreen, _userViewModel),
+                    new Product(2, 5, "Mokai", 48, 0, "ProductImages/Mokai.png", _colorGreen, _userViewModel),
+                    new Product(2, 5, "Mokai Jordbær Lime", 48, 0, "ProductImages/MokaiStrawberryLime.png", _colorGreen, _userViewModel),
+                    new Product(2, 5, "Somersby Apple Cider", 48, 0, "ProductImages/SomersbyApple.png", _colorGreen, _userViewModel),
+                    new Product(2, 5, "Somersby Pear Cider", 48, 0, "ProductImages/SomersbyPear.png", _colorGreen, _userViewModel),
+                    new Product(2, 5, "Breezer", 48, 0, "ProductImages/Breezer.png", _colorGreen, _userViewModel),
+                    new Product(2, 5, "Fanta", 48, 0, "ProductImages/Fanta.png", _colorGreen, _userViewModel)
+                };
                 SaveAsync();
             }
             
         }
+
+        #endregion
 
         #region INotify
         public event PropertyChangedEventHandler PropertyChanged;

@@ -8,6 +8,8 @@ namespace FredagsCafeUWP.ViewModels
 {
     public class UserViewModel : INotifyPropertyChanged
     {
+        #region Field
+
         private string _selectedItem;
         private Stock _stock;
         private User _user;
@@ -36,6 +38,8 @@ namespace FredagsCafeUWP.ViewModels
         private RelayCommand _addOneToSaleCommand;
         private RelayCommand _removeeOneFromSaleCommand;
 
+        #endregion
+
         public UserViewModel()
         {
             _stock = new Stock(this);
@@ -54,9 +58,14 @@ namespace FredagsCafeUWP.ViewModels
             AddUserCommand = new RelayCommand(_administration.AddUser);
             RemoveUserCommand = new RelayCommand(_administration.RemoveUser);
 
-            CompelteSaleCommand = new RelayCommand(Sale.CompleteSale);
+            CompleteSaleCommand = new RelayCommand(Sale.CompleteSale);
+
+            AddOneToSaleCommand = new RelayCommand(_sale.AddOneFromToBeSold);
+            RemoveeOneFromSaleCommand = new RelayCommand(_sale.RemoveOneFromToBeSold);
         }
-      
+
+        #region Props
+
         public string SelectedItem
         {
             get => _selectedItem;
@@ -142,7 +151,7 @@ namespace FredagsCafeUWP.ViewModels
             set => _sale = value;
         }
 
-        public RelayCommand CompelteSaleCommand
+        public RelayCommand CompleteSaleCommand
         {
             get => _completeSaleCommand;
             set => _completeSaleCommand = value;
@@ -159,6 +168,20 @@ namespace FredagsCafeUWP.ViewModels
             get => _loadCommand;
             set => _loadCommand = value;
         }
+
+        public RelayCommand AddOneToSaleCommand
+        {
+            get { return _addOneToSaleCommand; }
+            set { _addOneToSaleCommand = value; }
+        }
+
+        public RelayCommand RemoveeOneFromSaleCommand
+        {
+            get { return _removeeOneFromSaleCommand; }
+            set { _removeeOneFromSaleCommand = value; }
+        }
+
+#endregion
 
         #endregion
 

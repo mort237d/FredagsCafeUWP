@@ -6,6 +6,8 @@ namespace FredagsCafeUWP
 {
     public class Receipt
     {
+        #region Fields
+
         private readonly DateTime _saleDateTime = DateTime.Now;
         private string _cvr = "000000-0000";
         private string _phoneNumber = "+45 0000 0000";
@@ -14,6 +16,8 @@ namespace FredagsCafeUWP
         private readonly string _note = "";
         private List<Product> _basket;
 
+        #endregion
+
         public Receipt(double subTotal, string note, int saleNumber, List<Product> basket)
         {
             SubTotal = subTotal;
@@ -21,6 +25,8 @@ namespace FredagsCafeUWP
             _saleNumber = saleNumber;
             _basket = basket;
         }
+
+        #region Props
 
         public List<Product> Basket
         {
@@ -48,6 +54,8 @@ namespace FredagsCafeUWP
                 _phoneNumber = phoneNumber;
             }
         }
+
+        #endregion
 
         public override string ToString()
         {

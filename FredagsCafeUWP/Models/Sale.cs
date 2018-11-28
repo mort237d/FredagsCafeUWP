@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using Windows.UI;
 using FredagsCafeUWP.Annotations;
@@ -11,6 +12,8 @@ namespace FredagsCafeUWP
 {
     public class Sale : INotifyPropertyChanged
     {
+        #region Field
+
         private ObservableCollection<Receipt> _receipts;
         private static List<Product> _basket;
 
@@ -22,6 +25,8 @@ namespace FredagsCafeUWP
         private Product _selectedProduct;
 
         private double _totalTb;
+
+        #endregion
         
 
         public Sale()
@@ -36,6 +41,8 @@ namespace FredagsCafeUWP
                 //new Receipt(3423, "Drugs and drugs", 0)
             };
         }
+
+        #region Props
 
         public ObservableCollection<Receipt> Receipts
         {
@@ -70,6 +77,10 @@ namespace FredagsCafeUWP
                 OnPropertyChanged();
             }
         }
+
+        #endregion
+
+        #region ButtonMethods
 
         public void AddOneFromToBeSold()
         {
@@ -163,6 +174,8 @@ namespace FredagsCafeUWP
             }
             else if (temp != -1) await _message.Error("Ingen vare tilføjet", "Tilføj venligst vare for at betale.");
         }
+
+        #endregion
 
         #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

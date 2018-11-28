@@ -7,9 +7,15 @@ namespace FredagsCafeUWP.Models
 {
     internal class Message
     {
+        #region Field
+
         private readonly Stock _stock;
         private readonly Administration _administration;
         private Sale _sale;
+
+        #endregion
+
+        #region Constructors
 
         public Message(Administration administration)
         {
@@ -23,6 +29,10 @@ namespace FredagsCafeUWP.Models
         {
             _sale = sale;
         }
+
+        #endregion
+
+        #region Methods
 
         public async Task Error(string title, string content)
         {
@@ -63,5 +73,7 @@ namespace FredagsCafeUWP.Models
                 Debug.WriteLine("No");
             }
         }
+
+        #endregion
     }
 }

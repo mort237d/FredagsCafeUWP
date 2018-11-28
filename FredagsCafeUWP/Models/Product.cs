@@ -23,6 +23,35 @@ namespace FredagsCafeUWP.Models
         private readonly UserViewModel _userViewModel;
         #endregion
 
+        #region Constructors
+
+        public Product(double buyingPrice, double sellingPrice, string name, int amount, int amountSold, string imageSource, Color foregroundColor, UserViewModel userViewModel)
+        {
+            BuyingPrice = buyingPrice;
+            SellingPrice = sellingPrice;
+            Name = name;
+            Amount = amount;
+            AmountSold = amountSold;
+            ImageSource = imageSource;
+            ForegroundColor = foregroundColor;
+
+            _userViewModel = userViewModel;
+        }
+
+        public Product(double buyingPrice, double sellingPrice, string name, int amountToBeSold)
+        {
+            BuyingPrice = buyingPrice;
+            SellingPrice = sellingPrice;
+            Name = name;
+            AmountToBeSold = amountToBeSold;
+        }
+        public Product()
+        {
+
+        }
+
+        #endregion
+
         #region Props
         public double BuyingPrice
         {
@@ -100,6 +129,7 @@ namespace FredagsCafeUWP.Models
                // userViewModel.Sale.TotalTB = TotalTBMethod();
             }
         }
+        #endregion
 
         public double TotalTbMethod()
         {
@@ -112,33 +142,6 @@ namespace FredagsCafeUWP.Models
                 }
             }
             return temp;
-        }
-
-        #endregion
-
-        public Product(double buyingPrice, double sellingPrice, string name, int amount, int amountSold, string imageSource, Color foregroundColor, UserViewModel userViewModel)
-        {
-            BuyingPrice = buyingPrice;
-            SellingPrice = sellingPrice;
-            Name = name;
-            Amount = amount;
-            AmountSold = amountSold;
-            ImageSource = imageSource;
-            ForegroundColor = foregroundColor;
-
-            _userViewModel = userViewModel;
-        }
-
-        public Product(double buyingPrice, double sellingPrice, string name, int amountToBeSold)
-        {
-            BuyingPrice = buyingPrice;
-            SellingPrice = sellingPrice;
-            Name = name;
-            AmountToBeSold = amountToBeSold;
-        }
-        public Product()
-        {
-            
         }
 
         #region INotify
