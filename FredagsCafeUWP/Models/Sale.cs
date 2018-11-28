@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using Windows.UI;
 using FredagsCafeUWP.Annotations;
 using FredagsCafeUWP.Models;
+using FredagsCafeUWP.ViewModels;
 
 namespace FredagsCafeUWP
 {
@@ -35,11 +36,34 @@ namespace FredagsCafeUWP
 
             Basket = new List<Product>();
 
-            Receipts = new ObservableCollection<Receipt>()
+            Receipts = new ObservableCollection<Receipt>();
+
+            LoadAsync();     
+        }
+
+        public async void SaveAsync()
+        {
+            Debug.WriteLine("Saving receipt async...");
+            await XmlReadWriteClass.SaveObjectToXml(Receipts, "receipt.xml");
+            Debug.WriteLine("receipts.count: " + Receipts.Count);
+        }
+        private async void LoadAsync()
+        {
+            try
             {
-                //new Receipt(424, "no note", 1),
-                //new Receipt(3423, "Drugs and drugs", 0)
-            };
+                Debug.WriteLine("loading receipt async...");
+                Receipts = await XmlReadWriteClass.ReadObjectFromXmlFileAsync<ObservableCollection<Receipt>>("receipt.xml");
+                Debug.WriteLine("receipts.count:" + Receipts.Count);
+            }
+            catch (Exception)
+            {
+                Receipts = new ObservableCollection<Receipt>()
+                {
+                    new Receipt(424, "no note", 1, Basket)
+                    //new Receipt(3423, "Drugs and drugs", 0)
+                };
+               SaveAsync();
+            }
         }
 
         #region Props
