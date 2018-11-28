@@ -185,6 +185,7 @@ namespace FredagsCafeUWP
                 Receipts.Insert(0, new Receipt(temp, "", Receipts.Count, Basket));
                 Basket.Clear();
                 Stock.SaveAsync();
+                SaveAsync();
 
                 foreach (var product in Stock.Products)
                 {
