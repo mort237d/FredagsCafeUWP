@@ -293,7 +293,7 @@
 
                 <StackPanel Orientation="Horizontal" Margin="80" >
                     <charting:Chart Width="700">
-                        <charting:ColumnSeries ItemsSource="{Binding Stock.Products}" IndependentValuePath="Name" DependentValuePath="Amount" />
+                        <charting:ColumnSeries ItemsSource="{Binding StatList.StatList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IndependentValuePath="ProfitType" DependentValuePath="TotalIncome" />
                     </charting:Chart>
                 </StackPanel>
             </PivotItem>

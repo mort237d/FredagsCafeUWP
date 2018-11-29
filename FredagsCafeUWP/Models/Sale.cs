@@ -23,6 +23,7 @@ namespace FredagsCafeUWP
         private readonly Message _message;
         private Stock _stock = new Stock();
         private Product _selectedProduct;
+        private StatListClass stsStatListClass = new StatListClass();
 
         private double _totalTb;
 
@@ -30,6 +31,7 @@ namespace FredagsCafeUWP
 
         public Sale()
         {
+            
             _message = new Message(this);
 
             Basket = new List<Product>();
@@ -75,6 +77,8 @@ namespace FredagsCafeUWP
             }
         }
 
+     
+
         #endregion
 
         #region ButtonMethods
@@ -103,7 +107,6 @@ namespace FredagsCafeUWP
             {
                 if (product.AmountToBeSold != 0)
                 {
-                    //Basket.Add(new Product(product.BuyingPrice,product.SellingPrice,product.Name,product.AmountToBeSold));
                     Basket.Add(product);
                 }
             }
@@ -154,6 +157,7 @@ namespace FredagsCafeUWP
             double temp = SubTotal();
             if (temp > 0)
             {
+                stsStatListClass.AddTotalSaleValue(temp);
                 AddItemsToBasket();
                 Receipts.Insert(0, new Receipt(temp, "", Receipts.Count, Basket));
                 Basket.Clear();

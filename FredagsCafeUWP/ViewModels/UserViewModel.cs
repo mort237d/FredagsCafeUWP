@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using FredagsCafeUWP.Annotations;
 using FredagsCafeUWP.Models;
@@ -17,9 +19,10 @@ namespace FredagsCafeUWP.ViewModels
         private Sale _sale = new Sale();
         private EventPage _eventPage = new EventPage();
         private Administration _administration = new Administration();
-
+        private Statistics _statistics;
         private RelayCommand _addProductCommand;
         private RelayCommand _removeProductCommand;
+
 
         private RelayCommand _addAmountCommand;
         private RelayCommand _removeAmountCommand;
@@ -38,6 +41,8 @@ namespace FredagsCafeUWP.ViewModels
 
         private RelayCommand _addOneToSaleCommand;
         private RelayCommand _removeOneFromSaleCommand;
+        private RelayCommand _removeeOneFromSaleCommand;
+        private StatListClass _statList = new StatListClass();
 
         private RelayCommand _addEventUserCommand;
         private RelayCommand _removeEventUserCommand;
@@ -47,12 +52,17 @@ namespace FredagsCafeUWP.ViewModels
 
         #endregion
 
+        
+
         public UserViewModel()
         {
-            Stock = new Stock(this);
+            _stock = new Stock(this);
+            
 
-            AddProductCommand = new RelayCommand(Stock.AddProductToObListAsync);
-            RemoveProductCommand = new RelayCommand(Stock.RemoveProductFromObList);
+            
+
+            AddProductCommand = new RelayCommand(_stock.AddProductToObListAsync);
+            RemoveProductCommand = new RelayCommand(_stock.RemoveProductFromObList);
 
             AddAmountCommand = new RelayCommand(Stock.AddAmountToProduct);
             RemoveAmountCommand = new RelayCommand(Stock.RemoveAmountFromProduct);
@@ -97,11 +107,19 @@ namespace FredagsCafeUWP.ViewModels
             set => _product = value;
         }
 
+
         public Administration Administration
         {
             get => _administration;
             set => _administration = value;
         }
+
+        public Statistics Statistics
+        {
+            get { return _statistics; }
+            set { _statistics = value; }
+        }
+
 
         #region RelayCommands
         public RelayCommand AddProductCommand
@@ -222,6 +240,12 @@ namespace FredagsCafeUWP.ViewModels
         {
             get { return _removeEventCommand; }
             set { _removeEventCommand = value; }
+        }
+
+        public StatListClass StatList
+        {
+            get { return _statList; }
+            set { _statList = value; }
         }
 
         #endregion
