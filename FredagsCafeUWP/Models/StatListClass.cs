@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -20,7 +21,7 @@ namespace FredagsCafeUWP
 
         public StatListClass()
         {
-            
+            LoadAsync();
         }
         #region Props
         public ObservableCollection<Statistics> StatList
@@ -46,6 +47,33 @@ namespace FredagsCafeUWP
             StatList.Add(new Statistics((totalSaleValue-totalBuyValue),"Profit"));
         }
 
+        #region save/load
+        public async void SaveAsync()
+        {
+            Debug.WriteLine("Saving stats async...");
+            await XmlReadWriteClass.SaveObjectToXml(StatList, "stats.xml");
+            Debug.WriteLine("stats.count: " + StatList.Count);
+        }
+        private async void LoadAsync()
+        {
+            try
+            {
+                Debug.WriteLine("loading stats async...");
+                StatList = await XmlReadWriteClass.ReadObjectFromXmlFileAsync<ObservableCollection<Statistics>>("stats.xml");
+                Debug.WriteLine("stats.count:" + StatList.Count);
+            }
+            catch (Exception)
+            {
+                StatList = new ObservableCollection<Statistics>();
+                SaveAsync();
+            }
+
+        }
+        #endregion
+
+
+
+        #region INotify
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -54,5 +82,9 @@ namespace FredagsCafeUWP
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        #endregion
+
+       
     }
 }
