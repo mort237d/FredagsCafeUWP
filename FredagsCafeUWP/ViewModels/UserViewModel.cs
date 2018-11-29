@@ -21,6 +21,7 @@ namespace FredagsCafeUWP.ViewModels
         private StatListClass _statList = new StatListClass();
         private LogOnLogOff _logOnLogOff = new LogOnLogOff();
         private AccountSettingsClass _accountSettingsClass = new AccountSettingsClass();
+        private Help _help = new Help();
 
         private RelayCommand _addProductCommand;
         private RelayCommand _removeProductCommand;
@@ -52,6 +53,8 @@ namespace FredagsCafeUWP.ViewModels
         private RelayCommand _calculateTotalPriceCommand;
 
         private RelayCommand _logOffCommand;
+
+        private RelayCommand _goToHelpPageCommand;
 
         //Todo Skal slettes igen senere
         private RelayCommand _clearStatListCommand;
@@ -94,6 +97,8 @@ namespace FredagsCafeUWP.ViewModels
             ClearStatListCommand = new RelayCommand(StatList.ClearStats);
 
             ChangeToAccountCommand = new RelayCommand(AccountSettingsClass.GoToAccountSettings);
+
+            GoToHelpPageCommand = new RelayCommand(Help.GoToHelpPage);
         }
 
         #region Props
@@ -292,6 +297,18 @@ namespace FredagsCafeUWP.ViewModels
         {
             get { return _changeToAccountCommand; }
             set { _changeToAccountCommand = value; }
+        }
+
+        public Help Help
+        {
+            get { return _help; }
+            set { _help = value; }
+        }
+
+        public RelayCommand GoToHelpPageCommand
+        {
+            get { return _goToHelpPageCommand; }
+            set { _goToHelpPageCommand = value; }
         }
 
         #endregion

@@ -30,7 +30,7 @@
             </CommandBar.SecondaryCommands>
 
             <AppBarSeparator/>
-            <AppBarButton Icon="Help" Label="Help"/>
+            <AppBarButton Icon="Help" Label="Help" Command="{Binding GoToHelpPageCommand}"/>
 
         </CommandBar>
         <!--#endregion-->

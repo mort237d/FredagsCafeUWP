@@ -99,6 +99,10 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Help.cs" />
+    <Compile Include="Models\HelpPage.xaml.cs">
+      <DependentUpon>HelpPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\LogOnLogOff.cs" />
     <Compile Include="Models\Statistics.cs" />
     <Compile Include="Models\StatListClass.cs" />
@@ -199,6 +203,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="accountSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Models\HelpPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
