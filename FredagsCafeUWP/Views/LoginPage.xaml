@@ -15,12 +15,12 @@
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <StackPanel Orientation="Horizontal" >
                 <StackPanel>
-                    <TextBox Margin="0,0,20,0" FontSize="25" Height="50" Width="300" PlaceholderText="Username" Text="{Binding UserName,Mode=TwoWay}"/>
-                    <PasswordBox Margin="0,0,20,0" FontSize="25" Height="50" Width="300" PlaceholderText="Password" PasswordChar="*" Password="{Binding PassWord,Mode=TwoWay}"/>
+                    <TextBox Margin="0,0,20,0" FontSize="25" Height="50" Width="300" PlaceholderText="Username" Text="{Binding LogOnLogOff.UserName,Mode=TwoWay}"/>
+                    <PasswordBox Margin="0,0,20,0" FontSize="25" Height="50" Width="300" PlaceholderText="Password" PasswordChar="*" Password="{Binding LogOnLogOff.PassWord,Mode=TwoWay}"/>
                 </StackPanel>
                 <Button Style="{StaticResource RoundedButtonStyle}" Content="Login" FontSize="25"  Width="100" Height="50" Command="{Binding LoginRelayCommand}"/>
             </StackPanel>
-            <TextBlock FontSize="18" FontWeight="Bold" Text="{Binding WrongLogin,Mode=TwoWay}" Foreground="Red"/>
+            <TextBlock FontSize="18" FontWeight="Bold" Text="{Binding LogOnLogOff.WrongLogin,Mode=TwoWay}" Foreground="Red"/>
         </StackPanel>
     </Grid>
 </Page>

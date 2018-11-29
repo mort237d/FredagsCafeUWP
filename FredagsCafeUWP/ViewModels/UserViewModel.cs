@@ -19,6 +19,7 @@ namespace FredagsCafeUWP.ViewModels
         private Administration _administration = new Administration();
         private Statistics _statistics;
         private StatListClass _statList = new StatListClass();
+        private  LogOnLogOff _logOnLogOff = new LogOnLogOff();
 
         private RelayCommand _addProductCommand;
         private RelayCommand _removeProductCommand;
@@ -49,6 +50,8 @@ namespace FredagsCafeUWP.ViewModels
         private RelayCommand _removeEventCommand;
 
         private RelayCommand _calculateTotalPriceCommand;
+
+        private RelayCommand _logOffCommand;
 
         #endregion
 
@@ -81,7 +84,7 @@ namespace FredagsCafeUWP.ViewModels
 
             CalculateTotalPriceCommand = new RelayCommand(Sale.TotalTbMethod);
 
-            logOffCommand = new RelayCommand(logONLogOff.logOffMethod);
+            LogOffCommand = new RelayCommand(LogOnLogOff.logOffMethod);
         }
 
         #region Props
@@ -249,6 +252,18 @@ namespace FredagsCafeUWP.ViewModels
         {
             get { return _calculateTotalPriceCommand; }
             set { _calculateTotalPriceCommand = value; }
+        }
+
+        public RelayCommand LogOffCommand
+        {
+            get { return _logOffCommand; }
+            set { _logOffCommand = value; }
+        }
+
+        public LogOnLogOff LogOnLogOff
+        {
+            get { return _logOnLogOff; }
+            set { _logOnLogOff = value; }
         }
 
         #endregion

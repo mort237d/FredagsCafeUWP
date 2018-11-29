@@ -26,7 +26,7 @@
 
             <CommandBar.SecondaryCommands>
                 <AppBarButton Label="Konto indstillinger"/>
-                <AppBarButton Label="Log af"/>
+                <AppBarButton Label="Log af" Command="{Binding LogOffCommand}"/>
             </CommandBar.SecondaryCommands>
 
             <AppBarSeparator/>

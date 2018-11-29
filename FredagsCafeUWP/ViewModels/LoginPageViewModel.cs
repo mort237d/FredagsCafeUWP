@@ -11,65 +11,26 @@ namespace FredagsCafeUWP
 {
     internal class LoginPageViewModel : INotifyPropertyChanged
     {
+
         #region Field
 
-        private string _wrongLogin;
-        private string _wrongLoginColor;
-        public string UserName { get; set; }
-        public string PassWord { get; set; }
+        LogOnLogOff _logOnLogOff = new LogOnLogOff();
+      
+       
         public RelayCommand LoginRelayCommand { get; set; }
-        
-        private readonly Administration _administration = new Administration();
+
+        public LogOnLogOff LogOnLogOff
+        {
+            get { return _logOnLogOff; }
+            set { _logOnLogOff = value; }
+        }
 
         #endregion
 
         public LoginPageViewModel()
         {
-            LoginRelayCommand = new RelayCommand(CheckLogin);
+            LoginRelayCommand = new RelayCommand(LogOnLogOff.CheckLogin);
         }
-
-        private void CheckLogin()
-        {
-
-            foreach (var user in _administration.Users)
-            {
-                if (user.UserName == UserName && user.Password == PassWord)
-                {
-                    Frame currentFrame = Window.Current.Content as Frame;
-                    currentFrame.Navigate(typeof(UserPage));
-                    break;
-                }
-                else
-                {
-                    WrongLogin = "Der er sku noget galt du";
-                }
-            }
-        }
-
-
-        #region Props
-        
-        public string WrongLogin
-        {
-            get => _wrongLogin;
-            set
-            {
-                _wrongLogin = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string WrongLoginColor
-        {
-            get => _wrongLoginColor;
-            set
-            {
-                _wrongLoginColor = value;
-                OnPropertyChanged();
-            }
-        }
-
-        #endregion
 
         #region INotify
 
