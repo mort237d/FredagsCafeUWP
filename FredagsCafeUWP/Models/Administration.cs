@@ -133,7 +133,8 @@ namespace FredagsCafeUWP.Models
         public async void AddUser()
         {
             //TODO add image
-            if (NameTb != null && GradeTb != null && EducationTb != null && EmailTb != null && TelephoneNumberTb != null && UserNameTb != null && PasswordTb != null)
+            if (NameTb != null && GradeTb != null && EducationTb != null && EmailTb != null &&
+                TelephoneNumberTb != null && UserNameTb != null && PasswordTb != null)
             {
                 if (EmailTb.Contains("@edu.easj.dk") || EmailTb.Contains("@easj.dk"))
                 {
@@ -141,13 +142,16 @@ namespace FredagsCafeUWP.Models
                     {
                         if (u.Email.Equals(EmailTb))
                         {
-                            await _message.Error("Email findes allerede", u.Email + " findes allerede til en anden bruger");
+                            await _message.Error("Email findes allerede",
+                                u.Email + " findes allerede til en anden bruger");
                             return;
                         }
                     }
+
                     if (PasswordTb == ConfirmPasswordTb)
                     {
-                        Users.Add(new User(NameTb, GradeTb, EducationTb, EmailTb, TelephoneNumberTb, UserNameTb, PasswordTb, _standardImage));
+                        Users.Add(new User(NameTb, GradeTb, EducationTb, EmailTb, TelephoneNumberTb, UserNameTb,
+                            PasswordTb, _standardImage));
 
                         NameTb = null;
                         GradeTb = null;
@@ -159,10 +163,15 @@ namespace FredagsCafeUWP.Models
                         ConfirmPasswordTb = null;
                         SaveAsync();
                     }
-                    else await _message.Error("Uoverensstemmelser", "Password stemmer ikke over ens med confirm password");
+                    else
+                        await _message.Error("Uoverensstemmelser",
+                            "Password stemmer ikke over ens med confirm password");
                 }
-                else await _message.Error("Forkert email", "Du skal bruge en \"@edu.easj.dk\" eller en \"@easj.dk\" mail.");
+                else
+                    await _message.Error("Forkert email",
+                        "Du skal bruge en \"@edu.easj.dk\" eller en \"@easj.dk\" mail.");
             }
+            else await _message.Error("Manglende input", "Tekstfelter mangler at blive udfyldt");
         }
 
         public async void RemoveUser()
