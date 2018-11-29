@@ -231,9 +231,8 @@ namespace FredagsCafeUWP.Models
             if (SelectedProduct != null)
             {
                 await _message.YesNo("Slet produkt", "Er du sikker på at du vil slette " + SelectedProduct.Name + "?");
-                SaveAsync();
             }
-            else await _message.Error("Intet produkt valg", "Vælg venligst et produkt");
+            else await _message.Error("Intet produkt valgt", "Vælg venligst et produkt.");
         }
 
         public async void AddAmountToProduct()

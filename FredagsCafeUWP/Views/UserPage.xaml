@@ -232,47 +232,27 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <ListView Header="Events:" ItemsSource="{Binding Stock.Products}">
+                    <ListView Header="Events:" ItemsSource="{Binding EventPage.Events}" SelectedItem="{Binding EventPage.SelectedEvent, Mode=TwoWay}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="{Binding ImageSource}" Width="100" Height="100"/>
-                                    <StackPanel Orientation="Vertical">
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal">
                                         <TextBlock FontWeight="Bold" Text="{Binding Name}"/>
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="kr."/>
-                                            <TextBlock Text="{Binding SellingPrice}" Margin="2,0,2,0"/>
-                                            <TextBlock Text=",-"/>
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal">
-                                            <Button Style="{StaticResource LeftRoundedButtonStyle}" Content="-"/>
-                                            <TextBox PlaceholderText="0" TextAlignment="Center" Text="{Binding AmountToBeSold, Mode=TwoWay}"/>
-                                            <Button Style="{StaticResource RightRoundedButtonStyle}" Content="+"/>
-                                        </StackPanel>
+                                        <TextBlock Text="{Binding Location}"/>
+                                        <TextBlock Text="{Binding MaxUsers}"/>
                                     </StackPanel>
+                                    <TextBlock Text="{Binding Description}"></TextBlock>
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
 
-                    <ListView Grid.Row="0" Grid.Column="1" Header="Deltagere:" ItemsSource="{Binding Stock.Products}">
+                    <ListView Grid.Row="0" Grid.Column="1" Header="Deltagere:" ItemsSource="{Binding EventPage.SelectedEvent.EventsUsers}" SelectedItem="{Binding EventPage.SelectedEventUser, Mode=TwoWay}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Image Source="{Binding ImageSource}" Width="100" Height="100"/>
-                                    <StackPanel Orientation="Vertical">
-                                        <TextBlock FontWeight="Bold" Text="{Binding Name}"/>
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="kr."/>
-                                            <TextBlock Text="{Binding SellingPrice}" Margin="2,0,2,0"/>
-                                            <TextBlock Text=",-"/>
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal">
-                                            <Button Style="{StaticResource LeftRoundedButtonStyle}" Content="-"/>
-                                            <TextBox PlaceholderText="0" TextAlignment="Center" Text="{Binding AmountToBeSold, Mode=TwoWay}"/>
-                                            <Button Style="{StaticResource RightRoundedButtonStyle}" Content="+"/>
-                                        </StackPanel>
-                                    </StackPanel>
+                                    <TextBlock FontWeight="Bold" Text="{Binding Name}"></TextBlock>
+                                    <TextBlock Text="{Binding Email}"></TextBlock>
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
@@ -280,22 +260,26 @@
 
                     <Rectangle Fill="#6CA0DC" Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="1" Margin="-20,0,-20,-10"/>
 
-                    <Button Style="{StaticResource RoundedButtonStyle}" Grid.Row="1" Grid.Column="0"
+                    <Button Command="{Binding RemoveEventCommand}" Style="{StaticResource RoundedButtonStyle}" Grid.Row="1" Grid.Column="0"
                             HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" Content="Fjern event"/>
 
                     <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
-                        <Button Style="{StaticResource RoundedButtonStyle}" VerticalAlignment="Bottom" Margin="0,0,10,10" Content="Fjern deltager"/>
-                        <Button Style="{StaticResource RoundedButtonStyle}" VerticalAlignment="Bottom" Margin="0,0,10,10" Content="Tilføj deltager"/>
+                        <Button Command="{Binding RemoveEventUserCommand}" Style="{StaticResource RoundedButtonStyle}" VerticalAlignment="Bottom" Margin="0,0,10,10" Content="Fjern deltager"/>
+                        <StackPanel VerticalAlignment="Bottom" Margin="0,0,10,10">
+                            <TextBox Margin="0,0,0,5" PlaceholderText="Navn"></TextBox>
+                            <TextBox Margin="0,0,0,5" PlaceholderText="Email"></TextBox>
+                            <Button Command="{Binding AddEventUserCommand}" Style="{StaticResource RoundedButtonStyle}" Content="Tilføj deltager"/>
+                        </StackPanel>
                     </StackPanel>
 
-                    <Button Style="{StaticResource RoundedButtonStyle}" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" Content="Tilføj event"/>
+                    <Button Command="{Binding AddEventCommand}" Style="{StaticResource RoundedButtonStyle}" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" Content="Tilføj event"/>
 
                     <StackPanel Grid.Row="0" Grid.Column="2">
                         <TextBlock Text="Opret nyt event"/>
                         <TextBox PlaceholderText="Navn"/>
                         <TextBox PlaceholderText="Placering"/>
-                        <TextBox PlaceholderText="Maks antal deltager"/>
                         <TextBox PlaceholderText="Beskrivelse"/>
+                        <TextBox PlaceholderText="Maks antal deltager"/>
                     </StackPanel>
                 </Grid>
             </PivotItem>

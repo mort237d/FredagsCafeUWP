@@ -12,6 +12,7 @@ namespace FredagsCafeUWP.Models
         private readonly Stock _stock;
         private readonly Administration _administration;
         private Sale _sale;
+        private EventPage _eventPage;
 
         #endregion
 
@@ -28,6 +29,11 @@ namespace FredagsCafeUWP.Models
         public Message(Sale sale)
         {
             _sale = sale;
+        }
+
+        public Message(EventPage eventPage)
+        {
+            _eventPage = eventPage;
         }
 
         #endregion
@@ -61,11 +67,25 @@ namespace FredagsCafeUWP.Models
             if (command == yesCommand)
             {
                 Debug.WriteLine("Yes");
-                if (title == "Slet produkt") _stock.Products.Remove(_stock.SelectedProduct);
+                if (title == "Slet produkt")
+                {
+                    _stock.Products.Remove(_stock.SelectedProduct);
+                    _stock.SaveAsync();
+                }
                 if (title == "Slet bruger")
                 {
                     _administration.Users.Remove(_administration.SelectedUser);
                     _administration.SaveAsync();
+                }
+                if (title == "Slet bruger af eventet")
+                {
+                    _eventPage.SelectedEvent.EventsUsers.Remove(_eventPage.SelectedEventUser);
+                    //_eventPage.SaveAsync();
+                }
+                if (title == "Slet event")
+                {
+                    _eventPage.Events.Remove(_eventPage.SelectedEvent);
+                    //_eventPage.SaveAsync();
                 }
             }
             else if (command == noCommand)

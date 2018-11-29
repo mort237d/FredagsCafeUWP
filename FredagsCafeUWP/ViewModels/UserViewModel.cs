@@ -15,6 +15,7 @@ namespace FredagsCafeUWP.ViewModels
         private User _user;
         private Product _product;
         private Sale _sale = new Sale();
+        private EventPage _eventPage = new EventPage();
         private Administration _administration = new Administration();
 
         private RelayCommand _addProductCommand;
@@ -36,32 +37,44 @@ namespace FredagsCafeUWP.ViewModels
         private RelayCommand _completeSaleCommand;
 
         private RelayCommand _addOneToSaleCommand;
-        private RelayCommand _removeeOneFromSaleCommand;
+        private RelayCommand _removeOneFromSaleCommand;
+
+        private RelayCommand _addEventUserCommand;
+        private RelayCommand _removeEventUserCommand;
+
+        private RelayCommand _addEventCommand;
+        private RelayCommand _removeEventCommand;
 
         #endregion
 
         public UserViewModel()
         {
-            _stock = new Stock(this);
+            Stock = new Stock(this);
 
-            AddProductCommand = new RelayCommand(_stock.AddProductToObListAsync);
-            RemoveProductCommand = new RelayCommand(_stock.RemoveProductFromObList);
+            AddProductCommand = new RelayCommand(Stock.AddProductToObListAsync);
+            RemoveProductCommand = new RelayCommand(Stock.RemoveProductFromObList);
 
-            AddAmountCommand = new RelayCommand(_stock.AddAmountToProduct);
-            RemoveAmountCommand = new RelayCommand(_stock.RemoveAmountFromProduct);
+            AddAmountCommand = new RelayCommand(Stock.AddAmountToProduct);
+            RemoveAmountCommand = new RelayCommand(Stock.RemoveAmountFromProduct);
 
-            BrowseImageCommand = new RelayCommand(_stock.BrowseImageButton);
+            BrowseImageCommand = new RelayCommand(Stock.BrowseImageButton);
 
-            ChangeProductSellPriceCommand = new RelayCommand(_stock.ChangeProductSellPrice);
-            ChangeProductBuyPriceCommand = new RelayCommand(_stock.ChangeProductBuyPrice);
+            ChangeProductSellPriceCommand = new RelayCommand(Stock.ChangeProductSellPrice);
+            ChangeProductBuyPriceCommand = new RelayCommand(Stock.ChangeProductBuyPrice);
 
-            AddUserCommand = new RelayCommand(_administration.AddUser);
-            RemoveUserCommand = new RelayCommand(_administration.RemoveUser);
+            AddUserCommand = new RelayCommand(Administration.AddUser);
+            RemoveUserCommand = new RelayCommand(Administration.RemoveUser);
 
             CompleteSaleCommand = new RelayCommand(Sale.CompleteSale);
 
-            AddOneToSaleCommand = new RelayCommand(_sale.AddOneFromToBeSold);
-            RemoveeOneFromSaleCommand = new RelayCommand(_sale.RemoveOneFromToBeSold);
+            AddOneToSaleCommand = new RelayCommand(Sale.AddOneFromToBeSold);
+            RemoveOneFromSaleCommand = new RelayCommand(Sale.RemoveOneFromToBeSold);
+
+            AddEventUserCommand = new RelayCommand(EventPage.AddUser);
+            RemoveEventUserCommand = new RelayCommand(EventPage.RemoveUser);
+
+            AddEventCommand = new RelayCommand(EventPage.AddEvent);
+            RemoveEventCommand = new RelayCommand(EventPage.RemoveEvent);
         }
 
         #region Props
@@ -175,13 +188,43 @@ namespace FredagsCafeUWP.ViewModels
             set { _addOneToSaleCommand = value; }
         }
 
-        public RelayCommand RemoveeOneFromSaleCommand
+        public RelayCommand RemoveOneFromSaleCommand
         {
-            get { return _removeeOneFromSaleCommand; }
-            set { _removeeOneFromSaleCommand = value; }
+            get { return _removeOneFromSaleCommand; }
+            set { _removeOneFromSaleCommand = value; }
         }
 
-#endregion
+        public EventPage EventPage
+        {
+            get { return _eventPage; }
+            set { _eventPage = value; }
+        }
+
+        public RelayCommand RemoveEventUserCommand
+        {
+            get { return _removeEventUserCommand; }
+            set { _removeEventUserCommand = value; }
+        }
+
+        public RelayCommand AddEventUserCommand
+        {
+            get { return _addEventUserCommand; }
+            set { _addEventUserCommand = value; }
+        }
+
+        public RelayCommand AddEventCommand
+        {
+            get { return _addEventCommand; }
+            set { _addEventCommand = value; }
+        }
+
+        public RelayCommand RemoveEventCommand
+        {
+            get { return _removeEventCommand; }
+            set { _removeEventCommand = value; }
+        }
+
+        #endregion
 
         #endregion
 

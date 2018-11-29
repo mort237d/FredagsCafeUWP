@@ -7,7 +7,6 @@ using System.Runtime.CompilerServices;
 using Windows.UI;
 using FredagsCafeUWP.Annotations;
 using FredagsCafeUWP.Models;
-using FredagsCafeUWP.ViewModels;
 
 namespace FredagsCafeUWP
 {
