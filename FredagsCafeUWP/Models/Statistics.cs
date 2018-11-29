@@ -28,5 +28,10 @@ namespace FredagsCafeUWP.Models
             get { return profitType; }
             set { profitType = value; }
         }
+
+        public Statistics()
+        {
+            
+        }
     }
 }
