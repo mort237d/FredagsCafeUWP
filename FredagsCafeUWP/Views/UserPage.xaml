@@ -25,7 +25,7 @@
         <CommandBar Background="#6CA0DC">
 
             <CommandBar.SecondaryCommands>
-                <AppBarButton Label="Konto indstillinger"/>
+                <AppBarButton Label="Konto indstillinger" Command="{Binding ChangeToAccountCommand}"/>
                 <AppBarButton Label="Log af" Command="{Binding LogOffCommand}"/>
             </CommandBar.SecondaryCommands>
 
