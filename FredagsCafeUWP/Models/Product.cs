@@ -15,17 +15,15 @@ namespace FredagsCafeUWP.Models
         private int _amount;
         private int _amountSold;
         private string _imageSource;
-        private Color _foregroundColor;
+
+        private string _foregroundColor;
         private int _amountToBeSold = 1;
-
-        
-
-        private UserViewModel _userViewModel;
         #endregion
 
         #region Constructors
 
-        public Product(double buyingPrice, double sellingPrice, string name, int amount, int amountSold, string imageSource, Color foregroundColor, UserViewModel userViewModel)
+
+        public Product(double buyingPrice, double sellingPrice, string name, int amount, int amountSold, string imageSource, string foregroundColor)
         {
             BuyingPrice = buyingPrice;
             SellingPrice = sellingPrice;
@@ -34,17 +32,8 @@ namespace FredagsCafeUWP.Models
             AmountSold = amountSold;
             ImageSource = imageSource;
             ForegroundColor = foregroundColor;
-
-            _userViewModel = userViewModel;
         }
 
-        public Product(double buyingPrice, double sellingPrice, string name, int amountToBeSold)
-        {
-            BuyingPrice = buyingPrice;
-            SellingPrice = sellingPrice;
-            Name = name;
-            AmountToBeSold = amountToBeSold;
-        }
         public Product()
         {
 
@@ -109,7 +98,7 @@ namespace FredagsCafeUWP.Models
             set => _imageSource = value;
         }
 
-        public Color ForegroundColor
+        public string ForegroundColor
         {
             get => _foregroundColor;
             set
@@ -126,24 +115,9 @@ namespace FredagsCafeUWP.Models
             {
                 _amountToBeSold = value;
                 OnPropertyChanged();
-                if(_userViewModel != null)
-                    _userViewModel.Sale.TotalTb = TotalTbMethod();
             }
         }
         #endregion
-
-        public double TotalTbMethod()
-        {
-            double temp = 0;
-            foreach (var product in _userViewModel.Stock.Products)
-            {
-                if (product.AmountToBeSold != 0)
-                {
-                    temp += product.AmountToBeSold * product.SellingPrice;
-                }
-            }
-            return temp;
-        }
 
         #region INotify
 

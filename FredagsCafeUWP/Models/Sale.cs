@@ -17,8 +17,8 @@ namespace FredagsCafeUWP
         private ObservableCollection<Receipt> _receipts;
         private static List<Product> _basket;
 
-        private readonly Color _colorRed = Colors.Red;
-        private readonly Color _colorGreen = Colors.ForestGreen;
+        private readonly string _colorRed = "Red";
+        private readonly string _colorGreen = "ForestGreen";
 
         private readonly Message _message;
         private Stock _stock = new Stock();
@@ -114,6 +114,7 @@ namespace FredagsCafeUWP
             }
         }
 
+
         public double SubTotal()
         {
             double subTotal = 0;
@@ -163,6 +164,7 @@ namespace FredagsCafeUWP
                 AddItemsToBasket();
                 Receipts.Insert(0, new Receipt(temp, "", Receipts.Count, Basket));
                 Basket.Clear();
+                TotalTb = 0;
                 Stock.SaveAsync();
                 SaveAsync();
                 _statListClass.SaveAsync();
@@ -181,6 +183,19 @@ namespace FredagsCafeUWP
                 if (productAmountLow != null) await _message.Error("Lavt lager", "Der er lavt lager af:\n" + productAmountLow);
             }
             else if (temp != -1) await _message.Error("Ingen vare tilføjet", "Tilføj venligst vare for at betale.");
+        }
+
+        public void TotalTbMethod()
+        {
+            double temp = 0;
+            foreach (var product in Stock.Products)
+            {
+                if (product.AmountToBeSold != 0)
+                {
+                    temp += product.AmountToBeSold * product.SellingPrice;
+                }
+            }
+            TotalTb = temp;
         }
 
         #endregion
