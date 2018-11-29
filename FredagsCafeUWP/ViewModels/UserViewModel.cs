@@ -76,6 +76,8 @@ namespace FredagsCafeUWP.ViewModels
 
             AddEventCommand = new RelayCommand(EventPage.AddEvent);
             RemoveEventCommand = new RelayCommand(EventPage.RemoveEvent);
+
+            logOffCommand = new RelayCommand(logONLogOff.logOffMethod);
         }
 
         #region Props
@@ -202,7 +204,6 @@ namespace FredagsCafeUWP.ViewModels
             get { return _removeOneFromSaleCommand; }
             set { _removeOneFromSaleCommand = value; }
         }
-
         public EventPage EventPage
         {
             get { return _eventPage; }
