@@ -11,15 +11,17 @@ namespace FredagsCafeUWP
 {
     internal class LoginPageViewModel : INotifyPropertyChanged
     {
+        #region Field
+
         private string _wrongLogin;
         private string _wrongLoginColor;
         public string UserName { get; set; }
         public string PassWord { get; set; }
         public RelayCommand LoginRelayCommand { get; set; }
-
-
+        
         private readonly Administration _administration = new Administration();
-        private ObservableCollection<User> _users = new ObservableCollection<User>();
+
+        #endregion
 
         public LoginPageViewModel()
         {
@@ -45,12 +47,8 @@ namespace FredagsCafeUWP
         }
 
 
-        public ObservableCollection<User> Users
-        {
-            get => _users;
-            set => _users = value;
-        }
-
+        #region Props
+        
         public string WrongLogin
         {
             get => _wrongLogin;
@@ -70,6 +68,8 @@ namespace FredagsCafeUWP
                 OnPropertyChanged();
             }
         }
+
+        #endregion
 
         #region INotify
 

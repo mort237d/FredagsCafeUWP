@@ -49,25 +49,12 @@ namespace FredagsCafeUWP.Models
 
         #endregion
 
-        #region Constructors
-
-        public Stock(UserViewModel userViewModel)
-        {
-            _message = new Message(this);
-
-            _userViewModel = userViewModel;
-
-            LoadAsync();
-        }
-
         public Stock()
         {
             _message = new Message(this);
 
             LoadAsync();
         }
-
-        #endregion
 
         #region Properties
         public ObservableCollection<Product> Products
