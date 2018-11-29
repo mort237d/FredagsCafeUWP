@@ -1,5 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using FredagsCafeUWP.Annotations;
 
@@ -32,6 +34,26 @@ namespace FredagsCafeUWP.Models
 
             EventsUsers = eventUsers;
         }
+
+        public Event()
+        {
+            
+        }
+
+        #region save/load
+        //public async void SaveAsync()
+        //{
+        //    Debug.WriteLine("Saving eventsUser async...");
+        //    await XmlReadWriteClass.SaveObjectToXml(EventsUsers, "eventsUser.xml");
+        //    Debug.WriteLine("eventsUser.count: " +EventsUsers.Count);
+        //}
+        //private async void LoadAsync()
+        //{
+        //    Debug.WriteLine("loading list async...");
+        //    EventsUsers = await XmlReadWriteClass.ReadObjectFromXmlFileAsync<ObservableCollection<EventUser>>("eventsUser.xml");
+        //    Debug.WriteLine("eventsUser.count:" + EventsUsers.Count);
+        //}
+        #endregion
 
         #region INotify
 

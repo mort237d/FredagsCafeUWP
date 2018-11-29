@@ -28,6 +28,11 @@ namespace FredagsCafeUWP.Models
             Email = email;
         }
 
+        public EventUser()
+        {
+            
+        }
+
         #region INotify
         public event PropertyChangedEventHandler PropertyChanged;
 
