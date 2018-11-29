@@ -18,6 +18,7 @@ namespace FredagsCafeUWP.ViewModels
         private EventPage _eventPage = new EventPage();
         private Administration _administration = new Administration();
         private Statistics _statistics;
+        private StatListClass _statList = new StatListClass();
 
         private RelayCommand _addProductCommand;
         private RelayCommand _removeProductCommand;
@@ -40,7 +41,6 @@ namespace FredagsCafeUWP.ViewModels
 
         private RelayCommand _addOneToSaleCommand;
         private RelayCommand _removeOneFromSaleCommand;
-        private StatListClass _statList = new StatListClass();
 
         private RelayCommand _addEventUserCommand;
         private RelayCommand _removeEventUserCommand;
