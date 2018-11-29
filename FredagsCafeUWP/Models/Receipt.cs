@@ -15,7 +15,7 @@ namespace FredagsCafeUWP
         private string _saleDateTime = DateTime.Now.ToString();
         private string _cvr = "000000-0000";
         private string _phoneNumber = "+45 0000 0000";
-        private readonly int _saleNumber;
+        private int _saleNumber;
         private double _subTotal;
         private List<Product> _basket;
 
@@ -24,7 +24,7 @@ namespace FredagsCafeUWP
         public Receipt(double subTotal, int saleNumber, List<Product> basket)
         {
             SubTotal = subTotal;
-            _saleNumber = saleNumber;
+            SaleNumber = saleNumber;
             _basket = basket;
         }
 
@@ -47,6 +47,12 @@ namespace FredagsCafeUWP
             set => _subTotal = value;
         }
 
+        public int SaleNumber
+        {
+            get { return _saleNumber; }
+            set { _saleNumber = value; }
+        }
+
         public void ChangeCvr(string newCvr)
         {
             if (newCvr != null && newCvr != "")
@@ -66,7 +72,7 @@ namespace FredagsCafeUWP
 
         public override string ToString()
         {
-            return "Salgs tid:   " + _saleDateTime + "\nTotal: " + _subTotal + "\nSalgs nummer: " + _saleNumber + "\n";
+            return "Salgs tid:   " + _saleDateTime + "\nTotal: " + _subTotal + "\nSalgs nummer: " + SaleNumber + "\n";
         }
 
         #region Inotify

@@ -191,7 +191,8 @@ namespace FredagsCafeUWP
             {
                 _statListClass.AddTotalSaleValue(temp, buyTemp);
                 AddItemsToBasket();
-                Receipts.Insert(0, new Receipt(temp, Receipts.Count, Basket));
+                int count = Receipts.Count;
+                Receipts.Insert(0, new Receipt(temp, count, Basket));
                 Basket.Clear();
                 TotalTb = _noItems;
                 Stock.SaveAsync();
