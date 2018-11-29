@@ -28,7 +28,6 @@ namespace FredagsCafeUWP
         private double _totalTb;
 
         #endregion
-        
 
         public Sale()
         {
@@ -37,11 +36,9 @@ namespace FredagsCafeUWP
 
             Basket = new List<Product>();
 
-            Receipts = new ObservableCollection<Receipt>()
-            {
-                //new Receipt(424, "no note", 1),
-                //new Receipt(3423, "Drugs and drugs", 0)
-            };
+            Receipts = new ObservableCollection<Receipt>();
+
+            LoadAsync();     
         }
 
         #region Props
@@ -110,7 +107,6 @@ namespace FredagsCafeUWP
             {
                 if (product.AmountToBeSold != 0)
                 {
-                    //Basket.Add(new Product(product.BuyingPrice,product.SellingPrice,product.Name,product.AmountToBeSold));
                     Basket.Add(product);
                 }
             }
@@ -166,7 +162,7 @@ namespace FredagsCafeUWP
                 Receipts.Insert(0, new Receipt(temp, "", Receipts.Count, Basket));
                 Basket.Clear();
                 Stock.SaveAsync();
-                
+                SaveAsync();
 
                 foreach (var product in Stock.Products)
                 {
@@ -181,6 +177,35 @@ namespace FredagsCafeUWP
                 if (productAmountLow != null) await _message.Error("Lavt lager", "Der er lavt lager af:\n" + productAmountLow);
             }
             else if (temp != -1) await _message.Error("Ingen vare tilføjet", "Tilføj venligst vare for at betale.");
+        }
+
+        #endregion
+
+        #region Save/Load
+
+        public async void SaveAsync()
+        {
+            Debug.WriteLine("Saving receipt async...");
+            await XmlReadWriteClass.SaveObjectToXml(Receipts, "receipt.xml");
+            Debug.WriteLine("receipts.count: " + Receipts.Count);
+        }
+        private async void LoadAsync()
+        {
+            try
+            {
+                Debug.WriteLine("loading receipt async...");
+                Receipts = await XmlReadWriteClass.ReadObjectFromXmlFileAsync<ObservableCollection<Receipt>>("receipt.xml");
+                Debug.WriteLine("receipts.count:" + Receipts.Count);
+            }
+            catch (Exception)
+            {
+                Receipts = new ObservableCollection<Receipt>()
+                {
+                    new Receipt(424, "no note", 1, Basket)
+                    //new Receipt(3423, "Drugs and drugs", 0)
+                };
+                SaveAsync();
+            }
         }
 
         #endregion

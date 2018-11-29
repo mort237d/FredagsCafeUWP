@@ -97,6 +97,9 @@
     </Compile>
     <Compile Include="Models\Statistics.cs" />
     <Compile Include="Models\StatListClass.cs" />
+    <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\EventPage.cs" />
+    <Compile Include="Models\EventUser.cs" />
     <Compile Include="Views\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
