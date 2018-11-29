@@ -294,9 +294,12 @@
             <PivotItem Header="Statistik">
 
                 <StackPanel Orientation="Horizontal" Margin="80" >
-                    <charting:Chart Width="700">
-                        <charting:ColumnSeries ItemsSource="{Binding StatList.StatList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IndependentValuePath="ProfitType" DependentValuePath="TotalIncome" />
+
+                    <charting:Chart x:Name="ProfitStat" Width="700" >
+                        <charting:ColumnSeries  Title="Salg Statistik" ItemsSource="{Binding StatList.StatList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IndependentValuePath="ProfitType" DependentValuePath="TotalIncome"/>
+                          
                     </charting:Chart>
+                    <Button Command="{Binding ClearStatListCommand}"/>
                 </StackPanel>
             </PivotItem>
             <!--#endregion-->

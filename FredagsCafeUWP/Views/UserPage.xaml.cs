@@ -1,11 +1,16 @@
-﻿using Windows.UI;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Controls;
+using FredagsCafeUWP.Models;
+using WinRTXamlToolkit.Controls.DataVisualization.Charting;
 
 namespace FredagsCafeUWP
 {
     public sealed partial class UserPage : Page
     {
+        
         public UserPage()
         {
             InitializeComponent();
@@ -18,6 +23,8 @@ namespace FredagsCafeUWP
             titleBar.ButtonBackgroundColor = Color.FromArgb(1, 108, 160, 220);
 
             #endregion
+
+            
         }
     }
 }
