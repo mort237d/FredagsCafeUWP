@@ -51,19 +51,23 @@ namespace FredagsCafeUWP
 
         public void CheckLogin()
         {
-
+            bool temp = false;
             foreach (var user in _administration.Users)
             {
                 if (user.UserName == UserName && user.Password == PassWord)
                 {
-                    Frame currentFrame = Window.Current.Content as Frame;
-                    currentFrame.Navigate(typeof(UserPage));
+                    temp = true;
                     break;
                 }
-                else
-                {
-                    WrongLogin = "Der er sku noget galt du";
-                }
+            }
+            if (temp)
+            {
+                Frame currentFrame = Window.Current.Content as Frame;
+                currentFrame.Navigate(typeof(UserPage));
+            }
+            else
+            {
+                WrongLogin = "Der er sku noget galt du";
             }
         }
 

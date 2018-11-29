@@ -152,17 +152,45 @@ namespace FredagsCafeUWP
                 return -1;
             }
             return Math.Round(subTotal);
-            
+        }
+        public double BuyingTotal()
+        {
+            double buyTotal = 0;
+            bool isNotInstuck = false;
+            string productsNotInStuck = null;
+
+            foreach (var product in Stock.Products)
+            {
+                if (product.AmountToBeSold > product.Amount)
+                {
+                    isNotInstuck = true;
+                    break;
+                }
+            }
+            if (!isNotInstuck)
+            {
+                foreach (var product in Stock.Products)
+                {
+                    if (product.AmountToBeSold > 0)
+                    {
+                        for (int i = product.AmountToBeSold; i > 0; i--)
+                            buyTotal += product.BuyingPrice;
+                    }
+                }
+            }
+            else return -1;
+            return Math.Round(buyTotal);
         }
 
         public async void CompleteSale()
         {
             string productAmountLow = null;
 
+            double buyTemp = BuyingTotal();
             double temp = SubTotal();
             if (temp > 0)
             {
-                stsStatListClass.AddTotalSaleValue(temp);
+                stsStatListClass.AddTotalSaleValue(temp,buyTemp);
                 AddItemsToBasket();
                 Receipts.Insert(0, new Receipt(temp, "", Receipts.Count, Basket));
                 Basket.Clear();
