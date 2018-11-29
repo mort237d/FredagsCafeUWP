@@ -18,6 +18,7 @@ namespace FredagsCafeUWP.ViewModels
         private EventPage _eventPage = new EventPage();
         private Administration _administration = new Administration();
         private Statistics _statistics;
+
         private RelayCommand _addProductCommand;
         private RelayCommand _removeProductCommand;
 
@@ -39,7 +40,6 @@ namespace FredagsCafeUWP.ViewModels
 
         private RelayCommand _addOneToSaleCommand;
         private RelayCommand _removeOneFromSaleCommand;
-        private RelayCommand _removeeOneFromSaleCommand;
         private StatListClass _statList = new StatListClass();
 
         private RelayCommand _addEventUserCommand;
@@ -48,8 +48,10 @@ namespace FredagsCafeUWP.ViewModels
         private RelayCommand _addEventCommand;
         private RelayCommand _removeEventCommand;
 
+        private RelayCommand _calculateTotalPriceCommand;
+
         #endregion
-        
+
         public UserViewModel()
         {
             AddProductCommand = new RelayCommand(_stock.AddProductToObListAsync);
@@ -76,6 +78,8 @@ namespace FredagsCafeUWP.ViewModels
 
             AddEventCommand = new RelayCommand(EventPage.AddEvent);
             RemoveEventCommand = new RelayCommand(EventPage.RemoveEvent);
+
+            CalculateTotalPriceCommand = new RelayCommand(Sale.TotalTbMethod);
         }
 
         #region Props
@@ -237,6 +241,12 @@ namespace FredagsCafeUWP.ViewModels
         {
             get { return _statList; }
             set { _statList = value; }
+        }
+
+        public RelayCommand CalculateTotalPriceCommand
+        {
+            get { return _calculateTotalPriceCommand; }
+            set { _calculateTotalPriceCommand = value; }
         }
 
         #endregion

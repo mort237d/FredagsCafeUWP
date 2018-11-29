@@ -112,6 +112,7 @@ namespace FredagsCafeUWP
             }
         }
 
+
         public double SubTotal()
         {
             double subTotal = 0;
@@ -161,6 +162,7 @@ namespace FredagsCafeUWP
                 AddItemsToBasket();
                 Receipts.Insert(0, new Receipt(temp, "", Receipts.Count, Basket));
                 Basket.Clear();
+                TotalTb = 0;
                 Stock.SaveAsync();
                 SaveAsync();
 
@@ -177,6 +179,19 @@ namespace FredagsCafeUWP
                 if (productAmountLow != null) await _message.Error("Lavt lager", "Der er lavt lager af:\n" + productAmountLow);
             }
             else if (temp != -1) await _message.Error("Ingen vare tilføjet", "Tilføj venligst vare for at betale.");
+        }
+
+        public void TotalTbMethod()
+        {
+            double temp = 0;
+            foreach (var product in Stock.Products)
+            {
+                if (product.AmountToBeSold != 0)
+                {
+                    temp += product.AmountToBeSold * product.SellingPrice;
+                }
+            }
+            TotalTb = temp;
         }
 
         #endregion
