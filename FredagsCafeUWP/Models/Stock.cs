@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Pickers;
@@ -41,6 +42,8 @@ namespace FredagsCafeUWP.Models
         private string _productAmountTb;
 
         private string _productPriceChangeTb;
+
+        private int _selectionStart;
 
         #endregion
 
@@ -153,7 +156,32 @@ namespace FredagsCafeUWP.Models
             get => _productPriceChangeTb;
             set
             {
-                _productPriceChangeTb = value; 
+                _productPriceChangeTb = value; //TODO opdater når det ikke er tal...
+                //if (!Regex.IsMatch(_productPriceChangeTb, "^\\d*\\.?\\d*$") && _productPriceChangeTb != "")
+                //{
+                //    int pos = _selectionStart - 1;
+                //    _productPriceChangeTb = _productPriceChangeTb.Remove(pos);//Remove(pos, 1);
+                //    _selectionStart = pos;
+                //}
+
+                //double dtemp;
+                //if (!double.TryParse(value, out dtemp) && value != "")
+                //{
+                //    int pos = _selectionStart - 1;
+                //    _productPriceChangeTb = value.Remove(pos);
+                //    _selectionStart = pos;
+                //    Debug.WriteLine(_productPriceChangeTb);
+                //}
+                OnPropertyChanged();
+            }
+        }
+
+        public int SelectionStart
+        {
+            get { return _selectionStart; }
+            set
+            {
+                _selectionStart = value;
                 OnPropertyChanged();
             }
         }

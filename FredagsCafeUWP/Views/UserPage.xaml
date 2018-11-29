@@ -151,7 +151,7 @@
                         </StackPanel>
 
                         <StackPanel VerticalAlignment="Bottom" Margin="10,0,0,0" HorizontalAlignment="Center">
-                            <TextBox Width="280" PlaceholderText="Change Price" Text="{Binding Stock.ProductPriceChangeTb, Mode=TwoWay}" Margin="0,0,0,0"/>
+                            <TextBox SelectionStart="{Binding Stock.SelectionStart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="280" PlaceholderText="Change Price" Text="{Binding Stock.ProductPriceChangeTb, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,0"/>
                             <StackPanel Orientation="Horizontal">
                                 <Button Content="Change sell price" Command="{Binding ChangeProductSellPriceCommand}" Width="140"/>
                                 <Button Content="Change buy price" Command="{Binding ChangeProductBuyPriceCommand}" Margin="0,0,0,0" Width="140"/>
