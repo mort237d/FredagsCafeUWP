@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using FredagsCafeUWP.Annotations;
 using FredagsCafeUWP.Models;
@@ -13,7 +11,7 @@ namespace FredagsCafeUWP.ViewModels
         #region Field
 
         private string _selectedItem;
-        private Stock _stock;
+        private Stock _stock = new Stock();
         private User _user;
         private Product _product;
         private Sale _sale = new Sale();
@@ -51,16 +49,9 @@ namespace FredagsCafeUWP.ViewModels
         private RelayCommand _removeEventCommand;
 
         #endregion
-
         
-
         public UserViewModel()
         {
-            _stock = new Stock(this);
-            
-
-            
-
             AddProductCommand = new RelayCommand(_stock.AddProductToObListAsync);
             RemoveProductCommand = new RelayCommand(_stock.RemoveProductFromObList);
 
