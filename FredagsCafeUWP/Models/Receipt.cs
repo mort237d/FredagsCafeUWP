@@ -11,20 +11,19 @@ namespace FredagsCafeUWP
     {
         #region Fields
 
-        private readonly DateTime _saleDateTime = DateTime.Now;
+        //private readonly DateTime _saleDateTime = DateTime.Now;
+        private string _saleDateTime = DateTime.Now.ToString();
         private string _cvr = "000000-0000";
         private string _phoneNumber = "+45 0000 0000";
         private readonly int _saleNumber;
         private double _subTotal;
-        private readonly string _note = "";
         private List<Product> _basket;
 
         #endregion
 
-        public Receipt(double subTotal, string note, int saleNumber, List<Product> basket)
+        public Receipt(double subTotal, int saleNumber, List<Product> basket)
         {
             SubTotal = subTotal;
-            _note = note;
             _saleNumber = saleNumber;
             _basket = basket;
         }
@@ -67,7 +66,7 @@ namespace FredagsCafeUWP
 
         public override string ToString()
         {
-            return "Salgs tid:   " + _saleDateTime + "\nVirksomheds CVR " + _cvr + "\nTotal: " + _subTotal + "\nVirksomheds nummer" + _phoneNumber + "\nSalgs nummer: " + _saleNumber + "\nNote: " + _note + "\n";
+            return "Salgs tid:   " + _saleDateTime + "\nTotal: " + _subTotal + "\nSalgs nummer: " + _saleNumber + "\n";
         }
 
         #region Inotify

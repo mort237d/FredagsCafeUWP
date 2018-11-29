@@ -23,7 +23,6 @@ namespace FredagsCafeUWP
         private readonly Message _message;
         private Stock _stock = new Stock();
         private Product _selectedProduct;
-        private StatListClass stsStatListClass = new StatListClass();
 
         private double _totalTb;
 
@@ -162,9 +161,9 @@ namespace FredagsCafeUWP
             double temp = SubTotal();
             if (temp > 0)
             {
-                stsStatListClass.AddTotalSaleValue(temp);
+                _statListClass.AddTotalSaleValue(temp);
                 AddItemsToBasket();
-                Receipts.Insert(0, new Receipt(temp, "", Receipts.Count, Basket));
+                Receipts.Insert(0, new Receipt(temp, Receipts.Count, Basket));
                 Basket.Clear();
                 TotalTb = _noItems;
                 Stock.SaveAsync();
@@ -222,7 +221,7 @@ namespace FredagsCafeUWP
             {
                 Receipts = new ObservableCollection<Receipt>()
                 {
-                    new Receipt(424, "no note", 1, Basket)
+                    new Receipt(424, 1, Basket)
                     //new Receipt(3423, "Drugs and drugs", 0)
                 };
                 SaveAsync();
