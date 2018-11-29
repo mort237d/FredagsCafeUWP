@@ -299,7 +299,7 @@
                         <charting:ColumnSeries  Title="Salg Statistik" ItemsSource="{Binding StatList.StatList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IndependentValuePath="ProfitType" DependentValuePath="TotalIncome"/>
                           
                     </charting:Chart>
-
+                    <Button Command="{Binding ClearStatListCommand}"/>
                 </StackPanel>
             </PivotItem>
             <!--#endregion-->

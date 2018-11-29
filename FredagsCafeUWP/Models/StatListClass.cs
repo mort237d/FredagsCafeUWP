@@ -45,6 +45,12 @@ namespace FredagsCafeUWP
             StatList.Add(new Statistics(totalSaleValueSum,"Indkomst"));
             StatList.Add(new Statistics(totalBuyValue, "Udgifter"));
             StatList.Add(new Statistics((totalSaleValue-totalBuyValue),"Profit"));
+            StatList.Add(new Statistics(0,""));
+        }
+
+        public void ClearStats()
+        {
+            StatList.Clear();
         }
 
         #region save/load

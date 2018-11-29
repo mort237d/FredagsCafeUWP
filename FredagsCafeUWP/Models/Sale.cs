@@ -186,8 +186,8 @@ namespace FredagsCafeUWP
         {
             string productAmountLow = null;
 
-            double temp = SubTotal();
             double buyTemp = BuyingTotal();
+            double temp = SubTotal();
             if (temp > 0)
             {
                 stsStatListClass.AddTotalSaleValue(temp,buyTemp);
