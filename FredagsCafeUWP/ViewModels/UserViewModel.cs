@@ -80,6 +80,8 @@ namespace FredagsCafeUWP.ViewModels
             RemoveEventCommand = new RelayCommand(EventPage.RemoveEvent);
 
             CalculateTotalPriceCommand = new RelayCommand(Sale.TotalTbMethod);
+
+            logOffCommand = new RelayCommand(logONLogOff.logOffMethod);
         }
 
         #region Props
