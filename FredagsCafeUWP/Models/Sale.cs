@@ -17,8 +17,8 @@ namespace FredagsCafeUWP
         private ObservableCollection<Receipt> _receipts;
         private static List<Product> _basket;
 
-        private readonly Color _colorRed = Colors.Red;
-        private readonly Color _colorGreen = Colors.ForestGreen;
+        private readonly string _colorRed = "Red";
+        private readonly string _colorGreen = "ForestGreen";
 
         private readonly Message _message;
         private Stock _stock = new Stock();

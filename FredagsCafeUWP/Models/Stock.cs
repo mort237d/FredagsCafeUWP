@@ -26,10 +26,8 @@ namespace FredagsCafeUWP.Models
 
         private int _minAmount = 10;
 
-        private readonly Color _colorRed = Colors.Red;
-        private readonly Color _colorGreen = Colors.ForestGreen; //TODO Ændre til brush, så farven træder frem i programmet
-        //private Brush _colorRed = new SolidColorBrush(Colors.Red);
-        //private Brush _colorGreen = new SolidColorBrush(Colors.ForestGreen);
+        private readonly string _colorRed = "Red";
+        private readonly string _colorGreen = "ForestGreen";
         private Brush _amountColor;
 
         private string _nameTb;
@@ -356,7 +354,7 @@ namespace FredagsCafeUWP.Models
                     ProductPriceChangeTb = null;
 
 
-                    //saveAsync();
+                    SaveAsync();
                 }
             }
             else await _message.Error("Intet produkt valg", "Vælg venligst et produkt");

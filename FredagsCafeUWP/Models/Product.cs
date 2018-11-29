@@ -15,13 +15,15 @@ namespace FredagsCafeUWP.Models
         private int _amount;
         private int _amountSold;
         private string _imageSource;
-        private Color _foregroundColor;
-        private int _amountToBeSold = 1;        
+
+        private string _foregroundColor;
+        private int _amountToBeSold = 1;
         #endregion
 
         #region Constructors
 
-        public Product(double buyingPrice, double sellingPrice, string name, int amount, int amountSold, string imageSource, Color foregroundColor)
+
+        public Product(double buyingPrice, double sellingPrice, string name, int amount, int amountSold, string imageSource, string foregroundColor)
         {
             BuyingPrice = buyingPrice;
             SellingPrice = sellingPrice;
@@ -32,13 +34,6 @@ namespace FredagsCafeUWP.Models
             ForegroundColor = foregroundColor;
         }
 
-        public Product(double buyingPrice, double sellingPrice, string name, int amountToBeSold)
-        {
-            BuyingPrice = buyingPrice;
-            SellingPrice = sellingPrice;
-            Name = name;
-            AmountToBeSold = amountToBeSold;
-        }
         public Product()
         {
 
@@ -103,7 +98,7 @@ namespace FredagsCafeUWP.Models
             set => _imageSource = value;
         }
 
-        public Color ForegroundColor
+        public string ForegroundColor
         {
             get => _foregroundColor;
             set
