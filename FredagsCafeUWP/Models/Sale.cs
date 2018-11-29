@@ -27,6 +27,8 @@ namespace FredagsCafeUWP
 
         private double _totalTb;
 
+        private StatListClass _statListClass = new StatListClass();
+
         #endregion
 
         public Sale()
@@ -165,6 +167,8 @@ namespace FredagsCafeUWP
                 TotalTb = 0;
                 Stock.SaveAsync();
                 SaveAsync();
+                _statListClass.SaveAsync();
+                
 
                 foreach (var product in Stock.Products)
                 {
