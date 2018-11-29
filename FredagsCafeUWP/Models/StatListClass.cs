@@ -15,6 +15,7 @@ namespace FredagsCafeUWP
     {
         private static ObservableCollection<Statistics> _statList = new ObservableCollection<Statistics>();
         private double totalSaleValueSum;
+        private double totalBuyValueSum;
         
 
         public StatListClass()
@@ -35,12 +36,16 @@ namespace FredagsCafeUWP
         
         #endregion
 
-        public void AddTotalSaleValue(double totalSaleValue)
+        public void AddTotalSaleValue(double totalSaleValue, double totalBuyValue)
         {
             totalSaleValueSum += totalSaleValue;
-            if(StatList.Count > 0) StatList.RemoveAt(0);
+            totalBuyValueSum += totalBuyValue;
+            StatList.Clear();
             StatList.Add(new Statistics(totalSaleValueSum,"Indkomst"));
+            StatList.Add(new Statistics(totalBuyValue, "Udgifter"));
+            StatList.Add(new Statistics((totalSaleValue-totalBuyValue),"Profit"));
         }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
