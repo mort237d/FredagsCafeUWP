@@ -79,8 +79,10 @@
                         <TextBlock FontSize="30" FontWeight="Bold" Margin="2,0,0,0" Foreground="White" Text=",-"/>
                     </StackPanel>
 
-                    <Button Style="{StaticResource RoundedButtonStyle}" Foreground="White" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left"  VerticalAlignment="Bottom" Content="Beregn total" Margin="250,0,0,0" Command="{Binding CalculateTotalPriceCommand}" />
-                    <Button Style="{StaticResource RoundedButtonStyle}" Foreground="White" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Betal" Command="{Binding CompleteSaleCommand}"  Margin="0,0,5,5"/>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,5,5">
+                        <Button Style="{StaticResource RoundedButtonStyle}" Foreground="White" Content="Beregn total" Command="{Binding CalculateTotalPriceCommand}" Margin="0,0,5,0" />
+                        <Button Style="{StaticResource RoundedButtonStyle}" Foreground="White" Content="Betal" Command="{Binding CompleteSaleCommand}"/>
+                    </StackPanel>
 
                     <Button Style="{StaticResource RoundedButtonStyle}" Foreground="White" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Slet transaktion" Command="{Binding CompleteSaleCommand}"  Margin="0,0,5,5"/>
 
