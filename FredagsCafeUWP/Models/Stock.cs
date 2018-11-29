@@ -19,16 +19,15 @@ namespace FredagsCafeUWP.Models
         #region Field
 
         private readonly Message _message;
-
-        private static ObservableCollection<Product> _products;
-
         private Product _selectedProduct;
 
-        private int _minAmount = 10;
+        private static ObservableCollection<Product> _products;
 
         private readonly string _colorRed = "Red";
         private readonly string _colorGreen = "ForestGreen";
         private Brush _amountColor;
+
+        private int _minAmount = 10;
 
         private string _nameTb;
         private string _buyingPriceTb;

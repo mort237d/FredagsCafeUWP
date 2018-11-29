@@ -21,8 +21,6 @@ namespace FredagsCafeUWP.Models
         #endregion
 
         #region Constructors
-
-
         public Product(double buyingPrice, double sellingPrice, string name, int amount, int amountSold, string imageSource, string foregroundColor)
         {
             BuyingPrice = buyingPrice;
