@@ -39,22 +39,6 @@ namespace FredagsCafeUWP.Models
         {
             
         }
-
-        #region save/load
-        //public async void SaveAsync()
-        //{
-        //    Debug.WriteLine("Saving eventsUser async...");
-        //    await XmlReadWriteClass.SaveObjectToXml(EventsUsers, "eventsUser.xml");
-        //    Debug.WriteLine("eventsUser.count: " +EventsUsers.Count);
-        //}
-        //private async void LoadAsync()
-        //{
-        //    Debug.WriteLine("loading list async...");
-        //    EventsUsers = await XmlReadWriteClass.ReadObjectFromXmlFileAsync<ObservableCollection<EventUser>>("eventsUser.xml");
-        //    Debug.WriteLine("eventsUser.count:" + EventsUsers.Count);
-        //}
-        #endregion
-
         #region INotify
 
         public event PropertyChangedEventHandler PropertyChanged;
