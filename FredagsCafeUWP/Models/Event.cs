@@ -1,5 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using FredagsCafeUWP.Annotations;
 
@@ -23,6 +25,7 @@ namespace FredagsCafeUWP.Models
             } 
         }
 
+        #region Constructors
         public Event(string name, string location, string description, int maxUsers, ObservableCollection<EventUser> eventUsers)
         {
             Name = name;
@@ -32,6 +35,11 @@ namespace FredagsCafeUWP.Models
 
             EventsUsers = eventUsers;
         }
+        public Event()
+        {
+
+        }
+        #endregion
 
         #region INotify
 

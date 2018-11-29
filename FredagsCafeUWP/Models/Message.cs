@@ -80,12 +80,12 @@ namespace FredagsCafeUWP.Models
                 if (title == "Slet bruger af eventet")
                 {
                     _eventPage.SelectedEvent.EventsUsers.Remove(_eventPage.SelectedEventUser);
-                    //_eventPage.SaveAsync();
+                    _eventPage.SaveAsync();
                 }
                 if (title == "Slet event")
                 {
                     _eventPage.Events.Remove(_eventPage.SelectedEvent);
-                    //_eventPage.SaveAsync();
+                    _eventPage.SaveAsync();
                 }
             }
             else if (command == noCommand)

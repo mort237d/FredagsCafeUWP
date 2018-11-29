@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
@@ -91,14 +92,7 @@ namespace FredagsCafeUWP.Models
         public EventPage()
         {
             _message = new Message(this);
-            Events = new ObservableCollection<Event>()
-            {
-                new Event("Øl-Bowling", "Haven", "Husk bajer!", 12, new ObservableCollection<EventUser>()
-                {
-                    new EventUser("Morten", "@edu.easj.dk"),
-                    new EventUser("Lucas", "@edu.easj.dk")
-                })
-            };
+            LoadAsync();
         }
 
         public void AddUser()
@@ -134,6 +128,36 @@ namespace FredagsCafeUWP.Models
             }
             else await _message.Error("Intet event valgt", "Vælg venligst et event.");
         }
+
+        #region save/load
+        public async void SaveAsync()
+        {
+            Debug.WriteLine("Saving list async...");
+            await XmlReadWriteClass.SaveObjectToXml(Events, "events.xml");
+            Debug.WriteLine("events.count: " + Events.Count);
+        }
+        private async void LoadAsync()
+        {
+            try
+            {
+                Debug.WriteLine("loading list async...");
+                Events = await XmlReadWriteClass.ReadObjectFromXmlFileAsync<ObservableCollection<Event>>("events.xml");
+                Debug.WriteLine("events.count:" + Events.Count);
+            }
+            catch (Exception)
+            {
+                Events = new ObservableCollection<Event>()
+                {
+                    new Event("Øl-Bowling", "Haven", "Husk bajer!", 12, new ObservableCollection<EventUser>()
+                    {
+                        new EventUser("Morten", "@edu.easj.dk"),
+                        new EventUser("Lucas", "@edu.easj.dk")
+                    })
+                }; SaveAsync();
+            }
+
+        }
+        #endregion
 
         #region INotify
 
