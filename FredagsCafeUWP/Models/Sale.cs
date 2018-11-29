@@ -27,6 +27,8 @@ namespace FredagsCafeUWP
 
         private double _totalTb;
 
+        private int _noItems = 0;
+
         private StatListClass _statListClass = new StatListClass();
 
         #endregion
@@ -164,7 +166,7 @@ namespace FredagsCafeUWP
                 AddItemsToBasket();
                 Receipts.Insert(0, new Receipt(temp, "", Receipts.Count, Basket));
                 Basket.Clear();
-                TotalTb = 0;
+                TotalTb = _noItems;
                 Stock.SaveAsync();
                 SaveAsync();
                 _statListClass.SaveAsync();
