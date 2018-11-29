@@ -103,7 +103,6 @@ namespace FredagsCafeUWP
             {
                 if (product.AmountToBeSold != 0)
                 {
-                    //Basket.Add(new Product(product.BuyingPrice,product.SellingPrice,product.Name,product.AmountToBeSold));
                     Basket.Add(product);
                 }
             }
