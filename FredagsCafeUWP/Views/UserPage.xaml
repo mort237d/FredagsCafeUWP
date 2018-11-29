@@ -270,8 +270,8 @@
                     <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
                         <Button Command="{Binding RemoveEventUserCommand}" Style="{StaticResource RoundedButtonStyle}" VerticalAlignment="Bottom" Margin="0,0,10,10" Content="Fjern deltager"/>
                         <StackPanel VerticalAlignment="Bottom" Margin="0,0,10,10">
-                            <TextBox Margin="0,0,0,5" PlaceholderText="Navn"></TextBox>
-                            <TextBox Margin="0,0,0,5" PlaceholderText="Email"></TextBox>
+                            <TextBox Text="{Binding EventPage.UserNameTb, Mode=TwoWay}" Margin="0,0,0,5" PlaceholderText="Navn"></TextBox>
+                            <TextBox Text="{Binding EventPage.UserEmailTb, Mode=TwoWay}" Margin="0,0,0,5" PlaceholderText="Email"></TextBox>
                             <Button Command="{Binding AddEventUserCommand}" Style="{StaticResource RoundedButtonStyle}" Content="Tilføj deltager"/>
                         </StackPanel>
                     </StackPanel>
@@ -280,10 +280,10 @@
 
                     <StackPanel Grid.Row="0" Grid.Column="2">
                         <TextBlock Text="Opret nyt event"/>
-                        <TextBox PlaceholderText="Navn"/>
-                        <TextBox PlaceholderText="Placering"/>
-                        <TextBox PlaceholderText="Beskrivelse"/>
-                        <TextBox PlaceholderText="Maks antal deltager"/>
+                        <TextBox Text="{Binding EventPage.EventNameTb, Mode=TwoWay}" PlaceholderText="Navn"/>
+                        <TextBox Text="{Binding EventPage.EventLocationTb, Mode=TwoWay}" PlaceholderText="Placering"/>
+                        <TextBox Text="{Binding EventPage.EventDescriptionTb, Mode=TwoWay}" PlaceholderText="Beskrivelse"/>
+                        <TextBox Text="{Binding EventPage.EventMaxUsersTb, Mode=TwoWay}" PlaceholderText="Maks antal deltager"/>
                     </StackPanel>
                 </Grid>
             </PivotItem>
@@ -294,9 +294,12 @@
             <PivotItem Header="Statistik">
 
                 <StackPanel Orientation="Horizontal" Margin="80" >
-                    <charting:Chart Width="700">
-                        <charting:ColumnSeries ItemsSource="{Binding StatList.StatList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IndependentValuePath="ProfitType" DependentValuePath="TotalIncome" />
+
+                    <charting:Chart x:Name="ProfitStat" Width="700" >
+                        <charting:ColumnSeries  Title="Salg Statistik" ItemsSource="{Binding StatList.StatList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IndependentValuePath="ProfitType" DependentValuePath="TotalIncome"/>
+                          
                     </charting:Chart>
+                    <Button Command="{Binding ClearStatListCommand}"/>
                 </StackPanel>
             </PivotItem>
             <!--#endregion-->

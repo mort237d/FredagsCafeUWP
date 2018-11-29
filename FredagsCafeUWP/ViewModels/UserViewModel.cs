@@ -54,6 +54,9 @@ namespace FredagsCafeUWP.ViewModels
 
         private RelayCommand _logOffCommand;
 
+        //Skal slettes igen senere
+        private RelayCommand _clearStatListCommand;
+
         private RelayCommand _changeToAccountCommand;
 
         #endregion
@@ -88,6 +91,7 @@ namespace FredagsCafeUWP.ViewModels
             CalculateTotalPriceCommand = new RelayCommand(Sale.TotalTbMethod);
 
             LogOffCommand = new RelayCommand(LogOnLogOff.logOffMethod);
+            ClearStatListCommand = new RelayCommand(StatList.ClearStats);
 
             ChangeToAccountCommand = new RelayCommand(AccountSettingsClass.GoToAccountSettings);
         }
@@ -269,6 +273,13 @@ namespace FredagsCafeUWP.ViewModels
         {
             get { return _logOnLogOff; }
             set { _logOnLogOff = value; }
+        }
+
+        //skal slettes igen senere
+        public RelayCommand ClearStatListCommand
+        {
+            get { return _clearStatListCommand; }
+            set { _clearStatListCommand = value; }
         }
 
         public AccountSettingsClass AccountSettingsClass
