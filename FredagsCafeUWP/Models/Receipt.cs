@@ -12,7 +12,7 @@ namespace FredagsCafeUWP
         #region Fields
 
         //private readonly DateTime _saleDateTime = DateTime.Now;
-        private string _saleDateTime = DateTime.Now.ToString();
+        private string _saleDateTime = DateTime.Now.ToString("dd/MM/yyyy - HH:mm:ss");
         private string _cvr = "000000-0000";
         private string _phoneNumber = "+45 0000 0000";
         private int _saleNumber;
@@ -53,6 +53,12 @@ namespace FredagsCafeUWP
             set { _saleNumber = value; }
         }
 
+        public string SaleDateTime
+        {
+            get { return _saleDateTime; }
+            set { _saleDateTime = value; }
+        }
+
         public void ChangeCvr(string newCvr)
         {
             if (newCvr != null && newCvr != "")
@@ -72,7 +78,7 @@ namespace FredagsCafeUWP
 
         public override string ToString()
         {
-            return "Salgs tid:   " + _saleDateTime + "\nTotal: " + _subTotal + "\nSalgs nummer: " + SaleNumber + "\n";
+            return "Salgs tid:   " + SaleDateTime + "\nTotal: " + _subTotal + "\nSalgs nummer: " + SaleNumber + "\n";
         }
 
         #region Inotify
