@@ -65,7 +65,7 @@ namespace FredagsCafeUWP.ViewModels
 
         public UserViewModel()
         {
-            AddProductCommand = new RelayCommand(_stock.AddProductToObListAsync);
+            AddProductCommand = new RelayCommand(_stock.AddProductToObList);
             RemoveProductCommand = new RelayCommand(_stock.RemoveProductFromObList);
 
             AddAmountCommand = new RelayCommand(Stock.AddAmountToProduct);
@@ -81,8 +81,8 @@ namespace FredagsCafeUWP.ViewModels
 
             CompleteSaleCommand = new RelayCommand(Sale.CompleteSale);
 
-            AddOneToSaleCommand = new RelayCommand(Sale.AddOneFromToBeSold);
-            RemoveOneFromSaleCommand = new RelayCommand(Sale.RemoveOneFromToBeSold);
+            AddOneToSaleCommand = new RelayCommand(Sale.AddProductButton);
+            RemoveOneFromSaleCommand = new RelayCommand(Sale.RemoveProductButton);
 
             AddEventUserCommand = new RelayCommand(EventPage.AddUser);
             RemoveEventUserCommand = new RelayCommand(EventPage.RemoveUser);
@@ -90,7 +90,7 @@ namespace FredagsCafeUWP.ViewModels
             AddEventCommand = new RelayCommand(EventPage.AddEvent);
             RemoveEventCommand = new RelayCommand(EventPage.RemoveEvent);
 
-            CalculateTotalPriceCommand = new RelayCommand(Sale.TotalTbMethod);
+            CalculateTotalPriceCommand = new RelayCommand(Sale.CalculateTotalPrice);
 
             LogOffCommand = new RelayCommand(LogOnLogOff.logOffMethod);
 

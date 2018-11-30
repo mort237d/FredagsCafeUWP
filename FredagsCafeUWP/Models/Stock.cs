@@ -190,7 +190,7 @@ namespace FredagsCafeUWP.Models
 
         #region ButtonMethods
 
-        public async void AddProductToObListAsync()
+        public async void AddProductToObList()
         {
             bool productExist = false;
             if (NameTb != null)

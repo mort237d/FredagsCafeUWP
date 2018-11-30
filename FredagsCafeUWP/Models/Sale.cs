@@ -86,7 +86,7 @@ namespace FredagsCafeUWP
 
         #region ButtonMethods
 
-        public void AddOneFromToBeSold()
+        public void AddProductButton()
         {
             if (SelectedProduct != null)
             {
@@ -95,7 +95,7 @@ namespace FredagsCafeUWP
             }
         }
 
-        public void RemoveOneFromToBeSold()
+        public void RemoveProductButton()
         {
             if (SelectedProduct != null && SelectedProduct.AmountToBeSold > 0)
             {
@@ -152,6 +152,7 @@ namespace FredagsCafeUWP
             }
             return Math.Round(subTotal);
         }
+
         public double BuyingTotal()
         {
             double buyTotal = 0;
@@ -215,7 +216,7 @@ namespace FredagsCafeUWP
             else if (temp != -1) await _message.Error("Ingen vare tilføjet", "Tilføj venligst vare for at betale.");
         }
 
-        public void TotalTbMethod()
+        public void CalculateTotalPrice()
         {
             double temp = 0;
             foreach (var product in Stock.Products)
