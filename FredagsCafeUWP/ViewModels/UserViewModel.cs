@@ -21,10 +21,10 @@ namespace FredagsCafeUWP.ViewModels
         private StatListClass _statList = new StatListClass();
         private LogOnLogOff _logOnLogOff = new LogOnLogOff();
         private AccountSettingsClass _accountSettingsClass = new AccountSettingsClass();
+        private Help _help = new Help();
 
         private RelayCommand _addProductCommand;
         private RelayCommand _removeProductCommand;
-
 
         private RelayCommand _addAmountCommand;
         private RelayCommand _removeAmountCommand;
@@ -54,6 +54,9 @@ namespace FredagsCafeUWP.ViewModels
 
         private RelayCommand _logOffCommand;
 
+        private RelayCommand _goToHelpPageCommand;
+
+        //Todo Skal slettes igen senere
         private RelayCommand _changeToUserCommand;
 
         //Skal slettes igen senere
@@ -61,11 +64,13 @@ namespace FredagsCafeUWP.ViewModels
 
         private RelayCommand _changeToAccountCommand;
 
+        private RelayCommand _deleteReceiptCommand;
+
         #endregion
 
         public UserViewModel()
         {
-            AddProductCommand = new RelayCommand(_stock.AddProductToObListAsync);
+            AddProductCommand = new RelayCommand(_stock.AddProductToObList);
             RemoveProductCommand = new RelayCommand(_stock.RemoveProductFromObList);
 
             AddAmountCommand = new RelayCommand(Stock.AddAmountToProduct);
@@ -81,8 +86,8 @@ namespace FredagsCafeUWP.ViewModels
 
             CompleteSaleCommand = new RelayCommand(Sale.CompleteSale);
 
-            AddOneToSaleCommand = new RelayCommand(Sale.AddOneFromToBeSold);
-            RemoveOneFromSaleCommand = new RelayCommand(Sale.RemoveOneFromToBeSold);
+            AddOneToSaleCommand = new RelayCommand(Sale.AddProductButton);
+            RemoveOneFromSaleCommand = new RelayCommand(Sale.RemoveProductButton);
 
             AddEventUserCommand = new RelayCommand(EventPage.AddUser);
             RemoveEventUserCommand = new RelayCommand(EventPage.RemoveUser);
@@ -90,12 +95,17 @@ namespace FredagsCafeUWP.ViewModels
             AddEventCommand = new RelayCommand(EventPage.AddEvent);
             RemoveEventCommand = new RelayCommand(EventPage.RemoveEvent);
 
-            CalculateTotalPriceCommand = new RelayCommand(Sale.TotalTbMethod);
+            CalculateTotalPriceCommand = new RelayCommand(Sale.CalculateTotalPrice);
 
             LogOffCommand = new RelayCommand(LogOnLogOff.logOffMethod);
+
             ClearStatListCommand = new RelayCommand(StatList.ClearStats);
 
             ChangeToAccountCommand = new RelayCommand(AccountSettingsClass.GoToAccountSettings);
+
+            GoToHelpPageCommand = new RelayCommand(Help.GoToHelpPage);
+
+            DeleteReceiptCommand = new RelayCommand(Sale.DeleteReceipt);
             ChangeToUserCommand = new RelayCommand(AccountSettingsClass.GoToUserPage);
             
         }
@@ -279,7 +289,7 @@ namespace FredagsCafeUWP.ViewModels
             set { _logOnLogOff = value; }
         }
 
-        //skal slettes igen senere
+        //ToDo skal slettes igen senere
         public RelayCommand ClearStatListCommand
         {
             get { return _clearStatListCommand; }
@@ -296,6 +306,24 @@ namespace FredagsCafeUWP.ViewModels
         {
             get { return _changeToAccountCommand; }
             set { _changeToAccountCommand = value; }
+        }
+
+        public Help Help
+        {
+            get { return _help; }
+            set { _help = value; }
+        }
+
+        public RelayCommand GoToHelpPageCommand
+        {
+            get { return _goToHelpPageCommand; }
+            set { _goToHelpPageCommand = value; }
+        }
+
+        public RelayCommand DeleteReceiptCommand
+        {
+            get { return _deleteReceiptCommand; }
+            set { _deleteReceiptCommand = value; }
         }
 
         public RelayCommand ChangeToUserCommand

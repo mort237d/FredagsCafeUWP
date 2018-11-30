@@ -11,12 +11,12 @@ namespace FredagsCafeUWP
     {
         #region Fields
 
-        //private readonly DateTime _saleDateTime = DateTime.Now;
-        private string _saleDateTime = DateTime.Now.ToString();
+        private string _saleDateTime = DateTime.Now.ToString("dd/MM/yyyy - HH:mm:ss");
         private string _cvr = "000000-0000";
         private string _phoneNumber = "+45 0000 0000";
-        private readonly int _saleNumber;
+        private int _saleNumber;
         private double _subTotal;
+        private string _color = "Black";
         private List<Product> _basket;
 
         #endregion
@@ -24,7 +24,7 @@ namespace FredagsCafeUWP
         public Receipt(double subTotal, int saleNumber, List<Product> basket)
         {
             SubTotal = subTotal;
-            _saleNumber = saleNumber;
+            SaleNumber = saleNumber;
             _basket = basket;
         }
 
@@ -47,27 +47,40 @@ namespace FredagsCafeUWP
             set => _subTotal = value;
         }
 
+        public int SaleNumber
+        {
+            get { return _saleNumber; }
+            set { _saleNumber = value; }
+        }
+
+        public string SaleDateTime
+        {
+            get { return _saleDateTime; }
+            set { _saleDateTime = value; }
+        }
+
+        public string Color
+        {
+            get => _color;
+            set => _color = value;
+        }
+
         public void ChangeCvr(string newCvr)
         {
-            if (newCvr != null && newCvr != "")
+            if (!string.IsNullOrEmpty(newCvr))
             {
                 _cvr = newCvr;
             }
         }
         public void ChangePhoneNumber(string phoneNumber)
         {
-            if (phoneNumber != null && phoneNumber != "")
+            if (!string.IsNullOrEmpty(phoneNumber))
             {
                 _phoneNumber = phoneNumber;
             }
         }
 
         #endregion
-
-        public override string ToString()
-        {
-            return "Salgs tid:   " + _saleDateTime + "\nTotal: " + _subTotal + "\nSalgs nummer: " + _saleNumber + "\n";
-        }
 
         #region Inotify
 
