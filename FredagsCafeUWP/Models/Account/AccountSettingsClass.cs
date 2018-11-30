@@ -116,7 +116,7 @@ namespace FredagsCafeUWP
             get { return _currentUser; }
             set
             {
-                _currentUser = value; 
+                _currentUser = value;
                 OnPropertyChanged();
             }
         }
@@ -159,8 +159,8 @@ namespace FredagsCafeUWP
                             //user = _administration.CurrentUser;
                         }
                     }
-                    
-                    
+
+
                 }
             }
         }
@@ -178,12 +178,12 @@ namespace FredagsCafeUWP
             currentFrame.Navigate(typeof(UserPage));
         }
 
-            public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
 
-            [NotifyPropertyChangedInvocator]
-            protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-            {
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-            }
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
+}

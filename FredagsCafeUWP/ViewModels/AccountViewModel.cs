@@ -56,7 +56,7 @@ namespace FredagsCafeUWP.ViewModels
         #region INotify
 
         public event PropertyChangedEventHandler PropertyChanged;
-        
+
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
@@ -66,3 +66,4 @@ namespace FredagsCafeUWP.ViewModels
         #endregion
     }
 }
+

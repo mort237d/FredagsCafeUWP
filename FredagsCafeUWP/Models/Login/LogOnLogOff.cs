@@ -56,7 +56,6 @@ namespace FredagsCafeUWP
             {
                 if (user.UserName == UserName && user.Password == PassWord)
                 {
-                    _administration.CurrentUser = user;
                     temp = true;
                     break;
                 }
