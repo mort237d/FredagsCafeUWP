@@ -54,6 +54,8 @@ namespace FredagsCafeUWP.ViewModels
 
         private RelayCommand _logOffCommand;
 
+        private RelayCommand _changeToUserCommand;
+
         //Skal slettes igen senere
         private RelayCommand _clearStatListCommand;
 
@@ -94,6 +96,8 @@ namespace FredagsCafeUWP.ViewModels
             ClearStatListCommand = new RelayCommand(StatList.ClearStats);
 
             ChangeToAccountCommand = new RelayCommand(AccountSettingsClass.GoToAccountSettings);
+            ChangeToUserCommand = new RelayCommand(AccountSettingsClass.GoToUserPage);
+            
         }
 
         #region Props
@@ -292,6 +296,12 @@ namespace FredagsCafeUWP.ViewModels
         {
             get { return _changeToAccountCommand; }
             set { _changeToAccountCommand = value; }
+        }
+
+        public RelayCommand ChangeToUserCommand
+        {
+            get { return _changeToUserCommand; }
+            set { _changeToUserCommand = value; }
         }
 
         #endregion

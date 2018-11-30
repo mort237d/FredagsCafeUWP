@@ -5,11 +5,53 @@
     xmlns:local="using:FredagsCafeUWP"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="using:FredagsCafeUWP.ViewModels"
+    xmlns:models="using:FredagsCafeUWP.Models"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+
+    <Page.DataContext>
+        <viewModels:AccountViewModel/>
+    </Page.DataContext>
     <Grid>
-        <TextBox Text="HEJ"></TextBox>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <CommandBar Background="#6CA0DC">
+
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Label="Gå tilbage til mainpage" Command="{Binding ChangeToUserCommand}"/>
+                <AppBarButton Label="Log af" Command="{Binding LogOffCommand}"/>
+            </CommandBar.SecondaryCommands>
+
+            <AppBarSeparator/>
+            <AppBarButton Icon="Help" Label="Help"/>
+
+        </CommandBar>
+        <Grid Grid.Row="1" HorizontalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="6*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Rectangle Fill="#6CA0DC" Grid.Row="1"/>
+            <StackPanel Grid.Row="0" Grid.Column="1">
+                <TextBox PlaceholderText="Navn" Text="{Binding SettingsClass.NameTb, Mode=TwoWay}"/>
+                <TextBox PlaceholderText="Klasse" Text="{Binding SettingsClass.GradeTb, Mode=TwoWay}"/>
+                <TextBox PlaceholderText="Skole" Text="{Binding SettingsClass.EducationTb, Mode=TwoWay}"/>
+                <TextBox PlaceholderText="email" Text="{Binding SettingsClass.EmailTb, Mode=TwoWay}"/>
+                <TextBox PlaceholderText="Tlf. nummer" Text="{Binding SettingsClass.TelephoneNumberTb, Mode=TwoWay}"/>
+                <TextBox PlaceholderText="Username" Text="{Binding SettingsClass.UserNameTb, Mode=TwoWay}"/>
+                <PasswordBox PlaceholderText="Password" Password="{Binding SettingsClass.PasswordTb, Mode=TwoWay}"/>
+                <PasswordBox PlaceholderText="Confirm Password" Password="{Binding SettingsClass.ConfirmPasswordTb, Mode=TwoWay}"/>
+            </StackPanel>
+            <Button Style="{StaticResource RoundedButtonStyle}" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.Column="1" Content="Change account settings" Command="{Binding ChangeSettingsCommand}"/>
+        </Grid>
+        
+
 
     </Grid>
 </Page>
