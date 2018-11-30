@@ -245,6 +245,7 @@ namespace FredagsCafeUWP
                         if (product.Name == basket.Name)
                         {
                             product.Amount += basket.AmountToBeSold;
+                            break;
                         }
                     }
                 }

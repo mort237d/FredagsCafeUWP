@@ -13,9 +13,8 @@ namespace FredagsCafeUWP.Models
         private int _amount;
         private int _amountSold;
         private string _imageSource;
-
         private string _foregroundColor;
-        private int _amountToBeSold = 1;
+        private int _amountToBeSold;
         #endregion
 
         #region Constructors
