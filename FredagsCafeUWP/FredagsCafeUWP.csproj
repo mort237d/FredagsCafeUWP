@@ -109,6 +109,13 @@
     <Compile Include="Models\UserPage\Event.cs" />
     <Compile Include="Models\UserPage\EventPage.cs" />
     <Compile Include="Models\UserPage\EventUser.cs" />
+    <Compile Include="Models\LogOnLogOff.cs" />
+    <Compile Include="Models\Statistics.cs" />
+    <Compile Include="Models\StatListClass.cs" />
+    <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\EventPage.cs" />
+    <Compile Include="Models\EventUser.cs" />
+    <Compile Include="ViewModels\AccountViewModel.cs" />
     <Compile Include="Views\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>

@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using FredagsCafeUWP.Annotations;
 
@@ -26,6 +27,7 @@ namespace FredagsCafeUWP.Models
 
         private ObservableCollection<User> _users;
         private User _selectedUser;
+        private User _currentUser;
 
         #endregion
 
@@ -117,6 +119,12 @@ namespace FredagsCafeUWP.Models
                 _selectedUser = value;
                 OnPropertyChanged();
             }
+        }
+
+        public User CurrentUser
+        {
+            get { return _currentUser; }
+            set { _currentUser = value; }
         }
 
         #endregion

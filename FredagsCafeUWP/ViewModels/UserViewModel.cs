@@ -57,6 +57,9 @@ namespace FredagsCafeUWP.ViewModels
         private RelayCommand _goToHelpPageCommand;
 
         //Todo Skal slettes igen senere
+        private RelayCommand _changeToUserCommand;
+
+        //Skal slettes igen senere
         private RelayCommand _clearStatListCommand;
 
         private RelayCommand _changeToAccountCommand;
@@ -103,6 +106,8 @@ namespace FredagsCafeUWP.ViewModels
             GoToHelpPageCommand = new RelayCommand(Help.GoToHelpPage);
 
             DeleteReceiptCommand = new RelayCommand(Sale.DeleteReceipt);
+            ChangeToUserCommand = new RelayCommand(AccountSettingsClass.GoToUserPage);
+            
         }
 
         #region Props
@@ -319,6 +324,12 @@ namespace FredagsCafeUWP.ViewModels
         {
             get { return _deleteReceiptCommand; }
             set { _deleteReceiptCommand = value; }
+        }
+
+        public RelayCommand ChangeToUserCommand
+        {
+            get { return _changeToUserCommand; }
+            set { _changeToUserCommand = value; }
         }
 
         #endregion
