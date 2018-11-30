@@ -61,6 +61,8 @@ namespace FredagsCafeUWP.ViewModels
 
         private RelayCommand _changeToAccountCommand;
 
+        private RelayCommand _deleteReceiptCommand;
+
         #endregion
 
         public UserViewModel()
@@ -99,6 +101,8 @@ namespace FredagsCafeUWP.ViewModels
             ChangeToAccountCommand = new RelayCommand(AccountSettingsClass.GoToAccountSettings);
 
             GoToHelpPageCommand = new RelayCommand(Help.GoToHelpPage);
+
+            DeleteReceiptCommand = new RelayCommand(Sale.DeleteReceipt);
         }
 
         #region Props
@@ -309,6 +313,12 @@ namespace FredagsCafeUWP.ViewModels
         {
             get { return _goToHelpPageCommand; }
             set { _goToHelpPageCommand = value; }
+        }
+
+        public RelayCommand DeleteReceiptCommand
+        {
+            get { return _deleteReceiptCommand; }
+            set { _deleteReceiptCommand = value; }
         }
 
         #endregion

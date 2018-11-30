@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using Windows.UI;
 using FredagsCafeUWP.Annotations;
@@ -23,6 +24,7 @@ namespace FredagsCafeUWP
         private readonly Message _message;
         private Stock _stock = new Stock();
         private Product _selectedProduct;
+        private Receipt _selectedReceipt;
 
         private double _totalTb;
 
@@ -80,7 +82,11 @@ namespace FredagsCafeUWP
             }
         }
 
-     
+        public Receipt SelectedReceipt
+        {
+            get => _selectedReceipt;
+            set => _selectedReceipt = value;
+        }
 
         #endregion
 
@@ -106,11 +112,14 @@ namespace FredagsCafeUWP
 
         public void AddItemsToBasket()
         {
+            Basket.Clear();
             foreach (var product in _stock.Products)
             {
                 if (product.AmountToBeSold != 0)
                 {
                     Basket.Add(product);
+                    Debug.WriteLine(product.AmountToBeSold);
+                    Basket.Last().Amount = product.AmountToBeSold;
                 }
             }
         }
@@ -194,7 +203,6 @@ namespace FredagsCafeUWP
                 AddItemsToBasket();
                 int count = Receipts.Count;
                 Receipts.Insert(0, new Receipt(temp, count, Basket));
-                Basket.Clear();
                 TotalTb = _noItems;
                 Stock.SaveAsync();
                 SaveAsync();
@@ -227,6 +235,36 @@ namespace FredagsCafeUWP
                 }
             }
             TotalTb = temp;
+        }
+
+        public void DeleteReceipt()
+        {
+            if (SelectedReceipt != null && SelectedReceipt.Color != _colorRed)
+            {
+                foreach (var basket in SelectedReceipt.Basket)
+                {
+                    foreach (var product in _stock.Products)
+                    {
+                        if (product.Name == basket.Name)
+                        {
+                            product.Amount += basket.AmountToBeSold;
+                        }
+                    }
+                }
+                
+
+                //foreach (var product in Stock.Products)
+                //{
+                //    if (product.Amount > 0)
+                //    {
+                //        foreach (var basket in SelectedReceipt.Basket)
+                //        {
+                //            product.Amount += basket.Amount;
+                //        }
+                //    }
+                //}
+                SelectedReceipt.Color = _colorRed;
+            }
         }
 
         #endregion
