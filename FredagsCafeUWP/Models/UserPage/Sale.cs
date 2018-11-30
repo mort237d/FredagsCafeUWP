@@ -115,12 +115,7 @@ namespace FredagsCafeUWP
             Basket.Clear();
             foreach (var product in _stock.Products)
             {
-                if (product.AmountToBeSold != 0)
-                {
-                    Basket.Add(product);
-                    Debug.WriteLine(product.AmountToBeSold);
-                    Basket.Last().Amount = product.AmountToBeSold;
-                }
+                if (product.AmountToBeSold != 0) Basket.Add(new Product(product.BuyingPrice, product.SellingPrice, product.Name, product.Amount, product.AmountSold, product.ImageSource, product.ForegroundColor, product.AmountToBeSold));
             }
         }
 
@@ -201,13 +196,14 @@ namespace FredagsCafeUWP
             {
                 _statListClass.AddTotalSaleValue(temp, buyTemp);
                 AddItemsToBasket();
-                int count = Receipts.Count;
+                
+                int count = Receipts.Count + 1;
                 Receipts.Insert(0, new Receipt(temp, count, Basket));
+
                 TotalTb = _noItems;
                 Stock.SaveAsync();
                 SaveAsync();
                 _statListClass.SaveAsync();
-                
 
                 foreach (var product in Stock.Products)
                 {
@@ -218,7 +214,6 @@ namespace FredagsCafeUWP
                         productAmountLow += product.Name + ": " + product.Amount + " stk.\n";
                     }
                 }
-
                 if (productAmountLow != null) await _message.Error("Lavt lager", "Der er lavt lager af:\n" + productAmountLow);
             }
             else if (temp != -1) await _message.Error("Ingen vare tilføjet", "Tilføj venligst vare for at betale.");
@@ -251,19 +246,8 @@ namespace FredagsCafeUWP
                         }
                     }
                 }
-                
-
-                //foreach (var product in Stock.Products)
-                //{
-                //    if (product.Amount > 0)
-                //    {
-                //        foreach (var basket in SelectedReceipt.Basket)
-                //        {
-                //            product.Amount += basket.Amount;
-                //        }
-                //    }
-                //}
                 SelectedReceipt.Color = _colorRed;
+                //Todo Hvis product.amount > 10 produkt skal blive grøn igen i lageret sådan at advarsler kommer igen.
             }
         }
 
@@ -289,7 +273,7 @@ namespace FredagsCafeUWP
             {
                 Receipts = new ObservableCollection<Receipt>()
                 {
-                    new Receipt(424, 1, Basket)
+                    new Receipt(424, 1, new List<Product>())
                     //new Receipt(3423, "Drugs and drugs", 0)
                 };
                 SaveAsync();

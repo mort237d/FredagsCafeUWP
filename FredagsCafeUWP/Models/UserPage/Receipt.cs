@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using FredagsCafeUWP.Annotations;
@@ -62,7 +63,11 @@ namespace FredagsCafeUWP
         public string Color
         {
             get => _color;
-            set => _color = value;
+            set
+            {
+                _color = value; 
+                OnPropertyChanged();
+            }
         }
 
         public void ChangeCvr(string newCvr)
@@ -81,11 +86,6 @@ namespace FredagsCafeUWP
         }
 
         #endregion
-
-        //public override string ToString()
-        //{
-        //    return "Salgs tid:   " + SaleDateTime + "\nTotal: " + _subTotal + "\nSalgs nummer: " + SaleNumber + "\n";
-        //}
 
         #region Inotify
 
