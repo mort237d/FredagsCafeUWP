@@ -80,7 +80,7 @@ namespace FredagsCafeUWP.ViewModels
             RemoveUserCommand = new RelayCommand(Administration.RemoveUser);
 
             CompleteSaleCommand = new RelayCommand(Sale.CompleteSale);
-
+            
             AddOneToSaleCommand = new RelayCommand(Sale.AddOneFromToBeSold);
             RemoveOneFromSaleCommand = new RelayCommand(Sale.RemoveOneFromToBeSold);
 

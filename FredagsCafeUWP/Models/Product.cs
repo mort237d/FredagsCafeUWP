@@ -1,8 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using Windows.UI;
 using FredagsCafeUWP.Annotations;
-using FredagsCafeUWP.ViewModels;
 
 namespace FredagsCafeUWP.Models
 {

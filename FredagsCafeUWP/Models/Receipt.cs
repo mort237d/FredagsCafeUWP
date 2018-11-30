@@ -76,11 +76,6 @@ namespace FredagsCafeUWP
 
         #endregion
 
-        public override string ToString()
-        {
-            return "Salgs tid:   " + SaleDateTime + "\nTotal: " + _subTotal + "\nSalgs nummer: " + SaleNumber + "\n";
-        }
-
         #region Inotify
 
         public event PropertyChangedEventHandler PropertyChanged;

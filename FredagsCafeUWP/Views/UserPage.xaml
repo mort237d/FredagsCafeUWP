@@ -296,7 +296,7 @@
                 <StackPanel Orientation="Horizontal" Margin="80" >
 
                     <charting:Chart x:Name="ProfitStat" Width="700" >
-                        <charting:ColumnSeries Title="Salg Statistik" ItemsSource="{Binding StatList.StatList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IndependentValuePath="ProfitType" DependentValuePath="TotalIncome"/>
+                        <charting:ColumnSeries Title="Salg Statistik" ItemsSource="{Binding StatList.StatList,Mode=TwoWay}" IndependentValuePath="ProfitType" DependentValuePath="TotalIncome"/>
                           
                     </charting:Chart>
                     <Button Command="{Binding ClearStatListCommand}"/>
