@@ -30,6 +30,18 @@ namespace FredagsCafeUWP.Models
             ForegroundColor = foregroundColor;
         }
 
+        public Product(double buyingPrice, double sellingPrice, string name, int amount, int amountSold, string imageSource, string foregroundColor, int amountToBeSold)
+        {
+            BuyingPrice = buyingPrice;
+            SellingPrice = sellingPrice;
+            Name = name;
+            Amount = amount;
+            AmountSold = amountSold;
+            ImageSource = imageSource;
+            ForegroundColor = foregroundColor;
+            AmountToBeSold = amountToBeSold;
+        }
+
         public Product()
         {
 
