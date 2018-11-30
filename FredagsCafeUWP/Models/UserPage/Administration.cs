@@ -148,24 +148,28 @@ namespace FredagsCafeUWP.Models
                         }
                     }
 
-                    if (PasswordTb == ConfirmPasswordTb)
+                    if (int.TryParse(TelephoneNumberTb, out int intTelephoneNumberT) && TelephoneNumberTb.Length == 8)
                     {
-                        Users.Add(new User(NameTb, GradeTb, EducationTb, EmailTb, TelephoneNumberTb, UserNameTb,
-                            PasswordTb, _standardImage));
+                        if (PasswordTb == ConfirmPasswordTb)
+                        {
+                            Users.Add(new User(NameTb, GradeTb, EducationTb, EmailTb, TelephoneNumberTb, UserNameTb,
+                                PasswordTb, _standardImage));
 
-                        NameTb = null;
-                        GradeTb = null;
-                        EducationTb = null;
-                        EmailTb = null;
-                        TelephoneNumberTb = null;
-                        UserNameTb = null;
-                        PasswordTb = null;
-                        ConfirmPasswordTb = null;
-                        SaveAsync();
+                            NameTb = null;
+                            GradeTb = null;
+                            EducationTb = null;
+                            EmailTb = null;
+                            TelephoneNumberTb = null;
+                            UserNameTb = null;
+                            PasswordTb = null;
+                            ConfirmPasswordTb = null;
+                            SaveAsync();
+                        }
+                        else
+                            await _message.Error("Uoverensstemmelser",
+                                "Password stemmer ikke over ens med confirm password");
                     }
-                    else
-                        await _message.Error("Uoverensstemmelser",
-                            "Password stemmer ikke over ens med confirm password");
+                    else await _message.Error("Forkert input","Telefonnummert skal være et tal på 8 cifre.");
                 }
                 else
                     await _message.Error("Forkert email",
