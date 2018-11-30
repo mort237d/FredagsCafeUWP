@@ -61,11 +61,13 @@ namespace FredagsCafeUWP.ViewModels
 
         private RelayCommand _changeToAccountCommand;
 
+        private RelayCommand _deleteReceiptCommand;
+
         #endregion
 
         public UserViewModel()
         {
-            AddProductCommand = new RelayCommand(_stock.AddProductToObListAsync);
+            AddProductCommand = new RelayCommand(_stock.AddProductToObList);
             RemoveProductCommand = new RelayCommand(_stock.RemoveProductFromObList);
 
             AddAmountCommand = new RelayCommand(Stock.AddAmountToProduct);
@@ -80,9 +82,9 @@ namespace FredagsCafeUWP.ViewModels
             RemoveUserCommand = new RelayCommand(Administration.RemoveUser);
 
             CompleteSaleCommand = new RelayCommand(Sale.CompleteSale);
-            
-            AddOneToSaleCommand = new RelayCommand(Sale.AddOneFromToBeSold);
-            RemoveOneFromSaleCommand = new RelayCommand(Sale.RemoveOneFromToBeSold);
+
+            AddOneToSaleCommand = new RelayCommand(Sale.AddProductButton);
+            RemoveOneFromSaleCommand = new RelayCommand(Sale.RemoveProductButton);
 
             AddEventUserCommand = new RelayCommand(EventPage.AddUser);
             RemoveEventUserCommand = new RelayCommand(EventPage.RemoveUser);
@@ -90,7 +92,7 @@ namespace FredagsCafeUWP.ViewModels
             AddEventCommand = new RelayCommand(EventPage.AddEvent);
             RemoveEventCommand = new RelayCommand(EventPage.RemoveEvent);
 
-            CalculateTotalPriceCommand = new RelayCommand(Sale.TotalTbMethod);
+            CalculateTotalPriceCommand = new RelayCommand(Sale.CalculateTotalPrice);
 
             LogOffCommand = new RelayCommand(LogOnLogOff.logOffMethod);
 
@@ -99,6 +101,8 @@ namespace FredagsCafeUWP.ViewModels
             ChangeToAccountCommand = new RelayCommand(AccountSettingsClass.GoToAccountSettings);
 
             GoToHelpPageCommand = new RelayCommand(Help.GoToHelpPage);
+
+            DeleteReceiptCommand = new RelayCommand(Sale.DeleteReceipt);
         }
 
         #region Props
@@ -309,6 +313,12 @@ namespace FredagsCafeUWP.ViewModels
         {
             get { return _goToHelpPageCommand; }
             set { _goToHelpPageCommand = value; }
+        }
+
+        public RelayCommand DeleteReceiptCommand
+        {
+            get { return _deleteReceiptCommand; }
+            set { _deleteReceiptCommand = value; }
         }
 
         #endregion

@@ -177,14 +177,18 @@ namespace FredagsCafeUWP.Models
         {
             if (EventNameTb != null && EventDescriptionTb != null && EventLocationTb != null && EventMaxUsersTb != null)
             {
-                Events.Add(new Event(EventNameTb, EventLocationTb, EventDescriptionTb, EventMaxUsersTb, new ObservableCollection<EventUser>()));
+                if (int.TryParse(EventMaxUsersTb, out int intEventMaxUsersTb))
+                {
+                    Events.Add(new Event(EventNameTb, EventLocationTb, EventDescriptionTb, EventMaxUsersTb, new ObservableCollection<EventUser>()));
 
-                EventNameTb = null;
-                EventLocationTb = null;
-                EventDescriptionTb = null;
-                EventMaxUsersTb = null;
+                    EventNameTb = null;
+                    EventLocationTb = null;
+                    EventDescriptionTb = null;
+                    EventMaxUsersTb = null;
 
-                SaveAsync();
+                    SaveAsync();
+                }
+                else await _message.Error("Forkert input", "Max deltagere skal være et tal.");
             }
             else await _message.Error("Manglende input", "Tekstfelter mangler at blive udfyldt");
         }

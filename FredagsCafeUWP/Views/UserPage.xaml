@@ -84,9 +84,33 @@
                         <Button Style="{StaticResource RoundedButtonStyle}" Foreground="White" Content="Betal" Command="{Binding CompleteSaleCommand}"/>
                     </StackPanel>
 
-                    <Button Style="{StaticResource RoundedButtonStyle}" Foreground="White" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Slet transaktion" Command="{Binding CompleteSaleCommand}"  Margin="0,0,5,5"/>
+                    <Button Style="{StaticResource RoundedButtonStyle}" Foreground="White" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Slet transaktion" Command="{Binding DeleteReceiptCommand}"  Margin="0,0,5,5"/>
 
-                    <ListView Margin="30,30,30,0" Header="Transaktioner" Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Sale.Receipts}"/>
+                    <ListView Margin="30,30,30,0" Header="Transaktioner" Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Sale.Receipts}" SelectedItem="{Binding Sale.SelectedReceipt,Mode=TwoWay}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Foreground="{Binding Color}" Text="Salgs tid: "/>
+                                        <TextBlock Foreground="{Binding Color}" Text="{Binding SaleDateTime}"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Foreground="{Binding Color}" Text="Salgs nummer: "/>
+                                        <TextBlock Foreground="{Binding Color}" Text="{Binding SaleNumber}"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Foreground="{Binding Color}" Text="Total: "/>
+                                        <TextBlock Foreground="{Binding Color}" Text="{Binding SubTotal}"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Foreground="{Binding Color}" Text="Produkter købt: "/>
+                                        <TextBlock Foreground="{Binding Color}" Text="{Binding Basket.Count}"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                           
+                    </ListView>
                 </Grid>
 
             </PivotItem>
