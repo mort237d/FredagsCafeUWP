@@ -40,7 +40,7 @@ namespace FredagsCafeUWP
             
             _message = new Message(this);
 
-            Basket = new List<Product>();
+            //Basket = new List<Product>();
 
             Receipts = new ObservableCollection<Receipt>();
 
@@ -117,7 +117,8 @@ namespace FredagsCafeUWP
 
         public void AddItemsToBasket()
         {
-            Basket.Clear();
+            //Basket.Clear();
+            Basket = new List<Product>();
             foreach (var product in _stock.Products)
             {
                 if (product.AmountToBeSold != 0)
