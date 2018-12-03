@@ -9,6 +9,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using FredagsCafeUWP.Annotations;
 using FredagsCafeUWP.Models;
+using Message = System.ServiceModel.Channels.Message;
 
 namespace FredagsCafeUWP
 {
@@ -16,6 +17,7 @@ namespace FredagsCafeUWP
 
     {
         private Administration _administration = new Administration();
+        private static Message _message;
 
 
         private readonly string _standardImage = "UserImages/Profile-icon.png";
@@ -154,9 +156,9 @@ namespace FredagsCafeUWP
                     _administration.CurrentUser.Password = PasswordTb;
                     foreach (var user in _administration.Users)
                     {
-                        if (_administration.CurrentUser.UserName == user.UserName)
+                        if (_administration.CurrentUser.Email == user.Email)
                         {
-                            //user = _administration.CurrentUser;
+                            _administration.Users[_administration.Users.IndexOf(user)] = _administration.CurrentUser;
                         }
                     }
 
