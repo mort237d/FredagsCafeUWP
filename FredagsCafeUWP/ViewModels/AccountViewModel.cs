@@ -20,7 +20,6 @@ namespace FredagsCafeUWP.ViewModels
 
         private RelayCommand _logOffCommand;
 
-
         private RelayCommand _changeSettingsCommand;
 
         public AccountViewModel()

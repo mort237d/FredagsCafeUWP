@@ -20,7 +20,7 @@
         <CommandBar Background="#6CA0DC">
 
             <CommandBar.SecondaryCommands>
-                <AppBarButton Label="Gå tilbage til mainpage" Command="{Binding ChangeToUserCommand}"/>
+                <AppBarButton Label="Gå tilbage til mainpage" Command="{Binding}"/>
                 <AppBarButton Label="Log af" Command="{Binding LogOffCommand}"/>
             </CommandBar.SecondaryCommands>
 
@@ -39,7 +39,7 @@
                 <TextBox PlaceholderText="Navn" Text="{Binding SettingsClass.NameTb, Mode=TwoWay}"/>
                 <TextBox PlaceholderText="Klasse" Text="{Binding SettingsClass.GradeTb, Mode=TwoWay}"/>
                 <TextBox PlaceholderText="Skole" Text="{Binding SettingsClass.EducationTb, Mode=TwoWay}"/>
-                <TextBox PlaceholderText="email" Text="{Binding SettingsClass.EmailTb, Mode=TwoWay}"/>
+                <TextBox IsReadOnly="True" PlaceholderText="email" Text="{Binding SettingsClass.EmailTb, Mode=TwoWay}"/>
                 <TextBox PlaceholderText="Tlf. nummer" Text="{Binding SettingsClass.TelephoneNumberTb, Mode=TwoWay}"/>
                 <TextBox PlaceholderText="Username" Text="{Binding SettingsClass.UserNameTb, Mode=TwoWay}"/>
                 <PasswordBox PlaceholderText="Password" Password="{Binding SettingsClass.PasswordTb, Mode=TwoWay}"/>
