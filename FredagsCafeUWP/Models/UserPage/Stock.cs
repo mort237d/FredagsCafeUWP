@@ -6,8 +6,6 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using FredagsCafeUWP.Annotations;
 using Windows.UI.Xaml.Media;
-using FredagsCafeUWP.Models.AddProduct;
-using FredagsCafeUWP.ViewModels;
 
 namespace FredagsCafeUWP.Models
 {
@@ -17,9 +15,8 @@ namespace FredagsCafeUWP.Models
 
         private readonly Message _message;
         private Product _selectedProduct;
-        private AddProductClass _addProductClass;
 
-        private static ObservableCollection<Product> _products;
+        private ObservableCollection<Product> _products;
 
         public string _colorRed = "Red";
         public string _colorGreen = "ForestGreen";
@@ -38,12 +35,28 @@ namespace FredagsCafeUWP.Models
 
         #endregion
 
-        public Stock()
+        private Stock()
         {
             _message = new Message(this);
-
-            
+            Debug.WriteLine("STOCK");
         }
+
+        #region Singleton
+
+        private static Stock _instance;
+        public static Stock Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new Stock();
+                }
+                return _instance;
+            }
+        }
+
+        #endregion
 
         #region Properties
         public ObservableCollection<Product> Products

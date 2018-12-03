@@ -25,7 +25,7 @@ namespace FredagsCafeUWP.Models
         private string _passwordTb;
         private string _confirmPasswordTb;
 
-        private ObservableCollection<User> _users;
+        private ObservableCollection<User> _users = new ObservableCollection<User>();
         private User _selectedUser;
         private User _currentUser;
 
@@ -129,12 +129,35 @@ namespace FredagsCafeUWP.Models
 
         #endregion
 
-        public Administration()
+        private Administration()
         {
             _message = new Message(this);
 
-            
+            Debug.WriteLine("ADMINISTRATION");
+
+            //Debug.WriteLine(Users.Count);
+
+            //LoadAsync();
+
+            //Debug.WriteLine(Users.Count);
         }
+
+        #region Singleton
+
+        private static Administration _instance;
+        public static Administration Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new Administration();
+                }
+                return _instance;
+            }
+        }
+
+        #endregion
 
         #region ButtonMethods
 

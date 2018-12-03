@@ -13,9 +13,9 @@ namespace FredagsCafeUWP.ViewModels
 {
     class AccountViewModel : INotifyPropertyChanged
     {
-        private Administration _administration = new Administration();
+        private Administration _administration;
         private AccountSettingsClass _accountSettingsClass = new AccountSettingsClass();
-        private LogOnLogOff _logOnLogOff = new LogOnLogOff();
+        private LogOnLogOff _logOnLogOff = LogOnLogOff.Instance;
         private User _user = new User();
 
         private RelayCommand _logOffCommand;

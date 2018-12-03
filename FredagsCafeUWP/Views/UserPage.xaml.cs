@@ -9,11 +9,12 @@ namespace FredagsCafeUWP
 {
     public sealed partial class UserPage : Page
     {
-        private Stock _stock = new Stock();
-        private Sale _sale = new Sale();
-        private StatListClass _statListClass = new StatListClass();
-        private Administration _administration = new Administration();
-        private LogOnLogOff _logOnLogOff = new LogOnLogOff();
+        private Stock _stock = Stock.Instance;
+        private Sale _sale = Sale.Instance;
+        private EventPage _eventPage = EventPage.Instance;
+        private StatListClass _statListClass = StatListClass.Instance;
+        private Administration _administration = Administration.Instance;
+        private LogOnLogOff _logOnLogOff = LogOnLogOff.Instance;
 
         public UserPage()
         {
@@ -27,12 +28,14 @@ namespace FredagsCafeUWP
             titleBar.ButtonBackgroundColor = Color.FromArgb(1, 108, 160, 220);
 
             #endregion
+            
 
             _stock.LoadAsync();
             _sale.LoadAsync();
             _statListClass.LoadAsync();
             _administration.LoadAsync();
             _logOnLogOff.LoadAsync();
+            _eventPage.LoadAsync();
 
             SystemNavigationManagerPreview.GetForCurrentView().CloseRequested += this.OnCloseRequest;
         }
@@ -45,6 +48,7 @@ namespace FredagsCafeUWP
             await _statListClass.SaveAsync();
             await _administration.SaveAsync();
             await _logOnLogOff.SaveAsync();
+            await _eventPage.SaveAsync();
 
             CoreApplication.Exit();
         }

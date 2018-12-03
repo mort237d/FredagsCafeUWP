@@ -17,13 +17,13 @@ namespace FredagsCafeUWP
         #region Field
 
         private ObservableCollection<Receipt> _receipts;
-        private static List<Product> _basket;
+        private List<Product> _basket;
 
         private readonly string _colorRed = "Red";
         private readonly string _colorGreen = "ForestGreen";
 
         private readonly Message _message;
-        private Stock _stock = new Stock();
+        private Stock _stock = Stock.Instance;
         private Product _selectedProduct;
         private Receipt _selectedReceipt;
 
@@ -31,20 +31,30 @@ namespace FredagsCafeUWP
 
         private int _noItems = 0;
 
-        private StatListClass _statListClass = new StatListClass();
+        private StatListClass _statListClass = StatListClass.Instance;
 
         #endregion
 
-        public Sale()
+        private  Sale()
         {
-            
             _message = new Message(this);
 
             Basket = new List<Product>();
 
             Receipts = new ObservableCollection<Receipt>();
+        }
 
-                 
+        private static Sale instance;
+        public static Sale Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new Sale();
+                }
+                return instance;
+            }
         }
 
         #region Props
@@ -63,12 +73,6 @@ namespace FredagsCafeUWP
         {
             get => _selectedProduct;
             set => _selectedProduct = value;
-        }
-
-        public Stock Stock
-        {
-            get => _stock;
-            set => _stock = value;
         }
 
         public List<Product> Basket
@@ -135,7 +139,7 @@ namespace FredagsCafeUWP
             bool isNotInstuck = false;
             string productsNotInStuck = null;
 
-            foreach (var product in Stock.Products)
+            foreach (var product in _stock.Products)
             {
                 if (product.AmountToBeSold > product.Amount)
                 {
@@ -146,7 +150,7 @@ namespace FredagsCafeUWP
 
             if (!isNotInstuck)
             {
-                foreach (var product in Stock.Products)
+                foreach (var product in _stock.Products)
                 {
                     if (product.AmountToBeSold > 0)
                     {
@@ -211,7 +215,7 @@ namespace FredagsCafeUWP
                 _statListClass.AddTotalSaleValue(SellingTotal(), BuyingTotal());
                 //_statListClass.SaveAsync();
 
-                foreach (var product in Stock.Products)
+                foreach (var product in _stock.Products)
                 {
                     product.AmountToBeSold = 0;
                     if (product.Amount < 10 && product.ForegroundColor != _colorRed)
@@ -229,7 +233,7 @@ namespace FredagsCafeUWP
         public void CalculateTotalPrice()
         {
             double temp = 0;
-            foreach (var product in Stock.Products)
+            foreach (var product in _stock.Products)
             {
                 if (product.AmountToBeSold != 0)
                 {

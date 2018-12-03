@@ -12,15 +12,15 @@ namespace FredagsCafeUWP.ViewModels
         #region Field
 
         private string _selectedItem;
-        private Stock _stock = new Stock();
+        private Stock _stock = Stock.Instance;
         private User _user;
         private Product _product;
-        private Sale _sale = new Sale();
-        private EventPage _eventPage = new EventPage();
-        private Administration _administration = new Administration();
+        private Sale _sale = Sale.Instance;
+        private EventPage _eventPage = EventPage.Instance;
+        private Administration _administration = Administration.Instance;
         private Statistics _statistics;
-        private StatListClass _statList = new StatListClass();
-        private LogOnLogOff _logOnLogOff = new LogOnLogOff();
+        private StatListClass _statList = StatListClass.Instance;
+        private LogOnLogOff _logOnLogOff = LogOnLogOff.Instance;
         private AccountSettingsClass _accountSettingsClass = new AccountSettingsClass();
         private Help _help = new Help();
         private AddProductClass _addProductClass = new AddProductClass();
@@ -118,12 +118,6 @@ namespace FredagsCafeUWP.ViewModels
             set => _selectedItem = value;
         }
 
-        public Stock Stock
-        {
-            get => _stock;
-            set => _stock = value;
-        }
-
         public Product Product
         {
             get => _product;
@@ -216,12 +210,6 @@ namespace FredagsCafeUWP.ViewModels
         {
             get { return _removeOneFromSaleCommand; }
             set { _removeOneFromSaleCommand = value; }
-        }
-
-        public EventPage EventPage
-        {
-            get { return _eventPage; }
-            set { _eventPage = value; }
         }
 
         public RelayCommand RemoveEventUserCommand
@@ -319,6 +307,18 @@ namespace FredagsCafeUWP.ViewModels
         {
             get { return _addProductClass; }
             set { _addProductClass = value; }
+        }
+
+        public Stock Stock
+        {
+            get { return _stock; }
+            set { _stock = value; }
+        }
+
+        public EventPage EventPage
+        {
+            get { return _eventPage; }
+            set { _eventPage = value; }
         }
 
         #endregion

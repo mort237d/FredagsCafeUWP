@@ -15,7 +15,7 @@ namespace FredagsCafeUWP
     public class AccountSettingsClass : INotifyPropertyChanged
 
     {
-        private Administration _administration = new Administration();
+        private Administration _administration = Administration.Instance;
 
 
         private readonly string _standardImage = "UserImages/Profile-icon.png";
