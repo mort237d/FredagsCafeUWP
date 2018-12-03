@@ -122,8 +122,7 @@ namespace FredagsCafeUWP
             {
                 if (product.AmountToBeSold != 0)
                 {
-                    product.ForegroundColor = "Black";  //ellers er farven grøn.
-                    Basket.Add(new Product(product.BuyingPrice, product.SellingPrice, product.Name, product.Amount, product.AmountSold, product.ImageSource, product.ForegroundColor, product.AmountToBeSold));
+                    Basket.Add(new Product(product.BuyingPrice, product.SellingPrice, product.Name, product.Amount, product.AmountSold, product.ImageSource, "Black", product.AmountToBeSold));
                 }
             }
         }
@@ -201,9 +200,9 @@ namespace FredagsCafeUWP
             if (temp > 0)
             {
                 AddItemsToBasket();
-                
+                double temp2 = Test();
                 int count = Receipts.Count + 1;
-                Receipts.Insert(0, new Receipt(temp, count, Basket));
+                Receipts.Insert(0, new Receipt(temp2, count, Basket));
 
                 TotalTb = _noItems;
                 //Stock.SaveAsync();
@@ -263,16 +262,20 @@ namespace FredagsCafeUWP
             }
         }
 
-        ////public void Test()
-        ////{
-        ////    switch (@enum)
-        ////    {
-                    
-        ////    }
-        ////    VolumeDiscound()
-        ////}
+        public double Test()
+        {
+            double total = 0;
 
-        public double VolumeDiscound(int discountAtThisAmount, int itemsToBeDiscounted, double discountPrice, double normalPrice)
+            foreach (var product in Basket)
+            {
+                total += VolumeDiscount(product.DiscountAtThisAmount, product.AmountToBeSold, product.DiscountPricePerItem,
+                    product.SellingPrice);
+            }
+
+            return total;
+        }
+
+        public double VolumeDiscount(int discountAtThisAmount, int itemsToBeDiscounted, double discountPrice, double normalPrice)
         {
             double total = itemsToBeDiscounted * normalPrice;
             int temp = 0;

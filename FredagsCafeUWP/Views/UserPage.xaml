@@ -108,11 +108,11 @@
                                             <ListView.ItemTemplate>
                                                 <DataTemplate>
                                                         <StackPanel Orientation="Horizontal">
-                                                            <TextBlock Foreground="{Binding ForegroundColor}" Text="Produkt: "/>
                                                             <TextBlock Foreground="{Binding ForegroundColor}" Text="{Binding AmountToBeSold}"/>
-                                                            <TextBlock Foreground="{Binding ForegroundColor}" Text="x"/>
-                                                            <TextBlock Foreground="{Binding ForegroundColor}" Text="{Binding Name}"/>
-                                                            <TextBlock Foreground="{Binding ForegroundColor}" Text="."/>
+                                                            <TextBlock Foreground="{Binding ForegroundColor}" Text="x" Margin="2,0,0,0"/>
+                                                            <TextBlock Foreground="{Binding ForegroundColor}" Text="{Binding Name}" Margin="2,0,0,0"/>
+                                                            <TextBlock Foreground="{Binding ForegroundColor}" Text="{Binding SellingPrice}" Margin="5,0,0,0"/>
+                                                        <TextBlock Foreground="{Binding ForegroundColor}" Text="kr." Margin="2,0,0,0"/>
                                                         </StackPanel>
                                                 </DataTemplate>
                                             </ListView.ItemTemplate>
