@@ -1,0 +1,29 @@
+﻿<Page
+    x:Class="FredagsCafeUWP.Views.AddProductPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FredagsCafeUWP.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="using:FredagsCafeUWP.ViewModels"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.DataContext>
+        <viewModels:AddProductViewModel/>
+    </Page.DataContext>
+
+    <Grid>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0">
+                <TextBox Margin="2" PlaceholderText="Navn" Text="{Binding AddProductClass.NameTb, Mode=TwoWay}"/>
+                <TextBox Margin="2" PlaceholderText="Købspris" Text="{Binding AddProductClass.BuyingPriceTb, Mode=TwoWay}"/>
+                <TextBox Margin="2" PlaceholderText="Salgspris" Text="{Binding AddProductClass.SellingPriceTb, Mode=TwoWay}"/>
+                <TextBox Margin="2" PlaceholderText="Antal" Text="{Binding AddProductClass.AmountTb, Mode=TwoWay}"/>
+            <StackPanel Orientation="Horizontal" Margin="2">
+                <TextBox IsReadOnly="True" Width="110" PlaceholderText="ImageSource" Text="{Binding AddProductClass.ImageSourceTb, Mode=TwoWay}"/>
+                <Button Content="..." Width="40" Command="{Binding BrowseImageCommand}"/>
+            </StackPanel>
+            <Button Margin="20" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Center" Content="Tilføj produkt" Command="{Binding AddProductCommand}"/>
+        </StackPanel>
+    </Grid>
+</Page>

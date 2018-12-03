@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using Windows.UI;
 using FredagsCafeUWP.Annotations;
 using FredagsCafeUWP.Models;
@@ -16,7 +17,7 @@ namespace FredagsCafeUWP
         #region Field
 
         private ObservableCollection<Receipt> _receipts;
-        private static ObservableCollection<Product> _basket;
+        private static List<Product> _basket;
 
         private readonly string _colorRed = "Red";
         private readonly string _colorGreen = "ForestGreen";
@@ -39,11 +40,11 @@ namespace FredagsCafeUWP
             
             _message = new Message(this);
 
-            Basket = new ObservableCollection<Product>();
+            Basket = new List<Product>();
 
             Receipts = new ObservableCollection<Receipt>();
 
-            LoadAsync();     
+                 
         }
 
         #region Props
@@ -70,7 +71,7 @@ namespace FredagsCafeUWP
             set => _stock = value;
         }
 
-        public ObservableCollection<Product> Basket
+        public List<Product> Basket
         {
             get => _basket;
             set => _basket = value;
@@ -119,7 +120,11 @@ namespace FredagsCafeUWP
             Basket.Clear();
             foreach (var product in _stock.Products)
             {
-                if (product.AmountToBeSold != 0) Basket.Add(new Product(product.BuyingPrice, product.SellingPrice, product.Name, product.Amount, product.AmountSold, product.ImageSource, product.ForegroundColor, product.AmountToBeSold));
+                if (product.AmountToBeSold != 0)
+                {
+                    product.ForegroundColor = "Black";  //ellers er farven grøn.
+                    Basket.Add(new Product(product.BuyingPrice, product.SellingPrice, product.Name, product.Amount, product.AmountSold, product.ImageSource, product.ForegroundColor, product.AmountToBeSold));
+                }
             }
         }
 
@@ -201,10 +206,10 @@ namespace FredagsCafeUWP
                 Receipts.Insert(0, new Receipt(temp, count, Basket));
 
                 TotalTb = _noItems;
-                Stock.SaveAsync();
-                SaveAsync();
+                //Stock.SaveAsync();
+                
                 _statListClass.AddTotalSaleValue(SellingTotal(), BuyingTotal());
-                _statListClass.SaveAsync();
+                //_statListClass.SaveAsync();
 
                 foreach (var product in Stock.Products)
                 {
@@ -258,17 +263,47 @@ namespace FredagsCafeUWP
             }
         }
 
+        ////public void Test()
+        ////{
+        ////    switch (@enum)
+        ////    {
+                    
+        ////    }
+        ////    VolumeDiscound()
+        ////}
+
+        public double VolumeDiscound(int discountAtThisAmount, int itemsToBeDiscounted, double discountPrice, double normalPrice)
+        {
+            double total = itemsToBeDiscounted * normalPrice;
+            int temp = 0;
+            while (true)
+            {
+                if (itemsToBeDiscounted - discountAtThisAmount >= 0)
+                {
+                    temp++;
+                    itemsToBeDiscounted -= discountAtThisAmount;
+                }
+                else break;
+            }
+            for (int i = (temp * discountAtThisAmount); i > 0; i--)
+            {
+                total -= normalPrice - discountPrice;
+            }
+            return total;
+        }
+
         #endregion
 
         #region Save/Load
 
-        public async void SaveAsync()
+        public async Task SaveAsync()
         {
             Debug.WriteLine("Saving receipt async...");
             await XmlReadWriteClass.SaveObjectToXml(Receipts, "receipt.xml");
             Debug.WriteLine("receipts.count: " + Receipts.Count);
         }
-        private async void LoadAsync()
+
+        public async void LoadAsync()
         {
             try
             {
@@ -280,10 +315,10 @@ namespace FredagsCafeUWP
             {
                 Receipts = new ObservableCollection<Receipt>()
                 {
-                    new Receipt(424, 1, new ObservableCollection<Product>())
+                    new Receipt(424, 1, new List<Product>())
                     //new Receipt(3423, "Drugs and drugs", 0)
                 };
-                SaveAsync();
+                
             }
         }
 
