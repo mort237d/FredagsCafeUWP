@@ -17,7 +17,7 @@ namespace FredagsCafeUWP
         #region Field
 
         private ObservableCollection<Receipt> _receipts;
-        private List<Product> _basket;
+        private static List<Product> _tempBasket;
 
         private readonly string _colorRed = "Red";
         private readonly string _colorGreen = "ForestGreen";
@@ -39,7 +39,7 @@ namespace FredagsCafeUWP
         {
             _message = new Message(this);
 
-            Basket = new List<Product>();
+            //Basket = new List<Product>();
 
             Receipts = new ObservableCollection<Receipt>();
         }
@@ -77,8 +77,8 @@ namespace FredagsCafeUWP
 
         public List<Product> Basket
         {
-            get => _basket;
-            set => _basket = value;
+            get => _tempBasket;
+            set => _tempBasket = value;
         }
 
         public double TotalTb
@@ -121,13 +121,13 @@ namespace FredagsCafeUWP
 
         public void AddItemsToBasket()
         {
-            Basket.Clear();
+            //Basket.Clear();
+            Basket = new List<Product>();
             foreach (var product in _stock.Products)
             {
                 if (product.AmountToBeSold != 0)
                 {
-                    product.ForegroundColor = "Black";  //ellers er farven grøn.
-                    Basket.Add(new Product(product.BuyingPrice, product.SellingPrice, product.Name, product.Amount, product.AmountSold, product.ImageSource, product.ForegroundColor, product.AmountToBeSold));
+                    Basket.Add(new Product(product.BuyingPrice, product.SellingPrice, product.Name, product.Amount, product.AmountSold, product.ImageSource, "Black", product.AmountToBeSold));
                 }
             }
         }
@@ -205,9 +205,9 @@ namespace FredagsCafeUWP
             if (temp > 0)
             {
                 AddItemsToBasket();
-                
+                double temp2 = DiscountedTotal();
                 int count = Receipts.Count + 1;
-                Receipts.Insert(0, new Receipt(temp, count, Basket));
+                Receipts.Insert(0, new Receipt(temp2, count, Basket));
 
                 TotalTb = _noItems;
                 //Stock.SaveAsync();
@@ -228,19 +228,6 @@ namespace FredagsCafeUWP
 
             }
             else if (temp != -1) await _message.Error("Ingen vare tilføjet", "Tilføj venligst vare for at betale.");
-        }
-
-        public void CalculateTotalPrice()
-        {
-            double temp = 0;
-            foreach (var product in _stock.Products)
-            {
-                if (product.AmountToBeSold != 0)
-                {
-                    temp += product.AmountToBeSold * product.SellingPrice;
-                }
-            }
-            TotalTb = temp;
         }
 
         public void DeleteReceipt()
@@ -267,16 +254,38 @@ namespace FredagsCafeUWP
             }
         }
 
-        ////public void Test()
-        ////{
-        ////    switch (@enum)
-        ////    {
-                    
-        ////    }
-        ////    VolumeDiscound()
-        ////}
+        public double DiscountedTotal()
+        {
+            double total = 0;
 
-        public double VolumeDiscound(int discountAtThisAmount, int itemsToBeDiscounted, double discountPrice, double normalPrice)
+            foreach (var product in Basket)
+            {
+                total += VolumeDiscount(product.DiscountAtThisAmount, product.AmountToBeSold, product.DiscountPricePerItem,
+                    product.SellingPrice);
+            }
+
+            return total;
+        }
+
+        public void DiscountedTotalcalculator()
+        {
+            AddItemsToBasket();
+            TotalTb = DiscountedTotal();
+        }
+        //public void CalculateTotalPrice()
+        //{
+        //    double temp = 0;
+        //    foreach (var product in Stock.Products)
+        //    {
+        //        if (product.AmountToBeSold != 0)
+        //        {
+        //            temp += product.AmountToBeSold * product.SellingPrice;
+        //        }
+        //    }
+        //    TotalTb = temp;
+        //}
+
+        public double VolumeDiscount(int discountAtThisAmount, int itemsToBeDiscounted, double discountPrice, double normalPrice)
         {
             double total = itemsToBeDiscounted * normalPrice;
             int temp = 0;

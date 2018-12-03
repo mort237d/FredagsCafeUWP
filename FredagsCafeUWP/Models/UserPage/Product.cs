@@ -10,11 +10,13 @@ namespace FredagsCafeUWP.Models
         private double _buyingPrice;
         private double _sellingPrice;
         private string _name;
-        private int _amount;
+        private int _amountInStock;
         private int _amountSold;
         private string _imageSource;
-        private string _foregroundColor;
+        private string _foregroundColor = "ForestGreen";
         private int _amountToBeSold;
+        private int _discountAtThisAmount = 3;
+        private double _discountPricePerItem = 4;
         #endregion
 
         #region Constructors
@@ -81,10 +83,10 @@ namespace FredagsCafeUWP.Models
 
         public int Amount
         {
-            get => _amount;
+            get => _amountInStock;
             set
             {
-                _amount = value; 
+                _amountInStock = value; 
                 OnPropertyChanged();
             }
         }
@@ -124,6 +126,19 @@ namespace FredagsCafeUWP.Models
                 OnPropertyChanged();
             }
         }
+
+        public int DiscountAtThisAmount
+        {
+            get { return _discountAtThisAmount; }
+            set { _discountAtThisAmount = value; }
+        }
+
+        public double DiscountPricePerItem
+        {
+            get { return _discountPricePerItem; }
+            set { _discountPricePerItem = value; }
+        }
+
         #endregion
 
         #region INotify

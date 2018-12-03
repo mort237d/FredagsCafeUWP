@@ -2,8 +2,10 @@
 using Windows.UI;
 using Windows.UI.Core.Preview;
 using Windows.UI.ViewManagement;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using FredagsCafeUWP.Models;
+using WinRTXamlToolkit.Controls.Extensions;
 
 namespace FredagsCafeUWP
 {
@@ -51,6 +53,11 @@ namespace FredagsCafeUWP
             await _eventPage.SaveAsync();
 
             CoreApplication.Exit();
+        }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            _stock.Products[0].AmountToBeSold++;
         }
     }
 }
