@@ -133,7 +133,7 @@ namespace FredagsCafeUWP.Models
         {
             _message = new Message(this);
 
-            LoadAsync();
+            
 
             foreach (var user in Users)
             {
