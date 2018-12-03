@@ -16,7 +16,7 @@ namespace FredagsCafeUWP
         #region Field
 
         private ObservableCollection<Receipt> _receipts;
-        private static ObservableCollection<Product> _basket;
+        private static List<Product> _basket;
 
         private readonly string _colorRed = "Red";
         private readonly string _colorGreen = "ForestGreen";
@@ -39,7 +39,7 @@ namespace FredagsCafeUWP
             
             _message = new Message(this);
 
-            Basket = new ObservableCollection<Product>();
+            Basket = new List<Product>();
 
             Receipts = new ObservableCollection<Receipt>();
 
@@ -70,7 +70,7 @@ namespace FredagsCafeUWP
             set => _stock = value;
         }
 
-        public ObservableCollection<Product> Basket
+        public List<Product> Basket
         {
             get => _basket;
             set => _basket = value;
@@ -119,7 +119,11 @@ namespace FredagsCafeUWP
             Basket.Clear();
             foreach (var product in _stock.Products)
             {
-                if (product.AmountToBeSold != 0) Basket.Add(new Product(product.BuyingPrice, product.SellingPrice, product.Name, product.Amount, product.AmountSold, product.ImageSource, product.ForegroundColor, product.AmountToBeSold));
+                if (product.AmountToBeSold != 0)
+                {
+                    product.ForegroundColor = "Black";  //ellers er farven grøn.
+                    Basket.Add(new Product(product.BuyingPrice, product.SellingPrice, product.Name, product.Amount, product.AmountSold, product.ImageSource, product.ForegroundColor, product.AmountToBeSold));
+                }
             }
         }
 
@@ -258,6 +262,35 @@ namespace FredagsCafeUWP
             }
         }
 
+        ////public void Test()
+        ////{
+        ////    switch (@enum)
+        ////    {
+                    
+        ////    }
+        ////    VolumeDiscound()
+        ////}
+
+        public double VolumeDiscound(int discountAtThisAmount, int itemsToBeDiscounted, double discountPrice, double normalPrice)
+        {
+            double total = itemsToBeDiscounted * normalPrice;
+            int temp = 0;
+            while (true)
+            {
+                if (itemsToBeDiscounted - discountAtThisAmount >= 0)
+                {
+                    temp++;
+                    itemsToBeDiscounted -= discountAtThisAmount;
+                }
+                else break;
+            }
+            for (int i = (temp * discountAtThisAmount); i > 0; i--)
+            {
+                total -= normalPrice - discountPrice;
+            }
+            return total;
+        }
+
         #endregion
 
         #region Save/Load
@@ -280,7 +313,7 @@ namespace FredagsCafeUWP
             {
                 Receipts = new ObservableCollection<Receipt>()
                 {
-                    new Receipt(424, 1, new ObservableCollection<Product>())
+                    new Receipt(424, 1, new List<Product>())
                     //new Receipt(3423, "Drugs and drugs", 0)
                 };
                 SaveAsync();
