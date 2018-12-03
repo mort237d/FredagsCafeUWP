@@ -104,8 +104,19 @@
                                         <TextBlock Foreground="{Binding Color}" Text="{Binding SubTotal}"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Foreground="{Binding Color}" Text="Produkter købt: "/>
-                                        <TextBlock Foreground="{Binding Color}" Text="{Binding Basket.Count}"/>
+                                        <ListView ItemsSource="{Binding Basket}">
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <TextBlock Foreground="{Binding ForegroundColor}" Text="Produkt: "/>
+                                                            <TextBlock Foreground="{Binding ForegroundColor}" Text="{Binding AmountToBeSold}"/>
+                                                            <TextBlock Foreground="{Binding ForegroundColor}" Text="x"/>
+                                                            <TextBlock Foreground="{Binding ForegroundColor}" Text="{Binding Name}"/>
+                                                            <TextBlock Foreground="{Binding ForegroundColor}" Text="."/>
+                                                        </StackPanel>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
                                     </StackPanel>
                                 </StackPanel>
                             </DataTemplate>

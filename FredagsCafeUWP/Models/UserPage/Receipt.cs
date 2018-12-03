@@ -18,11 +18,11 @@ namespace FredagsCafeUWP
         private int _saleNumber;
         private double _subTotal;
         private string _color = "Black";
-        private List<Product> _basket;
+        private ObservableCollection<Product> _basket;
 
         #endregion
 
-        public Receipt(double subTotal, int saleNumber, List<Product> basket)
+        public Receipt(double subTotal, int saleNumber, ObservableCollection<Product> basket)
         {
             SubTotal = subTotal;
             SaleNumber = saleNumber;
@@ -36,7 +36,7 @@ namespace FredagsCafeUWP
 
         #region Props
 
-        public List<Product> Basket
+        public ObservableCollection<Product> Basket
         {
             get => _basket;
             set => _basket = value;

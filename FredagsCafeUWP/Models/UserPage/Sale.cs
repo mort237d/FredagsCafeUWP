@@ -17,7 +17,7 @@ namespace FredagsCafeUWP
         #region Field
 
         private ObservableCollection<Receipt> _receipts;
-        private static List<Product> _basket;
+        private static ObservableCollection<Product> _basket;
 
         private readonly string _colorRed = "Red";
         private readonly string _colorGreen = "ForestGreen";
@@ -40,7 +40,7 @@ namespace FredagsCafeUWP
             
             _message = new Message(this);
 
-            Basket = new List<Product>();
+            Basket = new ObservableCollection<Product>();
 
             Receipts = new ObservableCollection<Receipt>();
 
@@ -71,7 +71,7 @@ namespace FredagsCafeUWP
             set => _stock = value;
         }
 
-        public List<Product> Basket
+        public ObservableCollection<Product> Basket
         {
             get => _basket;
             set => _basket = value;
@@ -246,10 +246,15 @@ namespace FredagsCafeUWP
                         if (product.Name == basket.Name)
                         {
                             product.Amount += basket.AmountToBeSold;
+                            break;
                         }
                     }
                 }
                 SelectedReceipt.Color = _colorRed;
+                foreach (var item in SelectedReceipt.Basket)
+                {
+                    item.ForegroundColor = _colorRed;
+                }
                 //Todo Hvis product.amount > 10 produkt skal blive grøn igen i lageret sådan at advarsler kommer igen.
             }
         }
@@ -277,7 +282,7 @@ namespace FredagsCafeUWP
             {
                 Receipts = new ObservableCollection<Receipt>()
                 {
-                    new Receipt(424, 1, new List<Product>())
+                    new Receipt(424, 1, new ObservableCollection<Product>())
                     //new Receipt(3423, "Drugs and drugs", 0)
                 };
                 
