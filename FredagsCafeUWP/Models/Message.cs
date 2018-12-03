@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
+using FredagsCafeUWP.Models.AddProduct;
 
 namespace FredagsCafeUWP.Models
 {
@@ -13,6 +14,7 @@ namespace FredagsCafeUWP.Models
         private readonly Administration _administration;
         private Sale _sale;
         private EventPage _eventPage;
+        private AddProductClass _addProductClass;
 
         #endregion
 
@@ -34,6 +36,11 @@ namespace FredagsCafeUWP.Models
         public Message(EventPage eventPage)
         {
             _eventPage = eventPage;
+        }
+
+        public Message(AddProductClass addProductClass)
+        {
+            _addProductClass = addProductClass;
         }
 
         #endregion

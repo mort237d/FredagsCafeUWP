@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using Windows.UI;
 using FredagsCafeUWP.Annotations;
 using FredagsCafeUWP.Models;
@@ -43,7 +44,7 @@ namespace FredagsCafeUWP
 
             Receipts = new ObservableCollection<Receipt>();
 
-            LoadAsync();     
+                 
         }
 
         #region Props
@@ -205,10 +206,10 @@ namespace FredagsCafeUWP
                 Receipts.Insert(0, new Receipt(temp, count, Basket));
 
                 TotalTb = _noItems;
-                Stock.SaveAsync();
-                SaveAsync();
+                //Stock.SaveAsync();
+                
                 _statListClass.AddTotalSaleValue(SellingTotal(), BuyingTotal());
-                _statListClass.SaveAsync();
+                //_statListClass.SaveAsync();
 
                 foreach (var product in Stock.Products)
                 {
@@ -295,13 +296,14 @@ namespace FredagsCafeUWP
 
         #region Save/Load
 
-        public async void SaveAsync()
+        public async Task SaveAsync()
         {
             Debug.WriteLine("Saving receipt async...");
             await XmlReadWriteClass.SaveObjectToXml(Receipts, "receipt.xml");
             Debug.WriteLine("receipts.count: " + Receipts.Count);
         }
-        private async void LoadAsync()
+
+        public async void LoadAsync()
         {
             try
             {
@@ -316,7 +318,7 @@ namespace FredagsCafeUWP
                     new Receipt(424, 1, new List<Product>())
                     //new Receipt(3423, "Drugs and drugs", 0)
                 };
-                SaveAsync();
+                
             }
         }
 

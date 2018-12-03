@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using FredagsCafeUWP.Annotations;
 
 namespace FredagsCafeUWP.Models
@@ -132,7 +133,7 @@ namespace FredagsCafeUWP.Models
         {
             _message = new Message(this);
 
-            LoadAsync();
+            
         }
 
         #region ButtonMethods
@@ -170,7 +171,7 @@ namespace FredagsCafeUWP.Models
                             UserNameTb = null;
                             PasswordTb = null;
                             ConfirmPasswordTb = null;
-                            SaveAsync();
+                            
                         }
                         else
                             await _message.Error("Uoverensstemmelser",
@@ -195,19 +196,20 @@ namespace FredagsCafeUWP.Models
 
         #region Save/Load
 
-        public async void SaveAsync()
+        public async Task SaveAsync()
         {
-            Debug.WriteLine("Saving list async...");
+            Debug.WriteLine("Saving user async...");
             await XmlReadWriteClass.SaveObjectToXml(Users, "administration.xml");
-            Debug.WriteLine("list.count: " + Users.Count);
+            Debug.WriteLine("user.count: " + Users.Count);
         }
-        private async void LoadAsync()
+
+        public async void LoadAsync()
         {
             try
             {
-                Debug.WriteLine("loading list async...");
+                Debug.WriteLine("loading user async...");
                 Users = await XmlReadWriteClass.ReadObjectFromXmlFileAsync<ObservableCollection<User>>("administration.xml");
-                Debug.WriteLine("list.count:" + Users.Count);
+                Debug.WriteLine("user.count:" + Users.Count);
             }
             catch (Exception)
             {
@@ -219,7 +221,7 @@ namespace FredagsCafeUWP.Models
                     new User("Lucas", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Lucas", "Lucas", _standardImage),
                     new User("Christian", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678", "Christian", "Christian", _standardImage)
                 };
-                SaveAsync();
+                
             }
 
         }

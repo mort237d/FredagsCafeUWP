@@ -2,6 +2,7 @@
 using System.Runtime.CompilerServices;
 using FredagsCafeUWP.Annotations;
 using FredagsCafeUWP.Models;
+using FredagsCafeUWP.Models.AddProduct;
 using GalaSoft.MvvmLight.Command;
 
 namespace FredagsCafeUWP.ViewModels
@@ -22,13 +23,12 @@ namespace FredagsCafeUWP.ViewModels
         private LogOnLogOff _logOnLogOff = new LogOnLogOff();
         private AccountSettingsClass _accountSettingsClass = new AccountSettingsClass();
         private Help _help = new Help();
+        private AddProductClass _addProductClass = new AddProductClass();
 
-        private RelayCommand _addProductCommand;
         private RelayCommand _removeProductCommand;
 
         private RelayCommand _addAmountCommand;
         private RelayCommand _removeAmountCommand;
-        private RelayCommand _browseImageCommand;
 
         private RelayCommand _changeProductSellPriceCommand;
         private RelayCommand _changeProductBuyPriceCommand;
@@ -55,6 +55,7 @@ namespace FredagsCafeUWP.ViewModels
         private RelayCommand _logOffCommand;
 
         private RelayCommand _goToHelpPageCommand;
+        private RelayCommand _goToAddProductPageCommand;
 
         //Todo Skal slettes igen senere
         private RelayCommand _clearStatListCommand;
@@ -67,13 +68,10 @@ namespace FredagsCafeUWP.ViewModels
 
         public UserViewModel()
         {
-            AddProductCommand = new RelayCommand(_stock.AddProductToObList);
-            RemoveProductCommand = new RelayCommand(_stock.RemoveProductFromObList);
+            RemoveProductCommand = new RelayCommand(Stock.RemoveProductFromObList);
 
             AddAmountCommand = new RelayCommand(Stock.AddAmountToProduct);
             RemoveAmountCommand = new RelayCommand(Stock.RemoveAmountFromProduct);
-
-            BrowseImageCommand = new RelayCommand(Stock.BrowseImageButton);
 
             ChangeProductSellPriceCommand = new RelayCommand(Stock.ChangeProductSellPrice);
             ChangeProductBuyPriceCommand = new RelayCommand(Stock.ChangeProductBuyPrice);
@@ -101,11 +99,18 @@ namespace FredagsCafeUWP.ViewModels
             ChangeToAccountCommand = new RelayCommand(AccountSettingsClass.GoToAccountSettings);
 
             GoToHelpPageCommand = new RelayCommand(Help.GoToHelpPage);
+            GoToAddProductPageCommand = new RelayCommand(AddProductClass.GoToAddProductPage);
 
             DeleteReceiptCommand = new RelayCommand(Sale.DeleteReceipt);
         }
 
         #region Props
+
+        public RelayCommand RemoveProductCommand
+        {
+            get { return _removeProductCommand; }
+            set { _removeProductCommand = value; }
+        }
 
         public string SelectedItem
         {
@@ -140,17 +145,6 @@ namespace FredagsCafeUWP.ViewModels
 
 
         #region RelayCommands
-        public RelayCommand AddProductCommand
-        {
-            get => _addProductCommand;
-            set => _addProductCommand = value;
-        }
-
-        public RelayCommand RemoveProductCommand
-        {
-            get => _removeProductCommand;
-            set => _removeProductCommand = value;
-        }
 
         public RelayCommand AddAmountCommand
         {
@@ -162,12 +156,6 @@ namespace FredagsCafeUWP.ViewModels
         {
             get => _removeAmountCommand;
             set => _removeAmountCommand = value;
-        }
-
-        public RelayCommand BrowseImageCommand
-        {
-            get => _browseImageCommand;
-            set => _browseImageCommand = value;
         }
 
         public RelayCommand ChangeProductSellPriceCommand
@@ -315,10 +303,22 @@ namespace FredagsCafeUWP.ViewModels
             set { _goToHelpPageCommand = value; }
         }
 
+        public RelayCommand GoToAddProductPageCommand
+        {
+            get { return _goToAddProductPageCommand; }
+            set { _goToAddProductPageCommand = value; }
+        }
+
         public RelayCommand DeleteReceiptCommand
         {
             get { return _deleteReceiptCommand; }
             set { _deleteReceiptCommand = value; }
+        }
+
+        public AddProductClass AddProductClass
+        {
+            get { return _addProductClass; }
+            set { _addProductClass = value; }
         }
 
         #endregion

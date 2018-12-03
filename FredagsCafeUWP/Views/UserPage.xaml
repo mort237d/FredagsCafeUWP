@@ -9,7 +9,8 @@
     xmlns:Custom="using:Microsoft.Xaml.Interactivity" xmlns:Custom1="using:Microsoft.Xaml.Interactions.Core"
     x:Class="FredagsCafeUWP.UserPage"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    >
 
     <Page.DataContext>
         <viewModels:UserViewModel/>
@@ -64,7 +65,7 @@
                                         <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
                                             <Button Background="#6CA0DC" Style="{StaticResource LeftRoundedButtonStyle}" Content="-"/>
                                             <TextBox BorderBrush="#6CA0DC" PlaceholderText="0" TextAlignment="Center" Text="{Binding AmountToBeSold, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                            <Button Background="#6CA0DC" Style="{StaticResource RightRoundedButtonStyle}" Content="+" Command="{Binding AddOneToSaleCommand}"/>
+                                            <Button Background="#6CA0DC" Style="{StaticResource RightRoundedButtonStyle}" Content="+"/>
                                         </StackPanel>
                                     </StackPanel>
                                 </StackPanel>
@@ -168,21 +169,10 @@
                     </GridView>
 
                     <Rectangle Fill="#6CA0DC" Grid.Row="1" Margin="-11,0,-11,0"/>
-                    <Grid Grid.Row="1" Margin="10,0,10,10">
-                        <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0,0,0,0">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBox Width="80" PlaceholderText="Navn" Text="{Binding Stock.NameTb, Mode=TwoWay}"/>
-                                <TextBox Width="80" PlaceholderText="Købspris" Text="{Binding Stock.BuyingPriceTb, Mode=TwoWay}"/>
-                                <TextBox Width="80" PlaceholderText="Salgspris" Text="{Binding Stock.SellingPriceTb, Mode=TwoWay}"/>
-                                <TextBox Width="80" PlaceholderText="Antal" Text="{Binding Stock.AmountTb, Mode=TwoWay}"/>
-                            </StackPanel>
-
-                            <StackPanel Orientation="Horizontal">
-                                <TextBox IsReadOnly="True" Width="110" PlaceholderText="ImageSource" Text="{Binding Stock.ImageSourceTb, Mode=TwoWay}"/>
-                                <Button Content="..." Width="40" Command="{Binding BrowseImageCommand}"/>
-                                <Button Width="85" Content="Tilføj" Command="{Binding AddProductCommand}"/>
-                                <Button Width="85" Content="Slet" Command="{Binding RemoveProductCommand}"/>
-                            </StackPanel>
+                    <Grid Grid.Row="1" Margin="10,0,10,0">
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,0,0">
+                            <Button HorizontalAlignment="Center" Style="{StaticResource RoundedButtonStyle}" Content="Tilføj produkt" Command="{Binding GoToAddProductPageCommand}"/>
+                            <Button HorizontalAlignment="Center" Style="{StaticResource RoundedButtonStyle}" Content="Slet produkt" Command="{Binding RemoveProductCommand}" Margin="0,5,0,0"/>
                         </StackPanel>
 
                         <StackPanel VerticalAlignment="Bottom" Margin="10,0,0,0" HorizontalAlignment="Center">
