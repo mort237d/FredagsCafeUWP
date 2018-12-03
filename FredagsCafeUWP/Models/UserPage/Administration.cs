@@ -237,7 +237,7 @@ namespace FredagsCafeUWP.Models
             {
                 Users = new ObservableCollection<User>()
                 {
-                    new User("Morten", "EASJ", "Datamatiker", "morten@edu.easj.dk", "12345678", "Morten", "Morten", _standardImage),
+                    new User("Morten", "EASJ", "Datamatiker", "Morten@edu.easj.dk", "12345678", "Morten", "Morten", _standardImage),
                     new User("Daniel", "EASJ", "Datamatiker", "Daniel@edu.easj.dk", "12345678", "Daniel", "Daniel", _standardImage),
                     new User("Jacob", "EASJ", "Datamatiker", "Jacob@edu.easj.dk", "12345678", "Jacob", "Jacob", _standardImage),
                     new User("Lucas", "EASJ", "Datamatiker", "Lucas@edu.easj.dk", "12345678", "Lucas", "Lucas", _standardImage),
