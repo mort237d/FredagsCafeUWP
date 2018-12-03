@@ -20,7 +20,7 @@ namespace FredagsCafeUWP
 
         public StatListClass()
         {
-            LoadAsync();
+            
         }
         #region Props
         public ObservableCollection<Statistics> StatList
@@ -53,13 +53,14 @@ namespace FredagsCafeUWP
         }
 
         #region save/load
-        public async void SaveAsync()
+        public async Task SaveAsync()
         {
             Debug.WriteLine("Saving stats async...");
             await XmlReadWriteClass.SaveObjectToXml(StatList, "stats.xml");
             Debug.WriteLine("stats.count: " + StatList.Count);
         }
-        private async void LoadAsync()
+
+        public async void LoadAsync()
         {
             try
             {
@@ -70,7 +71,7 @@ namespace FredagsCafeUWP
             catch (Exception)
             {
                 StatList = new ObservableCollection<Statistics>();
-                SaveAsync();
+                
             }
 
         }

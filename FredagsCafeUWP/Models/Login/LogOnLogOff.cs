@@ -22,7 +22,7 @@ namespace FredagsCafeUWP
         private string _wrongLogin;
         private string _wrongLoginColor;
         private Administration _administration = new Administration();
-        private List<string> _logInLogOutList;
+        private List<string> _logInLogOutList = new List<string>();
 
         private int i = 0;
         #region Props
@@ -63,7 +63,7 @@ namespace FredagsCafeUWP
 
         public LogOnLogOff()
         {
-            //LoadAsync();
+            
         }
 
         public void logOffMethod()
@@ -81,7 +81,7 @@ namespace FredagsCafeUWP
             
             LogInLogOutList.Add(Administration.CurrentUser.Name + " logged off at " + DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy"));
 
-            //SaveAsync();
+            
 
             //i = 0;
             //foreach (var loginlogoff in LogInLogOutList)
@@ -104,7 +104,7 @@ namespace FredagsCafeUWP
                     Administration.CurrentUser = user;
                     LogInLogOutList.Add(UserName + " logged in at " + DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy"));
 
-                    //SaveAsync();
+                    
 
                     //i = 0;
                     //foreach (var loginlogoff in LogInLogOutList)
@@ -130,13 +130,14 @@ namespace FredagsCafeUWP
 
         #region Save/Load
 
-        public async void SaveAsync()
+        public async Task SaveAsync()
         {
             Debug.WriteLine("Saving loginlogout async...");
             await XmlReadWriteClass.SaveObjectToXml(LogInLogOutList, "loginlogout.xml");
             Debug.WriteLine("loginlogoutlist.count: " + LogInLogOutList.Count);
         }
-        private async void LoadAsync()
+
+        public async void LoadAsync()
         {
             try
             {

@@ -3,14 +3,10 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Windows.Storage;
-using Windows.Storage.Pickers;
-using Windows.UI;
-using Windows.UI.Xaml.Controls;
 using FredagsCafeUWP.Annotations;
 using Windows.UI.Xaml.Media;
+using FredagsCafeUWP.Models.AddProduct;
 using FredagsCafeUWP.ViewModels;
 
 namespace FredagsCafeUWP.Models
@@ -21,20 +17,15 @@ namespace FredagsCafeUWP.Models
 
         private readonly Message _message;
         private Product _selectedProduct;
+        private AddProductClass _addProductClass;
 
         private static ObservableCollection<Product> _products;
 
-        private readonly string _colorRed = "Red";
-        private readonly string _colorGreen = "ForestGreen";
+        public string _colorRed = "Red";
+        public string _colorGreen = "ForestGreen";
         private Brush _amountColor;
 
-        private int _minAmount = 10;
-
-        private string _nameTb;
-        private string _buyingPriceTb;
-        private string _sellingPriceTb;
-        private string _amountTb;
-        private string _imageSourceTb = "";
+        public int _minAmount = 10;
 
         private string _frameAmountTb;
         private string _frameSizeTb;
@@ -51,14 +42,18 @@ namespace FredagsCafeUWP.Models
         {
             _message = new Message(this);
 
-            LoadAsync();
+            
         }
 
         #region Properties
         public ObservableCollection<Product> Products
         {
             get => _products;
-            set => _products = value;
+            set
+            {
+                _products = value;
+                OnPropertyChanged();
+            }
         }
 
         public Product SelectedProduct
@@ -67,56 +62,6 @@ namespace FredagsCafeUWP.Models
             set
             {
                 _selectedProduct = value; 
-                OnPropertyChanged();
-            }
-        }
-
-        public string NameTb
-        {
-            get => _nameTb;
-            set
-            {
-                _nameTb = value; 
-                OnPropertyChanged();
-            }
-        }
-
-        public string BuyingPriceTb
-        {
-            get => _buyingPriceTb;
-            set
-            {
-                _buyingPriceTb = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string SellingPriceTb
-        {
-            get => _sellingPriceTb;
-            set
-            {
-                _sellingPriceTb = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string AmountTb
-        {
-            get => _amountTb;
-            set
-            {
-                _amountTb = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string ImageSourceTb
-        {
-            get => _imageSourceTb;
-            set
-            {
-                _imageSourceTb = value;
                 OnPropertyChanged();
             }
         }
@@ -186,68 +131,21 @@ namespace FredagsCafeUWP.Models
             }
         }
 
+        public string ColorRed
+        {
+            get { return _colorRed; }
+            set { _colorRed = value; }
+        }
+
+        public string ColorGreen
+        {
+            get { return _colorGreen; }
+            set { _colorGreen = value; }
+        }
+
         #endregion
 
         #region ButtonMethods
-
-        public async void AddProductToObList()
-        {
-            bool productExist = false;
-            if (NameTb != null)
-            {
-                foreach (var element in Products)
-                {
-                    if (element.Name.ToLower().Equals(NameTb.ToLower()))
-                    {
-                        productExist = true;
-                        break;
-                    }
-                }
-                
-                if (!productExist)
-                {
-                    if (double.TryParse(BuyingPriceTb, out double doubleBuyingPriceTb) &&
-                    double.TryParse(SellingPriceTb, out double doubleSellingPriceTb) &&
-                    int.TryParse(AmountTb, out int intAmountTb))
-                    {
-                        if (doubleBuyingPriceTb > 0 && doubleSellingPriceTb > 0 && AmountTb != null && intAmountTb >= 0)
-                        {
-                            if (string.IsNullOrEmpty(ImageSourceTb))
-                            {
-                                if (intAmountTb < _minAmount)
-                                    Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, NameTb, intAmountTb,
-                                        0, "ProductImages/BlankDåse.png", _colorRed));
-                                else
-                                    Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, NameTb, intAmountTb,
-                                        0, "ProductImages/BlankDåse.png", _colorGreen));
-                            }
-                            else
-                            {
-                                if (intAmountTb < _minAmount)
-                                    Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, NameTb, intAmountTb,
-                                        0, ImageSourceTb, _colorRed));
-                                else
-                                    Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, NameTb, intAmountTb,
-                                        0, ImageSourceTb, _colorGreen));
-                            }
-
-                            NameTb = null;
-                            BuyingPriceTb = null;
-                            SellingPriceTb = null;
-                            AmountTb = null;
-                            ImageSourceTb = null;
-
-                            SaveAsync();
-                        }
-                        else await _message.Error("Forkert input", "Købspris og Salgspris skal være mere en 0.");
-                    }
-                    else await _message.Error("Forkert input", "Købspris, Salgspris og Antal skal være tal.");
-                }
-                else await _message.Error("Varen findes allerede!", "Scroll igennem varerne, for at finde den.");
-            }
-            else await _message.Error("Forkert input", "Produktet skal have et navn.");
-        }
-        
         public async void RemoveProductFromObList()
         {
             if (SelectedProduct != null)
@@ -260,6 +158,7 @@ namespace FredagsCafeUWP.Models
         private int _intFrameAmountTb;
         private int _intFrameSizeTb;
         private int _intProductAmountTb;
+
         public async void AddAmountToProduct()
         {
             if (SelectedProduct != null)
@@ -306,10 +205,10 @@ namespace FredagsCafeUWP.Models
 
                 else await _message.Error("Manglende input", "Til tal til felterne for at tilføje antal til produktet");
                 
-                if (SelectedProduct != null && SelectedProduct.Amount < _minAmount) SelectedProduct.ForegroundColor = _colorRed;
-                else SelectedProduct.ForegroundColor = _colorGreen;
+                if (SelectedProduct != null && SelectedProduct.Amount < _minAmount) SelectedProduct.ForegroundColor = ColorRed;
+                else SelectedProduct.ForegroundColor = ColorGreen;
 
-                SaveAsync();
+                
             }
             else await _message.Error("Intet produkt valg", "Vælg venligst et produkt");
         }
@@ -357,34 +256,14 @@ namespace FredagsCafeUWP.Models
 
                 if (SelectedProduct.Amount < _minAmount)
                 {
-                    SelectedProduct.ForegroundColor = _colorRed;
+                    SelectedProduct.ForegroundColor = ColorRed;
                     await _message.Error("Advarsel", "Lageret er næsten tomt");
                 }
-                else SelectedProduct.ForegroundColor = _colorGreen;
+                else SelectedProduct.ForegroundColor = ColorGreen;
 
-                SaveAsync();
+                
             }
             else await _message.Error("Intet produkt valg", "Vælg venligst et produkt");
-        }
-
-        public async Task<string> BrowseImageWindowTask()
-        {
-            FileOpenPicker openPicker = new FileOpenPicker();
-            openPicker.ViewMode = PickerViewMode.Thumbnail;
-            openPicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
-            openPicker.FileTypeFilter.Add(".jpg");
-            openPicker.FileTypeFilter.Add(".jpeg");
-            openPicker.FileTypeFilter.Add(".png");
-            TextBlock outputTextBlock = new TextBlock();
-
-            StorageFile file = await openPicker.PickSingleFileAsync();
-            if (file != null) return outputTextBlock.Text = "ProductImages/" + file.Name;
-            else return outputTextBlock.Text = "";
-        }
-        
-        public async void BrowseImageButton()
-        {
-            ImageSourceTb = await BrowseImageWindowTask();
         }
 
         public async void ChangeProductSellPrice()
@@ -398,7 +277,7 @@ namespace FredagsCafeUWP.Models
                         SelectedProduct.SellingPrice = intProductPriceChangedTb;
                         ProductPriceChangeTb = null;
 
-                        SaveAsync();
+                        
                     }
                     else await _message.Error("Forkert input", "Prisen skal være mere end 0.");
                 }
@@ -418,7 +297,7 @@ namespace FredagsCafeUWP.Models
                         SelectedProduct.BuyingPrice = intProductPriceChangedTb;
                         ProductPriceChangeTb = null;
 
-                        SaveAsync();
+                        
                     }
                     else await _message.Error("Forkert input", "Prisen skal være mere end 0.");
                 }
@@ -432,13 +311,14 @@ namespace FredagsCafeUWP.Models
 
         #region Save/Load
 
-        public async void SaveAsync()
+        public async Task SaveAsync()
         {
             Debug.WriteLine("Saving product async...");
             await XmlReadWriteClass.SaveObjectToXml(Products, "stock.xml");
             Debug.WriteLine("products.count: " + Products.Count);
         }
-        private async void LoadAsync()
+
+        public async void LoadAsync()
         {
             try
             {
@@ -450,20 +330,20 @@ namespace FredagsCafeUWP.Models
             {
                 Products = new ObservableCollection<Product>()
                 {
-                    new Product(2, 5, "Tuborg Classic", 48, 0, "ProductImages/TuborgClassic.png", _colorGreen),
-                    new Product(2, 5, "Grøn Tuborg", 48, 0, "ProductImages/GrønTuborg.png", _colorGreen),
-                    new Product(2, 5, "Tuborg Gylden Dame", 48, 0, "ProductImages/TuborgGuldDame.png", _colorGreen),
-                    new Product(2, 5, "Carlsberg", 48, 0, "ProductImages/Carlsberg.png", _colorGreen),
-                    new Product(2, 5, "Cola Zero", 48, 0, "ProductImages/ColaZero.png", _colorGreen),
-                    new Product(2, 5, "Cola", 48, 0, "ProductImages/Cola.png", _colorGreen),
-                    new Product(2, 5, "Mokai", 48, 0, "ProductImages/Mokai.png", _colorGreen),
-                    new Product(2, 5, "Mokai Jordbær Lime", 48, 0, "ProductImages/MokaiStrawberryLime.png", _colorGreen),
-                    new Product(2, 5, "Somersby Apple Cider", 48, 0, "ProductImages/SomersbyApple.png", _colorGreen),
-                    new Product(2, 5, "Somersby Pear Cider", 48, 0, "ProductImages/SomersbyPear.png", _colorGreen),
-                    new Product(2, 5, "Breezer", 48, 0, "ProductImages/Breezer.png", _colorGreen),
-                    new Product(2, 5, "Fanta", 48, 0, "ProductImages/Fanta.png", _colorGreen)
+                    new Product(2, 5, "Tuborg Classic", 48, 0, "ProductImages/TuborgClassic.png", ColorGreen),
+                    new Product(2, 5, "Grøn Tuborg", 48, 0, "ProductImages/GrønTuborg.png", ColorGreen),
+                    new Product(2, 5, "Tuborg Gylden Dame", 48, 0, "ProductImages/TuborgGuldDame.png", ColorGreen),
+                    new Product(2, 5, "Carlsberg", 48, 0, "ProductImages/Carlsberg.png", ColorGreen),
+                    new Product(2, 5, "Cola Zero", 48, 0, "ProductImages/ColaZero.png", ColorGreen),
+                    new Product(2, 5, "Cola", 48, 0, "ProductImages/Cola.png", ColorGreen),
+                    new Product(2, 5, "Mokai", 48, 0, "ProductImages/Mokai.png", ColorGreen),
+                    new Product(2, 5, "Mokai Jordbær Lime", 48, 0, "ProductImages/MokaiStrawberryLime.png", ColorGreen),
+                    new Product(2, 5, "Somersby Apple Cider", 48, 0, "ProductImages/SomersbyApple.png", ColorGreen),
+                    new Product(2, 5, "Somersby Pear Cider", 48, 0, "ProductImages/SomersbyPear.png", ColorGreen),
+                    new Product(2, 5, "Breezer", 48, 0, "ProductImages/Breezer.png", ColorGreen),
+                    new Product(2, 5, "Fanta", 48, 0, "ProductImages/Fanta.png", ColorGreen)
                 };
-                SaveAsync();
+                
             }
             
         }
