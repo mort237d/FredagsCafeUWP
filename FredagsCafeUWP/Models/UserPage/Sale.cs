@@ -200,7 +200,7 @@ namespace FredagsCafeUWP
             if (temp > 0)
             {
                 AddItemsToBasket();
-                double temp2 = Test();
+                double temp2 = DiscountedTotal();
                 int count = Receipts.Count + 1;
                 Receipts.Insert(0, new Receipt(temp2, count, Basket));
 
@@ -223,19 +223,6 @@ namespace FredagsCafeUWP
 
             }
             else if (temp != -1) await _message.Error("Ingen vare tilføjet", "Tilføj venligst vare for at betale.");
-        }
-
-        public void CalculateTotalPrice()
-        {
-            double temp = 0;
-            foreach (var product in Stock.Products)
-            {
-                if (product.AmountToBeSold != 0)
-                {
-                    temp += product.AmountToBeSold * product.SellingPrice;
-                }
-            }
-            TotalTb = temp;
         }
 
         public void DeleteReceipt()
@@ -262,7 +249,7 @@ namespace FredagsCafeUWP
             }
         }
 
-        public double Test()
+        public double DiscountedTotal()
         {
             double total = 0;
 
@@ -274,6 +261,24 @@ namespace FredagsCafeUWP
 
             return total;
         }
+
+        public void DiscountedTotalcalculator()
+        {
+            AddItemsToBasket();
+            TotalTb = DiscountedTotal();
+        }
+        //public void CalculateTotalPrice()
+        //{
+        //    double temp = 0;
+        //    foreach (var product in Stock.Products)
+        //    {
+        //        if (product.AmountToBeSold != 0)
+        //        {
+        //            temp += product.AmountToBeSold * product.SellingPrice;
+        //        }
+        //    }
+        //    TotalTb = temp;
+        //}
 
         public double VolumeDiscount(int discountAtThisAmount, int itemsToBeDiscounted, double discountPrice, double normalPrice)
         {

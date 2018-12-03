@@ -90,7 +90,7 @@ namespace FredagsCafeUWP.ViewModels
             AddEventCommand = new RelayCommand(EventPage.AddEvent);
             RemoveEventCommand = new RelayCommand(EventPage.RemoveEvent);
 
-            CalculateTotalPriceCommand = new RelayCommand(Sale.CalculateTotalPrice);
+            CalculateTotalPriceCommand = new RelayCommand(Sale.DiscountedTotalcalculator);
 
             LogOffCommand = new RelayCommand(LogOnLogOff.logOffMethod);
 
