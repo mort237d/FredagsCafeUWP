@@ -17,7 +17,7 @@ namespace FredagsCafeUWP
         #region Field
 
         private ObservableCollection<Receipt> _receipts;
-        private static List<Product> _basket;
+        private static List<Product> _tempBasket;
 
         private readonly string _colorRed = "Red";
         private readonly string _colorGreen = "ForestGreen";
@@ -73,8 +73,8 @@ namespace FredagsCafeUWP
 
         public List<Product> Basket
         {
-            get => _basket;
-            set => _basket = value;
+            get => _tempBasket;
+            set => _tempBasket = value;
         }
 
         public double TotalTb
