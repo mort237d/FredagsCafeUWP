@@ -20,12 +20,15 @@ namespace FredagsCafeUWP.ViewModels
 
         private RelayCommand _logOffCommand;
 
+        private RelayCommand _goToAccountCommand;
+
         private RelayCommand _changeSettingsCommand;
 
         public AccountViewModel()
         {
             ChangeSettingsCommand = new RelayCommand(SettingsClass.ChangeSettings);
             LogOffCommand = new RelayCommand(OnLogOff.logOffMethod);
+            GoToAccountCommand = new RelayCommand(SettingsClass.GoToAccountSettings);
         }
 
         public RelayCommand ChangeSettingsCommand
@@ -50,6 +53,12 @@ namespace FredagsCafeUWP.ViewModels
         {
             get { return _logOnLogOff; }
             set { _logOnLogOff = value; }
+        }
+
+        public RelayCommand GoToAccountCommand
+        {
+            get { return _goToAccountCommand; }
+            set { _goToAccountCommand = value; }
         }
 
         #region INotify
