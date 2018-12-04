@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using FredagsCafeUWP.Annotations;
 using FredagsCafeUWP.Models;
 using FredagsCafeUWP.Models.AddProduct;
+using FredagsCafeUWP.Models.AddProduct_ChangeProduct;
 using GalaSoft.MvvmLight.Command;
 
 namespace FredagsCafeUWP.ViewModels
@@ -12,17 +13,18 @@ namespace FredagsCafeUWP.ViewModels
         #region Field
 
         private Stock _stock = Stock.Instance;
-        private User _user;
-        private Product _product;
         private Sale _sale = Sale.Instance;
         private EventPage _eventPage = EventPage.Instance;
         private Administration _administration = Administration.Instance;
-        private Statistics _statistics;
         private StatListClass _statList = StatListClass.Instance;
         private LogOnLogOff _logOnLogOff = LogOnLogOff.Instance;
+        private User _user;
+        private Product _product;
+        private Statistics _statistics;
         private AccountSettingsClass _accountSettingsClass = new AccountSettingsClass();
         private Help _help = new Help();
         private AddProductClass _addProductClass = new AddProductClass();
+        private ChangeProductClass _changeProductClass = new ChangeProductClass();
 
         private RelayCommand _removeProductCommand;
 
@@ -53,8 +55,13 @@ namespace FredagsCafeUWP.ViewModels
 
         private RelayCommand _logOffCommand;
 
+        private RelayCommand _browseImageCommand;
+
         private RelayCommand _goToHelpPageCommand;
-        private RelayCommand _goToAddProductPageCommand;
+        private RelayCommand _showAddProductPopUpCommand;
+        private RelayCommand _goToChangeProductPageCommand;
+
+        private RelayCommand _addProductCommand;
 
         //Todo Skal slettes igen senere
         private RelayCommand _clearStatListCommand;
@@ -98,12 +105,23 @@ namespace FredagsCafeUWP.ViewModels
             ChangeToAccountCommand = new RelayCommand(AccountSettingsClass.GoToAccountSettings);
 
             GoToHelpPageCommand = new RelayCommand(Help.GoToHelpPage);
-            GoToAddProductPageCommand = new RelayCommand(AddProductClass.GoToAddProductPage);
+
+            ShowAddProductPopUpCommand = new RelayCommand(Stock.ShowAddProductPopUpMethod);
+            GoToChangeProductPageCommand = new RelayCommand(ChangeProductClass.GoToChangeProductPage);
 
             DeleteReceiptCommand = new RelayCommand(Sale.DeleteReceipt);
+
+            BrowseImageCommand = new RelayCommand(Stock.BrowseImageButton);
+
+            AddProductCommand = new RelayCommand(Stock.AddProductToObList);
         }
 
         #region Props
+        public RelayCommand BrowseImageCommand
+        {
+            get { return _browseImageCommand; }
+            set { _browseImageCommand = value; }
+        }
 
         public RelayCommand RemoveProductCommand
         {
@@ -285,10 +303,10 @@ namespace FredagsCafeUWP.ViewModels
             set { _goToHelpPageCommand = value; }
         }
 
-        public RelayCommand GoToAddProductPageCommand
+        public RelayCommand ShowAddProductPopUpCommand
         {
-            get { return _goToAddProductPageCommand; }
-            set { _goToAddProductPageCommand = value; }
+            get { return _showAddProductPopUpCommand; }
+            set { _showAddProductPopUpCommand = value; }
         }
 
         public RelayCommand DeleteReceiptCommand
@@ -313,6 +331,24 @@ namespace FredagsCafeUWP.ViewModels
         {
             get { return _eventPage; }
             set { _eventPage = value; }
+        }
+
+        public ChangeProductClass ChangeProductClass
+        {
+            get { return _changeProductClass; }
+            set { _changeProductClass = value; }
+        }
+
+        public RelayCommand GoToChangeProductPageCommand
+        {
+            get { return _goToChangeProductPageCommand; }
+            set { _goToChangeProductPageCommand = value; }
+        }
+
+        public RelayCommand AddProductCommand
+        {
+            get { return _addProductCommand; }
+            set { _addProductCommand = value; }
         }
 
         #endregion

@@ -198,13 +198,14 @@ namespace FredagsCafeUWP
         public async void CompleteSale()
         {
             string productAmountLow = null;
-             
             double temp = SubTotal();
+
             if (temp > 0)
             {
                 AddItemsToBasket();
                 double temp2 = DiscountedTotal();
                 int count = Receipts.Count + 1;
+
                 Receipts.Insert(0, new Receipt(temp2, count, Basket));
 
                 TotalTb = _noItems;
@@ -262,8 +263,7 @@ namespace FredagsCafeUWP
 
             foreach (var product in Basket)
             {
-                total += VolumeDiscount(product.DiscountAtThisAmount, product.AmountToBeSold, product.DiscountPricePerItem,
-                    product.SellingPrice);
+                total += VolumeDiscount(product.DiscountAtThisAmount, product.AmountToBeSold, product.DiscountPricePerItem, product.SellingPrice);
             }
 
             return total;

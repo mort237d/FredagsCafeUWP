@@ -15,12 +15,13 @@
 
     <Grid>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0">
-                <TextBox Margin="2" PlaceholderText="Navn" Text="{Binding AddProductClass.NameTb, Mode=TwoWay}"/>
+            <TextBlock Text="Tilføj Produkt" FontWeight="Bold" FontSize="50" HorizontalAlignment="Center"></TextBlock>
+            <TextBox Margin="2" PlaceholderText="Navn" Text="{Binding AddProductClass.NameTb, Mode=TwoWay}"/>
                 <TextBox Margin="2" PlaceholderText="Købspris" Text="{Binding AddProductClass.BuyingPriceTb, Mode=TwoWay}"/>
                 <TextBox Margin="2" PlaceholderText="Salgspris" Text="{Binding AddProductClass.SellingPriceTb, Mode=TwoWay}"/>
                 <TextBox Margin="2" PlaceholderText="Antal" Text="{Binding AddProductClass.AmountTb, Mode=TwoWay}"/>
             <StackPanel Orientation="Horizontal" Margin="2">
-                <TextBox IsReadOnly="True" Width="110" PlaceholderText="ImageSource" Text="{Binding AddProductClass.ImageSourceTb, Mode=TwoWay}"/>
+                <TextBox IsReadOnly="True" PlaceholderText="ImageSource" Text="{Binding AddProductClass.ImageSourceTb, Mode=TwoWay}"/>
                 <Button Content="..." Width="40" Command="{Binding BrowseImageCommand}"/>
             </StackPanel>
             <Button Margin="20" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Center" Content="Tilføj produkt" Command="{Binding AddProductCommand}"/>
