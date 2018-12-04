@@ -90,15 +90,15 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel>
-                                    <StackPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Horizontal" Spacing="5">
                                         <TextBlock Foreground="{Binding Color}" Text="Salgs tid: "/>
                                         <TextBlock Foreground="{Binding Color}" Text="{Binding SaleDateTime}"/>
                                     </StackPanel>
-                                    <StackPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Horizontal" Spacing="5">
                                         <TextBlock Foreground="{Binding Color}" Text="Salgs nummer: "/>
                                         <TextBlock Foreground="{Binding Color}" Text="{Binding SaleNumber}"/>
                                     </StackPanel>
-                                    <StackPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Horizontal" Spacing="5">
                                         <TextBlock Foreground="{Binding Color}" Text="Total: "/>
                                         <TextBlock Foreground="{Binding Color}" Text="{Binding SubTotal}"/>
                                     </StackPanel>
@@ -106,7 +106,7 @@
                                         <ListView ItemsSource="{Binding Basket}">
                                             <ListView.ItemTemplate>
                                                 <DataTemplate>
-                                                        <StackPanel Orientation="Horizontal">
+                                                        <StackPanel Orientation="Horizontal" Spacing="2">
                                                             <TextBlock Foreground="{Binding ForegroundColor}" Text="{Binding AmountToBeSold}"/>
                                                             <TextBlock Foreground="{Binding ForegroundColor}" Text="x" Margin="2,0,0,0"/>
                                                             <TextBlock Foreground="{Binding ForegroundColor}" Text="{Binding Name}" Margin="2,0,0,0"/>
