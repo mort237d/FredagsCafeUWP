@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using FredagsCafeUWP.Annotations;
 
 namespace FredagsCafeUWP.Models
@@ -16,12 +18,13 @@ namespace FredagsCafeUWP.Models
         private string _userName;
         private string _password;
         private string _imageSource;
+        private string _admin;
 
         #endregion
 
         #region Constructors
 
-        public User(string name, string grade, string education, string email, string telephoneNumber, string userName, string password, string imageSource)
+        public User(string name, string grade, string education, string email, string telephoneNumber, string userName, string password, string imageSource, string admin)
         {
             Name = name;
             Grade = grade;
@@ -31,6 +34,7 @@ namespace FredagsCafeUWP.Models
             UserName = userName;
             Password = password;
             ImageSource = imageSource;
+            Admin = admin;
         }
 
         public User()
@@ -115,6 +119,24 @@ namespace FredagsCafeUWP.Models
                 OnPropertyChanged();
             }
         }
+
+        public string Admin
+        {
+            get { return _admin; }
+            set { _admin = value; }
+        }
+
+        #endregion
+
+        #region Methods
+
+        //public void adminMethod()
+        //{
+        //    if (_admin == "Admin")
+        //    {
+        //        Visibility.Visible
+        //    }
+        //}
 
         #endregion
 

@@ -229,7 +229,7 @@
 
                     <Rectangle Fill="#6CA0DC" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" Margin="-20,0,-20,-10"/>
                     <Button Style="{StaticResource RoundedButtonStyle}" Grid.Row="1" Grid.Column="0"
-                            HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" Content="Fjern medarbejder" Command="{Binding RemoveUserCommand}"/>
+                            HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" Content="Fjern medarbejder" Visibility="{Binding }" Command="{Binding RemoveUserCommand}"/>
 
                     <StackPanel Grid.Row="0" Grid.Column="1">
                         <TextBox PlaceholderText="Navn" Text="{Binding Administration.NameTb, Mode=TwoWay}"/>
