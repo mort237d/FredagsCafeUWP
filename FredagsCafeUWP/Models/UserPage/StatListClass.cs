@@ -74,7 +74,7 @@ namespace FredagsCafeUWP
             Debug.WriteLine("stats.count: " + StatList.Count);
         }
 
-        public async void LoadAsync()
+        public async Task LoadAsync()
         {
             try
             {

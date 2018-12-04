@@ -11,7 +11,6 @@ namespace FredagsCafeUWP.ViewModels
     public class UserViewModel : INotifyPropertyChanged
     {
         #region Field
-        private string _selectedItem;
 
         private Stock _stock = Stock.Instance;
         private Sale _sale = Sale.Instance;
@@ -130,11 +129,6 @@ namespace FredagsCafeUWP.ViewModels
             set { _removeProductCommand = value; }
         }
 
-        public string SelectedItem
-        {
-            get => _selectedItem;
-            set => _selectedItem = value;
-        }
 
         public Product Product
         {
@@ -370,5 +364,8 @@ namespace FredagsCafeUWP.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
+
+        //ToDo ( ͡° ͜ʖ ͡°)
+        //Todo make Morten STFU and be nice
     }
 }

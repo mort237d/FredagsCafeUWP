@@ -17,15 +17,22 @@ namespace FredagsCafeUWP.ViewModels
         private AccountSettingsClass _accountSettingsClass = new AccountSettingsClass();
         private LogOnLogOff _logOnLogOff = LogOnLogOff.Instance;
         private User _user = new User();
+        private Help _help = new Help();
 
         private RelayCommand _logOffCommand;
 
+        private RelayCommand _goToAccountCommand;
+
         private RelayCommand _changeSettingsCommand;
+
+        private RelayCommand _goToHelpPageCommand;
 
         public AccountViewModel()
         {
             ChangeSettingsCommand = new RelayCommand(SettingsClass.ChangeSettings);
             LogOffCommand = new RelayCommand(OnLogOff.logOffMethod);
+            GoToAccountCommand = new RelayCommand(SettingsClass.GoToAccountSettings);
+            GoToHelpPageCommand = new RelayCommand(Help.GoToHelpPage);
         }
 
         public RelayCommand ChangeSettingsCommand
@@ -50,6 +57,24 @@ namespace FredagsCafeUWP.ViewModels
         {
             get { return _logOnLogOff; }
             set { _logOnLogOff = value; }
+        }
+
+        public RelayCommand GoToAccountCommand
+        {
+            get { return _goToAccountCommand; }
+            set { _goToAccountCommand = value; }
+        }
+
+        public RelayCommand GoToHelpPageCommand
+        {
+            get { return _goToHelpPageCommand; }
+            set { _goToHelpPageCommand = value; }
+        }
+
+        public Help Help
+        {
+            get { return _help; }
+            set { _help = value; }
         }
 
         #region INotify

@@ -1,9 +1,11 @@
-﻿using Windows.ApplicationModel.Core;
+﻿using System;
+using Windows.ApplicationModel.Core;
 using Windows.UI;
 using Windows.UI.Core.Preview;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
 using FredagsCafeUWP.Models;
 using WinRTXamlToolkit.Controls.Extensions;
 
@@ -30,7 +32,6 @@ namespace FredagsCafeUWP
             titleBar.ButtonBackgroundColor = Color.FromArgb(1, 108, 160, 220);
 
             #endregion
-            
 
             _stock.LoadAsync();
             _sale.LoadAsync();
@@ -53,11 +54,6 @@ namespace FredagsCafeUWP
             await _eventPage.SaveAsync();
 
             CoreApplication.Exit();
-        }
-
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
-        {
-            _stock.Products[0].AmountToBeSold++;
         }
     }
 }

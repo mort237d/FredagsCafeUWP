@@ -1,4 +1,4 @@
-﻿<Page
+﻿<Page x:Name="Bob"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -49,7 +49,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <GridView ItemsSource="{Binding Stock.Products}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+                    <GridView Name="GridViewStock" ItemsSource="{Binding Stock.Products}" SelectedItem="{Binding Sale.SelectedProduct, Mode=TwoWay}">
                         <GridView.ItemTemplate>
                             <DataTemplate x:DataType="models:Product">
                                 <StackPanel Margin="10">
@@ -62,9 +62,9 @@
                                             <TextBlock Text=",-"/>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
-                                            <Button Background="#6CA0DC" Style="{StaticResource LeftRoundedButtonStyle}" Content="-"/>
+                                            <Button Background="#6CA0DC" Style="{StaticResource LeftRoundedButtonStyle}" Content="-" Command="{Binding DataContext.RemoveOneFromSaleCommand, ElementName=Bob}"/>
                                             <TextBox Name="AmountToBeSoldTB" BorderBrush="#6CA0DC" PlaceholderText="0" TextAlignment="Center" Text="{Binding AmountToBeSold, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                            <Button Background="#6CA0DC" Style="{StaticResource RightRoundedButtonStyle}" Content="+" Click="ButtonBase_OnClick"/>
+                                            <Button Background="#6CA0DC" Style="{StaticResource RightRoundedButtonStyle}" Content="+" Command="{Binding DataContext.AddOneToSaleCommand, ElementName=Bob}"/>
                                         </StackPanel>
                                     </StackPanel>
                                 </StackPanel>
@@ -90,15 +90,15 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel>
-                                    <StackPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Horizontal" Spacing="5">
                                         <TextBlock Foreground="{Binding Color}" Text="Salgs tid: "/>
                                         <TextBlock Foreground="{Binding Color}" Text="{Binding SaleDateTime}"/>
                                     </StackPanel>
-                                    <StackPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Horizontal" Spacing="5">
                                         <TextBlock Foreground="{Binding Color}" Text="Salgs nummer: "/>
                                         <TextBlock Foreground="{Binding Color}" Text="{Binding SaleNumber}"/>
                                     </StackPanel>
-                                    <StackPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Horizontal" Spacing="5">
                                         <TextBlock Foreground="{Binding Color}" Text="Total: "/>
                                         <TextBlock Foreground="{Binding Color}" Text="{Binding SubTotal}"/>
                                     </StackPanel>
@@ -106,7 +106,7 @@
                                         <ListView ItemsSource="{Binding Basket}">
                                             <ListView.ItemTemplate>
                                                 <DataTemplate>
-                                                        <StackPanel Orientation="Horizontal">
+                                                        <StackPanel Orientation="Horizontal" Spacing="2">
                                                             <TextBlock Foreground="{Binding ForegroundColor}" Text="{Binding AmountToBeSold}"/>
                                                             <TextBlock Foreground="{Binding ForegroundColor}" Text="x" Margin="2,0,0,0"/>
                                                             <TextBlock Foreground="{Binding ForegroundColor}" Text="{Binding Name}" Margin="2,0,0,0"/>
