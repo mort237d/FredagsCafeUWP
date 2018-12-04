@@ -11,15 +11,16 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using FredagsCafeUWP.Annotations;
+using FredagsCafeUWP.ViewModels;
 using FredagsCafeUWP.Views;
 
 namespace FredagsCafeUWP.Models.AddProduct
 {
     public class AddProductClass : INotifyPropertyChanged
     {
-        private Message _message;
+        private Message _message = Message.Instance;
 
-        private Stock _stock;
+        private Stock _stock = Stock.Instance;
 
         private string _nameTb;
         private string _buyingPriceTb;
@@ -32,8 +33,6 @@ namespace FredagsCafeUWP.Models.AddProduct
 
         public AddProductClass()
         {
-            Stock = new Stock();
-            _message = new Message(this);
         }
 
         public string NameTb
@@ -86,12 +85,6 @@ namespace FredagsCafeUWP.Models.AddProduct
             }
         }
 
-        public Stock Stock
-        {
-            get { return _stock; }
-            set { _stock = value; }
-        }
-
         public async void GoToAddProductPage()
         {
             CoreApplicationView newView = CoreApplication.CreateNewView();
@@ -114,7 +107,7 @@ namespace FredagsCafeUWP.Models.AddProduct
             bool productExist = false;
             if (NameTb != null)
             {
-                foreach (var element in Stock.Products)
+                foreach (var element in _stock.Products)
                 {
                     if (element.Name.ToLower().Equals(NameTb.ToLower()))
                     {
@@ -133,31 +126,30 @@ namespace FredagsCafeUWP.Models.AddProduct
                         {
                             if (string.IsNullOrEmpty(ImageSourceTb))
                             {
-                                if (intAmountTb < Stock._minAmount) //TODO what is going on here?
-                                    Stock.Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, NameTb, intAmountTb,
+                                if (intAmountTb < _stock._minAmount) //TODO what is going on here?
+                                    _stock.Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, NameTb, intAmountTb,
                                         0, "ProductImages/BlankDåse.png", _colorRed));
                                 else
-                                    Stock.Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, NameTb, intAmountTb,
+                                    _stock.Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, NameTb, intAmountTb,
                                         0, "ProductImages/BlankDåse.png", _colorGreen));
                             }
                             else
                             {
-                                if (intAmountTb < Stock._minAmount)
-                                    Stock.Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, NameTb, intAmountTb,
-                                        0, ImageSourceTb, Stock.ColorRed));
+                                if (intAmountTb < _stock._minAmount)
+                                    _stock.Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, NameTb, intAmountTb,
+                                        0, ImageSourceTb, _stock.ColorRed));
                                 else
-                                    Stock.Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, NameTb, intAmountTb,
-                                        0, ImageSourceTb, Stock.ColorGreen));
+                                    _stock.Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, NameTb, intAmountTb,
+                                        0, ImageSourceTb, _stock.ColorGreen));
                             }
-
+                            
                             NameTb = null;
                             BuyingPriceTb = null;
                             SellingPriceTb = null;
                             AmountTb = null;
                             ImageSourceTb = null;
 
-                            Debug.WriteLine("product: " + Stock.Products.Count);
-                            //Stock.SaveAsync();
+                            Debug.WriteLine("product: " + _stock.Products.Count);
 
                             Window.Current.Close();
                         }

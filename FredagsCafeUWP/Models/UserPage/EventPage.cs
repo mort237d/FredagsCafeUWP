@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using FredagsCafeUWP.Annotations;
 
 namespace FredagsCafeUWP.Models
@@ -11,7 +12,7 @@ namespace FredagsCafeUWP.Models
     {
         #region Field
 
-        private Message _message;
+        private Message _message = Message.Instance;
 
         private ObservableCollection<Event> _events;
         private Event _selectedEvent;
@@ -121,10 +122,22 @@ namespace FredagsCafeUWP.Models
 
         #endregion
 
-        public EventPage() //TODO Tilføj img og tidspunkt til events
+        private EventPage() //TODO Tilføj img og tidspunkt til events
         {
-            _message = new Message(this);
-            LoadAsync();
+
+        }
+
+        private static EventPage instance;
+        public static EventPage Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new EventPage();
+                }
+                return instance;
+            }
         }
 
         public async void AddUser()
@@ -148,8 +161,6 @@ namespace FredagsCafeUWP.Models
 
                         UserNameTb = null;
                         UserEmailTb = null;
-
-                        SaveAsync();
                     }
                     else await _message.Error("Forkert email", "Du skal bruge en \"@edu.easj.dk\" eller en \"@easj.dk\" mail.");
                 }
@@ -185,8 +196,6 @@ namespace FredagsCafeUWP.Models
                     EventLocationTb = null;
                     EventDescriptionTb = null;
                     EventMaxUsersTb = null;
-
-                    SaveAsync();
                 }
                 else await _message.Error("Forkert input", "Max deltagere skal være et tal.");
             }
@@ -204,13 +213,14 @@ namespace FredagsCafeUWP.Models
         }
 
         #region save/load
-        public async void SaveAsync()
+        public async Task SaveAsync()
         {
             Debug.WriteLine("Saving list async...");
             await XmlReadWriteClass.SaveObjectToXml(Events, "events.xml");
             Debug.WriteLine("events.count: " + Events.Count);
         }
-        private async void LoadAsync()
+
+        public async void LoadAsync()
         {
             try
             {
@@ -227,7 +237,7 @@ namespace FredagsCafeUWP.Models
                         new EventUser("Morten", "@edu.easj.dk"),
                         new EventUser("Lucas", "@edu.easj.dk")
                     })
-                }; SaveAsync();
+                };
             }
 
         }

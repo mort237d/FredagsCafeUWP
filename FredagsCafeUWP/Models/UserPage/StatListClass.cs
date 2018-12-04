@@ -18,10 +18,24 @@ namespace FredagsCafeUWP
 //        private double totalSaleValueSum;
 //        private double totalBuyValueSum;
 
-        public StatListClass()
+        private StatListClass()
         {
             
         }
+
+        private static StatListClass instance;
+        public static StatListClass Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new StatListClass();
+                }
+                return instance;
+            }
+        }
+
         #region Props
         public ObservableCollection<Statistics> StatList
         {

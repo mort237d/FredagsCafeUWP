@@ -17,33 +17,24 @@ namespace FredagsCafeUWP.Models
         private AddProductClass _addProductClass;
 
         #endregion
-
-        #region Constructors
-
-        public Message(Administration administration)
+        
+        private Message()
         {
-            _administration = administration;
-        }
-        public Message(Stock stock)
-        {
-            _stock = stock;
-        }
-        public Message(Sale sale)
-        {
-            _sale = sale;
+            
         }
 
-        public Message(EventPage eventPage)
+        private static Message instance;
+        public static Message Instance
         {
-            _eventPage = eventPage;
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new Message();
+                }
+                return instance;
+            }
         }
-
-        public Message(AddProductClass addProductClass)
-        {
-            _addProductClass = addProductClass;
-        }
-
-        #endregion
 
         #region Methods
 
@@ -74,27 +65,11 @@ namespace FredagsCafeUWP.Models
             if (command == yesCommand)
             {
                 Debug.WriteLine("Yes");
-                if (title == "Slet produkt")
-                {
-                    _stock.Products.Remove(_stock.SelectedProduct);
-                    _stock.SaveAsync();
+                if (title == "Slet produkt")_stock.Products.Remove(_stock.SelectedProduct);
+                if (title == "Slet bruger")_administration.Users.Remove(_administration.SelectedUser);
+                if (title == "Slet bruger af eventet")_eventPage.SelectedEvent.EventsUsers.Remove(_eventPage.SelectedEventUser);
+                if (title == "Slet event")_eventPage.Events.Remove(_eventPage.SelectedEvent);
                 }
-                if (title == "Slet bruger")
-                {
-                    _administration.Users.Remove(_administration.SelectedUser);
-                    _administration.SaveAsync();
-                }
-                if (title == "Slet bruger af eventet")
-                {
-                    _eventPage.SelectedEvent.EventsUsers.Remove(_eventPage.SelectedEventUser);
-                    _eventPage.SaveAsync();
-                }
-                if (title == "Slet event")
-                {
-                    _eventPage.Events.Remove(_eventPage.SelectedEvent);
-                    _eventPage.SaveAsync();
-                }
-            }
             else if (command == noCommand)
             {
                 Debug.WriteLine("No");

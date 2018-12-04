@@ -1,19 +1,23 @@
-﻿using Windows.ApplicationModel.Core;
+﻿using System;
+using Windows.ApplicationModel.Core;
 using Windows.UI;
 using Windows.UI.Core.Preview;
 using Windows.UI.ViewManagement;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using FredagsCafeUWP.Models;
+using WinRTXamlToolkit.Controls.Extensions;
 
 namespace FredagsCafeUWP
 {
     public sealed partial class UserPage : Page
     {
-        private Stock _stock = new Stock();
-        private Sale _sale = new Sale();
-        private StatListClass _statListClass = new StatListClass();
-        private Administration _administration = new Administration();
-        private LogOnLogOff _logOnLogOff = new LogOnLogOff();
+        private Stock _stock = Stock.Instance;
+        private Sale _sale = Sale.Instance;
+        private EventPage _eventPage = EventPage.Instance;
+        private StatListClass _statListClass = StatListClass.Instance;
+        private Administration _administration = Administration.Instance;
+        private LogOnLogOff _logOnLogOff = LogOnLogOff.Instance;
 
         public UserPage()
         {
@@ -28,7 +32,13 @@ namespace FredagsCafeUWP
 
             #endregion
             
-            Loader();
+
+            _stock.LoadAsync();
+            _sale.LoadAsync();
+            _statListClass.LoadAsync();
+            _administration.LoadAsync();
+            _logOnLogOff.LoadAsync();
+            _eventPage.LoadAsync();
 
             SystemNavigationManagerPreview.GetForCurrentView().CloseRequested += this.OnCloseRequest;
         }
@@ -41,18 +51,31 @@ namespace FredagsCafeUWP
             await _statListClass.SaveAsync();
             await _administration.SaveAsync();
             await _logOnLogOff.SaveAsync();
+            await _eventPage.SaveAsync();
 
             CoreApplication.Exit();
         }
 
-        public async void Loader()
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            //TODO Move loadAsync methods and OnCloseRequest to logon page at finished app
-            await _stock.LoadAsync();
-            await _sale.LoadAsync();
-            await _statListClass.LoadAsync();
-            await _administration.LoadAsync();
-            await _logOnLogOff.LoadAsync();
+            _stock.Products[0].AmountToBeSold++;
+        }
+
+
+        //Todo make this work or find another way
+        private FrameworkElement GetParent(FrameworkElement child, Type targetType)
+        {
+            object parent = child.Parent;
+            if (parent != null)
+            {
+                if (parent.GetType() == targetType)
+                    return (FrameworkElement) parent;
+
+                else return 
+                    GetParent((FrameworkElement) parent, targetType);
+            }
+
+            return null;
         }
     }
 }

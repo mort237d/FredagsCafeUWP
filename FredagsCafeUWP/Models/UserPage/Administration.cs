@@ -12,7 +12,7 @@ namespace FredagsCafeUWP.Models
     {
         #region Field
 
-        private static Message _message;
+        private static Message _message = Message.Instance;
 
         private readonly string _standardImage = "UserImages/Profile-icon.png";
 
@@ -25,7 +25,7 @@ namespace FredagsCafeUWP.Models
         private string _passwordTb;
         private string _confirmPasswordTb;
 
-        private ObservableCollection<User> _users;
+        private ObservableCollection<User> _users = new ObservableCollection<User>();
         private User _selectedUser;
         private User _currentUser;
 
@@ -129,15 +129,30 @@ namespace FredagsCafeUWP.Models
 
         #endregion
 
-        public Administration()
+        private Administration()
         {
-            _message = new Message(this);
-
             //foreach (var user in Users)
             //{
             //    user.Email = user.Name + "@edu.easj.dk";
             //}
         }
+
+        #region Singleton
+
+        private static Administration _instance;
+        public static Administration Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new Administration();
+                }
+                return _instance;
+            }
+        }
+
+        #endregion
 
         #region ButtonMethods
 
@@ -218,7 +233,7 @@ namespace FredagsCafeUWP.Models
             {
                 Users = new ObservableCollection<User>()
                 {
-                    new User("Morten", "EASJ", "Datamatiker", "morten@edu.easj.dk", "12345678", "Morten", "Morten", _standardImage),
+                    new User("Morten", "EASJ", "Datamatiker", "Morten@edu.easj.dk", "12345678", "Morten", "Morten", _standardImage),
                     new User("Daniel", "EASJ", "Datamatiker", "Daniel@edu.easj.dk", "12345678", "Daniel", "Daniel", _standardImage),
                     new User("Jacob", "EASJ", "Datamatiker", "Jacob@edu.easj.dk", "12345678", "Jacob", "Jacob", _standardImage),
                     new User("Lucas", "EASJ", "Datamatiker", "Lucas@edu.easj.dk", "12345678", "Lucas", "Lucas", _standardImage),

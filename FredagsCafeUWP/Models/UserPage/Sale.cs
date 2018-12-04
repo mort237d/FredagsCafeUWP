@@ -17,13 +17,13 @@ namespace FredagsCafeUWP
         #region Field
 
         private ObservableCollection<Receipt> _receipts;
-        private static List<Product> _basket;
+        private static List<Product> _tempBasket;
 
         private readonly string _colorRed = "Red";
         private readonly string _colorGreen = "ForestGreen";
 
-        private readonly Message _message;
-        private Stock _stock = new Stock();
+        private Message _message = Message.Instance;
+        private Stock _stock = Stock.Instance;
         private Product _selectedProduct;
         private Receipt _selectedReceipt;
 
@@ -31,20 +31,28 @@ namespace FredagsCafeUWP
 
         private int _noItems = 0;
 
-        private StatListClass _statListClass = new StatListClass();
+        private StatListClass _statListClass = StatListClass.Instance;
 
         #endregion
 
-        public Sale()
+        private  Sale()
         {
-            
-            _message = new Message(this);
-
-            Basket = new List<Product>();
+            //Basket = new List<Product>();
 
             Receipts = new ObservableCollection<Receipt>();
+        }
 
-                 
+        private static Sale instance;
+        public static Sale Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new Sale();
+                }
+                return instance;
+            }
         }
 
         #region Props
@@ -65,16 +73,10 @@ namespace FredagsCafeUWP
             set => _selectedProduct = value;
         }
 
-        public Stock Stock
-        {
-            get => _stock;
-            set => _stock = value;
-        }
-
         public List<Product> Basket
         {
-            get => _basket;
-            set => _basket = value;
+            get => _tempBasket;
+            set => _tempBasket = value;
         }
 
         public double TotalTb
@@ -117,13 +119,13 @@ namespace FredagsCafeUWP
 
         public void AddItemsToBasket()
         {
-            Basket.Clear();
+            //Basket.Clear();
+            Basket = new List<Product>();
             foreach (var product in _stock.Products)
             {
                 if (product.AmountToBeSold != 0)
                 {
-                    product.ForegroundColor = "Black";  //ellers er farven grøn.
-                    Basket.Add(new Product(product.BuyingPrice, product.SellingPrice, product.Name, product.Amount, product.AmountSold, product.ImageSource, product.ForegroundColor, product.AmountToBeSold));
+                    Basket.Add(new Product(product.BuyingPrice, product.SellingPrice, product.Name, product.Amount, product.AmountSold, product.ImageSource, "Black", product.AmountToBeSold));
                 }
             }
         }
@@ -135,7 +137,7 @@ namespace FredagsCafeUWP
             bool isNotInstuck = false;
             string productsNotInStuck = null;
 
-            foreach (var product in Stock.Products)
+            foreach (var product in _stock.Products)
             {
                 if (product.AmountToBeSold > product.Amount)
                 {
@@ -146,7 +148,7 @@ namespace FredagsCafeUWP
 
             if (!isNotInstuck)
             {
-                foreach (var product in Stock.Products)
+                foreach (var product in _stock.Products)
                 {
                     if (product.AmountToBeSold > 0)
                     {
@@ -201,9 +203,9 @@ namespace FredagsCafeUWP
             if (temp > 0)
             {
                 AddItemsToBasket();
-                
+                double temp2 = DiscountedTotal();
                 int count = Receipts.Count + 1;
-                Receipts.Insert(0, new Receipt(temp, count, Basket));
+                Receipts.Insert(0, new Receipt(temp2, count, Basket));
 
                 TotalTb = _noItems;
                 //Stock.SaveAsync();
@@ -211,7 +213,7 @@ namespace FredagsCafeUWP
                 _statListClass.AddTotalSaleValue(SellingTotal(), BuyingTotal());
                 //_statListClass.SaveAsync();
 
-                foreach (var product in Stock.Products)
+                foreach (var product in _stock.Products)
                 {
                     product.AmountToBeSold = 0;
                     if (product.Amount < 10 && product.ForegroundColor != _colorRed)
@@ -226,20 +228,7 @@ namespace FredagsCafeUWP
             else if (temp != -1) await _message.Error("Ingen vare tilføjet", "Tilføj venligst vare for at betale.");
         }
 
-        public void CalculateTotalPrice()
-        {
-            double temp = 0;
-            foreach (var product in Stock.Products)
-            {
-                if (product.AmountToBeSold != 0)
-                {
-                    temp += product.AmountToBeSold * product.SellingPrice;
-                }
-            }
-            TotalTb = temp;
-        }
-
-        public void DeleteReceipt()
+        public async void DeleteReceipt()
         {
             if (SelectedReceipt != null && SelectedReceipt.Color != _colorRed)
             {
@@ -250,29 +239,55 @@ namespace FredagsCafeUWP
                         if (product.Name == basket.Name)
                         {
                             product.Amount += basket.AmountToBeSold;
+                            if (product.Amount < _stock._minAmount) product.ForegroundColor = _colorRed;
+                            else product.ForegroundColor = _colorGreen;
+
                             break;
                         }
                     }
                 }
+
                 SelectedReceipt.Color = _colorRed;
                 foreach (var item in SelectedReceipt.Basket)
                 {
                     item.ForegroundColor = _colorRed;
                 }
-                //Todo Hvis product.amount > 10 produkt skal blive grøn igen i lageret sådan at advarsler kommer igen.
             }
+            else await _message.Error("Ingen transaktion valgt", "Vælg venligst en.");
         }
 
-        ////public void Test()
-        ////{
-        ////    switch (@enum)
-        ////    {
-                    
-        ////    }
-        ////    VolumeDiscound()
-        ////}
+        public double DiscountedTotal()
+        {
+            double total = 0;
 
-        public double VolumeDiscound(int discountAtThisAmount, int itemsToBeDiscounted, double discountPrice, double normalPrice)
+            foreach (var product in Basket)
+            {
+                total += VolumeDiscount(product.DiscountAtThisAmount, product.AmountToBeSold, product.DiscountPricePerItem,
+                    product.SellingPrice);
+            }
+
+            return total;
+        }
+
+        public void DiscountedTotalcalculator()
+        {
+            AddItemsToBasket();
+            TotalTb = DiscountedTotal();
+        }
+        //public void CalculateTotalPrice()
+        //{
+        //    double temp = 0;
+        //    foreach (var product in Stock.Products)
+        //    {
+        //        if (product.AmountToBeSold != 0)
+        //        {
+        //            temp += product.AmountToBeSold * product.SellingPrice;
+        //        }
+        //    }
+        //    TotalTb = temp;
+        //}
+
+        public double VolumeDiscount(int discountAtThisAmount, int itemsToBeDiscounted, double discountPrice, double normalPrice)
         {
             double total = itemsToBeDiscounted * normalPrice;
             int temp = 0;

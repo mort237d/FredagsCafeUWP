@@ -14,7 +14,7 @@ namespace FredagsCafeUWP
 
         #region Field
 
-        LogOnLogOff _logOnLogOff = new LogOnLogOff();
+        LogOnLogOff _logOnLogOff = LogOnLogOff.Instance;
       
        
         public RelayCommand LoginRelayCommand { get; set; }
