@@ -104,7 +104,7 @@ namespace FredagsCafeUWP
             if (SelectedProduct != null)
             {
                 SelectedProduct.AmountToBeSold++;
-                TotalTb += SelectedProduct.SellingPrice;
+                //TotalTb += SelectedProduct.SellingPrice;
             }
         }
 
@@ -113,7 +113,7 @@ namespace FredagsCafeUWP
             if (SelectedProduct != null && SelectedProduct.AmountToBeSold > 0)
             {
                 SelectedProduct.AmountToBeSold--;
-                TotalTb -= SelectedProduct.SellingPrice;
+                //TotalTb -= SelectedProduct.SellingPrice;
             }
         }
 
