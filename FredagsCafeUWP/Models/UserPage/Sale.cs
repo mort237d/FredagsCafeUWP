@@ -303,7 +303,7 @@ namespace FredagsCafeUWP
             Debug.WriteLine("receipts.count: " + Receipts.Count);
         }
 
-        public async void LoadAsync()
+        public async Task LoadAsync()
         {
             try
             {

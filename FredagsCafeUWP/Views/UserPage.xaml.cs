@@ -27,12 +27,8 @@ namespace FredagsCafeUWP
             titleBar.ButtonBackgroundColor = Color.FromArgb(1, 108, 160, 220);
 
             #endregion
-
-            _stock.LoadAsync();
-            _sale.LoadAsync();
-            _statListClass.LoadAsync();
-            _administration.LoadAsync();
-            _logOnLogOff.LoadAsync();
+            
+            Loader();
 
             SystemNavigationManagerPreview.GetForCurrentView().CloseRequested += this.OnCloseRequest;
         }
@@ -47,6 +43,16 @@ namespace FredagsCafeUWP
             await _logOnLogOff.SaveAsync();
 
             CoreApplication.Exit();
+        }
+
+        public async void Loader()
+        {
+            //TODO Move loadAsync methods and OnCloseRequest to logon page at finished app
+            await _stock.LoadAsync();
+            await _sale.LoadAsync();
+            await _statListClass.LoadAsync();
+            await _administration.LoadAsync();
+            await _logOnLogOff.LoadAsync();
         }
     }
 }

@@ -133,12 +133,10 @@ namespace FredagsCafeUWP.Models
         {
             _message = new Message(this);
 
-            
-
-            foreach (var user in Users)
-            {
-                user.Email = user.Name + "@edu.easj.dk";
-            }
+            //foreach (var user in Users)
+            //{
+            //    user.Email = user.Name + "@edu.easj.dk";
+            //}
         }
 
         #region ButtonMethods
@@ -208,7 +206,7 @@ namespace FredagsCafeUWP.Models
             Debug.WriteLine("user.count: " + Users.Count);
         }
 
-        public async void LoadAsync()
+        public async Task LoadAsync()
         {
             try
             {
