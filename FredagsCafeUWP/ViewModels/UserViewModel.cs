@@ -11,7 +11,6 @@ namespace FredagsCafeUWP.ViewModels
     {
         #region Field
 
-        private string _selectedItem;
         private Stock _stock = Stock.Instance;
         private User _user;
         private Product _product;
@@ -112,11 +111,6 @@ namespace FredagsCafeUWP.ViewModels
             set { _removeProductCommand = value; }
         }
 
-        public string SelectedItem
-        {
-            get => _selectedItem;
-            set => _selectedItem = value;
-        }
 
         public Product Product
         {
