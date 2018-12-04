@@ -63,6 +63,8 @@ namespace FredagsCafeUWP.ViewModels
 
         private RelayCommand _deleteReceiptCommand;
 
+        private RelayCommand _userImageBrowserCommand;
+
         #endregion
 
         public UserViewModel()
@@ -101,6 +103,9 @@ namespace FredagsCafeUWP.ViewModels
             GoToAddProductPageCommand = new RelayCommand(AddProductClass.GoToAddProductPage);
 
             DeleteReceiptCommand = new RelayCommand(Sale.DeleteReceipt);
+
+            UserImageBrowserCommand = new RelayCommand(Administration.BrowseImageButton);
+
         }
 
         #region Props
@@ -313,6 +318,12 @@ namespace FredagsCafeUWP.ViewModels
         {
             get { return _eventPage; }
             set { _eventPage = value; }
+        }
+
+        public RelayCommand UserImageBrowserCommand
+        {
+            get { return _userImageBrowserCommand; }
+            set { _userImageBrowserCommand = value; }
         }
 
         #endregion
