@@ -212,20 +212,10 @@ namespace FredagsCafeUWP.Models
                     {
                         if (PasswordTb == ConfirmPasswordTb)
                         {
-                            if (string.IsNullOrEmpty(ImageTb)) Users.Add(new User(NameTb, GradeTb, EducationTb, EmailTb, TelephoneNumberTb, UserNameTb, PasswordTb, _standardImage));
-                            else Users.Add(new User(NameTb, GradeTb, EducationTb, EmailTb, TelephoneNumberTb, UserNameTb, PasswordTb, ImageTb));
+                            if (string.IsNullOrEmpty(ImageTb)) Users.Add(new User(NameTb, GradeTb, EducationTb, EmailTb, TelephoneNumberTb, UserNameTb, PasswordTb, _standardImage, ""));
+                            else Users.Add(new User(NameTb, GradeTb, EducationTb, EmailTb, TelephoneNumberTb, UserNameTb, PasswordTb, ImageTb, ""));
 
-                            NameTb = GradeTb = EducationTb = EmailTb = TelephoneNumberTb = UserNameTb = ImageTb = PasswordTb = ConfirmPasswordTb = null;
-                            //NameTb = null;
-                            //GradeTb = null;
-                            //EducationTb = null;
-                            //EmailTb = null;
-                            //TelephoneNumberTb = null;
-                            //UserNameTb = null;
-                            //ImageTb = null;
-                            //PasswordTb = null;
-                            //ConfirmPasswordTb = null;
-                            
+                            NameTb = GradeTb = EducationTb = EmailTb = TelephoneNumberTb = UserNameTb = ImageTb = PasswordTb = ConfirmPasswordTb = null;                            
                         }
                         else
                             await _message.Error("Uoverensstemmelser",
@@ -269,11 +259,11 @@ namespace FredagsCafeUWP.Models
             {
                 Users = new ObservableCollection<User>()
                 {
-                    new User("Morten", "EASJ", "Datamatiker", "Morten@edu.easj.dk", "12345678", "Morten", "Morten", _standardImage),
-                    new User("Daniel", "EASJ", "Datamatiker", "Daniel@edu.easj.dk", "12345678", "Daniel", "Daniel", _standardImage),
-                    new User("Jacob", "EASJ", "Datamatiker", "Jacob@edu.easj.dk", "12345678", "Jacob", "Jacob", _standardImage),
-                    new User("Lucas", "EASJ", "Datamatiker", "Lucas@edu.easj.dk", "12345678", "Lucas", "Lucas", _standardImage),
-                    new User("Christian", "EASJ", "Datamatiker", "Christian@edu.easj.dk", "12345678", "Christian", "Christian", _standardImage)
+                    new User("Morten", "EASJ", "Datamatiker", "Morten@edu.easj.dk", "12345678", "Morten", "Morten", _standardImage, "Admin"),
+                    new User("Daniel", "EASJ", "Datamatiker", "Daniel@edu.easj.dk", "12345678", "Daniel", "Daniel", _standardImage, ""),
+                    new User("Jacob", "EASJ", "Datamatiker", "Jacob@edu.easj.dk", "12345678", "Jacob", "Jacob", _standardImage, ""),
+                    new User("Lucas", "EASJ", "Datamatiker", "Lucas@edu.easj.dk", "12345678", "Lucas", "Lucas", _standardImage, ""),
+                    new User("Christian", "EASJ", "Datamatiker", "Christian@edu.easj.dk", "12345678", "Christian", "Christian", _standardImage, "")
                 };
                 
             }

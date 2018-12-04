@@ -135,6 +135,29 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
+                    <Popup IsOpen="{Binding Stock.ShowAddProductPopUp}" Width="400" Height="1000" HorizontalAlignment="Left" LightDismissOverlayMode="On" IsLightDismissEnabled="True" Margin="-12,0,0,0">
+                        <Popup.ChildTransitions>
+                            <TransitionCollection>
+                                <PaneThemeTransition Edge="Left"/>
+                            </TransitionCollection>
+                        </Popup.ChildTransitions>
+
+                        <StackPanel Background="#6CA0DC" Height="1000" Width="400">
+                            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0">
+                                <TextBlock Text="Tilføj Produkt" FontWeight="Bold" FontSize="50" HorizontalAlignment="Center"></TextBlock>
+                                <TextBox Margin="2" PlaceholderText="Navn" Text="{Binding Stock.NameTb, Mode=TwoWay}"/>
+                                <TextBox Margin="2" PlaceholderText="Købspris" Text="{Binding Stock.BuyingPriceTb, Mode=TwoWay}"/>
+                                <TextBox Margin="2" PlaceholderText="Salgspris" Text="{Binding Stock.SellingPriceTb, Mode=TwoWay}"/>
+                                <TextBox Margin="2" PlaceholderText="Antal" Text="{Binding Stock.AmountTb, Mode=TwoWay}"/>
+                                <StackPanel Orientation="Horizontal" Margin="2">
+                                    <TextBox IsReadOnly="True" PlaceholderText="ImageSource" Text="{Binding Stock.ImageSourceTb, Mode=TwoWay}"/>
+                                    <Button Content="..." Width="40" Command="{Binding BrowseImageCommand}"/>
+                                </StackPanel>
+                                <Button Margin="20" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Center" Content="Tilføj produkt" Command="{Binding AddProductCommand}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Popup>
+
                     <GridView ItemsSource="{Binding Stock.Products}" SelectedItem="{Binding Stock.SelectedProduct, Mode=TwoWay}" Margin="10,10,10,0">
                         <GridView.ItemTemplate>
                             <DataTemplate x:DataType="models:Product">
@@ -170,11 +193,12 @@
                     <Rectangle Fill="#6CA0DC" Grid.Row="1" Margin="-11,0,-11,0"/>
                     <Grid Grid.Row="1" Margin="10,0,10,0">
                         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,0,0">
-                            <Button HorizontalAlignment="Center" Style="{StaticResource RoundedButtonStyle}" Content="Tilføj produkt" Command="{Binding GoToAddProductPageCommand}"/>
+                            <Button HorizontalAlignment="Center" Style="{StaticResource RoundedButtonStyle}" Content="Tilføj produkt" Command="{Binding ShowAddProductPopUpCommand}"/>
                             <Button HorizontalAlignment="Center" Style="{StaticResource RoundedButtonStyle}" Content="Slet produkt" Command="{Binding RemoveProductCommand}" Margin="0,5,0,0"/>
                         </StackPanel>
 
                         <StackPanel VerticalAlignment="Bottom" Margin="10,0,0,0" HorizontalAlignment="Center">
+                            <Button Style="{StaticResource RoundedButtonStyle}" Content="Ændre produkt" Command="{Binding GoToChangeProductPageCommand}"></Button>
                             <TextBox SelectionStart="{Binding Stock.SelectionStart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="280" PlaceholderText="Change Price" Text="{Binding Stock.ProductPriceChangeTb, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,0"/>
                             <StackPanel Orientation="Horizontal">
                                 <Button Content="Change sell price" Command="{Binding ChangeProductSellPriceCommand}" Width="140"/>
@@ -229,7 +253,7 @@
 
                     <Rectangle Fill="#6CA0DC" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" Margin="-20,0,-20,-10"/>
                     <Button Style="{StaticResource RoundedButtonStyle}" Grid.Row="1" Grid.Column="0"
-                            HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" Content="Fjern medarbejder" Command="{Binding RemoveUserCommand}"/>
+                            HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" Content="Fjern medarbejder" Visibility="{Binding }" Command="{Binding RemoveUserCommand}"/>
 
                     <StackPanel Grid.Row="0" Grid.Column="1">
                         <TextBox PlaceholderText="Navn" Text="{Binding Administration.NameTb, Mode=TwoWay}"/>

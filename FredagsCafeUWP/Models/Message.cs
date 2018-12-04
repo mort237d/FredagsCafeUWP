@@ -10,7 +10,7 @@ namespace FredagsCafeUWP.Models
     {
         #region Field
 
-        private readonly Stock _stock;
+        private Stock _stock;
         private readonly Administration _administration;
         private Sale _sale;
         private EventPage _eventPage;
