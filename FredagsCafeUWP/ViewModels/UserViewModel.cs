@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using FredagsCafeUWP.Annotations;
 using FredagsCafeUWP.Models;
 using FredagsCafeUWP.Models.AddProduct;
+using FredagsCafeUWP.Models.AddProduct_ChangeProduct;
 using GalaSoft.MvvmLight.Command;
 
 namespace FredagsCafeUWP.ViewModels
@@ -10,20 +11,21 @@ namespace FredagsCafeUWP.ViewModels
     public class UserViewModel : INotifyPropertyChanged
     {
         #region Field
-
         private string _selectedItem;
+
         private Stock _stock = Stock.Instance;
-        private User _user;
-        private Product _product;
         private Sale _sale = Sale.Instance;
         private EventPage _eventPage = EventPage.Instance;
         private Administration _administration = Administration.Instance;
-        private Statistics _statistics;
         private StatListClass _statList = StatListClass.Instance;
         private LogOnLogOff _logOnLogOff = LogOnLogOff.Instance;
+        private User _user;
+        private Product _product;
+        private Statistics _statistics;
         private AccountSettingsClass _accountSettingsClass = new AccountSettingsClass();
         private Help _help = new Help();
         private AddProductClass _addProductClass = new AddProductClass();
+        private ChangeProductClass _changeProductClass = new ChangeProductClass();
 
         private RelayCommand _removeProductCommand;
 
@@ -56,6 +58,7 @@ namespace FredagsCafeUWP.ViewModels
 
         private RelayCommand _goToHelpPageCommand;
         private RelayCommand _goToAddProductPageCommand;
+        private RelayCommand _goToChangeProductPageCommand;
 
         //Todo Skal slettes igen senere
         private RelayCommand _clearStatListCommand;
@@ -100,6 +103,7 @@ namespace FredagsCafeUWP.ViewModels
 
             GoToHelpPageCommand = new RelayCommand(Help.GoToHelpPage);
             GoToAddProductPageCommand = new RelayCommand(AddProductClass.GoToAddProductPage);
+            GoToChangeProductPageCommand = new RelayCommand(ChangeProductClass.GoToChangeProductPage);
 
             DeleteReceiptCommand = new RelayCommand(Sale.DeleteReceipt);
         }
@@ -319,6 +323,18 @@ namespace FredagsCafeUWP.ViewModels
         {
             get { return _eventPage; }
             set { _eventPage = value; }
+        }
+
+        public ChangeProductClass ChangeProductClass
+        {
+            get { return _changeProductClass; }
+            set { _changeProductClass = value; }
+        }
+
+        public RelayCommand GoToChangeProductPageCommand
+        {
+            get { return _goToChangeProductPageCommand; }
+            set { _goToChangeProductPageCommand = value; }
         }
 
         #endregion

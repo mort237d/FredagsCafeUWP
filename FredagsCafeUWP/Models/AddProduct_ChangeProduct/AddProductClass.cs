@@ -92,7 +92,7 @@ namespace FredagsCafeUWP.Models.AddProduct
             await newView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 Frame frame = new Frame();
-                frame.Navigate(typeof(AddProductPage), null);
+                frame.Navigate(typeof(AddProductPage), _stock.Products);
                 Window.Current.Content = frame;
                 // You have to activate the window in order to show it later.
                 Window.Current.Activate();
@@ -101,7 +101,7 @@ namespace FredagsCafeUWP.Models.AddProduct
             });
             bool viewShown = await ApplicationViewSwitcher.TryShowAsStandaloneAsync(newViewId);
         }
-
+        
         public async void AddProductToObList()
         {
             bool productExist = false;
@@ -130,7 +130,8 @@ namespace FredagsCafeUWP.Models.AddProduct
                                     _stock.Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, NameTb, intAmountTb,
                                         0, "ProductImages/BlankDåse.png", _colorRed));
                                 else
-                                    _stock.Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, NameTb, intAmountTb,
+                                    _stock.Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, NameTb,
+                                        intAmountTb,
                                         0, "ProductImages/BlankDåse.png", _colorGreen));
                             }
                             else

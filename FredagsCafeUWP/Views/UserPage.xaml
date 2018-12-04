@@ -135,6 +135,18 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
+                    <Popup IsOpen="{Binding Stock.Show}" Width="200" Height="300" HorizontalAlignment="Right" LightDismissOverlayMode="On" IsLightDismissEnabled="True">
+                        <Popup.ChildTransitions>
+                            <TransitionCollection>
+                                <PaneThemeTransition Edge="Right"/>
+                            </TransitionCollection>
+                        </Popup.ChildTransitions>
+
+                        <StackPanel Background="Red">
+                            <TextBlock Text="FUCK JA!"></TextBlock>
+                        </StackPanel>
+                    </Popup>
+
                     <GridView ItemsSource="{Binding Stock.Products}" SelectedItem="{Binding Stock.SelectedProduct, Mode=TwoWay}" Margin="10,10,10,0">
                         <GridView.ItemTemplate>
                             <DataTemplate x:DataType="models:Product">
@@ -175,6 +187,7 @@
                         </StackPanel>
 
                         <StackPanel VerticalAlignment="Bottom" Margin="10,0,0,0" HorizontalAlignment="Center">
+                            <Button Style="{StaticResource RoundedButtonStyle}" Content="Ændre produkt" Command="{Binding GoToChangeProductPageCommand}"></Button>
                             <TextBox SelectionStart="{Binding Stock.SelectionStart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="280" PlaceholderText="Change Price" Text="{Binding Stock.ProductPriceChangeTb, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,0"/>
                             <StackPanel Orientation="Horizontal">
                                 <Button Content="Change sell price" Command="{Binding ChangeProductSellPriceCommand}" Width="140"/>

@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using FredagsCafeUWP.Annotations;
 using Windows.UI.Xaml.Media;
 
@@ -14,7 +16,7 @@ namespace FredagsCafeUWP.Models
         #region Field
 
         private readonly Message _message = Message.Instance;
-        private Product _selectedProduct;
+        private Product _selectedProduct = new Product();
 
         private ObservableCollection<Product> _products;
 
@@ -154,9 +156,21 @@ namespace FredagsCafeUWP.Models
             set { _colorGreen = value; }
         }
 
+        public bool Show
+        {
+            get { return _show; }
+            set
+            {
+                _show = value;
+                OnPropertyChanged();
+            }
+        }
+
         #endregion
 
         #region ButtonMethods
+
+        private bool _show = false;
         public async void RemoveProductFromObList()
         {
             if (SelectedProduct != null)
@@ -164,6 +178,8 @@ namespace FredagsCafeUWP.Models
                 await _message.YesNo("Slet produkt", "Er du sikker på at du vil slette " + SelectedProduct.Name + "?");
             }
             else await _message.Error("Intet produkt valgt", "Vælg venligst et produkt.");
+
+            Show = true;
         }
 
         private int _intFrameAmountTb;
@@ -218,8 +234,6 @@ namespace FredagsCafeUWP.Models
                 
                 if (SelectedProduct != null && SelectedProduct.Amount < _minAmount) SelectedProduct.ForegroundColor = ColorRed;
                 else SelectedProduct.ForegroundColor = ColorGreen;
-
-                
             }
             else await _message.Error("Intet produkt valg", "Vælg venligst et produkt");
         }
