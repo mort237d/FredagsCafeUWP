@@ -22,7 +22,7 @@ namespace FredagsCafeUWP
         private readonly string _colorRed = "Red";
         private readonly string _colorGreen = "ForestGreen";
 
-        private readonly Message _message;
+        private Message _message = Message.Instance;
         private Stock _stock = Stock.Instance;
         private Product _selectedProduct;
         private Receipt _selectedReceipt;
@@ -37,8 +37,6 @@ namespace FredagsCafeUWP
 
         private  Sale()
         {
-            _message = new Message(this);
-
             //Basket = new List<Product>();
 
             Receipts = new ObservableCollection<Receipt>();
@@ -230,7 +228,7 @@ namespace FredagsCafeUWP
             else if (temp != -1) await _message.Error("Ingen vare tilføjet", "Tilføj venligst vare for at betale.");
         }
 
-        public void DeleteReceipt()
+        public async void DeleteReceipt()
         {
             if (SelectedReceipt != null && SelectedReceipt.Color != _colorRed)
             {
@@ -241,17 +239,21 @@ namespace FredagsCafeUWP
                         if (product.Name == basket.Name)
                         {
                             product.Amount += basket.AmountToBeSold;
+                            if (product.Amount < _stock._minAmount) product.ForegroundColor = _colorRed;
+                            else product.ForegroundColor = _colorGreen;
+
                             break;
                         }
                     }
                 }
+
                 SelectedReceipt.Color = _colorRed;
                 foreach (var item in SelectedReceipt.Basket)
                 {
                     item.ForegroundColor = _colorRed;
                 }
-                //Todo Hvis product.amount > 10 produkt skal blive grøn igen i lageret sådan at advarsler kommer igen.
             }
+            else await _message.Error("Ingen transaktion valgt", "Vælg venligst en.");
         }
 
         public double DiscountedTotal()

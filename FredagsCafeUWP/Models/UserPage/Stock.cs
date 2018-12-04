@@ -13,7 +13,7 @@ namespace FredagsCafeUWP.Models
     {
         #region Field
 
-        private readonly Message _message;
+        private readonly Message _message = Message.Instance;
         private Product _selectedProduct;
 
         private ObservableCollection<Product> _products;
@@ -37,8 +37,6 @@ namespace FredagsCafeUWP.Models
 
         private Stock()
         {
-            _message = new Message(this);
-            Debug.WriteLine("STOCK");
         }
 
         #region Singleton
