@@ -56,9 +56,13 @@ namespace FredagsCafeUWP.ViewModels
 
         private RelayCommand _logOffCommand;
 
+        private RelayCommand _browseImageCommand;
+
         private RelayCommand _goToHelpPageCommand;
-        private RelayCommand _goToAddProductPageCommand;
+        private RelayCommand _showAddProductPopUpCommand;
         private RelayCommand _goToChangeProductPageCommand;
+
+        private RelayCommand _addProductCommand;
 
         //Todo Skal slettes igen senere
         private RelayCommand _clearStatListCommand;
@@ -102,13 +106,23 @@ namespace FredagsCafeUWP.ViewModels
             ChangeToAccountCommand = new RelayCommand(AccountSettingsClass.GoToAccountSettings);
 
             GoToHelpPageCommand = new RelayCommand(Help.GoToHelpPage);
-            GoToAddProductPageCommand = new RelayCommand(AddProductClass.GoToAddProductPage);
+
+            ShowAddProductPopUpCommand = new RelayCommand(Stock.ShowAddProductPopUpMethod);
             GoToChangeProductPageCommand = new RelayCommand(ChangeProductClass.GoToChangeProductPage);
 
             DeleteReceiptCommand = new RelayCommand(Sale.DeleteReceipt);
+
+            BrowseImageCommand = new RelayCommand(Stock.BrowseImageButton);
+
+            AddProductCommand = new RelayCommand(Stock.AddProductToObList);
         }
 
         #region Props
+        public RelayCommand BrowseImageCommand
+        {
+            get { return _browseImageCommand; }
+            set { _browseImageCommand = value; }
+        }
 
         public RelayCommand RemoveProductCommand
         {
@@ -295,10 +309,10 @@ namespace FredagsCafeUWP.ViewModels
             set { _goToHelpPageCommand = value; }
         }
 
-        public RelayCommand GoToAddProductPageCommand
+        public RelayCommand ShowAddProductPopUpCommand
         {
-            get { return _goToAddProductPageCommand; }
-            set { _goToAddProductPageCommand = value; }
+            get { return _showAddProductPopUpCommand; }
+            set { _showAddProductPopUpCommand = value; }
         }
 
         public RelayCommand DeleteReceiptCommand
@@ -335,6 +349,12 @@ namespace FredagsCafeUWP.ViewModels
         {
             get { return _goToChangeProductPageCommand; }
             set { _goToChangeProductPageCommand = value; }
+        }
+
+        public RelayCommand AddProductCommand
+        {
+            get { return _addProductCommand; }
+            set { _addProductCommand = value; }
         }
 
         #endregion

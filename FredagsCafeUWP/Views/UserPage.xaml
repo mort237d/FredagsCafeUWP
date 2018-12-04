@@ -135,15 +135,26 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <Popup IsOpen="{Binding Stock.Show}" Width="200" Height="300" HorizontalAlignment="Right" LightDismissOverlayMode="On" IsLightDismissEnabled="True">
+                    <Popup IsOpen="{Binding Stock.ShowAddProductPopUp}" Width="400" Height="1000" HorizontalAlignment="Left" LightDismissOverlayMode="On" IsLightDismissEnabled="True" Margin="-12,0,0,0">
                         <Popup.ChildTransitions>
                             <TransitionCollection>
-                                <PaneThemeTransition Edge="Right"/>
+                                <PaneThemeTransition Edge="Left"/>
                             </TransitionCollection>
                         </Popup.ChildTransitions>
 
-                        <StackPanel Background="Red">
-                            <TextBlock Text="FUCK JA!"></TextBlock>
+                        <StackPanel Background="#6CA0DC" Height="1000" Width="400">
+                            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0">
+                                <TextBlock Text="Tilføj Produkt" FontWeight="Bold" FontSize="50" HorizontalAlignment="Center"></TextBlock>
+                                <TextBox Margin="2" PlaceholderText="Navn" Text="{Binding Stock.NameTb, Mode=TwoWay}"/>
+                                <TextBox Margin="2" PlaceholderText="Købspris" Text="{Binding Stock.BuyingPriceTb, Mode=TwoWay}"/>
+                                <TextBox Margin="2" PlaceholderText="Salgspris" Text="{Binding Stock.SellingPriceTb, Mode=TwoWay}"/>
+                                <TextBox Margin="2" PlaceholderText="Antal" Text="{Binding Stock.AmountTb, Mode=TwoWay}"/>
+                                <StackPanel Orientation="Horizontal" Margin="2">
+                                    <TextBox IsReadOnly="True" PlaceholderText="ImageSource" Text="{Binding Stock.ImageSourceTb, Mode=TwoWay}"/>
+                                    <Button Content="..." Width="40" Command="{Binding BrowseImageCommand}"/>
+                                </StackPanel>
+                                <Button Margin="20" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Center" Content="Tilføj produkt" Command="{Binding AddProductCommand}"/>
+                            </StackPanel>
                         </StackPanel>
                     </Popup>
 
@@ -182,7 +193,7 @@
                     <Rectangle Fill="#6CA0DC" Grid.Row="1" Margin="-11,0,-11,0"/>
                     <Grid Grid.Row="1" Margin="10,0,10,0">
                         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,0,0">
-                            <Button HorizontalAlignment="Center" Style="{StaticResource RoundedButtonStyle}" Content="Tilføj produkt" Command="{Binding GoToAddProductPageCommand}"/>
+                            <Button HorizontalAlignment="Center" Style="{StaticResource RoundedButtonStyle}" Content="Tilføj produkt" Command="{Binding ShowAddProductPopUpCommand}"/>
                             <Button HorizontalAlignment="Center" Style="{StaticResource RoundedButtonStyle}" Content="Slet produkt" Command="{Binding RemoveProductCommand}" Margin="0,5,0,0"/>
                         </StackPanel>
 

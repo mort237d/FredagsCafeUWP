@@ -33,9 +33,9 @@ namespace FredagsCafeUWP.ViewModels
 
         public AddProductViewModel()
         {
-            AddProductCommand = new RelayCommand(AddProductClass.AddProductToObList);
+            //AddProductCommand = new RelayCommand(AddProductClass.AddProductToObList);
 
-            BrowseImageCommand = new RelayCommand(AddProductClass.BrowseImageButton);
+            //BrowseImageCommand = new RelayCommand(AddProductClass.BrowseImageButton);
         }
     }
 }

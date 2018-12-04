@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using Windows.Storage;
+using Windows.Storage.Pickers;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using FredagsCafeUWP.Annotations;
@@ -14,6 +16,7 @@ namespace FredagsCafeUWP.Models
     public class Stock : INotifyPropertyChanged
     {
         #region Field
+        private bool _showAddProductPopUp = false;
 
         private readonly Message _message = Message.Instance;
         private Product _selectedProduct = new Product();
@@ -34,6 +37,12 @@ namespace FredagsCafeUWP.Models
         private string _productPriceChangeTb;
 
         private int _selectionStart;
+
+        private string _nameTb;
+        private string _buyingPriceTb;
+        private string _sellingPriceTb;
+        private string _amountTb;
+        private string _imageSourceTb = "";
 
         #endregion
 
@@ -59,6 +68,56 @@ namespace FredagsCafeUWP.Models
         #endregion
 
         #region Properties
+        public string NameTb
+        {
+            get => _nameTb;
+            set
+            {
+                _nameTb = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string BuyingPriceTb
+        {
+            get => _buyingPriceTb;
+            set
+            {
+                _buyingPriceTb = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string SellingPriceTb
+        {
+            get => _sellingPriceTb;
+            set
+            {
+                _sellingPriceTb = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string AmountTb
+        {
+            get => _amountTb;
+            set
+            {
+                _amountTb = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string ImageSourceTb
+        {
+            get => _imageSourceTb;
+            set
+            {
+                _imageSourceTb = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ObservableCollection<Product> Products
         {
             get => _products;
@@ -156,12 +215,12 @@ namespace FredagsCafeUWP.Models
             set { _colorGreen = value; }
         }
 
-        public bool Show
+        public bool ShowAddProductPopUp
         {
-            get { return _show; }
+            get { return _showAddProductPopUp; }
             set
             {
-                _show = value;
+                _showAddProductPopUp = value;
                 OnPropertyChanged();
             }
         }
@@ -169,8 +228,90 @@ namespace FredagsCafeUWP.Models
         #endregion
 
         #region ButtonMethods
+        public async void AddProductToObList()
+        {
+            bool productExist = false;
+            if (NameTb != null)
+            {
+                foreach (var element in Products)
+                {
+                    if (element.Name.ToLower().Equals(NameTb.ToLower()))
+                    {
+                        productExist = true;
+                        break;
+                    }
+                }
 
-        private bool _show = false;
+                if (!productExist)
+                {
+                    if (double.TryParse(BuyingPriceTb, out double doubleBuyingPriceTb) &&
+                    double.TryParse(SellingPriceTb, out double doubleSellingPriceTb) &&
+                    int.TryParse(AmountTb, out int intAmountTb))
+                    {
+                        if (doubleBuyingPriceTb > 0 && doubleSellingPriceTb > 0 && AmountTb != null && intAmountTb >= 0)
+                        {
+                            if (string.IsNullOrEmpty(ImageSourceTb))
+                            {
+                                if (intAmountTb < _minAmount) //TODO what is going on here?
+                                    Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, NameTb, intAmountTb,
+                                        0, "ProductImages/BlankDåse.png", _colorRed));
+                                else
+                                    Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, NameTb,
+                                        intAmountTb,
+                                        0, "ProductImages/BlankDåse.png", _colorGreen));
+                            }
+                            else
+                            {
+                                if (intAmountTb < _minAmount)
+                                    Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, NameTb, intAmountTb,
+                                        0, ImageSourceTb, ColorRed));
+                                else
+                                    Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, NameTb, intAmountTb,
+                                        0, ImageSourceTb, ColorGreen));
+                            }
+
+                            NameTb = null;
+                            BuyingPriceTb = null;
+                            SellingPriceTb = null;
+                            AmountTb = null;
+                            ImageSourceTb = null;
+
+                            Debug.WriteLine("product: " + Products.Count);
+                        }
+                        else await _message.Error("Forkert input", "Købspris og Salgspris skal være mere en 0.");
+                    }
+                    else await _message.Error("Forkert input", "Købspris, Salgspris og Antal skal være tal.");
+                }
+                else await _message.Error("Varen findes allerede!", "Scroll igennem varerne, for at finde den.");
+            }
+            else await _message.Error("Forkert input", "Produktet skal have et navn.");
+        }
+
+        public async Task<string> BrowseImageWindowTask()
+        {
+            FileOpenPicker openPicker = new FileOpenPicker();
+            openPicker.ViewMode = PickerViewMode.Thumbnail;
+            openPicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+            openPicker.FileTypeFilter.Add(".jpg");
+            openPicker.FileTypeFilter.Add(".jpeg");
+            openPicker.FileTypeFilter.Add(".png");
+            TextBlock outputTextBlock = new TextBlock();
+
+            StorageFile file = await openPicker.PickSingleFileAsync();
+            if (file != null) return outputTextBlock.Text = "ProductImages/" + file.Name;
+            else return outputTextBlock.Text = "";
+        }
+
+        public async void BrowseImageButton()
+        {
+            ImageSourceTb = await BrowseImageWindowTask();
+        }
+
+        public void ShowAddProductPopUpMethod()
+        {
+            ShowAddProductPopUp = true;
+        }
+
         public async void RemoveProductFromObList()
         {
             if (SelectedProduct != null)
@@ -178,8 +319,6 @@ namespace FredagsCafeUWP.Models
                 await _message.YesNo("Slet produkt", "Er du sikker på at du vil slette " + SelectedProduct.Name + "?");
             }
             else await _message.Error("Intet produkt valgt", "Vælg venligst et produkt.");
-
-            Show = true;
         }
 
         private int _intFrameAmountTb;
