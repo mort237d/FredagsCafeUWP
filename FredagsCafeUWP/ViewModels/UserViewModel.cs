@@ -340,7 +340,7 @@ namespace FredagsCafeUWP.ViewModels
         public RelayCommand UserImageBrowserCommand
         {
             get { return _userImageBrowserCommand; }
-            set => _userImageBrowserCommand = value;
+            set => _userImageBrowserCommand = value; 
         }
 
         //public ChangeProductClass ChangeProductClass
