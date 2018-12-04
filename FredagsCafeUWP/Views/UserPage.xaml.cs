@@ -1,4 +1,5 @@
-﻿using Windows.ApplicationModel.Core;
+﻿using System;
+using Windows.ApplicationModel.Core;
 using Windows.UI;
 using Windows.UI.Core.Preview;
 using Windows.UI.ViewManagement;
@@ -58,6 +59,23 @@ namespace FredagsCafeUWP
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
             _stock.Products[0].AmountToBeSold++;
+        }
+
+
+        //Todo make this work or find another way
+        private FrameworkElement GetParent(FrameworkElement child, Type targetType)
+        {
+            object parent = child.Parent;
+            if (parent != null)
+            {
+                if (parent.GetType() == targetType)
+                    return (FrameworkElement) parent;
+
+                else return 
+                    GetParent((FrameworkElement) parent, targetType);
+            }
+
+            return null;
         }
     }
 }
