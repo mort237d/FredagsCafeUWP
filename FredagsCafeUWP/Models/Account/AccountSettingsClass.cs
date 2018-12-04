@@ -129,7 +129,7 @@ namespace FredagsCafeUWP
         public AccountSettingsClass()
         {
             _administration.CurrentUser = new User("Morten", "EASJ", "Datamatiker", "@edu.easj.dk", "12345678",
-                "Morten", "Morten", _standardImage);
+                "Morten", "Morten", _standardImage, "");
 
             NameTb = _administration.CurrentUser.Name;
             GradeTb = _administration.CurrentUser.Grade;
