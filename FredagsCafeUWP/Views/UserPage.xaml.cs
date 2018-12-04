@@ -60,22 +60,5 @@ namespace FredagsCafeUWP
         {
             _stock.Products[0].AmountToBeSold++;
         }
-
-
-        //Todo make this work or find another way
-        private FrameworkElement GetParent(FrameworkElement child, Type targetType)
-        {
-            object parent = child.Parent;
-            if (parent != null)
-            {
-                if (parent.GetType() == targetType)
-                    return (FrameworkElement) parent;
-
-                else return 
-                    GetParent((FrameworkElement) parent, targetType);
-            }
-
-            return null;
-        }
     }
 }
