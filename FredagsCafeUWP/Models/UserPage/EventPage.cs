@@ -12,7 +12,7 @@ namespace FredagsCafeUWP.Models
     {
         #region Field
 
-        private Message _message;
+        private Message _message = Message.Instance;
 
         private ObservableCollection<Event> _events;
         private Event _selectedEvent;
@@ -124,9 +124,7 @@ namespace FredagsCafeUWP.Models
 
         private EventPage() //TODO Tilføj img og tidspunkt til events
         {
-            _message = new Message(this);
 
-            Debug.WriteLine("EVENTPAGE");
         }
 
         private static EventPage instance;

@@ -11,13 +11,14 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using FredagsCafeUWP.Annotations;
+using FredagsCafeUWP.ViewModels;
 using FredagsCafeUWP.Views;
 
 namespace FredagsCafeUWP.Models.AddProduct
 {
     public class AddProductClass : INotifyPropertyChanged
     {
-        private Message _message;
+        private Message _message = Message.Instance;
 
         private Stock _stock = Stock.Instance;
 
@@ -32,7 +33,6 @@ namespace FredagsCafeUWP.Models.AddProduct
 
         public AddProductClass()
         {
-            _message = new Message(this);
         }
 
         public string NameTb
@@ -142,7 +142,7 @@ namespace FredagsCafeUWP.Models.AddProduct
                                     _stock.Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, NameTb, intAmountTb,
                                         0, ImageSourceTb, _stock.ColorGreen));
                             }
-
+                            
                             NameTb = null;
                             BuyingPriceTb = null;
                             SellingPriceTb = null;
@@ -150,7 +150,6 @@ namespace FredagsCafeUWP.Models.AddProduct
                             ImageSourceTb = null;
 
                             Debug.WriteLine("product: " + _stock.Products.Count);
-                            //Stock.SaveAsync();
 
                             Window.Current.Close();
                         }

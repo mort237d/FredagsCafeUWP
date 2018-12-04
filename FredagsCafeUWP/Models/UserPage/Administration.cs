@@ -12,7 +12,7 @@ namespace FredagsCafeUWP.Models
     {
         #region Field
 
-        private static Message _message;
+        private static Message _message = Message.Instance;
 
         private readonly string _standardImage = "UserImages/Profile-icon.png";
 
@@ -131,10 +131,6 @@ namespace FredagsCafeUWP.Models
 
         private Administration()
         {
-            _message = new Message(this);
-
-            
-
             //foreach (var user in Users)
             //{
             //    user.Email = user.Name + "@edu.easj.dk";
