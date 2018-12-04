@@ -45,43 +45,75 @@ namespace FredagsCafeUWP.Models
         public string Name
         {
             get => _name;
-            set => _name = value;
+            set
+            {
+                _name = value;
+                OnPropertyChanged();
+            } 
         }
         public string Grade
         {
             get => _grade;
-            set => _grade = value;
+            set
+            {
+                _grade = value;
+                OnPropertyChanged();
+            }
         }
         public string Education
         {
             get => _education;
-            set => _education = value;
+            set
+            {
+                _education = value;
+                OnPropertyChanged();
+            }
         }
         public string Email
         {
             get => _email;
-            set => _email = value;
+            set
+            {
+                _email = value;
+                OnPropertyChanged();
+            }
         }
         public string TelephoneNumber
         {
             get => _telephoneNumber;
-            set => _telephoneNumber = value;
+            set
+            {
+                _telephoneNumber = value;
+                OnPropertyChanged();
+            }
         }
         public string UserName
         {
             get => _userName;
-            set => _userName = value;
+            set
+            {
+                _userName = value;
+                OnPropertyChanged();
+            }
         }
         public string Password
         {
             get => _password;
-            set => _password = value;
+            set
+            {
+                _password = value;
+                OnPropertyChanged();
+            }
         }
 
         public string ImageSource
         {
             get => _imageSource;
-            set => _imageSource = value;
+            set
+            {
+                _imageSource = value;
+                OnPropertyChanged();
+            }
         }
 
         #endregion

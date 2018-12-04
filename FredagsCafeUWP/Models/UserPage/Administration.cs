@@ -221,7 +221,7 @@ namespace FredagsCafeUWP.Models
             Debug.WriteLine("user.count: " + Users.Count);
         }
 
-        public async void LoadAsync()
+        public async Task LoadAsync()
         {
             try
             {

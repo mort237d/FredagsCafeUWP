@@ -7,7 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="using:FredagsCafeUWP.ViewModels"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    Height="345" Width="165">
     <Page.DataContext>
         <viewModels:AccountViewModel/>
     </Page.DataContext>
@@ -20,22 +21,24 @@
         <CommandBar Background="#6CA0DC">
 
             <CommandBar.SecondaryCommands>
-                <AppBarButton Label="Gå tilbage til mainpage" Command="{Binding}"/>
                 <AppBarButton Label="Log af" Command="{Binding LogOffCommand}"/>
             </CommandBar.SecondaryCommands>
 
-            <AppBarSeparator/>
-            <AppBarButton Icon="Help" Label="Help"/>
+            <AppBarButton Icon="Help" Label="Help" Command="{Binding GoToHelpPageCommand}"/>
 
         </CommandBar>
         <Grid Grid.Row="1" HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="139*"/>
+                <ColumnDefinition Width="26*"/>
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="6*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Rectangle Fill="#6CA0DC" Grid.Row="1"/>
-            <StackPanel Grid.Row="0" Grid.Column="1">
+            <Rectangle Fill="#6CA0DC" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Margin="0,0.6,0,-0.2" VerticalAlignment="Stretch"/>
+            <StackPanel Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Margin="0,0,0,0.4" VerticalAlignment="Stretch">
                 <TextBox PlaceholderText="Navn" Text="{Binding SettingsClass.NameTb, Mode=TwoWay}"/>
                 <TextBox PlaceholderText="Klasse" Text="{Binding SettingsClass.GradeTb, Mode=TwoWay}"/>
                 <TextBox PlaceholderText="Skole" Text="{Binding SettingsClass.EducationTb, Mode=TwoWay}"/>
@@ -45,7 +48,7 @@
                 <PasswordBox PlaceholderText="Password" Password="{Binding SettingsClass.PasswordTb, Mode=TwoWay}"/>
                 <PasswordBox PlaceholderText="Confirm Password" Password="{Binding SettingsClass.ConfirmPasswordTb, Mode=TwoWay}"/>
             </StackPanel>
-            <Button Style="{StaticResource RoundedButtonStyle}" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.Column="1" Content="Change account settings" Command="{Binding ChangeSettingsCommand}"/>
+            <Button Style="{StaticResource RoundedButtonStyle}" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Skift kontoindstillinger" Command="{Binding ChangeSettingsCommand}" Grid.ColumnSpan="2" Margin="0,0,0,0"/>
         </Grid>
 
 

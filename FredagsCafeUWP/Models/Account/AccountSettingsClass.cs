@@ -5,10 +5,14 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Core;
+using Windows.UI.Core;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using FredagsCafeUWP.Annotations;
 using FredagsCafeUWP.Models;
+using FredagsCafeUWP.Views;
 using Message = System.ServiceModel.Channels.Message;
 
 namespace FredagsCafeUWP
@@ -167,10 +171,21 @@ namespace FredagsCafeUWP
         }
 
 
-        public void GoToAccountSettings()
+        public async void GoToAccountSettings()
         {
-            Frame currentFrame = Window.Current.Content as Frame;
-            currentFrame.Navigate(typeof(accountSettings));
+            CoreApplicationView newView = CoreApplication.CreateNewView();
+            int newViewId = 0;
+            await newView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                Frame frame = new Frame();
+                frame.Navigate(typeof(accountSettings), null);
+                Window.Current.Content = frame;
+                // You have to activate the window in order to show it later.
+                Window.Current.Activate();
+
+                newViewId = ApplicationView.GetForCurrentView().Id;
+            });
+            bool viewShown = await ApplicationViewSwitcher.TryShowAsStandaloneAsync(newViewId);
         }
 
         public void GoToUserPage()
@@ -179,6 +194,8 @@ namespace FredagsCafeUWP
             currentFrame.Navigate(typeof(UserPage));
         }
 
+        #region INotify
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
@@ -186,5 +203,7 @@ namespace FredagsCafeUWP
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        #endregion
     }
 }
