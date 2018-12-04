@@ -328,5 +328,8 @@ namespace FredagsCafeUWP.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
+
+        //ToDo ( ͡° ͜ʖ ͡°)
+        //Todo make Morten STFU and be nice
     }
 }
