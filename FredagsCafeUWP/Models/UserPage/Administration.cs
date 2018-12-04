@@ -193,7 +193,6 @@ namespace FredagsCafeUWP.Models
 
         public async void AddUser()
         {
-            //TODO add image
             if (NameTb != null && GradeTb != null && EducationTb != null && EmailTb != null &&
                 TelephoneNumberTb != null && UserNameTb != null && PasswordTb != null)
             {
@@ -213,17 +212,19 @@ namespace FredagsCafeUWP.Models
                     {
                         if (PasswordTb == ConfirmPasswordTb)
                         {
-                            if (ImageTb == "") Users.Add(new User(NameTb, GradeTb, EducationTb, EmailTb, TelephoneNumberTb, UserNameTb, PasswordTb, _standardImage));
+                            if (string.IsNullOrEmpty(ImageTb)) Users.Add(new User(NameTb, GradeTb, EducationTb, EmailTb, TelephoneNumberTb, UserNameTb, PasswordTb, _standardImage));
                             else Users.Add(new User(NameTb, GradeTb, EducationTb, EmailTb, TelephoneNumberTb, UserNameTb, PasswordTb, ImageTb));
-                            NameTb = null;
-                            GradeTb = null;
-                            EducationTb = null;
-                            EmailTb = null;
-                            TelephoneNumberTb = null;
-                            UserNameTb = null;
-                            ImageTb = "";
-                            PasswordTb = null;
-                            ConfirmPasswordTb = null;
+
+                            NameTb = GradeTb = EducationTb = EmailTb = TelephoneNumberTb = UserNameTb = ImageTb = PasswordTb = ConfirmPasswordTb = null;
+                            //NameTb = null;
+                            //GradeTb = null;
+                            //EducationTb = null;
+                            //EmailTb = null;
+                            //TelephoneNumberTb = null;
+                            //UserNameTb = null;
+                            //ImageTb = null;
+                            //PasswordTb = null;
+                            //ConfirmPasswordTb = null;
                             
                         }
                         else
