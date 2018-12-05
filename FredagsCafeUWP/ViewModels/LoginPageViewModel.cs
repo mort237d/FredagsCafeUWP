@@ -1,10 +1,6 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 using FredagsCafeUWP.Annotations;
-using FredagsCafeUWP.Models;
 using GalaSoft.MvvmLight.Command;
 
 namespace FredagsCafeUWP

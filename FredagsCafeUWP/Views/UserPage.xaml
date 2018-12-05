@@ -159,6 +159,40 @@
                         </StackPanel>
                     </Popup>
 
+                    <Popup IsOpen="{Binding Stock.ShowChangeProductPopUp}" Width="400" Height="1000" HorizontalAlignment="Right" LightDismissOverlayMode="On" IsLightDismissEnabled="True" Margin="0,0,-12,0">
+                        <Popup.ChildTransitions>
+                            <TransitionCollection>
+                                <PaneThemeTransition Edge="Right"/>
+                            </TransitionCollection>
+                        </Popup.ChildTransitions>
+
+                        <StackPanel Background="#6CA0DC" Height="1000" Width="400">
+                            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0">
+                                <TextBlock Text="Ændre Produkt" FontWeight="Bold" FontSize="50" HorizontalAlignment="Center"></TextBlock>
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel>
+                                        <TextBlock Height="32" Margin="2" Text="Navn"/>
+                                        <TextBlock Height="32" Margin="2" Text="Købspris"/>
+                                        <TextBlock Height="32" Margin="2" Text="Salgspris"/>
+                                        <TextBlock Height="32" Margin="2" Text="Antal"/>
+                                        <TextBlock Height="32" Text="ImageSource" Margin="2"/>
+                                    </StackPanel>
+                                    <StackPanel>
+                                        <TextBox Margin="2" PlaceholderText="Navn" Text="{Binding Stock.NameTb, Mode=TwoWay}"/>
+                                        <TextBox Margin="2" PlaceholderText="Købspris" Text="{Binding Stock.BuyingPriceTb, Mode=TwoWay}"/>
+                                        <TextBox Margin="2" PlaceholderText="Salgspris" Text="{Binding Stock.SellingPriceTb, Mode=TwoWay}"/>
+                                        <TextBox Margin="2" PlaceholderText="Antal" Text="{Binding Stock.AmountTb, Mode=TwoWay}"/>
+                                        <StackPanel Orientation="Horizontal" Margin="2">
+                                            <TextBox IsReadOnly="True" PlaceholderText="ImageSource" Text="{Binding Stock.ImageSourceTb, Mode=TwoWay}"/>
+                                            <Button Content="..." Width="40" Command="{Binding BrowseImageCommand}"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </StackPanel>
+                                <Button Margin="20" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Center" Content="Tilføj produkt" Command="{Binding AddProductCommand}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Popup>
+
                     <GridView ItemsSource="{Binding Stock.Products}" SelectedItem="{Binding Stock.SelectedProduct, Mode=TwoWay}" Margin="10,10,10,0">
                         <GridView.ItemTemplate>
                             <DataTemplate x:DataType="models:Product">
@@ -199,7 +233,7 @@
                         </StackPanel>
 
                         <StackPanel VerticalAlignment="Bottom" Margin="10,0,0,0" HorizontalAlignment="Center">
-                            <Button Style="{StaticResource RoundedButtonStyle}" Content="Ændre produkt" Command="{Binding GoToChangeProductPageCommand}"></Button>
+                            <Button Style="{StaticResource RoundedButtonStyle}" Content="Ændre produkt" Command="{Binding ShowChangeProductPopUpCommand}"></Button>
                             <TextBox SelectionStart="{Binding Stock.SelectionStart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="280" PlaceholderText="Change Price" Text="{Binding Stock.ProductPriceChangeTb, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,0"/>
                             <StackPanel Orientation="Horizontal">
                                 <Button Content="Change sell price" Command="{Binding ChangeProductSellPriceCommand}" Width="140"/>

@@ -23,8 +23,6 @@ namespace FredagsCafeUWP.ViewModels
         private Statistics _statistics;
         private AccountSettingsClass _accountSettingsClass = new AccountSettingsClass();
         private Help _help = new Help();
-        private AddProductClass _addProductClass = new AddProductClass();
-        private ChangeProductClass _changeProductClass = new ChangeProductClass();
 
         private RelayCommand _removeProductCommand;
 
@@ -59,7 +57,7 @@ namespace FredagsCafeUWP.ViewModels
 
         private RelayCommand _goToHelpPageCommand;
         private RelayCommand _showAddProductPopUpCommand;
-        private RelayCommand _goToChangeProductPageCommand;
+        private RelayCommand _showChangeProductPopUpCommand;
 
         private RelayCommand _addProductCommand;
 
@@ -109,7 +107,7 @@ namespace FredagsCafeUWP.ViewModels
             GoToHelpPageCommand = new RelayCommand(Help.GoToHelpPage);
 
             ShowAddProductPopUpCommand = new RelayCommand(Stock.ShowAddProductPopUpMethod);
-            //GoToChangeProductPageCommand = new RelayCommand(ChangeProductClass.GoToChangeProductPage);
+            ShowChangeProductPopUpCommand = new RelayCommand(Stock.ShowChangeProductPopUpMethod);
 
             DeleteReceiptCommand = new RelayCommand(Sale.DeleteReceipt);
 
@@ -319,12 +317,6 @@ namespace FredagsCafeUWP.ViewModels
             set { _deleteReceiptCommand = value; }
         }
 
-        public AddProductClass AddProductClass
-        {
-            get { return _addProductClass; }
-            set { _addProductClass = value; }
-        }
-
         public Stock Stock
         {
             get { return _stock; }
@@ -341,6 +333,12 @@ namespace FredagsCafeUWP.ViewModels
         {
             get { return _userImageBrowserCommand; }
             set => _userImageBrowserCommand = value; 
+        }
+
+        public RelayCommand ShowChangeProductPopUpCommand
+        {
+            get { return _showChangeProductPopUpCommand; }
+            set { _showChangeProductPopUpCommand = value; }
         }
 
         //public ChangeProductClass ChangeProductClass

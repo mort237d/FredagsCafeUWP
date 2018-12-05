@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FredagsCafeUWP.Models.AddProduct_ChangeProduct;
+﻿using FredagsCafeUWP.Models.AddProduct_ChangeProduct;
 using GalaSoft.MvvmLight.Command;
 
 namespace FredagsCafeUWP.ViewModels

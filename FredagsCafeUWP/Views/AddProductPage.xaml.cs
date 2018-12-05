@@ -2,7 +2,6 @@
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using FredagsCafeUWP.Models;
-using FredagsCafeUWP.Models.AddProduct;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 

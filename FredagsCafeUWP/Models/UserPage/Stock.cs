@@ -6,7 +6,6 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Pickers;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using FredagsCafeUWP.Annotations;
 using Windows.UI.Xaml.Media;
@@ -17,6 +16,7 @@ namespace FredagsCafeUWP.Models
     {
         #region Field
         private bool _showAddProductPopUp = false;
+        private bool _showChangeProductPopUp = false;
 
         private readonly Message _message = Message.Instance;
         private Product _selectedProduct = new Product();
@@ -225,6 +225,16 @@ namespace FredagsCafeUWP.Models
             }
         }
 
+        public bool ShowChangeProductPopUp
+        {
+            get { return _showChangeProductPopUp; }
+            set
+            {
+                _showChangeProductPopUp = value;
+                OnPropertyChanged();
+            }
+        }
+
         #endregion
 
         #region ButtonMethods
@@ -312,9 +322,14 @@ namespace FredagsCafeUWP.Models
             ShowAddProductPopUp = true;
         }
 
+        public void ShowChangeProductPopUpMethod()
+        {
+            ShowChangeProductPopUp = true;
+        }
+
         public async void RemoveProductFromObList()
         {
-            if (SelectedProduct != null)
+            if (SelectedProduct.Name != null)
             {
                 await _message.YesNo("Slet produkt", "Er du sikker på at du vil slette " + SelectedProduct.Name + "?");
             }

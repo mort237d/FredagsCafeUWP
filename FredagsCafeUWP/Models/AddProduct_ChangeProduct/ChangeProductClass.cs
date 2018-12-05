@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
 using Windows.Storage;
@@ -105,16 +101,22 @@ namespace FredagsCafeUWP.Models.AddProduct_ChangeProduct
             bool viewShown = await ApplicationViewSwitcher.TryShowAsStandaloneAsync(newViewId);
         }
 
-        public void ChangeProductOfObList()
+        public async void ChangeProductOfObList()
         {
-            _stock.SelectedProduct.Name = NameTb;
-            if (double.TryParse(BuyingPriceTb, out double doubleBuyingPriceTb)) _stock.SelectedProduct.BuyingPrice = doubleBuyingPriceTb;
-            else _message.Error("Forkert input", "Købspris skal være et tal.");
-            if (double.TryParse(SellingPriceTb, out double doubleSellingPriceTb)) _stock.SelectedProduct.SellingPrice = doubleSellingPriceTb;
-            else _message.Error("Forkert input", "Salgspris skal være et tal.");
-            if (int.TryParse(AmountTb, out int intAmountTb)) _stock.SelectedProduct.Amount = intAmountTb;
-            else _message.Error("Forkert input", "Antal skal være et hel tal.");
-            _stock.SelectedProduct.ImageSource = ImageSourceTb;
+            if (_stock.SelectedProduct.Name != null)
+            {
+                _stock.SelectedProduct.Name = NameTb;
+                if (double.TryParse(BuyingPriceTb, out double doubleBuyingPriceTb))
+                    _stock.SelectedProduct.BuyingPrice = doubleBuyingPriceTb;
+                else await _message.Error("Forkert input", "Købspris skal være et tal.");
+                if (double.TryParse(SellingPriceTb, out double doubleSellingPriceTb))
+                    _stock.SelectedProduct.SellingPrice = doubleSellingPriceTb;
+                else await _message.Error("Forkert input", "Salgspris skal være et tal.");
+                if (int.TryParse(AmountTb, out int intAmountTb)) _stock.SelectedProduct.Amount = intAmountTb;
+                else await _message.Error("Forkert input", "Antal skal være et hel tal.");
+                _stock.SelectedProduct.ImageSource = ImageSourceTb;
+            }
+            else await _message.Error("Intet produkt valgt", "Vælg venligst et produkt.");
         }
 
         public async Task<string> BrowseImageWindowTask()

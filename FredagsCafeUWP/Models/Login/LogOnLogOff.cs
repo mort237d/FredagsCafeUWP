@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
-using Windows.ApplicationModel.UserActivities.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using FredagsCafeUWP.Annotations;
