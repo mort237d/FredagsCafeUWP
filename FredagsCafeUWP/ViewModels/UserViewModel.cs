@@ -70,6 +70,8 @@ namespace FredagsCafeUWP.ViewModels
 
         private RelayCommand _deleteReceiptCommand;
 
+        private RelayCommand _userImageBrowserCommand;
+
         #endregion
 
         public UserViewModel()
@@ -107,13 +109,15 @@ namespace FredagsCafeUWP.ViewModels
             GoToHelpPageCommand = new RelayCommand(Help.GoToHelpPage);
 
             ShowAddProductPopUpCommand = new RelayCommand(Stock.ShowAddProductPopUpMethod);
-            GoToChangeProductPageCommand = new RelayCommand(ChangeProductClass.GoToChangeProductPage);
+            //GoToChangeProductPageCommand = new RelayCommand(ChangeProductClass.GoToChangeProductPage);
 
             DeleteReceiptCommand = new RelayCommand(Sale.DeleteReceipt);
 
+            UserImageBrowserCommand = new RelayCommand(Administration.BrowseImageButton);
+
             BrowseImageCommand = new RelayCommand(Stock.BrowseImageButton);
 
-            AddProductCommand = new RelayCommand(Stock.AddProductToObList);
+            //AddProductCommand = new RelayCommand(Stock.AddProductToObList);
         }
 
         #region Props
@@ -333,23 +337,29 @@ namespace FredagsCafeUWP.ViewModels
             set { _eventPage = value; }
         }
 
-        public ChangeProductClass ChangeProductClass
+        public RelayCommand UserImageBrowserCommand
         {
-            get { return _changeProductClass; }
-            set { _changeProductClass = value; }
+            get { return _userImageBrowserCommand; }
+            set => _userImageBrowserCommand = value; 
         }
 
-        public RelayCommand GoToChangeProductPageCommand
-        {
-            get { return _goToChangeProductPageCommand; }
-            set { _goToChangeProductPageCommand = value; }
-        }
+        //public ChangeProductClass ChangeProductClass
+        //{
+        //    get { return _changeProductClass; }
+        //    set { _changeProductClass = value; }
+        //}
 
-        public RelayCommand AddProductCommand
-        {
-            get { return _addProductCommand; }
-            set { _addProductCommand = value; }
-        }
+        //public RelayCommand GoToChangeProductPageCommand
+        //{
+        //    get { return _goToChangeProductPageCommand; }
+        //    set { _goToChangeProductPageCommand = value; }
+        //}
+
+        //public RelayCommand AddProductCommand
+        //{
+        //    get { return _addProductCommand; }
+        //    set { _addProductCommand = value; }
+        //}
 
         #endregion
 

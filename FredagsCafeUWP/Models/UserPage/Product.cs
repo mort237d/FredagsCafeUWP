@@ -15,8 +15,8 @@ namespace FredagsCafeUWP.Models
         private string _imageSource;
         private string _foregroundColor = "ForestGreen";
         private int _amountToBeSold;
-        private int _discountAtThisAmount = 3;
-        private double _discountPricePerItem = 4;
+        private int _discountAtThisAmount;
+        private double _discountPricePerItem;
         #endregion
 
         #region Constructors
@@ -104,7 +104,11 @@ namespace FredagsCafeUWP.Models
         public string ImageSource
         {
             get => _imageSource;
-            set => _imageSource = value;
+            set
+            {
+                _imageSource = value; 
+                OnPropertyChanged();
+            }
         }
 
         public string ForegroundColor
@@ -129,14 +133,22 @@ namespace FredagsCafeUWP.Models
 
         public int DiscountAtThisAmount
         {
-            get { return _discountAtThisAmount; }
-            set { _discountAtThisAmount = value; }
+            get => _discountAtThisAmount;
+            set
+            {
+                _discountAtThisAmount = value; 
+                OnPropertyChanged();
+            }
         }
 
         public double DiscountPricePerItem
         {
-            get { return _discountPricePerItem; }
-            set { _discountPricePerItem = value; }
+            get => _discountPricePerItem;
+            set
+            {
+                _discountPricePerItem = value;
+                OnPropertyChanged();
+            }
         }
 
         #endregion

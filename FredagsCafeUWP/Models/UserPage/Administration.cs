@@ -4,6 +4,9 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using Windows.Storage;
+using Windows.Storage.Pickers;
+using Windows.UI.Xaml.Controls;
 using FredagsCafeUWP.Annotations;
 
 namespace FredagsCafeUWP.Models
@@ -22,6 +25,7 @@ namespace FredagsCafeUWP.Models
         private string _emailTb;
         private string _telephoneNumberTb;
         private string _userNameTb;
+        private string _imageTb = "";
         private string _passwordTb;
         private string _confirmPasswordTb;
 
@@ -81,6 +85,16 @@ namespace FredagsCafeUWP.Models
         {
             get => _userNameTb;
             set { _userNameTb = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string ImageTb
+        {
+            get { return _imageTb; }
+            set
+            {
+                _imageTb = value; 
                 OnPropertyChanged();
             }
         }
@@ -156,9 +170,29 @@ namespace FredagsCafeUWP.Models
 
         #region ButtonMethods
 
+        public async Task<string> BrowseImageWindowTask()
+        {
+            FileOpenPicker openPicker = new FileOpenPicker();
+            openPicker.ViewMode = PickerViewMode.Thumbnail;
+            openPicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+            openPicker.FileTypeFilter.Add(".jpg");
+            openPicker.FileTypeFilter.Add(".jpeg");
+            openPicker.FileTypeFilter.Add(".png");
+            TextBlock outputTextBlock = new TextBlock();
+
+            StorageFile file = await openPicker.PickSingleFileAsync();
+            if (file != null) return outputTextBlock.Text = "UserImages/" + file.Name;
+            else return outputTextBlock.Text = "";
+        }
+
+        public async void BrowseImageButton()
+        {
+            ImageTb = await BrowseImageWindowTask();
+        }
+
+
         public async void AddUser()
         {
-            //TODO add image
             if (NameTb != null && GradeTb != null && EducationTb != null && EmailTb != null &&
                 TelephoneNumberTb != null && UserNameTb != null && PasswordTb != null)
             {
@@ -178,18 +212,10 @@ namespace FredagsCafeUWP.Models
                     {
                         if (PasswordTb == ConfirmPasswordTb)
                         {
-                            Users.Add(new User(NameTb, GradeTb, EducationTb, EmailTb, TelephoneNumberTb, UserNameTb,
-                                PasswordTb, _standardImage, ""));
+                            if (string.IsNullOrEmpty(ImageTb)) Users.Add(new User(NameTb, GradeTb, EducationTb, EmailTb, TelephoneNumberTb, UserNameTb, PasswordTb, _standardImage, ""));
+                            else Users.Add(new User(NameTb, GradeTb, EducationTb, EmailTb, TelephoneNumberTb, UserNameTb, PasswordTb, ImageTb, ""));
 
-                            NameTb = null;
-                            GradeTb = null;
-                            EducationTb = null;
-                            EmailTb = null;
-                            TelephoneNumberTb = null;
-                            UserNameTb = null;
-                            PasswordTb = null;
-                            ConfirmPasswordTb = null;
-                            
+                            NameTb = GradeTb = EducationTb = EmailTb = TelephoneNumberTb = UserNameTb = ImageTb = PasswordTb = ConfirmPasswordTb = null;                            
                         }
                         else
                             await _message.Error("Uoverensstemmelser",

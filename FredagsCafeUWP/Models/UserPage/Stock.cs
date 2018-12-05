@@ -340,9 +340,10 @@ namespace FredagsCafeUWP.Models
                         Int32.TryParse(ProductAmountTb, out _intProductAmountTb))
                     {
                         SelectedProduct.Amount += (_intFrameAmountTb * _intFrameSizeTb) + _intProductAmountTb;
-                        FrameAmountTb = null;
-                        FrameSizeTb = null;
-                        ProductAmountTb = null;
+                        FrameAmountTb = FrameSizeTb = ProductAmountTb = null;
+                        //FrameAmountTb = null;
+                        //FrameSizeTb = null;
+                        //ProductAmountTb = null;
                     }
                     else await _message.Error("Forkert input", "Antal rammer, Ramme størrelse og Stk. skal være tal");
                 }
@@ -353,8 +354,9 @@ namespace FredagsCafeUWP.Models
                         Int32.TryParse(FrameSizeTb, out _intFrameSizeTb))
                     {
                         SelectedProduct.Amount += _intFrameAmountTb * _intFrameSizeTb;
-                        FrameAmountTb = null;
-                        FrameSizeTb = null;
+                        FrameAmountTb = FrameSizeTb = null;
+                        //FrameAmountTb = null;
+                        //FrameSizeTb = null;
                     }
                     else await _message.Error("Forkert input", "Antal rammer og Ramme størrelse skal være tal");
                 }
@@ -390,9 +392,10 @@ namespace FredagsCafeUWP.Models
                     if (SelectedProduct.Amount >= ((intFrameAmountTb * intFrameSizeTb) + intProductAmountTb))
                     {
                         SelectedProduct.Amount -= (intFrameAmountTb * intFrameSizeTb) + intProductAmountTb;
-                        FrameAmountTb = null;
-                        FrameSizeTb = null;
-                        ProductAmountTb = null;
+                        FrameAmountTb = FrameSizeTb = ProductAmountTb = null;
+                        //FrameAmountTb = null;
+                        //FrameSizeTb = null;
+                        //ProductAmountTb = null;
                     }
                     else await _message.Error("Tallene stemmer ikke", "Der er kun " + SelectedProduct.Amount + " af " + SelectedProduct.Name + "." +
                                                                       "\nDerfor kan du ikke fjerne " + intFrameAmountTb + "*" + intFrameSizeTb + "+" + intProductAmountTb + "=" + ((intFrameAmountTb * intFrameSizeTb) + intProductAmountTb) + " af dette produkt.");
@@ -402,8 +405,9 @@ namespace FredagsCafeUWP.Models
                     if (SelectedProduct.Amount >= (intFrameAmountTb * intFrameSizeTb))
                     {
                         SelectedProduct.Amount -= intFrameAmountTb * intFrameSizeTb;
-                        FrameAmountTb = null;
-                        FrameSizeTb = null;
+                        FrameAmountTb = FrameSizeTb = null;
+                        //FrameAmountTb = null;
+                        //FrameSizeTb = null;
                     }
                     else await _message.Error("Tallene stemmer ikke", "Der er kun " + SelectedProduct.Amount + " af " + SelectedProduct.Name + "." +
                                                                       "\nDerfor kan du ikke fjerne " + intFrameAmountTb + "*" + intFrameSizeTb + "=" + (intFrameAmountTb * intFrameSizeTb) + " af dette produkt.");
@@ -440,8 +444,6 @@ namespace FredagsCafeUWP.Models
                     {
                         SelectedProduct.SellingPrice = intProductPriceChangedTb;
                         ProductPriceChangeTb = null;
-
-                        
                     }
                     else await _message.Error("Forkert input", "Prisen skal være mere end 0.");
                 }
@@ -460,8 +462,6 @@ namespace FredagsCafeUWP.Models
                     {
                         SelectedProduct.BuyingPrice = intProductPriceChangedTb;
                         ProductPriceChangeTb = null;
-
-                        
                     }
                     else await _message.Error("Forkert input", "Prisen skal være mere end 0.");
                 }

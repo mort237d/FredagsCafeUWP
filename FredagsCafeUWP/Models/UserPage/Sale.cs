@@ -263,7 +263,11 @@ namespace FredagsCafeUWP
 
             foreach (var product in Basket)
             {
-                total += VolumeDiscount(product.DiscountAtThisAmount, product.AmountToBeSold, product.DiscountPricePerItem, product.SellingPrice);
+                if (product.DiscountAtThisAmount != 0 || product.DiscountPricePerItem != 0)
+                {
+                    total += VolumeDiscount(product.DiscountAtThisAmount, product.AmountToBeSold, product.DiscountPricePerItem, product.SellingPrice);
+                }
+                else total += product.AmountToBeSold * product.SellingPrice;
             }
 
             return total;
