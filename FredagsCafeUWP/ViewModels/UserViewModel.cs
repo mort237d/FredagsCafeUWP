@@ -60,6 +60,7 @@ namespace FredagsCafeUWP.ViewModels
         private RelayCommand _showChangeProductPopUpCommand;
 
         private RelayCommand _addProductCommand;
+        private RelayCommand _changeProductCommand;
 
         //Todo Skal slettes igen senere
         private RelayCommand _clearStatListCommand;
@@ -113,9 +114,10 @@ namespace FredagsCafeUWP.ViewModels
 
             UserImageBrowserCommand = new RelayCommand(Administration.BrowseImageButton);
 
-            BrowseImageCommand = new RelayCommand(Stock.BrowseImageButton);
+            BrowseImageCommand = new RelayCommand(Stock.BrowseAddImageButton);
 
-            //AddProductCommand = new RelayCommand(Stock.AddProductToObList);
+            AddProductCommand = new RelayCommand(Stock.AddProductToObList);
+            ChangeProductCommand = new RelayCommand(Stock.ChangeProductOfObList);
         }
 
         #region Props
@@ -339,6 +341,18 @@ namespace FredagsCafeUWP.ViewModels
         {
             get { return _showChangeProductPopUpCommand; }
             set { _showChangeProductPopUpCommand = value; }
+        }
+
+        public RelayCommand AddProductCommand
+        {
+            get { return _addProductCommand; }
+            set { _addProductCommand = value; }
+        }
+
+        public RelayCommand ChangeProductCommand
+        {
+            get { return _changeProductCommand; }
+            set { _changeProductCommand = value; }
         }
 
         //public ChangeProductClass ChangeProductClass

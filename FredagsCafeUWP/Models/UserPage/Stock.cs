@@ -38,11 +38,17 @@ namespace FredagsCafeUWP.Models
 
         private int _selectionStart;
 
-        private string _nameTb;
-        private string _buyingPriceTb;
-        private string _sellingPriceTb;
-        private string _amountTb;
-        private string _imageSourceTb = "";
+        private string _addNameTb;
+        private string _addBuyingPriceTb;
+        private string _addSellingPriceTb;
+        private string _addAmountTb;
+        private string _addImageSourceTb = "";
+
+        private string _changeNameTb;
+        private string _changeBuyingPriceTb;
+        private string _changeSellingPriceTb;
+        private string _changeAmountTb;
+        private string _changeImageSourceTb = "";
 
         #endregion
 
@@ -68,52 +74,52 @@ namespace FredagsCafeUWP.Models
         #endregion
 
         #region Properties
-        public string NameTb
+        public string AddNameTb
         {
-            get => _nameTb;
+            get => _addNameTb;
             set
             {
-                _nameTb = value;
+                _addNameTb = value;
                 OnPropertyChanged();
             }
         }
 
-        public string BuyingPriceTb
+        public string AddBuyingPriceTb
         {
-            get => _buyingPriceTb;
+            get => _addBuyingPriceTb;
             set
             {
-                _buyingPriceTb = value;
+                _addBuyingPriceTb = value;
                 OnPropertyChanged();
             }
         }
 
-        public string SellingPriceTb
+        public string AddSellingPriceTb
         {
-            get => _sellingPriceTb;
+            get => _addSellingPriceTb;
             set
             {
-                _sellingPriceTb = value;
+                _addSellingPriceTb = value;
                 OnPropertyChanged();
             }
         }
 
-        public string AmountTb
+        public string AddAmountTb
         {
-            get => _amountTb;
+            get => _addAmountTb;
             set
             {
-                _amountTb = value;
+                _addAmountTb = value;
                 OnPropertyChanged();
             }
         }
 
-        public string ImageSourceTb
+        public string AddImageSourceTb
         {
-            get => _imageSourceTb;
+            get => _addImageSourceTb;
             set
             {
-                _imageSourceTb = value;
+                _addImageSourceTb = value;
                 OnPropertyChanged();
             }
         }
@@ -235,17 +241,67 @@ namespace FredagsCafeUWP.Models
             }
         }
 
+        public string ChangeNameTb
+        {
+            get { return _changeNameTb; }
+            set
+            {
+                _changeNameTb = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string ChangeBuyingPriceTb
+        {
+            get { return _changeBuyingPriceTb; }
+            set
+            {
+                _changeBuyingPriceTb = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string ChangeSellingPriceTb
+        {
+            get { return _changeSellingPriceTb; }
+            set
+            {
+                _changeSellingPriceTb = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string ChangeAmountTb
+        {
+            get { return _changeAmountTb; }
+            set
+            {
+                _changeAmountTb = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string ChangeImageSourceTb
+        {
+            get { return _changeImageSourceTb; }
+            set
+            {
+                _changeImageSourceTb = value;
+                OnPropertyChanged();
+            }
+        }
+
         #endregion
 
         #region ButtonMethods
         public async void AddProductToObList()
         {
             bool productExist = false;
-            if (NameTb != null)
+            if (AddNameTb != null)
             {
                 foreach (var element in Products)
                 {
-                    if (element.Name.ToLower().Equals(NameTb.ToLower()))
+                    if (element.Name.ToLower().Equals(AddNameTb.ToLower()))
                     {
                         productExist = true;
                         break;
@@ -254,39 +310,39 @@ namespace FredagsCafeUWP.Models
 
                 if (!productExist)
                 {
-                    if (double.TryParse(BuyingPriceTb, out double doubleBuyingPriceTb) &&
-                    double.TryParse(SellingPriceTb, out double doubleSellingPriceTb) &&
-                    int.TryParse(AmountTb, out int intAmountTb))
+                    if (double.TryParse(AddBuyingPriceTb, out double doubleBuyingPriceTb) &&
+                    double.TryParse(AddSellingPriceTb, out double doubleSellingPriceTb) &&
+                    int.TryParse(AddAmountTb, out int intAmountTb))
                     {
-                        if (doubleBuyingPriceTb > 0 && doubleSellingPriceTb > 0 && AmountTb != null && intAmountTb >= 0)
+                        if (doubleBuyingPriceTb > 0 && doubleSellingPriceTb > 0 && AddAmountTb != null && intAmountTb >= 0)
                         {
-                            if (string.IsNullOrEmpty(ImageSourceTb))
+                            if (string.IsNullOrEmpty(AddImageSourceTb))
                             {
                                 if (intAmountTb < _minAmount) //TODO what is going on here?
-                                    Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, NameTb, intAmountTb,
+                                    Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb,
                                         0, "ProductImages/BlankDåse.png", _colorRed));
                                 else
-                                    Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, NameTb,
+                                    Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb,
                                         intAmountTb,
                                         0, "ProductImages/BlankDåse.png", _colorGreen));
                             }
                             else
                             {
                                 if (intAmountTb < _minAmount)
-                                    Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, NameTb, intAmountTb,
-                                        0, ImageSourceTb, ColorRed));
+                                    Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb,
+                                        0, AddImageSourceTb, ColorRed));
                                 else
-                                    Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, NameTb, intAmountTb,
-                                        0, ImageSourceTb, ColorGreen));
+                                    Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb,
+                                        0, AddImageSourceTb, ColorGreen));
                             }
 
-                            NameTb = null;
-                            BuyingPriceTb = null;
-                            SellingPriceTb = null;
-                            AmountTb = null;
-                            ImageSourceTb = null;
+                            AddNameTb = null;
+                            AddBuyingPriceTb = null;
+                            AddSellingPriceTb = null;
+                            AddAmountTb = null;
+                            AddImageSourceTb = null;
 
-                            Debug.WriteLine("product: " + Products.Count);
+                            ShowAddProductPopUp = false;
                         }
                         else await _message.Error("Forkert input", "Købspris og Salgspris skal være mere en 0.");
                     }
@@ -297,7 +353,7 @@ namespace FredagsCafeUWP.Models
             else await _message.Error("Forkert input", "Produktet skal have et navn.");
         }
 
-        public async Task<string> BrowseImageWindowTask()
+        public async Task<string> BrowseAddImageWindowTask()
         {
             FileOpenPicker openPicker = new FileOpenPicker();
             openPicker.ViewMode = PickerViewMode.Thumbnail;
@@ -312,9 +368,9 @@ namespace FredagsCafeUWP.Models
             else return outputTextBlock.Text = "";
         }
 
-        public async void BrowseImageButton()
+        public async void BrowseAddImageButton()
         {
-            ImageSourceTb = await BrowseImageWindowTask();
+            AddImageSourceTb = await BrowseAddImageWindowTask();
         }
 
         public void ShowAddProductPopUpMethod()
@@ -322,9 +378,41 @@ namespace FredagsCafeUWP.Models
             ShowAddProductPopUp = true;
         }
 
-        public void ShowChangeProductPopUpMethod()
+        public async void ShowChangeProductPopUpMethod()
         {
-            ShowChangeProductPopUp = true;
+            if (SelectedProduct.Name != null)
+            {
+                ChangeNameTb = SelectedProduct.Name;
+                ChangeBuyingPriceTb = SelectedProduct.BuyingPrice.ToString();
+                ChangeSellingPriceTb = SelectedProduct.SellingPrice.ToString();
+                ChangeAmountTb = SelectedProduct.Amount.ToString();
+                ChangeImageSourceTb = SelectedProduct.ImageSource;
+
+                ShowChangeProductPopUp = true;
+            }
+            else await _message.Error("Intet produkt valgt", "Vælg venligst et produkt.");
+        }
+
+        public async void ChangeProductOfObList()
+        {
+            SelectedProduct.Name = ChangeNameTb;
+            if (double.TryParse(ChangeBuyingPriceTb, out double doubleChangeBuyingPriceTb))
+                SelectedProduct.BuyingPrice = doubleChangeBuyingPriceTb;
+            else await _message.Error("Forkert input", "Købspris skal være et tal.");
+            if (double.TryParse(ChangeSellingPriceTb, out double doubleChangeSellingPriceTb))
+                SelectedProduct.SellingPrice = doubleChangeSellingPriceTb;
+            else await _message.Error("Forkert input", "Salgspris skal være et tal.");
+            if (int.TryParse(ChangeAmountTb, out int intChangeAmountTb)) SelectedProduct.Amount = intChangeAmountTb;
+            else await _message.Error("Forkert input", "Antal skal være et hel tal.");
+            SelectedProduct.ImageSource = ChangeImageSourceTb;
+
+            ChangeNameTb = null;
+            ChangeBuyingPriceTb = null;
+            ChangeSellingPriceTb = null;
+            ChangeAmountTb = null;
+            ChangeImageSourceTb = null;
+
+            ShowChangeProductPopUp = false;
         }
 
         public async void RemoveProductFromObList()

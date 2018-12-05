@@ -77,11 +77,7 @@ namespace FredagsCafeUWP.Models.AddProduct_ChangeProduct
 
         public ChangeProductClass()
         {
-            NameTb = _stock.SelectedProduct.Name;
-            BuyingPriceTb = _stock.SelectedProduct.BuyingPrice.ToString();
-            SellingPriceTb = _stock.SelectedProduct.SellingPrice.ToString();
-            AmountTb = _stock.SelectedProduct.Amount.ToString();
-            ImageSourceTb = _stock.SelectedProduct.ImageSource;
+            
         }
 
         public async void GoToChangeProductPage()

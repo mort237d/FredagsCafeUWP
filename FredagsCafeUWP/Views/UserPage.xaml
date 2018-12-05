@@ -146,12 +146,12 @@
                         <StackPanel Background="#6CA0DC" Height="1000" Width="400">
                             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0">
                                 <TextBlock Text="Tilføj Produkt" FontWeight="Bold" FontSize="50" HorizontalAlignment="Center"></TextBlock>
-                                <TextBox Margin="2" PlaceholderText="Navn" Text="{Binding Stock.NameTb, Mode=TwoWay}"/>
-                                <TextBox Margin="2" PlaceholderText="Købspris" Text="{Binding Stock.BuyingPriceTb, Mode=TwoWay}"/>
-                                <TextBox Margin="2" PlaceholderText="Salgspris" Text="{Binding Stock.SellingPriceTb, Mode=TwoWay}"/>
-                                <TextBox Margin="2" PlaceholderText="Antal" Text="{Binding Stock.AmountTb, Mode=TwoWay}"/>
+                                <TextBox Margin="2" PlaceholderText="Navn" Text="{Binding Stock.AddNameTb, Mode=TwoWay}"/>
+                                <TextBox Margin="2" PlaceholderText="Købspris" Text="{Binding Stock.AddBuyingPriceTb, Mode=TwoWay}"/>
+                                <TextBox Margin="2" PlaceholderText="Salgspris" Text="{Binding Stock.AddSellingPriceTb, Mode=TwoWay}"/>
+                                <TextBox Margin="2" PlaceholderText="Antal" Text="{Binding Stock.AddAmountTb, Mode=TwoWay}"/>
                                 <StackPanel Orientation="Horizontal" Margin="2">
-                                    <TextBox IsReadOnly="True" PlaceholderText="ImageSource" Text="{Binding Stock.ImageSourceTb, Mode=TwoWay}"/>
+                                    <TextBox IsReadOnly="True" PlaceholderText="ImageSource" Text="{Binding Stock.AddImageSourceTb, Mode=TwoWay}"/>
                                     <Button Content="..." Width="40" Command="{Binding BrowseImageCommand}"/>
                                 </StackPanel>
                                 <Button Margin="20" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Center" Content="Tilføj produkt" Command="{Binding AddProductCommand}"/>
@@ -170,7 +170,7 @@
                             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0">
                                 <TextBlock Text="Ændre Produkt" FontWeight="Bold" FontSize="50" HorizontalAlignment="Center"></TextBlock>
                                 <StackPanel Orientation="Horizontal">
-                                    <StackPanel>
+                                    <StackPanel Margin="0,5,0,0">
                                         <TextBlock Height="32" Margin="2" Text="Navn"/>
                                         <TextBlock Height="32" Margin="2" Text="Købspris"/>
                                         <TextBlock Height="32" Margin="2" Text="Salgspris"/>
@@ -178,17 +178,17 @@
                                         <TextBlock Height="32" Text="ImageSource" Margin="2"/>
                                     </StackPanel>
                                     <StackPanel>
-                                        <TextBox Margin="2" PlaceholderText="Navn" Text="{Binding Stock.NameTb, Mode=TwoWay}"/>
-                                        <TextBox Margin="2" PlaceholderText="Købspris" Text="{Binding Stock.BuyingPriceTb, Mode=TwoWay}"/>
-                                        <TextBox Margin="2" PlaceholderText="Salgspris" Text="{Binding Stock.SellingPriceTb, Mode=TwoWay}"/>
-                                        <TextBox Margin="2" PlaceholderText="Antal" Text="{Binding Stock.AmountTb, Mode=TwoWay}"/>
+                                        <TextBox Margin="2" PlaceholderText="Navn" Text="{Binding Stock.ChangeNameTb, Mode=TwoWay}"/>
+                                        <TextBox Margin="2" PlaceholderText="Købspris" Text="{Binding Stock.ChangeBuyingPriceTb, Mode=TwoWay}"/>
+                                        <TextBox Margin="2" PlaceholderText="Salgspris" Text="{Binding Stock.ChangeSellingPriceTb, Mode=TwoWay}"/>
+                                        <TextBox Margin="2" PlaceholderText="Antal" Text="{Binding Stock.ChangeAmountTb, Mode=TwoWay}"/>
                                         <StackPanel Orientation="Horizontal" Margin="2">
-                                            <TextBox IsReadOnly="True" PlaceholderText="ImageSource" Text="{Binding Stock.ImageSourceTb, Mode=TwoWay}"/>
+                                            <TextBox IsReadOnly="True" PlaceholderText="ImageSource" Text="{Binding Stock.ChangeImageSourceTb, Mode=TwoWay}"/>
                                             <Button Content="..." Width="40" Command="{Binding BrowseImageCommand}"/>
                                         </StackPanel>
                                     </StackPanel>
                                 </StackPanel>
-                                <Button Margin="20" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Center" Content="Tilføj produkt" Command="{Binding AddProductCommand}"/>
+                                <Button Margin="20" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Center" Content="Ændre produkt" Command="{Binding ChangeProductCommand}"/>
                             </StackPanel>
                         </StackPanel>
                     </Popup>
