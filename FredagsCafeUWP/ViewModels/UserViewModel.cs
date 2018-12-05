@@ -53,7 +53,8 @@ namespace FredagsCafeUWP.ViewModels
 
         private RelayCommand _logOffCommand;
 
-        private RelayCommand _browseImageCommand;
+        private RelayCommand _browseAddImageCommand;
+        private RelayCommand _browseChangeImageCommand;
 
         private RelayCommand _goToHelpPageCommand;
         private RelayCommand _showAddProductPopUpCommand;
@@ -114,17 +115,24 @@ namespace FredagsCafeUWP.ViewModels
 
             UserImageBrowserCommand = new RelayCommand(Administration.BrowseImageButton);
 
-            BrowseImageCommand = new RelayCommand(Stock.BrowseAddImageButton);
+            BrowseAddImageCommand = new RelayCommand(Stock.BrowseAddImageButton);
+            BrowseChangeImageCommand = new RelayCommand(Stock.BrowseChangeImageButton);
 
             AddProductCommand = new RelayCommand(Stock.AddProductToObList);
             ChangeProductCommand = new RelayCommand(Stock.ChangeProductOfObList);
         }
 
         #region Props
-        public RelayCommand BrowseImageCommand
+        public RelayCommand BrowseAddImageCommand
         {
-            get { return _browseImageCommand; }
-            set { _browseImageCommand = value; }
+            get { return _browseAddImageCommand; }
+            set { _browseAddImageCommand = value; }
+        }
+
+        public RelayCommand BrowseChangeImageCommand
+        {
+            get { return _browseChangeImageCommand; }
+            set { _browseChangeImageCommand = value; }
         }
 
         public RelayCommand RemoveProductCommand
