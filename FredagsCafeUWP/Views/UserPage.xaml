@@ -117,6 +117,7 @@
                                             </ListView.ItemTemplate>
                                         </ListView>
                                     </StackPanel>
+                                    <Line X2="600" Opacity="1" Stroke="#6CA0DC"></Line>
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
