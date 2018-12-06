@@ -16,7 +16,7 @@ namespace FredagsCafeUWP.Models
     {
         #region Field
 
-        private static Message _message = Message.Instance;
+        private static Message _message;
 
         private readonly string _standardImage = "UserImages/Profile-icon.png";
 
@@ -31,6 +31,8 @@ namespace FredagsCafeUWP.Models
         private string _confirmPasswordTb;
 
         private string _visible;
+
+        private bool _showAddUserPopUp = false;
 
         private ObservableCollection<User> _users = new ObservableCollection<User>();
         private User _selectedUser;
@@ -148,10 +150,7 @@ namespace FredagsCafeUWP.Models
 
         private Administration()
         {
-            //foreach (var user in Users)
-            //{
-            //    user.Email = user.Name + "@edu.easj.dk";
-            //}
+            _message = new Message(this);
         }
 
         #region Singleton
@@ -179,9 +178,24 @@ namespace FredagsCafeUWP.Models
             }
         }
 
+        public bool ShowAddUserPopUp
+        {
+            get { return _showAddUserPopUp; }
+            set
+            {
+                _showAddUserPopUp = value;
+                OnPropertyChanged();
+            }
+        }
+
         #endregion
 
         #region ButtonMethods
+
+        public void ShowAddUserPopUpMethod()
+        {
+            ShowAddUserPopUp = true;
+        }
 
         public async Task<string> BrowseImageWindowTask()
         {

@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
-using FredagsCafeUWP.Models.AddProduct;
 
 namespace FredagsCafeUWP.Models
 {
@@ -14,27 +13,41 @@ namespace FredagsCafeUWP.Models
         private readonly Administration _administration;
         private Sale _sale;
         private EventPage _eventPage;
-        private AddProductClass _addProductClass;
 
         #endregion
         
-        private Message()
+        public Message(Stock stock)
         {
-            
+            _stock = stock;
         }
 
-        private static Message instance;
-        public static Message Instance
+        public Message(Administration administration)
         {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new Message();
-                }
-                return instance;
-            }
+            _administration = administration;
         }
+
+        public Message(Sale sale)
+        {
+            _sale = sale;
+        }
+
+        public Message(EventPage eventPage)
+        {
+            _eventPage = eventPage;
+        }
+
+        //private static Message instance;
+        //public static Message Instance
+        //{
+        //    get
+        //    {
+        //        if (instance == null)
+        //        {
+        //            instance = new Message();
+        //        }
+        //        return instance;
+        //    }
+        //}
 
         #region Methods
 
@@ -64,7 +77,7 @@ namespace FredagsCafeUWP.Models
 
             if (command == yesCommand)
             {
-                Debug.WriteLine("Yes");
+                Debug.WriteLine("Yes");                                                                                                                                                                                                                                                                                                 
                 if (title == "Slet produkt")_stock.Products.Remove(_stock.SelectedProduct);
                 if (title == "Slet bruger")_administration.Users.Remove(_administration.SelectedUser);
                 if (title == "Slet bruger af eventet")_eventPage.SelectedEvent.EventsUsers.Remove(_eventPage.SelectedEventUser);
