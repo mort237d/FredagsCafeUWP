@@ -288,6 +288,9 @@ namespace FredagsCafeUWP.Models
                                             Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", _colorRed, EnumCategory.ProductCategory.Other));
                                             break;
                                     }
+                                }
+                                else
+                                { 
                                     switch (AddTypeTb)
                                     {
                                         case "Øl":
@@ -313,17 +316,63 @@ namespace FredagsCafeUWP.Models
                                             break;
                                     }
                                 }
-                                else
-                                    Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", _colorGreen, EnumCategory.ProductCategory.Beer));
                             }
                             else
                             {
                                 if (intAmountTb < _minAmount)
-                                    Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb,
-                                        0, AddImageSourceTb, ColorRed, EnumCategory.ProductCategory.Beer));
+                                {
+                                    switch (AddTypeTb)
+                                    {
+                                        case "Øl":
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, _colorRed, EnumCategory.ProductCategory.Beer));
+                                            break;
+                                        case "Sodavand":
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, _colorRed, EnumCategory.ProductCategory.Soda));
+                                            break;
+                                        case "Cider":
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, _colorRed, EnumCategory.ProductCategory.Cider));
+                                            break;
+                                        case "Drink":
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, _colorRed, EnumCategory.ProductCategory.Drink));
+                                            break;
+                                        case "Flaske":
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, _colorRed, EnumCategory.ProductCategory.Bottle));
+                                            break;
+                                        case "Shot":
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, _colorRed, EnumCategory.ProductCategory.Shot));
+                                            break;
+                                        case "Andet":
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, _colorRed, EnumCategory.ProductCategory.Other));
+                                            break;
+                                    }
+                                }
                                 else
-                                    Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb,
-                                        0, AddImageSourceTb, ColorGreen, EnumCategory.ProductCategory.Beer));
+                                {
+                                    switch (AddTypeTb)
+                                    {
+                                        case "Øl":
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, _colorGreen, EnumCategory.ProductCategory.Beer));
+                                            break;
+                                        case "Sodavand":
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, _colorGreen, EnumCategory.ProductCategory.Soda));
+                                            break;
+                                        case "Cider":
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, _colorGreen, EnumCategory.ProductCategory.Cider));
+                                            break;
+                                        case "Drink":
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, _colorGreen, EnumCategory.ProductCategory.Drink));
+                                            break;
+                                        case "Flaske":
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, _colorGreen, EnumCategory.ProductCategory.Bottle));
+                                            break;
+                                        case "Shot":
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, _colorGreen, EnumCategory.ProductCategory.Shot));
+                                            break;
+                                        case "Andet":
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, _colorGreen, EnumCategory.ProductCategory.Other));
+                                            break;
+                                    }
+                                }
                             }
 
                             AddNameTb = null;
@@ -331,6 +380,7 @@ namespace FredagsCafeUWP.Models
                             AddSellingPriceTb = null;
                             AddAmountTb = null;
                             AddImageSourceTb = null;
+                            AddTypeTb = null;
 
                             ShowAddProductPopUp = false;
                         }
