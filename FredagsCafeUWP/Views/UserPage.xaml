@@ -150,7 +150,7 @@
                                 <TextBox Margin="2" PlaceholderText="Købspris" Text="{Binding Stock.AddBuyingPriceTb, Mode=TwoWay}"/>
                                 <TextBox Margin="2" PlaceholderText="Salgspris" Text="{Binding Stock.AddSellingPriceTb, Mode=TwoWay}"/>
                                 <TextBox Margin="2" PlaceholderText="Antal" Text="{Binding Stock.AddAmountTb, Mode=TwoWay}"/>
-                                <ComboBox Margin="2" PlaceholderText="Type" Width="320">
+                                <ComboBox Margin="2" PlaceholderText="Type" Width="320" SelectedItem="{Binding Stock.AddTypeTb}">
                                     <ComboBoxItem Content="Øl"/>
                                     <ComboBoxItem Content="Sodavand"/>
                                     <ComboBoxItem Content="Cider"/>
