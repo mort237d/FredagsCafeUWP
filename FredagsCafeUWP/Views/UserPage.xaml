@@ -232,27 +232,7 @@
                             <Button HorizontalAlignment="Center" Style="{StaticResource RoundedButtonStyle}" Content="Slet produkt" Command="{Binding RemoveProductCommand}" Margin="0,5,0,0"/>
                         </StackPanel>
 
-                        <StackPanel VerticalAlignment="Bottom" Margin="10,0,0,0" HorizontalAlignment="Center">
-                            <Button Style="{StaticResource RoundedButtonStyle}" Content="Ændre produkt" Command="{Binding ShowChangeProductPopUpCommand}"></Button>
-                            <TextBox SelectionStart="{Binding Stock.SelectionStart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="280" PlaceholderText="Change Price" Text="{Binding Stock.ProductPriceChangeTb, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,0"/>
-                            <StackPanel Orientation="Horizontal">
-                                <Button Content="Change sell price" Command="{Binding ChangeProductSellPriceCommand}" Width="140"/>
-                                <Button Content="Change buy price" Command="{Binding ChangeProductBuyPriceCommand}" Margin="0,0,0,0" Width="140"/>
-                            </StackPanel>
-                        </StackPanel>
-
-                        <StackPanel Margin="10,0,0,0" VerticalAlignment="Bottom" HorizontalAlignment="Right" Orientation="Vertical">
-                            <StackPanel Orientation="Horizontal" Margin="0,0,0,5" HorizontalAlignment="Right">
-                                <TextBox PlaceholderText="Antal rammer" Text="{Binding Stock.FrameAmountTb, Mode=TwoWay}"/>
-                                <TextBlock Text="x" VerticalAlignment="Center"/>
-                                <TextBox PlaceholderText="Ramme størrelse" Text="{Binding Stock.FrameSizeTb, Mode=TwoWay}"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <TextBox Width="75" PlaceholderText="Stk." Text="{Binding Stock.ProductAmountTb, Mode=TwoWay}"/>
-                                <Button Content="Tilføj antal" Command="{Binding AddAmountCommand}"/>
-                                <Button Content="Slet antal" Command="{Binding RemoveAmountCommand}" />
-                            </StackPanel>
-                        </StackPanel>
+                        <Button HorizontalAlignment="Right" Style="{StaticResource RoundedButtonStyle}" Content="Ændre produkt" Command="{Binding ShowChangeProductPopUpCommand}"></Button>
                     </Grid>
 
                 </Grid>
