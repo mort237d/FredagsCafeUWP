@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 using FredagsCafeUWP.Annotations;
 using FredagsCafeUWP.Models;
@@ -18,10 +15,24 @@ namespace FredagsCafeUWP
 //        private double totalSaleValueSum;
 //        private double totalBuyValueSum;
 
-        public StatListClass()
+        private StatListClass()
         {
             
         }
+
+        private static StatListClass instance;
+        public static StatListClass Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new StatListClass();
+                }
+                return instance;
+            }
+        }
+
         #region Props
         public ObservableCollection<Statistics> StatList
         {
@@ -60,7 +71,7 @@ namespace FredagsCafeUWP
             Debug.WriteLine("stats.count: " + StatList.Count);
         }
 
-        public async void LoadAsync()
+        public async Task LoadAsync()
         {
             try
             {

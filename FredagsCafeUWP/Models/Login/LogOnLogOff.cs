@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
-using Windows.ApplicationModel.UserActivities.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using FredagsCafeUWP.Annotations;
@@ -21,7 +17,7 @@ namespace FredagsCafeUWP
         public string PassWord { get; set; }
         private string _wrongLogin;
         private string _wrongLoginColor;
-        private Administration _administration = new Administration();
+        private Administration _administration = Administration.Instance;
         private List<string> _logInLogOutList = new List<string>();
 
         private int i = 0;
@@ -61,9 +57,22 @@ namespace FredagsCafeUWP
 
         #endregion
 
-        public LogOnLogOff()
+        private LogOnLogOff()
         {
             
+        }
+
+        private static LogOnLogOff instance;
+        public static LogOnLogOff Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new LogOnLogOff();
+                }
+                return instance;
+            }
         }
 
         public void logOffMethod()
@@ -81,14 +90,14 @@ namespace FredagsCafeUWP
             
             LogInLogOutList.Add(Administration.CurrentUser.Name + " logged off at " + DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy"));
 
-            
 
-            //i = 0;
-            //foreach (var loginlogoff in LogInLogOutList)
-            //{
-            //    Debug.WriteLine(i + " " + loginlogoff);
-            //    i++;
-            //}
+
+            i = 0;
+            foreach (var loginlogoff in LogInLogOutList)
+            {
+                Debug.WriteLine(i + " " + loginlogoff);
+                i++;
+            }
 
             Frame currentFrame = Window.Current.Content as Frame;
             currentFrame.Navigate(typeof(LoginPage));
@@ -104,14 +113,14 @@ namespace FredagsCafeUWP
                     Administration.CurrentUser = user;
                     LogInLogOutList.Add(UserName + " logged in at " + DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy"));
 
-                    
 
-                    //i = 0;
-                    //foreach (var loginlogoff in LogInLogOutList)
-                    //{
-                    //    Debug.WriteLine(i + " " + loginlogoff);
-                    //    i++;
-                    //}
+
+                    i = 0;
+                    foreach (var loginlogoff in LogInLogOutList)
+                    {
+                        Debug.WriteLine(i + " " + loginlogoff);
+                        i++;
+                    }
 
                     temp = true;
                     break;
@@ -137,7 +146,7 @@ namespace FredagsCafeUWP
             Debug.WriteLine("loginlogoutlist.count: " + LogInLogOutList.Count);
         }
 
-        public async void LoadAsync()
+        public async Task LoadAsync()
         {
             try
             {
@@ -147,7 +156,7 @@ namespace FredagsCafeUWP
             }
             catch (Exception)
             {
-                SaveAsync();
+                
             }
 
         }

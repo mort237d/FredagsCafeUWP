@@ -92,9 +92,11 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Models\AddProduct\AddProductClass.cs" />
+    <Compile Include="Models\AddProduct_ChangeProduct\AddProductClass.cs" />
+    <Compile Include="Models\AddProduct_ChangeProduct\ChangeProductClass.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
     <Compile Include="ViewModels\AddProductViewModel.cs" />
+    <Compile Include="ViewModels\ChangeProductViewModel.cs" />
     <Compile Include="Views\accountSettings.xaml.cs">
       <DependentUpon>accountSettings.xaml</DependentUpon>
     </Compile>
@@ -105,6 +107,9 @@
     <Compile Include="Models\Help\Help.cs" />
     <Compile Include="Views\AddProductPage.xaml.cs">
       <DependentUpon>AddProductPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChangeProductPage.xaml.cs">
+      <DependentUpon>ChangeProductPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\HelpPage.xaml.cs">
       <DependentUpon>HelpPage.xaml</DependentUpon>
@@ -146,6 +151,7 @@
     <Content Include="Assets\LargeTile.scale-150.png" />
     <Content Include="Assets\LargeTile.scale-200.png" />
     <Content Include="Assets\LargeTile.scale-400.png" />
+    <Content Include="Views\UserImages\220px-John_Oliver_November_2016.jpg" />
     <Content Include="Views\UserImages\Profile-icon.png" />
     <Content Include="Assets\SmallTile.scale-100.png" />
     <Content Include="Assets\SmallTile.scale-125.png" />
@@ -202,6 +208,7 @@
     <Content Include="Assets\Square44x44Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Content Include="Views\UserImages\SomersbyApple.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -213,6 +220,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AddProductPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ChangeProductPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

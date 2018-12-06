@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using FredagsCafeUWP.Annotations;
 using FredagsCafeUWP.Models;
 using FredagsCafeUWP.Models.AddProduct;
+using FredagsCafeUWP.Models.AddProduct_ChangeProduct;
 using GalaSoft.MvvmLight.Command;
 
 namespace FredagsCafeUWP.ViewModels
@@ -11,19 +12,17 @@ namespace FredagsCafeUWP.ViewModels
     {
         #region Field
 
-        private string _selectedItem;
-        private Stock _stock = new Stock();
+        private Stock _stock = Stock.Instance;
+        private Sale _sale = Sale.Instance;
+        private EventPage _eventPage = EventPage.Instance;
+        private Administration _administration = Administration.Instance;
+        private StatListClass _statList = StatListClass.Instance;
+        private LogOnLogOff _logOnLogOff = LogOnLogOff.Instance;
         private User _user;
         private Product _product;
-        private Sale _sale = new Sale();
-        private EventPage _eventPage = new EventPage();
-        private Administration _administration = new Administration();
         private Statistics _statistics;
-        private StatListClass _statList = new StatListClass();
-        private LogOnLogOff _logOnLogOff = new LogOnLogOff();
         private AccountSettingsClass _accountSettingsClass = new AccountSettingsClass();
         private Help _help = new Help();
-        private AddProductClass _addProductClass = new AddProductClass();
 
         private RelayCommand _removeProductCommand;
 
@@ -54,8 +53,15 @@ namespace FredagsCafeUWP.ViewModels
 
         private RelayCommand _logOffCommand;
 
+        private RelayCommand _browseAddImageCommand;
+        private RelayCommand _browseChangeImageCommand;
+
         private RelayCommand _goToHelpPageCommand;
-        private RelayCommand _goToAddProductPageCommand;
+        private RelayCommand _showAddProductPopUpCommand;
+        private RelayCommand _showChangeProductPopUpCommand;
+
+        private RelayCommand _addProductCommand;
+        private RelayCommand _changeProductCommand;
 
         //Todo Skal slettes igen senere
         private RelayCommand _clearStatListCommand;
@@ -63,6 +69,8 @@ namespace FredagsCafeUWP.ViewModels
         private RelayCommand _changeToAccountCommand;
 
         private RelayCommand _deleteReceiptCommand;
+
+        private RelayCommand _userImageBrowserCommand;
 
         #endregion
 
@@ -90,7 +98,7 @@ namespace FredagsCafeUWP.ViewModels
             AddEventCommand = new RelayCommand(EventPage.AddEvent);
             RemoveEventCommand = new RelayCommand(EventPage.RemoveEvent);
 
-            CalculateTotalPriceCommand = new RelayCommand(Sale.CalculateTotalPrice);
+            CalculateTotalPriceCommand = new RelayCommand(Sale.DiscountedTotalcalculator);
 
             LogOffCommand = new RelayCommand(LogOnLogOff.logOffMethod);
 
@@ -99,12 +107,33 @@ namespace FredagsCafeUWP.ViewModels
             ChangeToAccountCommand = new RelayCommand(AccountSettingsClass.GoToAccountSettings);
 
             GoToHelpPageCommand = new RelayCommand(Help.GoToHelpPage);
-            GoToAddProductPageCommand = new RelayCommand(AddProductClass.GoToAddProductPage);
+
+            ShowAddProductPopUpCommand = new RelayCommand(Stock.ShowAddProductPopUpMethod);
+            ShowChangeProductPopUpCommand = new RelayCommand(Stock.ShowChangeProductPopUpMethod);
 
             DeleteReceiptCommand = new RelayCommand(Sale.DeleteReceipt);
+
+            UserImageBrowserCommand = new RelayCommand(Administration.BrowseImageButton);
+
+            BrowseAddImageCommand = new RelayCommand(Stock.BrowseAddImageButton);
+            BrowseChangeImageCommand = new RelayCommand(Stock.BrowseChangeImageButton);
+
+            AddProductCommand = new RelayCommand(Stock.AddProductToObList);
+            ChangeProductCommand = new RelayCommand(Stock.ChangeProductOfObList);
         }
 
         #region Props
+        public RelayCommand BrowseAddImageCommand
+        {
+            get { return _browseAddImageCommand; }
+            set { _browseAddImageCommand = value; }
+        }
+
+        public RelayCommand BrowseChangeImageCommand
+        {
+            get { return _browseChangeImageCommand; }
+            set { _browseChangeImageCommand = value; }
+        }
 
         public RelayCommand RemoveProductCommand
         {
@@ -112,17 +141,6 @@ namespace FredagsCafeUWP.ViewModels
             set { _removeProductCommand = value; }
         }
 
-        public string SelectedItem
-        {
-            get => _selectedItem;
-            set => _selectedItem = value;
-        }
-
-        public Stock Stock
-        {
-            get => _stock;
-            set => _stock = value;
-        }
 
         public Product Product
         {
@@ -218,12 +236,6 @@ namespace FredagsCafeUWP.ViewModels
             set { _removeOneFromSaleCommand = value; }
         }
 
-        public EventPage EventPage
-        {
-            get { return _eventPage; }
-            set { _eventPage = value; }
-        }
-
         public RelayCommand RemoveEventUserCommand
         {
             get { return _removeEventUserCommand; }
@@ -303,10 +315,10 @@ namespace FredagsCafeUWP.ViewModels
             set { _goToHelpPageCommand = value; }
         }
 
-        public RelayCommand GoToAddProductPageCommand
+        public RelayCommand ShowAddProductPopUpCommand
         {
-            get { return _goToAddProductPageCommand; }
-            set { _goToAddProductPageCommand = value; }
+            get { return _showAddProductPopUpCommand; }
+            set { _showAddProductPopUpCommand = value; }
         }
 
         public RelayCommand DeleteReceiptCommand
@@ -315,11 +327,59 @@ namespace FredagsCafeUWP.ViewModels
             set { _deleteReceiptCommand = value; }
         }
 
-        public AddProductClass AddProductClass
+        public Stock Stock
         {
-            get { return _addProductClass; }
-            set { _addProductClass = value; }
+            get { return _stock; }
+            set { _stock = value; }
         }
+
+        public EventPage EventPage
+        {
+            get { return _eventPage; }
+            set { _eventPage = value; }
+        }
+
+        public RelayCommand UserImageBrowserCommand
+        {
+            get { return _userImageBrowserCommand; }
+            set => _userImageBrowserCommand = value; 
+        }
+
+        public RelayCommand ShowChangeProductPopUpCommand
+        {
+            get { return _showChangeProductPopUpCommand; }
+            set { _showChangeProductPopUpCommand = value; }
+        }
+
+        public RelayCommand AddProductCommand
+        {
+            get { return _addProductCommand; }
+            set { _addProductCommand = value; }
+        }
+
+        public RelayCommand ChangeProductCommand
+        {
+            get { return _changeProductCommand; }
+            set { _changeProductCommand = value; }
+        }
+
+        //public ChangeProductClass ChangeProductClass
+        //{
+        //    get { return _changeProductClass; }
+        //    set { _changeProductClass = value; }
+        //}
+
+        //public RelayCommand GoToChangeProductPageCommand
+        //{
+        //    get { return _goToChangeProductPageCommand; }
+        //    set { _goToChangeProductPageCommand = value; }
+        //}
+
+        //public RelayCommand AddProductCommand
+        //{
+        //    get { return _addProductCommand; }
+        //    set { _addProductCommand = value; }
+        //}
 
         #endregion
 
@@ -334,5 +394,8 @@ namespace FredagsCafeUWP.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
+
+        //ToDo ( ͡° ͜ʖ ͡°)
+        //Todo make Morten STFU and be nice
     }
 }

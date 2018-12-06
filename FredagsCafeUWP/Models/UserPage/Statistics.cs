@@ -1,6 +1,4 @@
-﻿using System.Collections.ObjectModel;
-
-namespace FredagsCafeUWP.Models
+﻿namespace FredagsCafeUWP.Models
 {
     public class Statistics
     {

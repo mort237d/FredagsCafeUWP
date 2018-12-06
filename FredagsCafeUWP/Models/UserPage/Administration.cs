@@ -4,6 +4,9 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using Windows.Storage;
+using Windows.Storage.Pickers;
+using Windows.UI.Xaml.Controls;
 using FredagsCafeUWP.Annotations;
 
 namespace FredagsCafeUWP.Models
@@ -12,7 +15,7 @@ namespace FredagsCafeUWP.Models
     {
         #region Field
 
-        private static Message _message;
+        private static Message _message = Message.Instance;
 
         private readonly string _standardImage = "UserImages/Profile-icon.png";
 
@@ -22,10 +25,11 @@ namespace FredagsCafeUWP.Models
         private string _emailTb;
         private string _telephoneNumberTb;
         private string _userNameTb;
+        private string _imageTb = "";
         private string _passwordTb;
         private string _confirmPasswordTb;
 
-        private ObservableCollection<User> _users;
+        private ObservableCollection<User> _users = new ObservableCollection<User>();
         private User _selectedUser;
         private User _currentUser;
 
@@ -85,6 +89,16 @@ namespace FredagsCafeUWP.Models
             }
         }
 
+        public string ImageTb
+        {
+            get { return _imageTb; }
+            set
+            {
+                _imageTb = value; 
+                OnPropertyChanged();
+            }
+        }
+
         public string PasswordTb
         {
             get => _passwordTb;
@@ -129,23 +143,56 @@ namespace FredagsCafeUWP.Models
 
         #endregion
 
-        public Administration()
+        private Administration()
         {
-            _message = new Message(this);
-
-            
-
-//            foreach (var user in Users)
-//            {
-//                user.Email = user.Name + "@edu.easj.dk";
-//            }
+            //foreach (var user in Users)
+            //{
+            //    user.Email = user.Name + "@edu.easj.dk";
+            //}
         }
+
+        #region Singleton
+
+        private static Administration _instance;
+        public static Administration Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new Administration();
+                }
+                return _instance;
+            }
+        }
+
+        #endregion
 
         #region ButtonMethods
 
+        public async Task<string> BrowseImageWindowTask()
+        {
+            FileOpenPicker openPicker = new FileOpenPicker();
+            openPicker.ViewMode = PickerViewMode.Thumbnail;
+            openPicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+            openPicker.FileTypeFilter.Add(".jpg");
+            openPicker.FileTypeFilter.Add(".jpeg");
+            openPicker.FileTypeFilter.Add(".png");
+            TextBlock outputTextBlock = new TextBlock();
+
+            StorageFile file = await openPicker.PickSingleFileAsync();
+            if (file != null) return outputTextBlock.Text = "UserImages/" + file.Name;
+            else return outputTextBlock.Text = "";
+        }
+
+        public async void BrowseImageButton()
+        {
+            ImageTb = await BrowseImageWindowTask();
+        }
+
+
         public async void AddUser()
         {
-            //TODO add image
             if (NameTb != null && GradeTb != null && EducationTb != null && EmailTb != null &&
                 TelephoneNumberTb != null && UserNameTb != null && PasswordTb != null)
             {
@@ -165,18 +212,10 @@ namespace FredagsCafeUWP.Models
                     {
                         if (PasswordTb == ConfirmPasswordTb)
                         {
-                            Users.Add(new User(NameTb, GradeTb, EducationTb, EmailTb, TelephoneNumberTb, UserNameTb,
-                                PasswordTb, _standardImage));
+                            if (string.IsNullOrEmpty(ImageTb)) Users.Add(new User(NameTb, GradeTb, EducationTb, EmailTb, TelephoneNumberTb, UserNameTb, PasswordTb, _standardImage, ""));
+                            else Users.Add(new User(NameTb, GradeTb, EducationTb, EmailTb, TelephoneNumberTb, UserNameTb, PasswordTb, ImageTb, ""));
 
-                            NameTb = null;
-                            GradeTb = null;
-                            EducationTb = null;
-                            EmailTb = null;
-                            TelephoneNumberTb = null;
-                            UserNameTb = null;
-                            PasswordTb = null;
-                            ConfirmPasswordTb = null;
-                            
+                            NameTb = GradeTb = EducationTb = EmailTb = TelephoneNumberTb = UserNameTb = ImageTb = PasswordTb = ConfirmPasswordTb = null;                            
                         }
                         else
                             await _message.Error("Uoverensstemmelser",
@@ -208,7 +247,7 @@ namespace FredagsCafeUWP.Models
             Debug.WriteLine("user.count: " + Users.Count);
         }
 
-        public async void LoadAsync()
+        public async Task LoadAsync()
         {
             try
             {
@@ -220,11 +259,11 @@ namespace FredagsCafeUWP.Models
             {
                 Users = new ObservableCollection<User>()
                 {
-                    new User("Morten", "EASJ", "Datamatiker", "morten@edu.easj.dk", "12345678", "Morten", "Morten", _standardImage),
-                    new User("Daniel", "EASJ", "Datamatiker", "Daniel@edu.easj.dk", "12345678", "Daniel", "Daniel", _standardImage),
-                    new User("Jacob", "EASJ", "Datamatiker", "Jacob@edu.easj.dk", "12345678", "Jacob", "Jacob", _standardImage),
-                    new User("Lucas", "EASJ", "Datamatiker", "Lucas@edu.easj.dk", "12345678", "Lucas", "Lucas", _standardImage),
-                    new User("Christian", "EASJ", "Datamatiker", "Christian@edu.easj.dk", "12345678", "Christian", "Christian", _standardImage)
+                    new User("Morten", "EASJ", "Datamatiker", "Morten@edu.easj.dk", "12345678", "Morten", "Morten", _standardImage, "Admin"),
+                    new User("Daniel", "EASJ", "Datamatiker", "Daniel@edu.easj.dk", "12345678", "Daniel", "Daniel", _standardImage, ""),
+                    new User("Jacob", "EASJ", "Datamatiker", "Jacob@edu.easj.dk", "12345678", "Jacob", "Jacob", _standardImage, ""),
+                    new User("Lucas", "EASJ", "Datamatiker", "Lucas@edu.easj.dk", "12345678", "Lucas", "Lucas", _standardImage, ""),
+                    new User("Christian", "EASJ", "Datamatiker", "Christian@edu.easj.dk", "12345678", "Christian", "Christian", _standardImage, "")
                 };
                 
             }

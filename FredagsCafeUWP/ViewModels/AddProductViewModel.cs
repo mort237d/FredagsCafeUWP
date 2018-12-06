@@ -1,5 +1,4 @@
-﻿using FredagsCafeUWP.Models;
-using FredagsCafeUWP.Models.AddProduct;
+﻿using FredagsCafeUWP.Models.AddProduct;
 using GalaSoft.MvvmLight.Command;
 
 namespace FredagsCafeUWP.ViewModels
@@ -33,9 +32,9 @@ namespace FredagsCafeUWP.ViewModels
 
         public AddProductViewModel()
         {
-            AddProductCommand = new RelayCommand(AddProductClass.AddProductToObList);
+            //AddProductCommand = new RelayCommand(AddProductClass.AddProductToObList);
 
-            BrowseImageCommand = new RelayCommand(AddProductClass.BrowseImageButton);
+            //BrowseImageCommand = new RelayCommand(AddProductClass.BrowseAddImageButton);
         }
     }
 }
