@@ -19,16 +19,15 @@ namespace FredagsCafeUWP.Models
         private bool _showAddProductPopUp = false;
         private bool _showChangeProductPopUp = false;
 
-        private readonly Message _message = Message.Instance;
+        private readonly Message _message;
         private Product _selectedProduct = new Product();
 
         private ObservableCollection<Product> _products;
 
         public string _colorRed = "Red";
         public string _colorGreen = "ForestGreen";
-        private Brush _amountColor;
 
-        public int _minAmount = 10;
+        public int MinAmount = 10;
 
         private string _productPriceChangeTb;
 
@@ -49,6 +48,7 @@ namespace FredagsCafeUWP.Models
 
         private Stock()
         {
+            _message = new Message(this);
         }
 
         #region Singleton
@@ -262,7 +262,7 @@ namespace FredagsCafeUWP.Models
                         {
                             if (string.IsNullOrEmpty(AddImageSourceTb))
                             {
-                                if (intAmountTb < _minAmount)
+                                if (intAmountTb < MinAmount)
                                 {
                                     switch (AddTypeTb)
                                     {
@@ -318,7 +318,7 @@ namespace FredagsCafeUWP.Models
                             }
                             else
                             {
-                                if (intAmountTb < _minAmount)
+                                if (intAmountTb < MinAmount)
                                     Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb,
                                         0, AddImageSourceTb, ColorRed, EnumCategory.ProductCategory.Beer));
                                 else

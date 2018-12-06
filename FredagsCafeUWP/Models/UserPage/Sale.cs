@@ -21,7 +21,7 @@ namespace FredagsCafeUWP
         private readonly string _colorRed = "Red";
         private readonly string _colorGreen = "ForestGreen";
 
-        private Message _message = Message.Instance;
+        private Message _message;
         private Stock _stock = Stock.Instance;
         private Product _selectedProduct;
         private Receipt _selectedReceipt;
@@ -39,6 +39,8 @@ namespace FredagsCafeUWP
             //Basket = new List<Product>();
 
             Receipts = new ObservableCollection<Receipt>();
+
+            _message = new Message(this);
         }
 
         private static Sale instance;
@@ -285,7 +287,7 @@ namespace FredagsCafeUWP
                         if (product.Name == basket.Name)
                         {
                             product.Amount += basket.AmountToBeSold;
-                            if (product.Amount < _stock._minAmount) product.ForegroundColor = _colorRed;
+                            if (product.Amount < _stock.MinAmount) product.ForegroundColor = _colorRed;
                             else product.ForegroundColor = _colorGreen;
 
                             break;

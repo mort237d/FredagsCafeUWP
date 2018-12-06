@@ -16,7 +16,6 @@ namespace FredagsCafeUWP.ViewModels
         private Administration _administration = Administration.Instance;
         private StatListClass _statList = StatListClass.Instance;
         private LogOnLogOff _logOnLogOff = LogOnLogOff.Instance;
-        private User _user;
         private Product _product;
         private Statistics _statistics;
         private AccountSettingsClass _accountSettingsClass = new AccountSettingsClass();
@@ -58,11 +57,7 @@ namespace FredagsCafeUWP.ViewModels
         private RelayCommand _addProductCommand;
         private RelayCommand _changeProductCommand;
 
-        private RelayCommand _changeToAccountCommand;
         private RelayCommand _changeSettingsCommand;
-
-        //Todo Skal slettes igen senere
-        private RelayCommand _clearStatListCommand;
 
         private RelayCommand _showAccountPopUp;
 
