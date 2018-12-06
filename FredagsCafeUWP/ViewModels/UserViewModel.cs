@@ -2,8 +2,6 @@
 using System.Runtime.CompilerServices;
 using FredagsCafeUWP.Annotations;
 using FredagsCafeUWP.Models;
-using FredagsCafeUWP.Models.AddProduct;
-using FredagsCafeUWP.Models.AddProduct_ChangeProduct;
 using GalaSoft.MvvmLight.Command;
 
 namespace FredagsCafeUWP.ViewModels
@@ -60,10 +58,12 @@ namespace FredagsCafeUWP.ViewModels
         private RelayCommand _addProductCommand;
         private RelayCommand _changeProductCommand;
 
+        private RelayCommand _changeSettingsCommand;
+
         //Todo Skal slettes igen senere
         private RelayCommand _clearStatListCommand;
 
-        private RelayCommand _changeToAccountCommand;
+        private RelayCommand _showAccountPopUp;
 
         private RelayCommand _deleteReceiptCommand;
 
@@ -98,7 +98,7 @@ namespace FredagsCafeUWP.ViewModels
 
             ClearStatListCommand = new RelayCommand(StatList.ClearStats);
 
-            ChangeToAccountCommand = new RelayCommand(AccountSettingsClass.GoToAccountSettings);
+            ShowAccountPopUp = new RelayCommand(AccountSettingsClass.ShowAccountSettingsPopUpMethod);
 
             GoToHelpPageCommand = new RelayCommand(Help.GoToHelpPage);
 
@@ -114,6 +114,8 @@ namespace FredagsCafeUWP.ViewModels
 
             AddProductCommand = new RelayCommand(Stock.AddProductToObList);
             ChangeProductCommand = new RelayCommand(Stock.ChangeProductOfObList);
+
+            ChangeSettingsCommand = new RelayCommand(AccountSettingsClass.ChangeSettings);
         }
 
         #region Props
@@ -267,12 +269,6 @@ namespace FredagsCafeUWP.ViewModels
             set { _accountSettingsClass = value; }
         }
 
-        public RelayCommand ChangeToAccountCommand
-        {
-            get { return _changeToAccountCommand; }
-            set { _changeToAccountCommand = value; }
-        }
-
         public Help Help
         {
             get { return _help; }
@@ -349,6 +345,18 @@ namespace FredagsCafeUWP.ViewModels
         {
             get { return _showAddUserPopUpCommand; }
             set { _showAddUserPopUpCommand = value; }
+        }
+
+        public RelayCommand ShowAccountPopUp
+        {
+            get { return _showAccountPopUp; }
+            set { _showAccountPopUp = value; }
+        }
+
+        public RelayCommand ChangeSettingsCommand
+        {
+            get { return _changeSettingsCommand; }
+            set { _changeSettingsCommand = value; }
         }
 
         #endregion
