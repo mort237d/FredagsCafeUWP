@@ -331,6 +331,23 @@
                         </StackPanel>
                     </Popup>
 
+                    <Popup Grid.Column="1" IsOpen="{Binding EventPage.ShowAddEventUserPopUp}" Width="400" Height="1000" HorizontalAlignment="Right" LightDismissOverlayMode="On" IsLightDismissEnabled="True" Margin="0,0,-12,0">
+                        <Popup.ChildTransitions>
+                            <TransitionCollection>
+                                <PaneThemeTransition Edge="Right"/>
+                            </TransitionCollection>
+                        </Popup.ChildTransitions>
+
+                        <StackPanel Background="#6CA0DC" Height="1000" Width="400">
+                            <StackPanel>
+                                <TextBlock Text="Tilføj Deltager" FontWeight="Bold" FontSize="50" HorizontalAlignment="Center"></TextBlock>
+                                <TextBox Text="{Binding EventPage.UserNameTb, Mode=TwoWay}" Margin="0,0,0,5" PlaceholderText="Navn"></TextBox>
+                                <TextBox Text="{Binding EventPage.UserEmailTb, Mode=TwoWay}" Margin="0,0,0,5" PlaceholderText="Email"></TextBox>
+                                <Button Command="{Binding AddEventUserCommand}" Style="{StaticResource RoundedButtonStyle}" Content="Tilføj deltager"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Popup>
+
                     <ListView Header="Events:" ItemsSource="{Binding EventPage.Events}" SelectedItem="{Binding EventPage.SelectedEvent, Mode=TwoWay}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
@@ -366,11 +383,7 @@
 
                     <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
                         <Button Command="{Binding RemoveEventUserCommand}" Style="{StaticResource RoundedButtonStyle}" VerticalAlignment="Bottom" Margin="0,0,10,10" Content="Fjern deltager"/>
-                        <StackPanel VerticalAlignment="Bottom" Margin="0,0,10,10">
-                            <TextBox Text="{Binding EventPage.UserNameTb, Mode=TwoWay}" Margin="0,0,0,5" PlaceholderText="Navn"></TextBox>
-                            <TextBox Text="{Binding EventPage.UserEmailTb, Mode=TwoWay}" Margin="0,0,0,5" PlaceholderText="Email"></TextBox>
-                            <Button Command="{Binding AddEventUserCommand}" Style="{StaticResource RoundedButtonStyle}" Content="Tilføj deltager"/>
-                        </StackPanel>
+                        <Button Command="{Binding ShowAddEventUserPopUpCommand}" Style="{StaticResource RoundedButtonStyle}" VerticalAlignment="Bottom" Margin="0,0,10,10" Content="Tilføj deltager"/>
                     </StackPanel>
                 </Grid>
             </PivotItem>
