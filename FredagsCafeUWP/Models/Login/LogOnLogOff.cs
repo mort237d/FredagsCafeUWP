@@ -113,7 +113,9 @@ namespace FredagsCafeUWP
                     Administration.CurrentUser = user;
                     LogInLogOutList.Add(UserName + " logged in at " + DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy"));
 
+                    Administration.ButtonVisibility(user);
 
+                    PassWord = null;
 
                     i = 0;
                     foreach (var loginlogoff in LogInLogOutList)
