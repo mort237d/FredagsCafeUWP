@@ -173,11 +173,11 @@ namespace FredagsCafeUWP
                 Debug.WriteLine("receipt: " + Receipts.Count);
                 foreach (var basket in receipt.Basket)
                 {
-                    Debug.WriteLine("Basketcount: " + Basket.Count);
-                    Debug.WriteLine("basket.Name: " +  basket.Name + " basket.AmountToBeSold: " + basket.AmountToBeSold);
+                    Debug.WriteLine("basket.sellingprice: " +  basket.SellingPrice + " basket.AmountToBeSold: " + basket.AmountToBeSold);
                     totalSaleValueSum += basket.SellingPrice * basket.AmountToBeSold;
                 }
             }
+            Debug.WriteLine("Total: "+ totalSaleValueSum);
             return totalSaleValueSum;
         }
         public double BuyingTotal()
