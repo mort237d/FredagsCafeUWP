@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Windows.Storage;
@@ -248,30 +249,27 @@ namespace FredagsCafeUWP.Models
 
                 if (!productExist)
                 {
-                    if (double.TryParse(AddBuyingPriceTb, out double doubleBuyingPriceTb) &&
-                    double.TryParse(AddSellingPriceTb, out double doubleSellingPriceTb) &&
-                    int.TryParse(AddAmountTb, out int intAmountTb))
+                    if (double.TryParse(AddBuyingPriceTb, out double doubleBuyingPriceTb) && double.TryParse(AddSellingPriceTb, out double doubleSellingPriceTb) && int.TryParse(AddAmountTb, out int intAmountTb))
                     {
                         if (doubleBuyingPriceTb > 0 && doubleSellingPriceTb > 0 && AddAmountTb != null && intAmountTb >= 0)
                         {
                             if (string.IsNullOrEmpty(AddImageSourceTb))
                             {
-                                if (intAmountTb < _minAmount) //TODO what is going on here?
-                                    Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb,
-                                        0, "ProductImages/BlankDåse.png", _colorRed));
+                                if (intAmountTb < _minAmount)
+                                {
+                                    Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", _colorRed, EnumCategory.ProductCategory.Beer));
+                                }
                                 else
-                                    Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb,
-                                        intAmountTb,
-                                        0, "ProductImages/BlankDåse.png", _colorGreen));
+                                    Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", _colorGreen, EnumCategory.ProductCategory.Beer));
                             }
                             else
                             {
                                 if (intAmountTb < _minAmount)
                                     Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb,
-                                        0, AddImageSourceTb, ColorRed));
+                                        0, AddImageSourceTb, ColorRed, EnumCategory.ProductCategory.Beer));
                                 else
                                     Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb,
-                                        0, AddImageSourceTb, ColorGreen));
+                                        0, AddImageSourceTb, ColorGreen, EnumCategory.ProductCategory.Beer));
                             }
 
                             AddNameTb = null;
@@ -404,18 +402,18 @@ namespace FredagsCafeUWP.Models
             {
                 Products = new ObservableCollection<Product>()
                 {
-                    new Product(2, 5, "Tuborg Classic", 48, 0, "ProductImages/TuborgClassic.png", ColorGreen),
-                    new Product(2, 5, "Grøn Tuborg", 48, 0, "ProductImages/GrønTuborg.png", ColorGreen),
-                    new Product(2, 5, "Tuborg Gylden Dame", 48, 0, "ProductImages/TuborgGuldDame.png", ColorGreen),
-                    new Product(2, 5, "Carlsberg", 48, 0, "ProductImages/Carlsberg.png", ColorGreen),
-                    new Product(2, 5, "Cola Zero", 48, 0, "ProductImages/ColaZero.png", ColorGreen),
-                    new Product(2, 5, "Cola", 48, 0, "ProductImages/Cola.png", ColorGreen),
-                    new Product(2, 5, "Mokai", 48, 0, "ProductImages/Mokai.png", ColorGreen),
-                    new Product(2, 5, "Mokai Jordbær Lime", 48, 0, "ProductImages/MokaiStrawberryLime.png", ColorGreen),
-                    new Product(2, 5, "Somersby Apple Cider", 48, 0, "ProductImages/SomersbyApple.png", ColorGreen),
-                    new Product(2, 5, "Somersby Pear Cider", 48, 0, "ProductImages/SomersbyPear.png", ColorGreen),
-                    new Product(2, 5, "Breezer", 48, 0, "ProductImages/Breezer.png", ColorGreen),
-                    new Product(2, 5, "Fanta", 48, 0, "ProductImages/Fanta.png", ColorGreen)
+                    new Product(2, 5, "Tuborg Classic", 48, 0, "ProductImages/TuborgClassic.png", ColorGreen, EnumCategory.ProductCategory.Beer),
+                    new Product(2, 5, "Grøn Tuborg", 48, 0, "ProductImages/GrønTuborg.png", ColorGreen, EnumCategory.ProductCategory.Beer),
+                    new Product(2, 5, "Tuborg Gylden Dame", 48, 0, "ProductImages/TuborgGuldDame.png", ColorGreen, EnumCategory.ProductCategory.Beer),
+                    new Product(2, 5, "Carlsberg", 48, 0, "ProductImages/Carlsberg.png", ColorGreen, EnumCategory.ProductCategory.Beer),
+                    new Product(2, 5, "Cola Zero", 48, 0, "ProductImages/ColaZero.png", ColorGreen, EnumCategory.ProductCategory.Soda),
+                    new Product(2, 5, "Cola", 48, 0, "ProductImages/Cola.png", ColorGreen, EnumCategory.ProductCategory.Soda),
+                    new Product(2, 5, "Mokai", 48, 0, "ProductImages/Mokai.png", ColorGreen, EnumCategory.ProductCategory.Cider),
+                    new Product(2, 5, "Mokai Jordbær Lime", 48, 0, "ProductImages/MokaiStrawberryLime.png", ColorGreen, EnumCategory.ProductCategory.Cider),
+                    new Product(2, 5, "Somersby Apple Cider", 48, 0, "ProductImages/SomersbyApple.png", ColorGreen, EnumCategory.ProductCategory.Cider),
+                    new Product(2, 5, "Somersby Pear Cider", 48, 0, "ProductImages/SomersbyPear.png", ColorGreen, EnumCategory.ProductCategory.Cider),
+                    new Product(2, 5, "Breezer", 48, 0, "ProductImages/Breezer.png", ColorGreen, EnumCategory.ProductCategory.Drink),
+                    new Product(2, 5, "Fanta", 48, 0, "ProductImages/Fanta.png", ColorGreen, EnumCategory.ProductCategory.Soda)
                 };
                 
             }

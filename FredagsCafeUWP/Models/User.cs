@@ -18,6 +18,8 @@ namespace FredagsCafeUWP.Models
         private string _imageSource;
         private string _admin;
 
+        private string _visible;
+
         #endregion
 
         #region Constructors
@@ -124,17 +126,11 @@ namespace FredagsCafeUWP.Models
             set { _admin = value; }
         }
 
-        #endregion
-
-        #region Methods
-
-        //public void adminMethod()
-        //{
-        //    if (_admin == "Admin")
-        //    {
-        //        Visibility.Visible
-        //    }
-        //}
+        public string Visible
+        {
+            get { return _visible; }
+            set { _visible = value; }
+        }
 
         #endregion
 

@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Pickers;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using FredagsCafeUWP.Annotations;
 
@@ -28,6 +29,8 @@ namespace FredagsCafeUWP.Models
         private string _imageTb = "";
         private string _passwordTb;
         private string _confirmPasswordTb;
+
+        private string _visible;
 
         private ObservableCollection<User> _users = new ObservableCollection<User>();
         private User _selectedUser;
@@ -166,6 +169,16 @@ namespace FredagsCafeUWP.Models
             }
         }
 
+        public string Visible
+        {
+            get { return _visible; }
+            set
+            {
+                _visible = value; 
+                OnPropertyChanged();
+            }
+        }
+
         #endregion
 
         #region ButtonMethods
@@ -234,6 +247,18 @@ namespace FredagsCafeUWP.Models
         {
             if (SelectedUser != null) await _message.YesNo("Slet bruger", "Er du sikker på at du vil slette " + SelectedUser.Name + "?");
             else await _message.Error("Ingen bruger valgt", "Vælg venligst en bruger.");
+        }
+
+        public void ButtonVisibility(User userToCheck)
+        {
+            if (userToCheck.Admin == "Admin")
+            {
+                Visible = "Visible";
+            }
+            else
+            {
+                Visible = "Collapsed";
+            }
         }
 
         #endregion
