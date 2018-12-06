@@ -135,10 +135,10 @@ namespace FredagsCafeUWP.Models
 
             
 
-            foreach (var user in Users)
-            {
-                user.Email = user.Name + "@edu.easj.dk";
-            }
+//            foreach (var user in Users)
+//            {
+//                user.Email = user.Name + "@edu.easj.dk";
+//            }
         }
 
         #region ButtonMethods
