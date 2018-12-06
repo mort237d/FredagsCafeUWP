@@ -37,10 +37,11 @@ namespace FredagsCafeUWP.ViewModels
         private RelayCommand _addOneToSaleCommand;
         private RelayCommand _removeOneFromSaleCommand;
 
-        private RelayCommand _showAddEventPopUpCommand;
+        private RelayCommand _showAddEventUserPopUpCommand;
         private RelayCommand _addEventUserCommand;
         private RelayCommand _removeEventUserCommand;
-
+        
+        private RelayCommand _showAddEventPopUpCommand;
         private RelayCommand _addEventCommand;
         private RelayCommand _removeEventCommand;
 
@@ -81,6 +82,7 @@ namespace FredagsCafeUWP.ViewModels
             AddOneToSaleCommand = new RelayCommand(Sale.AddProductButton);
             RemoveOneFromSaleCommand = new RelayCommand(Sale.RemoveProductButton);
 
+            ShowAddEventUserPopUpCommand = new RelayCommand(EventPage.ShowAddEventUserPopUpMethod);
             AddEventUserCommand = new RelayCommand(EventPage.AddUser);
             RemoveEventUserCommand = new RelayCommand(EventPage.RemoveUser);
 
@@ -333,6 +335,12 @@ namespace FredagsCafeUWP.ViewModels
         {
             get { return _showAddEventPopUpCommand; }
             set { _showAddEventPopUpCommand = value; }
+        }
+
+        public RelayCommand ShowAddEventUserPopUpCommand
+        {
+            get { return _showAddEventUserPopUpCommand; }
+            set { _showAddEventUserPopUpCommand = value; }
         }
 
         #endregion
