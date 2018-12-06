@@ -193,41 +193,45 @@ namespace FredagsCafeUWP
   
         public void ProductViewGraph()
         {
-            bool temp = false;
+            List<Product> tempGraphList = new List<Product>();
+            bool tempGraphBool = false;
             _statListClass.ProductGraphList.Clear();
             foreach (var receipt in Receipts)
             {
-            
                 foreach (var basket in receipt.Basket)
                 {
+                    tempGraphList.Clear();
                     if (_statListClass.ProductGraphList.Count == 0)
-                    {
-                        _statListClass.ProductGraphList.Add(new Product(basket.BuyingPrice,basket.SellingPrice,basket.Name,basket.Amount,basket.AmountSold,basket.ImageSource,basket.ForegroundColor,basket.AmountToBeSold));
-
-                    }
+                        _statListClass.ProductGraphList.Add(new Product(basket.Name,basket.AmountToBeSold));
                     else
                     {
                         foreach (var product in _statListClass.ProductGraphList)
                         {
-                            if (basket.Name == product.Name)
+                            if (product.Name == basket.Name)
                             {
-                                Debug.WriteLine("Før:");
-                                Debug.WriteLine("product.Name: " + product.Name + " product.AmountToBeSold: " + product.AmountToBeSold);
                                 product.AmountToBeSold += basket.AmountToBeSold;
-                                Debug.WriteLine("Efter:");
-                                Debug.WriteLine("product.Name: " + product.Name + " product.AmountToBeSold: " + product.AmountToBeSold);
+                                tempGraphBool = true;
                             }
-                            else _statListClass.ProductGraphList.Add(new Product(basket.BuyingPrice, basket.SellingPrice, basket.Name, basket.Amount, basket.AmountSold, basket.ImageSource, basket.ForegroundColor, basket.AmountToBeSold));
+                            
+                        }
+
+                        if (!tempGraphBool)
+                        {
+                            _statListClass.ProductGraphList.Add(new Product(basket.Name, basket.AmountToBeSold));
                             
 
-                            //else temp = true;
+                            //tempGraphList.Add(new Product(basket.Name, basket.AmountToBeSold));
                         }
-//                        if (temp)
-//                        {
-//                            _statListClass.ProductGraphList.Add(new Product(basket.BuyingPrice, basket.SellingPrice, basket.Name, basket.Amount, basket.AmountSold, basket.ImageSource, basket.ForegroundColor,basket.AmountToBeSold));
-//                            temp = false;
-//                        }
+                        else tempGraphBool = false;
                     }
+
+//                    foreach (var tempProduct in tempGraphList)
+//                    {
+//                        if (tempGraphList.Count != 0)
+//                        {
+//                            _statListClass.ProductGraphList.Add(new Product(tempProduct.Name, tempProduct.AmountToBeSold));
+//                        }
+//                    }
                 }
             }
         }
@@ -251,7 +255,7 @@ namespace FredagsCafeUWP
                 TotalTb = _noItems;
                 //Stock.SaveAsync();
 
-                //ProductViewGraph();
+                ProductViewGraph();
                 _statListClass.AddTotalSaleValue(SellingTotal(), BuyingTotal());
                 //_statListClass.SaveAsync();
 
