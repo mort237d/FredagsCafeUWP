@@ -26,6 +26,7 @@ namespace FredagsCafeUWP.ViewModels
 
         private RelayCommand _removeProductCommand;
 
+        private RelayCommand _showAddUserPopUpCommand;
         private RelayCommand _addUserCommand;
         private RelayCommand _removeUserCommand;
 
@@ -74,6 +75,7 @@ namespace FredagsCafeUWP.ViewModels
         {
             RemoveProductCommand = new RelayCommand(Stock.RemoveProductFromObList);
 
+            ShowAddUserPopUpCommand = new RelayCommand(Administration.ShowAddUserPopUpMethod);
             AddUserCommand = new RelayCommand(Administration.AddUser);
             RemoveUserCommand = new RelayCommand(Administration.RemoveUser);
 
@@ -341,6 +343,12 @@ namespace FredagsCafeUWP.ViewModels
         {
             get { return _showAddEventUserPopUpCommand; }
             set { _showAddEventUserPopUpCommand = value; }
+        }
+
+        public RelayCommand ShowAddUserPopUpCommand
+        {
+            get { return _showAddUserPopUpCommand; }
+            set { _showAddUserPopUpCommand = value; }
         }
 
         #endregion

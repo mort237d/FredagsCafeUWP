@@ -32,6 +32,8 @@ namespace FredagsCafeUWP.Models
 
         private string _visible;
 
+        private bool _showAddUserPopUp = false;
+
         private ObservableCollection<User> _users = new ObservableCollection<User>();
         private User _selectedUser;
         private User _currentUser;
@@ -179,9 +181,24 @@ namespace FredagsCafeUWP.Models
             }
         }
 
+        public bool ShowAddUserPopUp
+        {
+            get { return _showAddUserPopUp; }
+            set
+            {
+                _showAddUserPopUp = value;
+                OnPropertyChanged();
+            }
+        }
+
         #endregion
 
         #region ButtonMethods
+
+        public void ShowAddUserPopUpMethod()
+        {
+            ShowAddUserPopUp = true;
+        }
 
         public async Task<string> BrowseImageWindowTask()
         {
