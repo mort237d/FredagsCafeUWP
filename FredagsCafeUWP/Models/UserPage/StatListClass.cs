@@ -12,6 +12,7 @@ namespace FredagsCafeUWP
     public class StatListClass : INotifyPropertyChanged
     {
         private static ObservableCollection<Statistics> _statList = new ObservableCollection<Statistics>();
+        private ObservableCollection<Product> _productGraphList = new ObservableCollection<Product>();
 //        private double totalSaleValueSum;
 //        private double totalBuyValueSum;
 
@@ -44,7 +45,12 @@ namespace FredagsCafeUWP
             }
         }
 
-        
+        public ObservableCollection<Product> ProductGraphList
+        {
+            get { return _productGraphList; }
+            set { _productGraphList = value; }
+        }
+
         #endregion
 
         public void AddTotalSaleValue(double totalSaleValueSum, double totalBuyValueSum)
@@ -58,10 +64,7 @@ namespace FredagsCafeUWP
 
         }
 
-        public void ClearStats()
-        {
-            StatList.Clear();
-        }
+        
 
         #region save/load
         public async Task SaveAsync()

@@ -60,14 +60,13 @@ namespace FredagsCafeUWP.ViewModels
         private RelayCommand _addProductCommand;
         private RelayCommand _changeProductCommand;
 
-        //Todo Skal slettes igen senere
-        private RelayCommand _clearStatListCommand;
-
         private RelayCommand _changeToAccountCommand;
 
         private RelayCommand _deleteReceiptCommand;
 
         private RelayCommand _userImageBrowserCommand;
+
+        private RelayCommand _resetReceiptsCommand;
 
         #endregion
 
@@ -96,7 +95,6 @@ namespace FredagsCafeUWP.ViewModels
 
             LogOffCommand = new RelayCommand(LogOnLogOff.logOffMethod);
 
-            ClearStatListCommand = new RelayCommand(StatList.ClearStats);
 
             ChangeToAccountCommand = new RelayCommand(AccountSettingsClass.GoToAccountSettings);
 
@@ -114,6 +112,8 @@ namespace FredagsCafeUWP.ViewModels
 
             AddProductCommand = new RelayCommand(Stock.AddProductToObList);
             ChangeProductCommand = new RelayCommand(Stock.ChangeProductOfObList);
+            
+            ResetReceiptsCommand = new RelayCommand(Sale.ResetReceipt);
         }
 
         #region Props
@@ -254,13 +254,6 @@ namespace FredagsCafeUWP.ViewModels
             set { _logOnLogOff = value; }
         }
 
-        //ToDo skal slettes igen senere
-        public RelayCommand ClearStatListCommand
-        {
-            get { return _clearStatListCommand; }
-            set { _clearStatListCommand = value; }
-        }
-
         public AccountSettingsClass AccountSettingsClass
         {
             get { return _accountSettingsClass; }
@@ -338,6 +331,17 @@ namespace FredagsCafeUWP.ViewModels
             get { return _showAddEventPopUpCommand; }
             set { _showAddEventPopUpCommand = value; }
         }
+        public RelayCommand ResetReceiptsCommand
+        {
+            get { return _resetReceiptsCommand; }
+            set { _resetReceiptsCommand = value; }
+        }
+
+        //public ChangeProductClass ChangeProductClass
+        //{
+        //    get { return _changeProductClass; }
+        //    set { _changeProductClass = value; }
+        //}
 
         public RelayCommand ShowAddEventUserPopUpCommand
         {

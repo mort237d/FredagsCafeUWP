@@ -211,6 +211,7 @@
                     <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,5,5">
                         <Button Style="{StaticResource RoundedButtonStyle}" Foreground="White" Content="Beregn total" Command="{Binding CalculateTotalPriceCommand}" Margin="0,0,5,0" />
                         <Button Style="{StaticResource RoundedButtonStyle}" Foreground="White" Content="Betal" Command="{Binding CompleteSaleCommand}"/>
+                        <Button Content="Reset Kvitering" Command="{Binding ResetReceiptsCommand}"/>
                     </StackPanel>
 
                     <Button Style="{StaticResource RoundedButtonStyle}" Foreground="White" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Slet transaktion" Command="{Binding DeleteReceiptCommand}"  Margin="0,0,5,5"/>
@@ -266,6 +267,63 @@
                         <RowDefinition Height="6*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
+
+                    <Popup IsOpen="{Binding Stock.ShowAddProductPopUp}" Width="400" Height="1000" HorizontalAlignment="Left" LightDismissOverlayMode="On" IsLightDismissEnabled="True" Margin="-12,0,0,0">
+                        <Popup.ChildTransitions>
+                            <TransitionCollection>
+                                <PaneThemeTransition Edge="Left"/>
+                            </TransitionCollection>
+                        </Popup.ChildTransitions>
+
+                        <StackPanel Background="#6CA0DC" Height="1000" Width="400">
+                            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0">
+                                <TextBlock Text="Tilføj Produkt" FontWeight="Bold" FontSize="50" HorizontalAlignment="Center"></TextBlock>
+                                <TextBox Margin="2" PlaceholderText="Navn" Text="{Binding Stock.AddNameTb, Mode=TwoWay}"/>
+                                <TextBox Margin="2" PlaceholderText="Købspris" Text="{Binding Stock.AddBuyingPriceTb, Mode=TwoWay}"/>
+                                <TextBox Margin="2" PlaceholderText="Salgspris" Text="{Binding Stock.AddSellingPriceTb, Mode=TwoWay}"/>
+                                <TextBox Margin="2" PlaceholderText="Antal" Text="{Binding Stock.AddAmountTb, Mode=TwoWay}"/>
+                                <StackPanel Orientation="Horizontal" Margin="2">
+                                    <TextBox IsReadOnly="True" PlaceholderText="ImageSource" Text="{Binding Stock.AddImageSourceTb, Mode=TwoWay}"/>
+                                    <Button Content="..." Width="40" Command="{Binding BrowseAddImageCommand}"/>
+                                </StackPanel>
+                                <Button Margin="20" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Center" Content="Tilføj produkt" Command="{Binding AddProductCommand}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Popup>
+
+                    <Popup IsOpen="{Binding Stock.ShowChangeProductPopUp}" Width="400" Height="1000" HorizontalAlignment="Right" LightDismissOverlayMode="On" IsLightDismissEnabled="True" Margin="0,0,-12,0">
+                        <Popup.ChildTransitions>
+                            <TransitionCollection>
+                                <PaneThemeTransition Edge="Right"/>
+                            </TransitionCollection>
+                        </Popup.ChildTransitions>
+
+                        <StackPanel Background="#6CA0DC" Height="1000" Width="400">
+                            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0">
+                                <TextBlock Text="Ændre Produkt" FontWeight="Bold" FontSize="50" HorizontalAlignment="Center"></TextBlock>
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel Margin="0,5,0,0">
+                                        <TextBlock Height="32" Margin="2" Text="Navn"/>
+                                        <TextBlock Height="32" Margin="2" Text="Købspris"/>
+                                        <TextBlock Height="32" Margin="2" Text="Salgspris"/>
+                                        <TextBlock Height="32" Margin="2" Text="Antal"/>
+                                        <TextBlock Height="32" Text="ImageSource" Margin="2"/>
+                                    </StackPanel>
+                                    <StackPanel>
+                                        <TextBox Margin="2" PlaceholderText="Navn" Text="{Binding Stock.ChangeNameTb, Mode=TwoWay}"/>
+                                        <TextBox Margin="2" PlaceholderText="Købspris" Text="{Binding Stock.ChangeBuyingPriceTb, Mode=TwoWay}"/>
+                                        <TextBox Margin="2" PlaceholderText="Salgspris" Text="{Binding Stock.ChangeSellingPriceTb, Mode=TwoWay}"/>
+                                        <TextBox Margin="2" PlaceholderText="Antal" Text="{Binding Stock.ChangeAmountTb, Mode=TwoWay}"/>
+                                        <StackPanel Orientation="Horizontal" Margin="2">
+                                            <TextBox IsReadOnly="True" PlaceholderText="ImageSource" Text="{Binding Stock.ChangeImageSourceTb, Mode=TwoWay}"/>
+                                            <Button Content="..." Width="40" Command="{Binding BrowseChangeImageCommand}"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </StackPanel>
+                                <Button Margin="20" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Center" Content="Ændre produkt" Command="{Binding ChangeProductCommand}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Popup>
 
                     <GridView ItemsSource="{Binding Stock.Products}" SelectedItem="{Binding Stock.SelectedProduct, Mode=TwoWay}" Margin="10,10,10,0">
                         <GridView.ItemTemplate>
@@ -410,11 +468,12 @@
 
                 <StackPanel Orientation="Horizontal" Margin="80" >
 
-                    <charting:Chart x:Name="ProfitStat" Width="700" >
+                    <charting:Chart x:Name="ProfitStat" Width="650" >
                         <charting:ColumnSeries Title="Salg Statistik" ItemsSource="{Binding StatList.StatList,Mode=TwoWay}" IndependentValuePath="ProfitType" DependentValuePath="TotalIncome"/>
-                          
                     </charting:Chart>
-                    <Button Command="{Binding ClearStatListCommand}"/>
+                    <charting:Chart x:Name="ProductGraph" Width="650" >
+                        <charting:ColumnSeries Title="Solgte Produkter" ItemsSource="{Binding StatList.ProductGraphList,Mode=TwoWay}" IndependentValuePath="Name" DependentValuePath="AmountToBeSold"/>
+                    </charting:Chart>
                 </StackPanel>
             </PivotItem>
             <!--#endregion-->
