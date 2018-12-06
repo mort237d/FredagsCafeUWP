@@ -92,6 +92,7 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Models\UserPage\EnumCategory.cs" />
     <Compile Include="Models\AddProduct_ChangeProduct\AddProductClass.cs" />
     <Compile Include="Models\AddProduct_ChangeProduct\ChangeProductClass.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
@@ -201,7 +202,9 @@
     <Content Include="Views\ProductImages\SomersbyPear.png" />
     <Content Include="Views\ProductImages\TuborgClassic.png" />
     <Content Include="Views\ProductImages\TuborgGuldDame.png" />
-    <Content Include="Properties\Default.rd.xml" />
+    <Content Include="Properties\Default.rd.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
     <Content Include="Assets\Square150x150Logo.scale-200.png" />
