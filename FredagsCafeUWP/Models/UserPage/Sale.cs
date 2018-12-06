@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using FredagsCafeUWP.Annotations;
@@ -170,14 +171,11 @@ namespace FredagsCafeUWP
             double totalSaleValueSum = 0;
             foreach (var receipt in Receipts)
             {
-                Debug.WriteLine("receipt: " + Receipts.Count);
                 foreach (var basket in receipt.Basket)
                 {
-                    Debug.WriteLine("basket.sellingprice: " +  basket.SellingPrice + " basket.AmountToBeSold: " + basket.AmountToBeSold);
                     totalSaleValueSum += basket.SellingPrice * basket.AmountToBeSold;
                 }
             }
-            Debug.WriteLine("Total: "+ totalSaleValueSum);
             return totalSaleValueSum;
         }
         public double BuyingTotal()
@@ -192,12 +190,56 @@ namespace FredagsCafeUWP
             }
             return totalBuyValueSum;
         }
+  
+        public void ProductViewGraph()
+        {
+            bool temp = false;
+            _statListClass.ProductGraphList.Clear();
+            foreach (var receipt in Receipts)
+            {
+            
+                foreach (var basket in receipt.Basket)
+                {
+                    if (_statListClass.ProductGraphList.Count == 0)
+                    {
+                        _statListClass.ProductGraphList.Add(new Product(basket.BuyingPrice,basket.SellingPrice,basket.Name,basket.Amount,basket.AmountSold,basket.ImageSource,basket.ForegroundColor,basket.AmountToBeSold));
 
+                    }
+                    else
+                    {
+                        foreach (var product in _statListClass.ProductGraphList)
+                        {
+                            if (basket.Name == product.Name)
+                            {
+                                Debug.WriteLine("Før:");
+                                Debug.WriteLine("product.Name: " + product.Name + " product.AmountToBeSold: " + product.AmountToBeSold);
+                                product.AmountToBeSold += basket.AmountToBeSold;
+                                Debug.WriteLine("Efter:");
+                                Debug.WriteLine("product.Name: " + product.Name + " product.AmountToBeSold: " + product.AmountToBeSold);
+                            }
+                            else _statListClass.ProductGraphList.Add(new Product(basket.BuyingPrice, basket.SellingPrice, basket.Name, basket.Amount, basket.AmountSold, basket.ImageSource, basket.ForegroundColor, basket.AmountToBeSold));
+                            
+
+                            //else temp = true;
+                        }
+//                        if (temp)
+//                        {
+//                            _statListClass.ProductGraphList.Add(new Product(basket.BuyingPrice, basket.SellingPrice, basket.Name, basket.Amount, basket.AmountSold, basket.ImageSource, basket.ForegroundColor,basket.AmountToBeSold));
+//                            temp = false;
+//                        }
+                    }
+                }
+            }
+        }
+
+        public void ResetReceipt()
+        {
+            Receipts.Clear();
+        }
         public async void CompleteSale()
         {
             string productAmountLow = null;
             double temp = SubTotal();
-
             if (temp > 0)
             {
                 AddItemsToBasket();
@@ -208,7 +250,8 @@ namespace FredagsCafeUWP
 
                 TotalTb = _noItems;
                 //Stock.SaveAsync();
-                
+
+                //ProductViewGraph();
                 _statListClass.AddTotalSaleValue(SellingTotal(), BuyingTotal());
                 //_statListClass.SaveAsync();
 
