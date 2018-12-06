@@ -2,6 +2,6 @@
 {
     public class EnumCategory
     {
-        public enum ProductCategory {Beer = 0, Shot = 1, Drink = 2, Bottle = 3, Soda = 4, Cider = 5}
+        public enum ProductCategory {Beer = 0, Soda = 1, Cider = 2, Drink = 3, Bottle = 4, Shot = 5, Other = 6}
     }
 }
