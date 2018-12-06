@@ -26,12 +26,7 @@ namespace FredagsCafeUWP.ViewModels
 
         private RelayCommand _removeProductCommand;
 
-        private RelayCommand _addAmountCommand;
-        private RelayCommand _removeAmountCommand;
-
-        private RelayCommand _changeProductSellPriceCommand;
-        private RelayCommand _changeProductBuyPriceCommand;
-
+        private RelayCommand _showAddUserPopUpCommand;
         private RelayCommand _addUserCommand;
         private RelayCommand _removeUserCommand;
 
@@ -43,9 +38,11 @@ namespace FredagsCafeUWP.ViewModels
         private RelayCommand _addOneToSaleCommand;
         private RelayCommand _removeOneFromSaleCommand;
 
+        private RelayCommand _showAddEventUserPopUpCommand;
         private RelayCommand _addEventUserCommand;
         private RelayCommand _removeEventUserCommand;
-
+        
+        private RelayCommand _showAddEventPopUpCommand;
         private RelayCommand _addEventCommand;
         private RelayCommand _removeEventCommand;
 
@@ -77,12 +74,7 @@ namespace FredagsCafeUWP.ViewModels
         {
             RemoveProductCommand = new RelayCommand(Stock.RemoveProductFromObList);
 
-            AddAmountCommand = new RelayCommand(Stock.AddAmountToProduct);
-            RemoveAmountCommand = new RelayCommand(Stock.RemoveAmountFromProduct);
-
-            ChangeProductSellPriceCommand = new RelayCommand(Stock.ChangeProductSellPrice);
-            ChangeProductBuyPriceCommand = new RelayCommand(Stock.ChangeProductBuyPrice);
-
+            ShowAddUserPopUpCommand = new RelayCommand(Administration.ShowAddUserPopUpMethod);
             AddUserCommand = new RelayCommand(Administration.AddUser);
             RemoveUserCommand = new RelayCommand(Administration.RemoveUser);
 
@@ -91,9 +83,11 @@ namespace FredagsCafeUWP.ViewModels
             AddOneToSaleCommand = new RelayCommand(Sale.AddProductButton);
             RemoveOneFromSaleCommand = new RelayCommand(Sale.RemoveProductButton);
 
+            ShowAddEventUserPopUpCommand = new RelayCommand(EventPage.ShowAddEventUserPopUpMethod);
             AddEventUserCommand = new RelayCommand(EventPage.AddUser);
             RemoveEventUserCommand = new RelayCommand(EventPage.RemoveUser);
 
+            ShowAddEventPopUpCommand = new RelayCommand(EventPage.ShowAddEventPopUpMethod);
             AddEventCommand = new RelayCommand(EventPage.AddEvent);
             RemoveEventCommand = new RelayCommand(EventPage.RemoveEvent);
 
@@ -163,30 +157,6 @@ namespace FredagsCafeUWP.ViewModels
 
 
         #region RelayCommands
-
-        public RelayCommand AddAmountCommand
-        {
-            get => _addAmountCommand;
-            set => _addAmountCommand = value;
-        }
-
-        public RelayCommand RemoveAmountCommand
-        {
-            get => _removeAmountCommand;
-            set => _removeAmountCommand = value;
-        }
-
-        public RelayCommand ChangeProductSellPriceCommand
-        {
-            get => _changeProductSellPriceCommand;
-            set => _changeProductSellPriceCommand = value;
-        }
-
-        public RelayCommand ChangeProductBuyPriceCommand
-        {
-            get => _changeProductBuyPriceCommand;
-            set => _changeProductBuyPriceCommand = value;
-        }
 
         public RelayCommand AddUserCommand
         {
@@ -356,6 +326,11 @@ namespace FredagsCafeUWP.ViewModels
             set { _changeProductCommand = value; }
         }
 
+        public RelayCommand ShowAddEventPopUpCommand
+        {
+            get { return _showAddEventPopUpCommand; }
+            set { _showAddEventPopUpCommand = value; }
+        }
         public RelayCommand ResetReceiptsCommand
         {
             get { return _resetReceiptsCommand; }
@@ -368,17 +343,17 @@ namespace FredagsCafeUWP.ViewModels
         //    set { _changeProductClass = value; }
         //}
 
-        //public RelayCommand GoToChangeProductPageCommand
-        //{
-        //    get { return _goToChangeProductPageCommand; }
-        //    set { _goToChangeProductPageCommand = value; }
-        //}
+        public RelayCommand ShowAddEventUserPopUpCommand
+        {
+            get { return _showAddEventUserPopUpCommand; }
+            set { _showAddEventUserPopUpCommand = value; }
+        }
 
-        //public RelayCommand AddProductCommand
-        //{
-        //    get { return _addProductCommand; }
-        //    set { _addProductCommand = value; }
-        //}
+        public RelayCommand ShowAddUserPopUpCommand
+        {
+            get { return _showAddUserPopUpCommand; }
+            set { _showAddUserPopUpCommand = value; }
+        }
 
         #endregion
 

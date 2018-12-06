@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Windows.Storage;
@@ -29,20 +30,14 @@ namespace FredagsCafeUWP.Models
 
         public int _minAmount = 10;
 
-        private string _frameAmountTb;
-        private string _frameSizeTb;
-
-        private string _productAmountTb;
-
         private string _productPriceChangeTb;
-
-        private int _selectionStart;
 
         private string _addNameTb;
         private string _addBuyingPriceTb;
         private string _addSellingPriceTb;
         private string _addAmountTb;
         private string _addImageSourceTb = "";
+        private string _addTypeTb;
 
         private string _changeNameTb;
         private string _changeBuyingPriceTb;
@@ -144,67 +139,12 @@ namespace FredagsCafeUWP.Models
             }
         }
 
-        public string FrameAmountTb
-        {
-            get => _frameAmountTb;
-            set
-            {
-                _frameAmountTb = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string FrameSizeTb
-        {
-            get => _frameSizeTb;
-            set
-            {
-                _frameSizeTb = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string ProductAmountTb
-        {
-            get => _productAmountTb;
-            set
-            {
-                _productAmountTb = value; 
-                OnPropertyChanged();
-            }
-        }
-
         public string ProductPriceChangeTb
         {
             get => _productPriceChangeTb;
             set
             {
-                _productPriceChangeTb = value; //TODO opdater når det ikke er tal...
-                //if (!Regex.IsMatch(_productPriceChangeTb, "^\\d*\\.?\\d*$") && _productPriceChangeTb != "")
-                //{
-                //    int pos = _selectionStart - 1;
-                //    _productPriceChangeTb = _productPriceChangeTb.Remove(pos);//Remove(pos, 1);
-                //    _selectionStart = pos;
-                //}
-
-                //double dtemp;
-                //if (!double.TryParse(value, out dtemp) && value != "")
-                //{
-                //    int pos = _selectionStart - 1;
-                //    _productPriceChangeTb = value.Remove(pos);
-                //    _selectionStart = pos;
-                //    Debug.WriteLine(_productPriceChangeTb);
-                //}
-                OnPropertyChanged();
-            }
-        }
-
-        public int SelectionStart
-        {
-            get { return _selectionStart; }
-            set
-            {
-                _selectionStart = value;
+                _productPriceChangeTb = value;
                 OnPropertyChanged();
             }
         }
@@ -291,6 +231,12 @@ namespace FredagsCafeUWP.Models
             }
         }
 
+        public string AddTypeTb
+        {
+            get { return _addTypeTb; }
+            set { _addTypeTb = value; }
+        }
+
         #endregion
 
         #region ButtonMethods
@@ -310,30 +256,74 @@ namespace FredagsCafeUWP.Models
 
                 if (!productExist)
                 {
-                    if (double.TryParse(AddBuyingPriceTb, out double doubleBuyingPriceTb) &&
-                    double.TryParse(AddSellingPriceTb, out double doubleSellingPriceTb) &&
-                    int.TryParse(AddAmountTb, out int intAmountTb))
+                    if (double.TryParse(AddBuyingPriceTb, out double doubleBuyingPriceTb) && double.TryParse(AddSellingPriceTb, out double doubleSellingPriceTb) && int.TryParse(AddAmountTb, out int intAmountTb))
                     {
                         if (doubleBuyingPriceTb > 0 && doubleSellingPriceTb > 0 && AddAmountTb != null && intAmountTb >= 0)
                         {
                             if (string.IsNullOrEmpty(AddImageSourceTb))
                             {
-                                if (intAmountTb < _minAmount) //TODO what is going on here?
-                                    Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb,
-                                        0, "ProductImages/BlankDåse.png", _colorRed));
+                                if (intAmountTb < _minAmount)
+                                {
+                                    switch (AddTypeTb)
+                                    {
+                                        case "Øl":
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", _colorRed, EnumCategory.ProductCategory.Beer));
+                                            break;
+                                        case "Sodavand":
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", _colorRed, EnumCategory.ProductCategory.Soda));
+                                            break;
+                                        case "Cider":
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", _colorRed, EnumCategory.ProductCategory.Cider));
+                                            break;
+                                        case "Drink":
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", _colorRed, EnumCategory.ProductCategory.Drink));
+                                            break;
+                                        case "Flaske":
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", _colorRed, EnumCategory.ProductCategory.Bottle));
+                                            break;
+                                        case "Shot":
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", _colorRed, EnumCategory.ProductCategory.Shot));
+                                            break;
+                                        case "Andet":
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", _colorRed, EnumCategory.ProductCategory.Other));
+                                            break;
+                                    }
+                                    switch (AddTypeTb)
+                                    {
+                                        case "Øl":
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", _colorGreen, EnumCategory.ProductCategory.Beer));
+                                            break;
+                                        case "Sodavand":
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", _colorGreen, EnumCategory.ProductCategory.Soda));
+                                            break;
+                                        case "Cider":
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", _colorGreen, EnumCategory.ProductCategory.Cider));
+                                            break;
+                                        case "Drink":
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", _colorGreen, EnumCategory.ProductCategory.Drink));
+                                            break;
+                                        case "Flaske":
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", _colorGreen, EnumCategory.ProductCategory.Bottle));
+                                            break;
+                                        case "Shot":
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", _colorGreen, EnumCategory.ProductCategory.Shot));
+                                            break;
+                                        case "Andet":
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", _colorGreen, EnumCategory.ProductCategory.Other));
+                                            break;
+                                    }
+                                }
                                 else
-                                    Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb,
-                                        intAmountTb,
-                                        0, "ProductImages/BlankDåse.png", _colorGreen));
+                                    Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", _colorGreen, EnumCategory.ProductCategory.Beer));
                             }
                             else
                             {
                                 if (intAmountTb < _minAmount)
                                     Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb,
-                                        0, AddImageSourceTb, ColorRed));
+                                        0, AddImageSourceTb, ColorRed, EnumCategory.ProductCategory.Beer));
                                 else
                                     Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb,
-                                        0, AddImageSourceTb, ColorGreen));
+                                        0, AddImageSourceTb, ColorGreen, EnumCategory.ProductCategory.Beer));
                             }
 
                             AddNameTb = null;
@@ -443,157 +433,6 @@ namespace FredagsCafeUWP.Models
             }
             else await _message.Error("Intet produkt valgt", "Vælg venligst et produkt.");
         }
-
-        private int _intFrameAmountTb;
-        private int _intFrameSizeTb;
-        private int _intProductAmountTb;
-
-        public async void AddAmountToProduct()
-        {
-            if (SelectedProduct != null)
-            {
-                Int32.TryParse(FrameAmountTb, out _intFrameAmountTb);
-                Int32.TryParse(FrameSizeTb, out _intFrameSizeTb);
-                Int32.TryParse(ProductAmountTb, out _intProductAmountTb);
-
-                if (_intFrameAmountTb > 0 && _intFrameSizeTb > 0 && _intProductAmountTb > 0)
-                {
-                    if (Int32.TryParse(FrameAmountTb, out _intFrameAmountTb) &&
-                        Int32.TryParse(FrameSizeTb, out _intFrameSizeTb) &&
-                        Int32.TryParse(ProductAmountTb, out _intProductAmountTb))
-                    {
-                        SelectedProduct.Amount += (_intFrameAmountTb * _intFrameSizeTb) + _intProductAmountTb;
-                        FrameAmountTb = FrameSizeTb = ProductAmountTb = null;
-                        //FrameAmountTb = null;
-                        //FrameSizeTb = null;
-                        //ProductAmountTb = null;
-                    }
-                    else await _message.Error("Forkert input", "Antal rammer, Ramme størrelse og Stk. skal være tal");
-                }
-
-                else if (_intFrameAmountTb > 0 && _intFrameSizeTb > 0)
-                {
-                    if (Int32.TryParse(FrameAmountTb, out _intFrameAmountTb) &&
-                        Int32.TryParse(FrameSizeTb, out _intFrameSizeTb))
-                    {
-                        SelectedProduct.Amount += _intFrameAmountTb * _intFrameSizeTb;
-                        FrameAmountTb = FrameSizeTb = null;
-                        //FrameAmountTb = null;
-                        //FrameSizeTb = null;
-                    }
-                    else await _message.Error("Forkert input", "Antal rammer og Ramme størrelse skal være tal");
-                }
-
-                else if (_intProductAmountTb > 0)
-                {
-                    if (Int32.TryParse(ProductAmountTb, out _intProductAmountTb))
-                    {
-                        SelectedProduct.Amount += _intProductAmountTb;
-                        ProductAmountTb = null;
-                    }
-                    else await _message.Error("Forkert input", "Stk. skal være tal");
-                }
-
-                else await _message.Error("Manglende input", "Til tal til felterne for at tilføje antal til produktet");
-                
-                if (SelectedProduct != null && SelectedProduct.Amount < _minAmount) SelectedProduct.ForegroundColor = ColorRed;
-                else SelectedProduct.ForegroundColor = ColorGreen;
-            }
-            else await _message.Error("Intet produkt valg", "Vælg venligst et produkt");
-        }
-
-        public async void RemoveAmountFromProduct()
-        {
-            if (SelectedProduct != null)
-            {
-                Int32.TryParse(FrameAmountTb, out int intFrameAmountTb);
-                Int32.TryParse(FrameSizeTb, out int intFrameSizeTb);
-                Int32.TryParse(ProductAmountTb, out int intProductAmountTb);
-
-                if (intFrameAmountTb > 0 && intFrameSizeTb > 0 && intProductAmountTb > 0)
-                {
-                    if (SelectedProduct.Amount >= ((intFrameAmountTb * intFrameSizeTb) + intProductAmountTb))
-                    {
-                        SelectedProduct.Amount -= (intFrameAmountTb * intFrameSizeTb) + intProductAmountTb;
-                        FrameAmountTb = FrameSizeTb = ProductAmountTb = null;
-                        //FrameAmountTb = null;
-                        //FrameSizeTb = null;
-                        //ProductAmountTb = null;
-                    }
-                    else await _message.Error("Tallene stemmer ikke", "Der er kun " + SelectedProduct.Amount + " af " + SelectedProduct.Name + "." +
-                                                                      "\nDerfor kan du ikke fjerne " + intFrameAmountTb + "*" + intFrameSizeTb + "+" + intProductAmountTb + "=" + ((intFrameAmountTb * intFrameSizeTb) + intProductAmountTb) + " af dette produkt.");
-                }
-                else if (intFrameAmountTb > 0 && intFrameSizeTb > 0)
-                {
-                    if (SelectedProduct.Amount >= (intFrameAmountTb * intFrameSizeTb))
-                    {
-                        SelectedProduct.Amount -= intFrameAmountTb * intFrameSizeTb;
-                        FrameAmountTb = FrameSizeTb = null;
-                        //FrameAmountTb = null;
-                        //FrameSizeTb = null;
-                    }
-                    else await _message.Error("Tallene stemmer ikke", "Der er kun " + SelectedProduct.Amount + " af " + SelectedProduct.Name + "." +
-                                                                      "\nDerfor kan du ikke fjerne " + intFrameAmountTb + "*" + intFrameSizeTb + "=" + (intFrameAmountTb * intFrameSizeTb) + " af dette produkt.");
-                }
-                else if (intProductAmountTb > 0)
-                {
-                    if (SelectedProduct.Amount >= intProductAmountTb)
-                    {
-                        SelectedProduct.Amount -= intProductAmountTb;
-                        ProductAmountTb = null;
-                    }
-                    else await _message.Error("Tallene stemmer ikke", "Der er kun " + SelectedProduct.Amount + " af " + SelectedProduct.Name + ".\nDerfor kan du ikke fjerne " + intProductAmountTb + " af dette produkt.");
-                }
-
-                if (SelectedProduct.Amount < _minAmount)
-                {
-                    SelectedProduct.ForegroundColor = ColorRed;
-                    await _message.Error("Advarsel", "Lageret er næsten tomt");
-                }
-                else SelectedProduct.ForegroundColor = ColorGreen;
-
-                
-            }
-            else await _message.Error("Intet produkt valg", "Vælg venligst et produkt");
-        }
-
-        public async void ChangeProductSellPrice()
-        {
-            if (SelectedProduct != null)
-            {
-                if (Int32.TryParse(ProductPriceChangeTb, out int intProductPriceChangedTb))
-                {
-                    if (ProductPriceChangeTb != null && intProductPriceChangedTb > 0)
-                    {
-                        SelectedProduct.SellingPrice = intProductPriceChangedTb;
-                        ProductPriceChangeTb = null;
-                    }
-                    else await _message.Error("Forkert input", "Prisen skal være mere end 0.");
-                }
-                else await _message.Error("Forkert input", "Prisen skal være et tal.");
-            }
-            else await _message.Error("Intet produkt valg", "Vælg venligst et produkt");
-        }
-
-        public async void ChangeProductBuyPrice()
-        {
-            if (SelectedProduct != null)
-            {
-                if (Int32.TryParse(ProductPriceChangeTb, out int intProductPriceChangedTb))
-                {
-                    if (ProductPriceChangeTb != null && intProductPriceChangedTb > 0)
-                    {
-                        SelectedProduct.BuyingPrice = intProductPriceChangedTb;
-                        ProductPriceChangeTb = null;
-                    }
-                    else await _message.Error("Forkert input", "Prisen skal være mere end 0.");
-                }
-                else await _message.Error("Forkert input", "Prisen skal være et tal.");
-            }
-            else await _message.Error("Intet produkt valg", "Vælg venligst et produkt");
-        }
-
-
         #endregion
 
         #region Save/Load
@@ -617,18 +456,18 @@ namespace FredagsCafeUWP.Models
             {
                 Products = new ObservableCollection<Product>()
                 {
-                    new Product(2, 5, "Tuborg Classic", 48, 0, "ProductImages/TuborgClassic.png", ColorGreen),
-                    new Product(2, 5, "Grøn Tuborg", 48, 0, "ProductImages/GrønTuborg.png", ColorGreen),
-                    new Product(2, 5, "Tuborg Gylden Dame", 48, 0, "ProductImages/TuborgGuldDame.png", ColorGreen),
-                    new Product(2, 5, "Carlsberg", 48, 0, "ProductImages/Carlsberg.png", ColorGreen),
-                    new Product(2, 5, "Cola Zero", 48, 0, "ProductImages/ColaZero.png", ColorGreen),
-                    new Product(2, 5, "Cola", 48, 0, "ProductImages/Cola.png", ColorGreen),
-                    new Product(2, 5, "Mokai", 48, 0, "ProductImages/Mokai.png", ColorGreen),
-                    new Product(2, 5, "Mokai Jordbær Lime", 48, 0, "ProductImages/MokaiStrawberryLime.png", ColorGreen),
-                    new Product(2, 5, "Somersby Apple Cider", 48, 0, "ProductImages/SomersbyApple.png", ColorGreen),
-                    new Product(2, 5, "Somersby Pear Cider", 48, 0, "ProductImages/SomersbyPear.png", ColorGreen),
-                    new Product(2, 5, "Breezer", 48, 0, "ProductImages/Breezer.png", ColorGreen),
-                    new Product(2, 5, "Fanta", 48, 0, "ProductImages/Fanta.png", ColorGreen)
+                    new Product(2, 5, "Tuborg Classic", 48, 0, "ProductImages/TuborgClassic.png", ColorGreen, EnumCategory.ProductCategory.Beer),
+                    new Product(2, 5, "Grøn Tuborg", 48, 0, "ProductImages/GrønTuborg.png", ColorGreen, EnumCategory.ProductCategory.Beer),
+                    new Product(2, 5, "Tuborg Gylden Dame", 48, 0, "ProductImages/TuborgGuldDame.png", ColorGreen, EnumCategory.ProductCategory.Beer),
+                    new Product(2, 5, "Carlsberg", 48, 0, "ProductImages/Carlsberg.png", ColorGreen, EnumCategory.ProductCategory.Beer),
+                    new Product(2, 5, "Cola Zero", 48, 0, "ProductImages/ColaZero.png", ColorGreen, EnumCategory.ProductCategory.Soda),
+                    new Product(2, 5, "Cola", 48, 0, "ProductImages/Cola.png", ColorGreen, EnumCategory.ProductCategory.Soda),
+                    new Product(2, 5, "Mokai", 48, 0, "ProductImages/Mokai.png", ColorGreen, EnumCategory.ProductCategory.Cider),
+                    new Product(2, 5, "Mokai Jordbær Lime", 48, 0, "ProductImages/MokaiStrawberryLime.png", ColorGreen, EnumCategory.ProductCategory.Cider),
+                    new Product(2, 5, "Somersby Apple Cider", 48, 0, "ProductImages/SomersbyApple.png", ColorGreen, EnumCategory.ProductCategory.Cider),
+                    new Product(2, 5, "Somersby Pear Cider", 48, 0, "ProductImages/SomersbyPear.png", ColorGreen, EnumCategory.ProductCategory.Cider),
+                    new Product(2, 5, "Breezer", 48, 0, "ProductImages/Breezer.png", ColorGreen, EnumCategory.ProductCategory.Drink),
+                    new Product(2, 5, "Fanta", 48, 0, "ProductImages/Fanta.png", ColorGreen, EnumCategory.ProductCategory.Soda)
                 };
                 
             }

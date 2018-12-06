@@ -26,6 +26,9 @@ namespace FredagsCafeUWP.Models
         private string _eventDescriptionTb;
         private string _eventMaxUsersTb;
 
+        private bool _showAddEventPopUp = false;
+        private bool _showAddEventUserPopUp = false;
+
         #endregion
 
         #region Props
@@ -140,6 +143,36 @@ namespace FredagsCafeUWP.Models
             }
         }
 
+        public bool ShowAddEventPopUp
+        {
+            get { return _showAddEventPopUp; }
+            set
+            {
+                _showAddEventPopUp = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool ShowAddEventUserPopUp
+        {
+            get { return _showAddEventUserPopUp; }
+            set
+            {
+                _showAddEventUserPopUp = value; 
+                OnPropertyChanged();
+            }
+        }
+
+        public void ShowAddEventPopUpMethod()
+        {
+            ShowAddEventPopUp = true;
+        }
+
+        public void ShowAddEventUserPopUpMethod()
+        {
+            ShowAddEventUserPopUp = true;
+        }
+
         public async void AddUser()
         {
             if (UserNameTb != null && UserEmailTb != null)
@@ -161,6 +194,8 @@ namespace FredagsCafeUWP.Models
 
                         UserNameTb = null;
                         UserEmailTb = null;
+
+                        ShowAddEventUserPopUp = false;
                     }
                     else await _message.Error("Forkert email", "Du skal bruge en \"@edu.easj.dk\" eller en \"@easj.dk\" mail.");
                 }
@@ -196,6 +231,8 @@ namespace FredagsCafeUWP.Models
                     EventLocationTb = null;
                     EventDescriptionTb = null;
                     EventMaxUsersTb = null;
+
+                    ShowAddEventPopUp = false;
                 }
                 else await _message.Error("Forkert input", "Max deltagere skal være et tal.");
             }
