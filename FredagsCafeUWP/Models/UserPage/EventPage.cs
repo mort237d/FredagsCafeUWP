@@ -26,6 +26,8 @@ namespace FredagsCafeUWP.Models
         private string _eventDescriptionTb;
         private string _eventMaxUsersTb;
 
+        private bool _showAddEventPopUp = false;
+
         #endregion
 
         #region Props
@@ -140,6 +142,21 @@ namespace FredagsCafeUWP.Models
             }
         }
 
+        public bool ShowAddEventPopUp
+        {
+            get { return _showAddEventPopUp; }
+            set
+            {
+                _showAddEventPopUp = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public void ShowAddEventPopUpMethod()
+        {
+            ShowAddEventPopUp = true;
+        }
+
         public async void AddUser()
         {
             if (UserNameTb != null && UserEmailTb != null)
@@ -196,6 +213,8 @@ namespace FredagsCafeUWP.Models
                     EventLocationTb = null;
                     EventDescriptionTb = null;
                     EventMaxUsersTb = null;
+
+                    ShowAddEventPopUp = false;
                 }
                 else await _message.Error("Forkert input", "Max deltagere skal være et tal.");
             }

@@ -297,12 +297,30 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="6*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
+
+                    <Popup IsOpen="{Binding EventPage.ShowAddEventPopUp}" Width="400" Height="1000" HorizontalAlignment="Left" LightDismissOverlayMode="On" IsLightDismissEnabled="True" Margin="-12,0,0,0">
+                        <Popup.ChildTransitions>
+                            <TransitionCollection>
+                                <PaneThemeTransition Edge="Left"/>
+                            </TransitionCollection>
+                        </Popup.ChildTransitions>
+
+                        <StackPanel Background="#6CA0DC" Height="1000" Width="400">
+                            <StackPanel>
+                                <TextBlock Text="Tilføj Event" FontWeight="Bold" FontSize="50" HorizontalAlignment="Center"></TextBlock>
+                                <TextBox Text="{Binding EventPage.EventNameTb, Mode=TwoWay}" PlaceholderText="Navn"/>
+                                <TextBox Text="{Binding EventPage.EventLocationTb, Mode=TwoWay}" PlaceholderText="Placering"/>
+                                <TextBox Text="{Binding EventPage.EventDescriptionTb, Mode=TwoWay}" PlaceholderText="Beskrivelse"/>
+                                <TextBox Text="{Binding EventPage.EventMaxUsersTb, Mode=TwoWay}" PlaceholderText="Maks antal deltager"/>
+                                <Button Command="{Binding AddEventCommand}" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" Content="Tilføj event"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Popup>
 
                     <ListView Header="Events:" ItemsSource="{Binding EventPage.Events}" SelectedItem="{Binding EventPage.SelectedEvent, Mode=TwoWay}">
                         <ListView.ItemTemplate>
@@ -332,8 +350,10 @@
 
                     <Rectangle Fill="#6CA0DC" Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="1" Margin="-20,0,-20,-10"/>
 
-                    <Button Command="{Binding RemoveEventCommand}" Style="{StaticResource RoundedButtonStyle}" Grid.Row="1" Grid.Column="0"
-                            HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" Content="Fjern event"/>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Bottom" Margin="0,0,10,10" HorizontalAlignment="Right">
+                        <Button Command="{Binding RemoveEventCommand}" Style="{StaticResource RoundedButtonStyle}" Content="Fjern event"/>
+                        <Button Command="{Binding ShowAddEventPopUpCommand}" Style="{StaticResource RoundedButtonStyle}"  Content="Tilføj event"/>
+                    </StackPanel>
 
                     <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
                         <Button Command="{Binding RemoveEventUserCommand}" Style="{StaticResource RoundedButtonStyle}" VerticalAlignment="Bottom" Margin="0,0,10,10" Content="Fjern deltager"/>
@@ -342,16 +362,6 @@
                             <TextBox Text="{Binding EventPage.UserEmailTb, Mode=TwoWay}" Margin="0,0,0,5" PlaceholderText="Email"></TextBox>
                             <Button Command="{Binding AddEventUserCommand}" Style="{StaticResource RoundedButtonStyle}" Content="Tilføj deltager"/>
                         </StackPanel>
-                    </StackPanel>
-
-                    <Button Command="{Binding AddEventCommand}" Style="{StaticResource RoundedButtonStyle}" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" Content="Tilføj event"/>
-
-                    <StackPanel Grid.Row="0" Grid.Column="2">
-                        <TextBlock Text="Opret nyt event"/>
-                        <TextBox Text="{Binding EventPage.EventNameTb, Mode=TwoWay}" PlaceholderText="Navn"/>
-                        <TextBox Text="{Binding EventPage.EventLocationTb, Mode=TwoWay}" PlaceholderText="Placering"/>
-                        <TextBox Text="{Binding EventPage.EventDescriptionTb, Mode=TwoWay}" PlaceholderText="Beskrivelse"/>
-                        <TextBox Text="{Binding EventPage.EventMaxUsersTb, Mode=TwoWay}" PlaceholderText="Maks antal deltager"/>
                     </StackPanel>
                 </Grid>
             </PivotItem>
