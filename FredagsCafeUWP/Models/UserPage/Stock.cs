@@ -29,14 +29,7 @@ namespace FredagsCafeUWP.Models
 
         public int _minAmount = 10;
 
-        private string _frameAmountTb;
-        private string _frameSizeTb;
-
-        private string _productAmountTb;
-
         private string _productPriceChangeTb;
-
-        private int _selectionStart;
 
         private string _addNameTb;
         private string _addBuyingPriceTb;
@@ -144,67 +137,12 @@ namespace FredagsCafeUWP.Models
             }
         }
 
-        public string FrameAmountTb
-        {
-            get => _frameAmountTb;
-            set
-            {
-                _frameAmountTb = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string FrameSizeTb
-        {
-            get => _frameSizeTb;
-            set
-            {
-                _frameSizeTb = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string ProductAmountTb
-        {
-            get => _productAmountTb;
-            set
-            {
-                _productAmountTb = value; 
-                OnPropertyChanged();
-            }
-        }
-
         public string ProductPriceChangeTb
         {
             get => _productPriceChangeTb;
             set
             {
-                _productPriceChangeTb = value; //TODO opdater når det ikke er tal...
-                //if (!Regex.IsMatch(_productPriceChangeTb, "^\\d*\\.?\\d*$") && _productPriceChangeTb != "")
-                //{
-                //    int pos = _selectionStart - 1;
-                //    _productPriceChangeTb = _productPriceChangeTb.Remove(pos);//Remove(pos, 1);
-                //    _selectionStart = pos;
-                //}
-
-                //double dtemp;
-                //if (!double.TryParse(value, out dtemp) && value != "")
-                //{
-                //    int pos = _selectionStart - 1;
-                //    _productPriceChangeTb = value.Remove(pos);
-                //    _selectionStart = pos;
-                //    Debug.WriteLine(_productPriceChangeTb);
-                //}
-                OnPropertyChanged();
-            }
-        }
-
-        public int SelectionStart
-        {
-            get { return _selectionStart; }
-            set
-            {
-                _selectionStart = value;
+                _productPriceChangeTb = value;
                 OnPropertyChanged();
             }
         }
@@ -443,157 +381,6 @@ namespace FredagsCafeUWP.Models
             }
             else await _message.Error("Intet produkt valgt", "Vælg venligst et produkt.");
         }
-
-        private int _intFrameAmountTb;
-        private int _intFrameSizeTb;
-        private int _intProductAmountTb;
-
-        public async void AddAmountToProduct()
-        {
-            if (SelectedProduct != null)
-            {
-                Int32.TryParse(FrameAmountTb, out _intFrameAmountTb);
-                Int32.TryParse(FrameSizeTb, out _intFrameSizeTb);
-                Int32.TryParse(ProductAmountTb, out _intProductAmountTb);
-
-                if (_intFrameAmountTb > 0 && _intFrameSizeTb > 0 && _intProductAmountTb > 0)
-                {
-                    if (Int32.TryParse(FrameAmountTb, out _intFrameAmountTb) &&
-                        Int32.TryParse(FrameSizeTb, out _intFrameSizeTb) &&
-                        Int32.TryParse(ProductAmountTb, out _intProductAmountTb))
-                    {
-                        SelectedProduct.Amount += (_intFrameAmountTb * _intFrameSizeTb) + _intProductAmountTb;
-                        FrameAmountTb = FrameSizeTb = ProductAmountTb = null;
-                        //FrameAmountTb = null;
-                        //FrameSizeTb = null;
-                        //ProductAmountTb = null;
-                    }
-                    else await _message.Error("Forkert input", "Antal rammer, Ramme størrelse og Stk. skal være tal");
-                }
-
-                else if (_intFrameAmountTb > 0 && _intFrameSizeTb > 0)
-                {
-                    if (Int32.TryParse(FrameAmountTb, out _intFrameAmountTb) &&
-                        Int32.TryParse(FrameSizeTb, out _intFrameSizeTb))
-                    {
-                        SelectedProduct.Amount += _intFrameAmountTb * _intFrameSizeTb;
-                        FrameAmountTb = FrameSizeTb = null;
-                        //FrameAmountTb = null;
-                        //FrameSizeTb = null;
-                    }
-                    else await _message.Error("Forkert input", "Antal rammer og Ramme størrelse skal være tal");
-                }
-
-                else if (_intProductAmountTb > 0)
-                {
-                    if (Int32.TryParse(ProductAmountTb, out _intProductAmountTb))
-                    {
-                        SelectedProduct.Amount += _intProductAmountTb;
-                        ProductAmountTb = null;
-                    }
-                    else await _message.Error("Forkert input", "Stk. skal være tal");
-                }
-
-                else await _message.Error("Manglende input", "Til tal til felterne for at tilføje antal til produktet");
-                
-                if (SelectedProduct != null && SelectedProduct.Amount < _minAmount) SelectedProduct.ForegroundColor = ColorRed;
-                else SelectedProduct.ForegroundColor = ColorGreen;
-            }
-            else await _message.Error("Intet produkt valg", "Vælg venligst et produkt");
-        }
-
-        public async void RemoveAmountFromProduct()
-        {
-            if (SelectedProduct != null)
-            {
-                Int32.TryParse(FrameAmountTb, out int intFrameAmountTb);
-                Int32.TryParse(FrameSizeTb, out int intFrameSizeTb);
-                Int32.TryParse(ProductAmountTb, out int intProductAmountTb);
-
-                if (intFrameAmountTb > 0 && intFrameSizeTb > 0 && intProductAmountTb > 0)
-                {
-                    if (SelectedProduct.Amount >= ((intFrameAmountTb * intFrameSizeTb) + intProductAmountTb))
-                    {
-                        SelectedProduct.Amount -= (intFrameAmountTb * intFrameSizeTb) + intProductAmountTb;
-                        FrameAmountTb = FrameSizeTb = ProductAmountTb = null;
-                        //FrameAmountTb = null;
-                        //FrameSizeTb = null;
-                        //ProductAmountTb = null;
-                    }
-                    else await _message.Error("Tallene stemmer ikke", "Der er kun " + SelectedProduct.Amount + " af " + SelectedProduct.Name + "." +
-                                                                      "\nDerfor kan du ikke fjerne " + intFrameAmountTb + "*" + intFrameSizeTb + "+" + intProductAmountTb + "=" + ((intFrameAmountTb * intFrameSizeTb) + intProductAmountTb) + " af dette produkt.");
-                }
-                else if (intFrameAmountTb > 0 && intFrameSizeTb > 0)
-                {
-                    if (SelectedProduct.Amount >= (intFrameAmountTb * intFrameSizeTb))
-                    {
-                        SelectedProduct.Amount -= intFrameAmountTb * intFrameSizeTb;
-                        FrameAmountTb = FrameSizeTb = null;
-                        //FrameAmountTb = null;
-                        //FrameSizeTb = null;
-                    }
-                    else await _message.Error("Tallene stemmer ikke", "Der er kun " + SelectedProduct.Amount + " af " + SelectedProduct.Name + "." +
-                                                                      "\nDerfor kan du ikke fjerne " + intFrameAmountTb + "*" + intFrameSizeTb + "=" + (intFrameAmountTb * intFrameSizeTb) + " af dette produkt.");
-                }
-                else if (intProductAmountTb > 0)
-                {
-                    if (SelectedProduct.Amount >= intProductAmountTb)
-                    {
-                        SelectedProduct.Amount -= intProductAmountTb;
-                        ProductAmountTb = null;
-                    }
-                    else await _message.Error("Tallene stemmer ikke", "Der er kun " + SelectedProduct.Amount + " af " + SelectedProduct.Name + ".\nDerfor kan du ikke fjerne " + intProductAmountTb + " af dette produkt.");
-                }
-
-                if (SelectedProduct.Amount < _minAmount)
-                {
-                    SelectedProduct.ForegroundColor = ColorRed;
-                    await _message.Error("Advarsel", "Lageret er næsten tomt");
-                }
-                else SelectedProduct.ForegroundColor = ColorGreen;
-
-                
-            }
-            else await _message.Error("Intet produkt valg", "Vælg venligst et produkt");
-        }
-
-        public async void ChangeProductSellPrice()
-        {
-            if (SelectedProduct != null)
-            {
-                if (Int32.TryParse(ProductPriceChangeTb, out int intProductPriceChangedTb))
-                {
-                    if (ProductPriceChangeTb != null && intProductPriceChangedTb > 0)
-                    {
-                        SelectedProduct.SellingPrice = intProductPriceChangedTb;
-                        ProductPriceChangeTb = null;
-                    }
-                    else await _message.Error("Forkert input", "Prisen skal være mere end 0.");
-                }
-                else await _message.Error("Forkert input", "Prisen skal være et tal.");
-            }
-            else await _message.Error("Intet produkt valg", "Vælg venligst et produkt");
-        }
-
-        public async void ChangeProductBuyPrice()
-        {
-            if (SelectedProduct != null)
-            {
-                if (Int32.TryParse(ProductPriceChangeTb, out int intProductPriceChangedTb))
-                {
-                    if (ProductPriceChangeTb != null && intProductPriceChangedTb > 0)
-                    {
-                        SelectedProduct.BuyingPrice = intProductPriceChangedTb;
-                        ProductPriceChangeTb = null;
-                    }
-                    else await _message.Error("Forkert input", "Prisen skal være mere end 0.");
-                }
-                else await _message.Error("Forkert input", "Prisen skal være et tal.");
-            }
-            else await _message.Error("Intet produkt valg", "Vælg venligst et produkt");
-        }
-
-
         #endregion
 
         #region Save/Load
