@@ -92,6 +92,7 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Models\Encrypt.cs" />
     <Compile Include="Models\UserPage\EnumCategory.cs" />
     <Compile Include="Models\AddProduct_ChangeProduct\AddProductClass.cs" />
     <Compile Include="Models\AddProduct_ChangeProduct\ChangeProductClass.cs" />
