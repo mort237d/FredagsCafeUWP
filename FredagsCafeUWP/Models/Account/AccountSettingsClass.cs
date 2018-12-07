@@ -1,11 +1,5 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using Windows.ApplicationModel.Core;
-using Windows.UI.Core;
-using Windows.UI.ViewManagement;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 using FredagsCafeUWP.Annotations;
 using FredagsCafeUWP.Models;
 
@@ -28,7 +22,7 @@ namespace FredagsCafeUWP
         private string _passwordTb;
         private string _confirmPasswordTb;
 
-        private User _currentUser = new User();
+        private bool _showAccountSettingsPopUp = false;
 
         public string NameTb
         {
@@ -110,12 +104,12 @@ namespace FredagsCafeUWP
             }
         }
 
-        public User CurrentUser
+        public bool ShowAccountSettingsPopUp
         {
-            get { return _currentUser; }
+            get { return _showAccountSettingsPopUp; }
             set
             {
-                _currentUser = value;
+                _showAccountSettingsPopUp = value;
                 OnPropertyChanged();
             }
         }
@@ -159,33 +153,14 @@ namespace FredagsCafeUWP
                         }
                     }
 
-
+                    ShowAccountSettingsPopUp = false;
                 }
             }
         }
 
-
-        public async void GoToAccountSettings()
+        public void ShowAccountSettingsPopUpMethod()
         {
-            CoreApplicationView newView = CoreApplication.CreateNewView();
-            int newViewId = 0;
-            await newView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                Frame frame = new Frame();
-                frame.Navigate(typeof(accountSettings), null);
-                Window.Current.Content = frame;
-                // You have to activate the window in order to show it later.
-                Window.Current.Activate();
-
-                newViewId = ApplicationView.GetForCurrentView().Id;
-            });
-            bool viewShown = await ApplicationViewSwitcher.TryShowAsStandaloneAsync(newViewId);
-        }
-
-        public void GoToUserPage()
-        {
-            Frame currentFrame = Window.Current.Content as Frame;
-            currentFrame.Navigate(typeof(UserPage));
+            ShowAccountSettingsPopUp = true;
         }
 
         #region INotify

@@ -46,6 +46,12 @@ namespace FredagsCafeUWP.Models
             AmountToBeSold = amountToBeSold;
         }
 
+        public Product(string name, int amountToBeSold)
+        {
+            Name = name;
+            AmountToBeSold = amountToBeSold;
+        }
+
         public Product()
         {
 

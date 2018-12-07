@@ -92,26 +92,13 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Models\Encrypt.cs" />
     <Compile Include="Models\UserPage\EnumCategory.cs" />
-    <Compile Include="Models\AddProduct_ChangeProduct\AddProductClass.cs" />
-    <Compile Include="Models\AddProduct_ChangeProduct\ChangeProductClass.cs" />
-    <Compile Include="ViewModels\AccountViewModel.cs" />
-    <Compile Include="ViewModels\AddProductViewModel.cs" />
-    <Compile Include="ViewModels\ChangeProductViewModel.cs" />
-    <Compile Include="Views\accountSettings.xaml.cs">
-      <DependentUpon>accountSettings.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Models\Account\AccountSettingsClass.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\Help\Help.cs" />
-    <Compile Include="Views\AddProductPage.xaml.cs">
-      <DependentUpon>AddProductPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ChangeProductPage.xaml.cs">
-      <DependentUpon>ChangeProductPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\HelpPage.xaml.cs">
       <DependentUpon>HelpPage.xaml</DependentUpon>
     </Compile>
@@ -218,18 +205,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Views\accountSettings.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\AddProductPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\ChangeProductPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\HelpPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
