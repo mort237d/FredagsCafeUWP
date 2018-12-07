@@ -316,8 +316,6 @@
             </PivotItem>
             <!--#endregion-->
 
-
-            
             <!--#region LagerRegion-->
             <PivotItem Header="Lager">
                 <Grid>
@@ -470,10 +468,10 @@
 
                 <StackPanel Orientation="Horizontal" Margin="80" >
 
-                    <charting:Chart x:Name="ProfitStat" Width="500" >
+                    <charting:Chart x:Name="ProfitStat" Width="480" >
                         <charting:ColumnSeries Title="" ItemsSource="{Binding StatList.StatList,Mode=TwoWay}" IndependentValuePath="ProfitType" DependentValuePath="TotalIncome"/>
                     </charting:Chart>
-                    <charting:Chart x:Name="ProductGraph" Width="750" >
+                    <charting:Chart x:Name="ProductGraph" Width="740" >
                         <charting:BarSeries Title="" ItemsSource="{Binding StatList.ProductGraphList,Mode=TwoWay}" IndependentValuePath="Name" DependentValuePath="AmountToBeSold"/>
                     </charting:Chart>
                 </StackPanel>
