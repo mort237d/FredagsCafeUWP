@@ -527,22 +527,22 @@ namespace FredagsCafeUWP.Models
             else await _message.Error("Intet produkt valgt", "Vælg venligst et produkt.");
         }
 
-        public ObservableCollection<Product> SortOCByType(ObservableCollection<Product> inputObservableCollection)
-        {
-            ObservableCollection<Product> outPutObservableCollection = new ObservableCollection<Product>();
-            foreach (string category in Enum.GetNames(typeof(EnumCategory.ProductCategoryBeer)))
-            {
-                foreach (var product in inputObservableCollection)
-                {
-                    if (product.CategoryBeer.ToString() == category)
-                    {
-                        outPutObservableCollection.Add(product);
-                    }
-                }
-            }
+        //public ObservableCollection<Product> SortOCByType(ObservableCollection<Product> inputObservableCollection)
+        //{
+        //    ObservableCollection<Product> outPutObservableCollection = new ObservableCollection<Product>();
+        //    foreach (string category in Enum.GetNames(typeof(EnumCategory.ProductCategoryBeer)))
+        //    {
+        //        foreach (var product in inputObservableCollection)
+        //        {
+        //            if (product.CategoryBeer.ToString() == category)
+        //            {
+        //                outPutObservableCollection.Add(product);
+        //            }
+        //        }
+        //    }
 
-            return outPutObservableCollection;
-        }
+        //    return outPutObservableCollection;
+        //}
 
 
         public ObservableCollection<Product> Test(ObservableCollection<Product> inputObservableCollection, int whereToBegin)
