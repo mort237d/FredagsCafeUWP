@@ -7,7 +7,8 @@
     xmlns:charting="using:WinRTXamlToolkit.Controls.DataVisualization.Charting"
     xmlns:models="using:FredagsCafeUWP.Models"
     xmlns:Custom="using:Microsoft.Xaml.Interactivity" xmlns:Custom1="using:Microsoft.Xaml.Interactions.Core"
-    x:Class="FredagsCafeUWP.UserPage"
+      xmlns:controls="using:WinRTXamlToolkit.Controls"
+      x:Class="FredagsCafeUWP.UserPage"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -220,7 +221,7 @@
             <PivotItem Header="Salg">
                 <Grid Margin="10">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="3*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
@@ -234,13 +235,13 @@
                                 <StackPanel Margin="10">
                                     <Image Source="{Binding ImageSource}" Width="100" Height="100"/>
                                     <StackPanel Orientation="Vertical">
-                                        <TextBlock FontWeight="Bold" Text="{Binding Name}"/>
+                                        <TextBlock Width="160" FontWeight="Bold" Text="{Binding Name}"/>
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock Text="kr."/>
                                             <TextBlock Text="{Binding SellingPrice}" Margin="2,0,2,0"/>
                                             <TextBlock Text=",-"/>
                                         </StackPanel>
-                                        <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                             <Button Background="#6CA0DC" Style="{StaticResource LeftRoundedButtonStyle}" Content="-" Command="{Binding DataContext.RemoveOneFromSaleCommand, ElementName=Bob}"/>
                                             <TextBox Name="AmountToBeSoldTB" BorderBrush="#6CA0DC" PlaceholderText="0" TextAlignment="Center" Text="{Binding AmountToBeSold, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                             <Button Background="#6CA0DC" Style="{StaticResource RightRoundedButtonStyle}" Content="+" Command="{Binding DataContext.AddOneToSaleCommand, ElementName=Bob}"/>
@@ -264,9 +265,10 @@
                         <Button Content="Reset Kvitering" Command="{Binding ResetReceiptsCommand}"/>
                     </StackPanel>
 
-                    <Button Style="{StaticResource RoundedButtonStyle}" Foreground="White" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Slet transaktion" Command="{Binding DeleteReceiptCommand}"  Margin="0,0,5,5"/>
+                    <Button Style="{StaticResource RoundedButtonStyle}" Foreground="White" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Slet 
+                            aktion" Command="{Binding DeleteReceiptCommand}"  Margin="0,0,5,5"/>
 
-                    <ListView Margin="30,30,30,0" Header="Transaktioner" Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Sale.Receipts}" SelectedItem="{Binding Sale.SelectedReceipt,Mode=TwoWay}">
+                    <ListView  Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Sale.Receipts}" SelectedItem="{Binding Sale.SelectedReceipt,Mode=TwoWay}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel>
@@ -314,8 +316,6 @@
             </PivotItem>
             <!--#endregion-->
 
-
-            
             <!--#region LagerRegion-->
             <PivotItem Header="Lager">
                 <Grid>
@@ -331,7 +331,7 @@
                                 <StackPanel Orientation="Horizontal" Margin="10">
                                     <Image Source="{Binding ImageSource}" Width="100" Height="100"/>
                                     <StackPanel Orientation="Vertical">
-                                        <TextBlock FontWeight="Bold" Text="{Binding Name}"/>
+                                        <TextBlock Width="160" FontWeight="Bold" Text="{Binding Name}"/>
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock Foreground="{Binding ForegroundColor}" Text="{Binding Amount}" HorizontalAlignment="Center"/>
                                             <TextBlock Foreground="{Binding ForegroundColor}" Text="stk"/>
@@ -468,11 +468,11 @@
 
                 <StackPanel Orientation="Horizontal" Margin="80" >
 
-                    <charting:Chart x:Name="ProfitStat" Width="650" >
-                        <charting:ColumnSeries Title="Salg Statistik" ItemsSource="{Binding StatList.StatList,Mode=TwoWay}" IndependentValuePath="ProfitType" DependentValuePath="TotalIncome"/>
+                    <charting:Chart x:Name="ProfitStat" Width="480" >
+                        <charting:ColumnSeries Title="" ItemsSource="{Binding StatList.StatList,Mode=TwoWay}" IndependentValuePath="ProfitType" DependentValuePath="TotalIncome"/>
                     </charting:Chart>
-                    <charting:Chart x:Name="ProductGraph" Width="650" >
-                        <charting:ColumnSeries Title="Solgte Produkter" ItemsSource="{Binding StatList.ProductGraphList,Mode=TwoWay}" IndependentValuePath="Name" DependentValuePath="AmountToBeSold"/>
+                    <charting:Chart x:Name="ProductGraph" Width="740" >
+                        <charting:BarSeries Title="" ItemsSource="{Binding StatList.ProductGraphList,Mode=TwoWay}" IndependentValuePath="Name" DependentValuePath="AmountToBeSold"/>
                     </charting:Chart>
                 </StackPanel>
             </PivotItem>

@@ -200,6 +200,7 @@ namespace FredagsCafeUWP.Models.UserPage
             List<Product> tempGraphList = new List<Product>();
             bool tempGraphBool = false;
             _statListClass.ProductGraphList.Clear();
+            _statListClass.ProductGraphList.Add(new Product("",0));
             foreach (var receipt in Receipts)
             {
                 foreach (var basket in receipt.Basket)
