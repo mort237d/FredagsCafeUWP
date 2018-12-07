@@ -379,7 +379,7 @@
                                     <StackPanel>
                                         <TextBlock Text="{Binding Name}"/>
                                         <TextBlock Text="{Binding TelephoneNumber}" />
-                                        <TextBlock Text="{Binding Email}" />
+                                        <TextBlock Text="{Binding Email}"  Width="200"/>
                                         <TextBlock Text="{Binding Admin}"/>
                                     </StackPanel>
                                 </StackPanel>
