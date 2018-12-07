@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.UI.Xaml.Documents;
 
 namespace FredagsCafeUWP.Models
 {
@@ -29,6 +24,10 @@ namespace FredagsCafeUWP.Models
                             else output += alpha[alpha.IndexOf(character) - 1];
                         }
                     }
+                    if (!alpha.Contains(inputChar))
+                    {
+                        output += inputChar;
+                    }
                 }
             }
             
@@ -48,9 +47,12 @@ namespace FredagsCafeUWP.Models
                         if (inputChar == character)
                         {
                             if (character == alpha.Last()) output += alpha.First();
-
                             else output += alpha[alpha.IndexOf(character) + 1];
                         }
+                    }
+                    if (!alpha.Contains(inputChar))
+                    {
+                        output += inputChar;
                     }
                 }
             }

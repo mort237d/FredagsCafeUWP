@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+﻿using System;
 using Windows.ApplicationModel.Core;
 using Windows.UI;
 using Windows.UI.Core.Preview;
@@ -32,13 +32,8 @@ namespace FredagsCafeUWP
 
             #endregion
 
-            _stock.LoadAsync();
-            _sale.LoadAsync();
-            _statListClass.LoadAsync();
-            _administration.LoadAsync();
-            _logOnLogOff.LoadAsync();
-            _eventPage.LoadAsync();
-            
+            Loader();
+
             foreach (var user in _administration.Users)
             {
                 user.Name = _encrypt.DeCrypt(user.Name); 
@@ -52,8 +47,30 @@ namespace FredagsCafeUWP
                 user.ImageSource = _encrypt.DeCrypt(user.ImageSource);
             }
 
+            //foreach (var user in _administration.Users)
+            //{
+            //    user.Name = _encrypt.Encrypting(user.Name);
+            //    user.Admin = _encrypt.Encrypting(user.Admin);
+            //    user.Education = _encrypt.Encrypting(user.Education);
+            //    user.Email = _encrypt.Encrypting(user.Email);
+            //    user.Grade = _encrypt.Encrypting(user.Grade);
+            //    user.Password = _encrypt.Encrypting(user.Password);
+            //    user.TelephoneNumber = _encrypt.Encrypting(user.TelephoneNumber);
+            //    user.UserName = _encrypt.Encrypting(user.UserName);
+            //    user.ImageSource = _encrypt.Encrypting(user.ImageSource);
+            //}
             SystemNavigationManagerPreview.GetForCurrentView().CloseRequested += this.OnCloseRequest;
 
+        }
+
+        private void Loader()
+        {
+            _administration.LoadAsync();
+            _stock.LoadAsync();
+            _sale.LoadAsync();
+            _statListClass.LoadAsync();
+            _logOnLogOff.LoadAsync();
+            _eventPage.LoadAsync();
         }
 
         private async void OnCloseRequest(object sender, SystemNavigationCloseRequestedPreviewEventArgs e)
@@ -73,10 +90,10 @@ namespace FredagsCafeUWP
                 user.ImageSource = _encrypt.Encrypting(user.ImageSource);
             }
 
+            await _administration.SaveAsync();
             await _stock.SaveAsync();
             await _sale.SaveAsync();
             await _statListClass.SaveAsync();
-            await _administration.SaveAsync();
             await _logOnLogOff.SaveAsync();
             await _eventPage.SaveAsync();
 
