@@ -6,7 +6,6 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Pickers;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using FredagsCafeUWP.Annotations;
 
@@ -16,7 +15,7 @@ namespace FredagsCafeUWP.Models
     {
         #region Field
 
-        private static Message _message = Message.Instance;
+        private static Message _message;
 
         private readonly string _standardImage = "UserImages/Profile-icon.png";
 
@@ -150,10 +149,7 @@ namespace FredagsCafeUWP.Models
 
         private Administration()
         {
-            //foreach (var user in Users)
-            //{
-            //    user.Email = user.Name + "@edu.easj.dk";
-            //}
+            _message = new Message(this);
         }
 
         #region Singleton

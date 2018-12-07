@@ -2,8 +2,7 @@
 using System.Runtime.CompilerServices;
 using FredagsCafeUWP.Annotations;
 using FredagsCafeUWP.Models;
-using FredagsCafeUWP.Models.AddProduct;
-using FredagsCafeUWP.Models.AddProduct_ChangeProduct;
+using FredagsCafeUWP.Models.UserPage;
 using GalaSoft.MvvmLight.Command;
 
 namespace FredagsCafeUWP.ViewModels
@@ -18,7 +17,6 @@ namespace FredagsCafeUWP.ViewModels
         private Administration _administration = Administration.Instance;
         private StatListClass _statList = StatListClass.Instance;
         private LogOnLogOff _logOnLogOff = LogOnLogOff.Instance;
-        private User _user;
         private Product _product;
         private Statistics _statistics;
         private AccountSettingsClass _accountSettingsClass = new AccountSettingsClass();
@@ -60,7 +58,9 @@ namespace FredagsCafeUWP.ViewModels
         private RelayCommand _addProductCommand;
         private RelayCommand _changeProductCommand;
 
-        private RelayCommand _changeToAccountCommand;
+        private RelayCommand _changeSettingsCommand;
+
+        private RelayCommand _showAccountPopUp;
 
         private RelayCommand _deleteReceiptCommand;
 
@@ -96,7 +96,7 @@ namespace FredagsCafeUWP.ViewModels
             LogOffCommand = new RelayCommand(LogOnLogOff.logOffMethod);
 
 
-            ChangeToAccountCommand = new RelayCommand(AccountSettingsClass.GoToAccountSettings);
+            ShowAccountPopUp = new RelayCommand(AccountSettingsClass.ShowAccountSettingsPopUpMethod);
 
             GoToHelpPageCommand = new RelayCommand(Help.GoToHelpPage);
 
@@ -114,6 +114,8 @@ namespace FredagsCafeUWP.ViewModels
             ChangeProductCommand = new RelayCommand(Stock.ChangeProductOfObList);
             
             ResetReceiptsCommand = new RelayCommand(Sale.ResetReceipt);
+
+            ChangeSettingsCommand = new RelayCommand(AccountSettingsClass.ChangeSettings);
         }
 
         #region Props
@@ -260,12 +262,6 @@ namespace FredagsCafeUWP.ViewModels
             set { _accountSettingsClass = value; }
         }
 
-        public RelayCommand ChangeToAccountCommand
-        {
-            get { return _changeToAccountCommand; }
-            set { _changeToAccountCommand = value; }
-        }
-
         public Help Help
         {
             get { return _help; }
@@ -353,6 +349,18 @@ namespace FredagsCafeUWP.ViewModels
         {
             get { return _showAddUserPopUpCommand; }
             set { _showAddUserPopUpCommand = value; }
+        }
+
+        public RelayCommand ShowAccountPopUp
+        {
+            get { return _showAccountPopUp; }
+            set { _showAccountPopUp = value; }
+        }
+
+        public RelayCommand ChangeSettingsCommand
+        {
+            get { return _changeSettingsCommand; }
+            set { _changeSettingsCommand = value; }
         }
 
         #endregion
