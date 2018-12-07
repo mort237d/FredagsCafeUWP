@@ -51,5 +51,15 @@ namespace FredagsCafeUWP
 
             CoreApplication.Exit();
         }
+
+        private void Comboboxo_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Comboboxo.SelectedItem != null)
+            {
+                string temp = ((ComboBoxItem)Comboboxo.SelectedItem).Content.ToString();
+                tbcombo.Text = temp;
+            }
+             
+        }
     }
 }

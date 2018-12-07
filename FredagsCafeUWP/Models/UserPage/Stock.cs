@@ -242,6 +242,8 @@ namespace FredagsCafeUWP.Models
         #region ButtonMethods
         public async void AddProductToObList()
         {
+            SortOCByType(Products);
+
             bool productExist = false;
             if (AddNameTb != null)
             {
@@ -375,6 +377,8 @@ namespace FredagsCafeUWP.Models
                                 }
                             }
 
+                            Debug.WriteLine(Products.Last().Category);
+
                             AddNameTb = null;
                             AddBuyingPriceTb = null;
                             AddSellingPriceTb = null;
@@ -482,6 +486,20 @@ namespace FredagsCafeUWP.Models
                 await _message.YesNo("Slet produkt", "Er du sikker på at du vil slette " + SelectedProduct.Name + "?");
             }
             else await _message.Error("Intet produkt valgt", "Vælg venligst et produkt.");
+        }
+
+        public void SortOCByType(ObservableCollection<Product> observableCollection)
+        {
+            ObservableCollection<Product> temp = new ObservableCollection<Product>();
+            foreach (var product in observableCollection)
+            {
+
+            }
+
+            foreach (var VARIABLE in temp)
+            {
+                Debug.WriteLine(VARIABLE.Name);
+            }
         }
         #endregion
 
