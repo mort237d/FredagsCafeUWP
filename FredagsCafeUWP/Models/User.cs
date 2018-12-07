@@ -123,7 +123,11 @@ namespace FredagsCafeUWP.Models
         public string Admin
         {
             get { return _admin; }
-            set { _admin = value; }
+            set
+            {
+                _admin = value; 
+                OnPropertyChanged();
+            }
         }
 
         public string Visible

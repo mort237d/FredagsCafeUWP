@@ -17,7 +17,7 @@ namespace FredagsCafeUWP.Models
 
         private static Message _message;
 
-        private readonly string _standardImage = "UserImages/Profile-icon.png";
+        public readonly string _standardImage = "UserImages/Profile-icon.png";
 
         private string _nameTb;
         private string _gradeTb;
@@ -154,6 +154,11 @@ namespace FredagsCafeUWP.Models
         private Administration()
         {
             _message = new Message(this);
+
+            if (CurrentUser == null)
+            {
+                CurrentUser = new User("Morten", "EASJ", "Datamatiker", "Morten@edu.easj.dk", "12345678", "Morten", "Morten", _standardImage, "");
+            }
         }
 
         #region Singleton
@@ -280,8 +285,8 @@ namespace FredagsCafeUWP.Models
 
         public void ChangeAdmin()
         {
-            CurrentUser.Admin = null;
-            SelectedUser.Admin = "Admin";
+            _message.YesNo("Giv admin videre",
+                "Er du sikker på at du vil give admin videre til " + SelectedUser.Name + "?");
         }
 
         #endregion

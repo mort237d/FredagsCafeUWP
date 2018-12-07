@@ -83,6 +83,20 @@ namespace FredagsCafeUWP.Models
                 if (title == "Slet bruger")_administration.Users.Remove(_administration.SelectedUser);
                 if (title == "Slet bruger af eventet")_eventPage.SelectedEvent.EventsUsers.Remove(_eventPage.SelectedEventUser);
                 if (title == "Slet event")_eventPage.Events.Remove(_eventPage.SelectedEvent);
+                if (title == "Giv admin videre")
+                {
+                    _administration.CurrentUser.Admin = null;
+                    foreach (var user in _administration.Users)
+                    {
+                        if (user.Email == _administration.CurrentUser.Email)
+                        {
+                            user.Admin = null;
+                        }
+                    }
+                    _administration.SelectedUser.Admin = "Admin";
+
+                    _administration.ButtonVisibility(_administration.CurrentUser);
+                }
                 }
             else if (command == noCommand)
             {

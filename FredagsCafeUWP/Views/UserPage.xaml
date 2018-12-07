@@ -386,12 +386,12 @@
                         <GridView.ItemTemplate>
                             <DataTemplate x:DataType="models:User">
                                 <StackPanel Orientation="Horizontal" Margin="10">
-                                    <Image Source="{Binding ImageSource}" Height="100" Width="100"/>
+                                    <Image Source="{Binding ImageSource, Mode=TwoWay}" Height="100" Width="100"/>
                                     <StackPanel>
-                                        <TextBlock Text="{Binding Name}"/>
-                                        <TextBlock Text="{Binding TelephoneNumber}" />
-                                        <TextBlock Text="{Binding Email}"  Width="200"/>
-                                        <TextBlock Text="{Binding Admin}"/>
+                                        <TextBlock Text="{Binding Name, Mode=TwoWay}"/>
+                                        <TextBlock Text="{Binding TelephoneNumber, Mode=TwoWay}" />
+                                        <TextBlock Text="{Binding Email, Mode=TwoWay}"  Width="200"/>
+                                        <TextBlock Text="{Binding Admin, Mode=TwoWay}"/>
                                     </StackPanel>
                                 </StackPanel>
                             </DataTemplate>
