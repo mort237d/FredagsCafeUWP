@@ -77,7 +77,7 @@
 
             <StackPanel Background="#6CA0DC" Height="1000" Width="400">
                 <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0">
-                    <TextBlock Text="Ændre Produkt" FontWeight="Bold" FontSize="50" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="Ændre Produkt" FontWeight="Bold" FontSize="50" HorizontalAlignment="Center"/>
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Margin="0,5,0,0">
                             <TextBlock Height="32" Margin="2" Text="Navn"/>
@@ -86,7 +86,7 @@
                             <TextBlock Height="32" Margin="2" Text="Antal"/>
                             <TextBlock Height="32" Text="ImageSource" Margin="2"/>
                         </StackPanel>
-                        <StackPanel>
+                        <StackPanel Name="test">
                             <TextBox Margin="2" PlaceholderText="Navn" Text="{Binding Stock.ChangeNameTb, Mode=TwoWay}"/>
                             <TextBox Margin="2" PlaceholderText="Købspris" Text="{Binding Stock.ChangeBuyingPriceTb, Mode=TwoWay}"/>
                             <TextBox Margin="2" PlaceholderText="Salgspris" Text="{Binding Stock.ChangeSellingPriceTb, Mode=TwoWay}"/>
@@ -95,6 +95,16 @@
                                 <TextBox IsReadOnly="True" PlaceholderText="ImageSource" Text="{Binding Stock.ChangeImageSourceTb, Mode=TwoWay}"/>
                                 <Button Content="..." Width="40" Command="{Binding BrowseChangeImageCommand}"/>
                             </StackPanel>
+                            <ComboBox Name="JohnHitler" Margin="2" PlaceholderText="{Binding Path=Text, ElementName=tcombo, UpdateSourceTrigger=PropertyChanged}" Width="320" SelectionChanged="Comboboxo_OnSelectionChanged">
+                                <ComboBoxItem Content="Øl"/>
+                                <ComboBoxItem Content="Sodavand"/>
+                                <ComboBoxItem Content="Cider"/>
+                                <ComboBoxItem Content="Drink"/>
+                                <ComboBoxItem Content="Flaske"/>
+                                <ComboBoxItem Content="Shot"/>
+                                <ComboBoxItem Content="Andet"/>
+                            </ComboBox>
+                            <TextBlock  Name="tcombo" Text="{Binding Stock.ChangeTypeTb, Mode=TwoWay}" Visibility="Collapsed"/>
                         </StackPanel>
                     </StackPanel>
                     <Button Margin="20" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Center" Content="Ændre produkt" Command="{Binding ChangeProductCommand}"/>
