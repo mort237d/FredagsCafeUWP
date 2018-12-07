@@ -4,6 +4,7 @@ using Windows.UI.Core.Preview;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Controls;
 using FredagsCafeUWP.Models;
+using FredagsCafeUWP.Models.UserPage;
 
 namespace FredagsCafeUWP
 {

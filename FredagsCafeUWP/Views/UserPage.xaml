@@ -273,6 +273,12 @@
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal">
                                         <ListView ItemsSource="{Binding Basket}">
+                                            <ListView.ItemContainerStyle>
+                                                <Style TargetType="ListViewItem">
+                                                    <Setter Property="MinHeight" Value="1"/>
+                                                    <Setter Property="Height" Value="20"/>
+                                                </Style>
+                                            </ListView.ItemContainerStyle>
                                             <ListView.ItemTemplate>
                                                 <DataTemplate>
                                                         <StackPanel Orientation="Horizontal" Spacing="2">

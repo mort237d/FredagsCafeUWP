@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
+using FredagsCafeUWP.Models.UserPage;
 
 namespace FredagsCafeUWP.Models
 {

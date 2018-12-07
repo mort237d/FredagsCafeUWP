@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using FredagsCafeUWP.Annotations;
-using FredagsCafeUWP.Models;
 
-namespace FredagsCafeUWP
+namespace FredagsCafeUWP.Models.UserPage
 {
     public class Sale : INotifyPropertyChanged
     {
@@ -43,18 +41,22 @@ namespace FredagsCafeUWP
             _message = new Message(this);
         }
 
-        private static Sale instance;
+        #region Singleton
+
+        private static Sale _instance;
         public static Sale Instance
         {
             get
             {
-                if (instance == null)
+                if (_instance == null)
                 {
-                    instance = new Sale();
+                    _instance = new Sale();
                 }
-                return instance;
+                return _instance;
             }
         }
+
+        #endregion
 
         #region Props
 
