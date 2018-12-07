@@ -142,7 +142,11 @@ namespace FredagsCafeUWP.Models
         public User CurrentUser
         {
             get { return _currentUser; }
-            set { _currentUser = value; }
+            set
+            {
+                _currentUser = value; 
+                OnPropertyChanged();
+            }
         }
 
         #endregion
@@ -272,6 +276,12 @@ namespace FredagsCafeUWP.Models
             {
                 Visible = "Collapsed";
             }
+        }
+
+        public void ChangeAdmin()
+        {
+            CurrentUser.Admin = null;
+            SelectedUser.Admin = "Admin";
         }
 
         #endregion
