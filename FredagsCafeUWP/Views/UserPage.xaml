@@ -7,7 +7,8 @@
     xmlns:charting="using:WinRTXamlToolkit.Controls.DataVisualization.Charting"
     xmlns:models="using:FredagsCafeUWP.Models"
     xmlns:Custom="using:Microsoft.Xaml.Interactivity" xmlns:Custom1="using:Microsoft.Xaml.Interactions.Core"
-    x:Class="FredagsCafeUWP.UserPage"
+      xmlns:controls="using:WinRTXamlToolkit.Controls"
+      x:Class="FredagsCafeUWP.UserPage"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -49,7 +50,7 @@
                     <TextBox Margin="2" PlaceholderText="Købspris" Text="{Binding Stock.AddBuyingPriceTb, Mode=TwoWay}"/>
                     <TextBox Margin="2" PlaceholderText="Salgspris" Text="{Binding Stock.AddSellingPriceTb, Mode=TwoWay}"/>
                     <TextBox Margin="2" PlaceholderText="Antal" Text="{Binding Stock.AddAmountTb, Mode=TwoWay}"/>
-                    <ComboBox Margin="2" PlaceholderText="Type" Width="320" SelectedItem="{Binding Stock.AddTypeTb, Mode=TwoWay}">
+                    <ComboBox Name="Comboboxo" Margin="2" PlaceholderText="Type" Width="320" SelectionChanged="Comboboxo_OnSelectionChanged">
                         <ComboBoxItem Content="Øl"/>
                         <ComboBoxItem Content="Sodavand"/>
                         <ComboBoxItem Content="Cider"/>
@@ -58,6 +59,7 @@
                         <ComboBoxItem Content="Shot"/>
                         <ComboBoxItem Content="Andet"/>
                     </ComboBox>
+                    <TextBlock  Name="tbcombo" Text="{Binding Stock.AddTypeTb, Mode=TwoWay}" Visibility="Collapsed"/>
                     <StackPanel Orientation="Horizontal" Margin="2">
                         <TextBox IsReadOnly="True" PlaceholderText="ImageSource" Text="{Binding Stock.AddImageSourceTb, Mode=TwoWay}"/>
                         <Button Content="..." Width="40" Command="{Binding BrowseAddImageCommand}"/>
@@ -76,7 +78,7 @@
 
             <StackPanel Background="#6CA0DC" Height="1000" Width="400">
                 <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0">
-                    <TextBlock Text="Ændre Produkt" FontWeight="Bold" FontSize="50" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="Ændre Produkt" FontWeight="Bold" FontSize="50" HorizontalAlignment="Center"/>
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Margin="0,5,0,0">
                             <TextBlock Height="32" Margin="2" Text="Navn"/>
@@ -85,7 +87,7 @@
                             <TextBlock Height="32" Margin="2" Text="Antal"/>
                             <TextBlock Height="32" Text="ImageSource" Margin="2"/>
                         </StackPanel>
-                        <StackPanel>
+                        <StackPanel Name="test">
                             <TextBox Margin="2" PlaceholderText="Navn" Text="{Binding Stock.ChangeNameTb, Mode=TwoWay}"/>
                             <TextBox Margin="2" PlaceholderText="Købspris" Text="{Binding Stock.ChangeBuyingPriceTb, Mode=TwoWay}"/>
                             <TextBox Margin="2" PlaceholderText="Salgspris" Text="{Binding Stock.ChangeSellingPriceTb, Mode=TwoWay}"/>
@@ -94,6 +96,16 @@
                                 <TextBox IsReadOnly="True" PlaceholderText="ImageSource" Text="{Binding Stock.ChangeImageSourceTb, Mode=TwoWay}"/>
                                 <Button Content="..." Width="40" Command="{Binding BrowseChangeImageCommand}"/>
                             </StackPanel>
+                            <ComboBox Name="JohnHitler" Margin="2" PlaceholderText="{Binding Path=Text, ElementName=tcombo}" Width="320" SelectionChanged="Comboboxo_OnSelectionChanged">
+                                <ComboBoxItem Content="Øl"/>
+                                <ComboBoxItem Content="Sodavand"/>
+                                <ComboBoxItem Content="Cider"/>
+                                <ComboBoxItem Content="Drink"/>
+                                <ComboBoxItem Content="Flaske"/>
+                                <ComboBoxItem Content="Shot"/>
+                                <ComboBoxItem Content="Andet"/>
+                            </ComboBox>
+                            <TextBlock Name="tcombo" Text="{Binding Stock.ChangeTypeTb, Mode=TwoWay}" Visibility="Collapsed"/>
                         </StackPanel>
                     </StackPanel>
                     <Button Margin="20" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Center" Content="Ændre produkt" Command="{Binding ChangeProductCommand}"/>
@@ -209,7 +221,7 @@
             <PivotItem Header="Salg">
                 <Grid Margin="10">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="3*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
@@ -223,13 +235,13 @@
                                 <StackPanel Margin="10">
                                     <Image Source="{Binding ImageSource}" Width="100" Height="100"/>
                                     <StackPanel Orientation="Vertical">
-                                        <TextBlock FontWeight="Bold" Text="{Binding Name}"/>
+                                        <TextBlock Width="160" FontWeight="Bold" Text="{Binding Name}"/>
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock Text="kr."/>
                                             <TextBlock Text="{Binding SellingPrice}" Margin="2,0,2,0"/>
                                             <TextBlock Text=",-"/>
                                         </StackPanel>
-                                        <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                             <Button Background="#6CA0DC" Style="{StaticResource LeftRoundedButtonStyle}" Content="-" Command="{Binding DataContext.RemoveOneFromSaleCommand, ElementName=Bob}"/>
                                             <TextBox Name="AmountToBeSoldTB" BorderBrush="#6CA0DC" PlaceholderText="0" TextAlignment="Center" Text="{Binding AmountToBeSold, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                             <Button Background="#6CA0DC" Style="{StaticResource RightRoundedButtonStyle}" Content="+" Command="{Binding DataContext.AddOneToSaleCommand, ElementName=Bob}"/>
@@ -253,9 +265,10 @@
                         <Button Content="Reset Kvitering" Command="{Binding ResetReceiptsCommand}"/>
                     </StackPanel>
 
-                    <Button Style="{StaticResource RoundedButtonStyle}" Foreground="White" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Slet transaktion" Command="{Binding DeleteReceiptCommand}"  Margin="0,0,5,5"/>
+                    <Button Style="{StaticResource RoundedButtonStyle}" Foreground="White" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Slet 
+                            aktion" Command="{Binding DeleteReceiptCommand}"  Margin="0,0,5,5"/>
 
-                    <ListView Margin="30,30,30,0" Header="Transaktioner" Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Sale.Receipts}" SelectedItem="{Binding Sale.SelectedReceipt,Mode=TwoWay}">
+                    <ListView  Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Sale.Receipts}" SelectedItem="{Binding Sale.SelectedReceipt,Mode=TwoWay}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel>
@@ -303,8 +316,6 @@
             </PivotItem>
             <!--#endregion-->
 
-
-            
             <!--#region LagerRegion-->
             <PivotItem Header="Lager">
                 <Grid>
@@ -320,7 +331,7 @@
                                 <StackPanel Orientation="Horizontal" Margin="10">
                                     <Image Source="{Binding ImageSource}" Width="100" Height="100"/>
                                     <StackPanel Orientation="Vertical">
-                                        <TextBlock FontWeight="Bold" Text="{Binding Name}"/>
+                                        <TextBlock Width="160" FontWeight="Bold" Text="{Binding Name}"/>
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock Foreground="{Binding ForegroundColor}" Text="{Binding Amount}" HorizontalAlignment="Center"/>
                                             <TextBlock Foreground="{Binding ForegroundColor}" Text="stk"/>
@@ -458,11 +469,11 @@
 
                 <StackPanel Orientation="Horizontal" Margin="80" >
 
-                    <charting:Chart x:Name="ProfitStat" Width="650" >
-                        <charting:ColumnSeries Title="Salg Statistik" ItemsSource="{Binding StatList.StatList,Mode=TwoWay}" IndependentValuePath="ProfitType" DependentValuePath="TotalIncome"/>
+                    <charting:Chart x:Name="ProfitStat" Width="480" >
+                        <charting:ColumnSeries Title="" ItemsSource="{Binding StatList.StatList,Mode=TwoWay}" IndependentValuePath="ProfitType" DependentValuePath="TotalIncome"/>
                     </charting:Chart>
-                    <charting:Chart x:Name="ProductGraph" Width="650" >
-                        <charting:ColumnSeries Title="Solgte Produkter" ItemsSource="{Binding StatList.ProductGraphList,Mode=TwoWay}" IndependentValuePath="Name" DependentValuePath="AmountToBeSold"/>
+                    <charting:Chart x:Name="ProductGraph" Width="740" >
+                        <charting:BarSeries Title="" ItemsSource="{Binding StatList.ProductGraphList,Mode=TwoWay}" IndependentValuePath="Name" DependentValuePath="AmountToBeSold"/>
                     </charting:Chart>
                 </StackPanel>
             </PivotItem>

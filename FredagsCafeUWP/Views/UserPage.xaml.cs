@@ -99,5 +99,20 @@ namespace FredagsCafeUWP
 
             CoreApplication.Exit();
         }
+
+        private void Comboboxo_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Comboboxo.SelectedItem != null)
+            {
+                string temp = ((ComboBoxItem)Comboboxo.SelectedItem).Content.ToString();
+                tbcombo.Text = temp;
+            }
+            else if (JohnHitler.SelectedItem != null)
+            {
+                string temp2 = ((ComboBoxItem)JohnHitler.SelectedItem).Content.ToString();
+                tcombo.Text = temp2;
+            }
+
+        }
     }
 }

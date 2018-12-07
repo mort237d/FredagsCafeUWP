@@ -48,7 +48,11 @@ namespace FredagsCafeUWP
         public ObservableCollection<Product> ProductGraphList
         {
             get { return _productGraphList; }
-            set { _productGraphList = value; }
+            set
+            {
+                _productGraphList = value;
+                OnPropertyChanged();
+            }
         }
 
         #endregion
@@ -72,6 +76,11 @@ namespace FredagsCafeUWP
             Debug.WriteLine("Saving stats async...");
             await XmlReadWriteClass.SaveObjectToXml(StatList, "stats.xml");
             Debug.WriteLine("stats.count: " + StatList.Count);
+
+            Debug.WriteLine("Saving productStats async...");
+            await XmlReadWriteClass.SaveObjectToXml(ProductGraphList, "productStats.xml");
+            Debug.WriteLine("productStats.count: " + ProductGraphList.Count);
+
         }
 
         public async void LoadAsync()
@@ -85,7 +94,17 @@ namespace FredagsCafeUWP
             catch (Exception)
             {
                 StatList = new ObservableCollection<Statistics>();
-                
+            }
+
+            try
+            {
+                Debug.WriteLine("loading productStats async...");
+                ProductGraphList = await XmlReadWriteClass.ReadObjectFromXmlFileAsync<ObservableCollection<Product>>("productStats.xml");
+                Debug.WriteLine("productStats.count:" + ProductGraphList.Count);
+            }
+            catch (Exception)
+            {
+                ProductGraphList = new ObservableCollection<Product>();
             }
 
         }

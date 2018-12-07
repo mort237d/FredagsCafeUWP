@@ -200,6 +200,7 @@ namespace FredagsCafeUWP.Models.UserPage
             List<Product> tempGraphList = new List<Product>();
             bool tempGraphBool = false;
             _statListClass.ProductGraphList.Clear();
+            _statListClass.ProductGraphList.Add(new Product("",0));
             foreach (var receipt in Receipts)
             {
                 foreach (var basket in receipt.Basket)
@@ -216,26 +217,14 @@ namespace FredagsCafeUWP.Models.UserPage
                                 product.AmountToBeSold += basket.AmountToBeSold;
                                 tempGraphBool = true;
                             }
-                            
                         }
 
                         if (!tempGraphBool)
                         {
                             _statListClass.ProductGraphList.Add(new Product(basket.Name, basket.AmountToBeSold));
-                            
-
-                            //tempGraphList.Add(new Product(basket.Name, basket.AmountToBeSold));
                         }
                         else tempGraphBool = false;
                     }
-
-//                    foreach (var tempProduct in tempGraphList)
-//                    {
-//                        if (tempGraphList.Count != 0)
-//                        {
-//                            _statListClass.ProductGraphList.Add(new Product(tempProduct.Name, tempProduct.AmountToBeSold));
-//                        }
-//                    }
                 }
             }
         }
