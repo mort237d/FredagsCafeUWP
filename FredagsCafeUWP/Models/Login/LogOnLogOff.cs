@@ -148,7 +148,7 @@ namespace FredagsCafeUWP
             Debug.WriteLine("loginlogoutlist.count: " + LogInLogOutList.Count);
         }
 
-        public async Task LoadAsync()
+        public async void LoadAsync()
         {
             try
             {

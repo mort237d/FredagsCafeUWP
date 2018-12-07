@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.UI.Xaml.Documents;
 
 namespace FredagsCafeUWP.Models
 {
@@ -16,43 +11,53 @@ namespace FredagsCafeUWP.Models
         public string DeCrypt(string input)
         {
             string output = "";
-            foreach (var inputChar in input)
+
+            if (!string.IsNullOrEmpty(input))
             {
-                foreach (var character in alpha)
+                foreach (var inputChar in input)
                 {
-                    if (inputChar == character)
+                    foreach (var character in alpha)
                     {
-                        if (character == alpha.First()) output += alpha.Last();
-                        else output += alpha[alpha.IndexOf(character) - 1];
+                        if (inputChar == character)
+                        {
+                            if (character == alpha.First()) output += alpha.Last();
+                            else output += alpha[alpha.IndexOf(character) - 1];
+                        }
+                    }
+                    if (!alpha.Contains(inputChar))
+                    {
+                        output += inputChar;
                     }
                 }
             }
+            
             return output;
         }
 
         public string Encrypting(string input)
         {
             string output = "";
-            foreach (var inputChar in input)
-            {
-                foreach (var character in alpha)
-                {
-                    if (inputChar == character)
-                    {
-                        if (character == alpha.Last()) output += alpha.First();
 
-                        else output += alpha[alpha.IndexOf(character) + 1];
+            if (!string.IsNullOrEmpty(input))
+            {
+                foreach (var inputChar in input)
+                {
+                    foreach (var character in alpha)
+                    {
+                        if (inputChar == character)
+                        {
+                            if (character == alpha.Last()) output += alpha.First();
+                            else output += alpha[alpha.IndexOf(character) + 1];
+                        }
+                    }
+                    if (!alpha.Contains(inputChar))
+                    {
+                        output += inputChar;
                     }
                 }
             }
+            
             return output;
-        }
-        public void Test()
-        {
-            string temp = Encrypting("Daniel");
-            Debug.WriteLine(temp);
-            string temp2 = DeCrypt(temp);
-            Debug.WriteLine(temp2);
         }
     }
 }

@@ -360,7 +360,7 @@ namespace FredagsCafeUWP.Models.UserPage
             Debug.WriteLine("receipts.count: " + Receipts.Count);
         }
 
-        public async Task LoadAsync()
+        public async void LoadAsync()
         {
             try
             {
