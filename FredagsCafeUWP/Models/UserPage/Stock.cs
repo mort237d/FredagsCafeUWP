@@ -41,6 +41,7 @@ namespace FredagsCafeUWP.Models
         private string _changeSellingPriceTb;
         private string _changeAmountTb;
         private string _changeImageSourceTb = "";
+        private string _changeTypeTb;
 
         #endregion
 
@@ -232,7 +233,21 @@ namespace FredagsCafeUWP.Models
         public string AddTypeTb
         {
             get { return _addTypeTb; }
-            set { _addTypeTb = value; }
+            set
+            {
+                _addTypeTb = value; 
+                OnPropertyChanged();
+            }
+        }
+
+        public string ChangeTypeTb
+        {
+            get { return _changeTypeTb; }
+            set
+            {
+                _changeTypeTb = value; 
+                OnPropertyChanged();
+            }
         }
 
         #endregion
@@ -240,7 +255,6 @@ namespace FredagsCafeUWP.Models
         #region ButtonMethods
         public async void AddProductToObList()
         {
-            SortOCByType(Products);
 
             bool productExist = false;
             if (AddNameTb != null)
@@ -448,6 +462,8 @@ namespace FredagsCafeUWP.Models
                 ChangeSellingPriceTb = SelectedProduct.SellingPrice.ToString();
                 ChangeAmountTb = SelectedProduct.Amount.ToString();
                 ChangeImageSourceTb = SelectedProduct.ImageSource;
+                ChangeTypeTb = SelectedProduct.Category.ToString();
+
 
                 ShowChangeProductPopUp = true;
             }
@@ -457,21 +473,45 @@ namespace FredagsCafeUWP.Models
         public async void ChangeProductOfObList()
         {
             SelectedProduct.Name = ChangeNameTb;
-            if (double.TryParse(ChangeBuyingPriceTb, out double doubleChangeBuyingPriceTb))
-                SelectedProduct.BuyingPrice = doubleChangeBuyingPriceTb;
+            if (double.TryParse(ChangeBuyingPriceTb, out double doubleChangeBuyingPriceTb)) SelectedProduct.BuyingPrice = doubleChangeBuyingPriceTb;
             else await _message.Error("Forkert input", "Købspris skal være et tal.");
-            if (double.TryParse(ChangeSellingPriceTb, out double doubleChangeSellingPriceTb))
-                SelectedProduct.SellingPrice = doubleChangeSellingPriceTb;
+            if (double.TryParse(ChangeSellingPriceTb, out double doubleChangeSellingPriceTb)) SelectedProduct.SellingPrice = doubleChangeSellingPriceTb;
             else await _message.Error("Forkert input", "Salgspris skal være et tal.");
             if (int.TryParse(ChangeAmountTb, out int intChangeAmountTb)) SelectedProduct.Amount = intChangeAmountTb;
             else await _message.Error("Forkert input", "Antal skal være et hel tal.");
             SelectedProduct.ImageSource = ChangeImageSourceTb;
+
+            switch (ChangeTypeTb)
+            {
+                case "Øl":
+                    SelectedProduct.Category = EnumCategory.ProductCategory.Beer;
+                    break;
+                case "Sodavand":
+                    SelectedProduct.Category = EnumCategory.ProductCategory.Soda;
+                    break;
+                case "Cider":
+                    SelectedProduct.Category = EnumCategory.ProductCategory.Cider;
+                    break;
+                case "Drink":
+                    SelectedProduct.Category = EnumCategory.ProductCategory.Drink;
+                    break;
+                case "Flaske":
+                    SelectedProduct.Category = EnumCategory.ProductCategory.Bottle;
+                    break;
+                case "Shot":
+                    SelectedProduct.Category = EnumCategory.ProductCategory.Shot;
+                    break;
+                case "Andet":
+                    SelectedProduct.Category = EnumCategory.ProductCategory.Other;
+                    break;
+            }
 
             ChangeNameTb = null;
             ChangeBuyingPriceTb = null;
             ChangeSellingPriceTb = null;
             ChangeAmountTb = null;
             ChangeImageSourceTb = null;
+            ChangeTypeTb = null;  //Todo Combobox selected item bliver ikke placeholder text begrund af underlig binding
 
             ShowChangeProductPopUp = false;
         }
@@ -485,18 +525,21 @@ namespace FredagsCafeUWP.Models
             else await _message.Error("Intet produkt valgt", "Vælg venligst et produkt.");
         }
 
-        public void SortOCByType(ObservableCollection<Product> observableCollection)
+        public ObservableCollection<Product> SortOCByType(ObservableCollection<Product> inputObservableCollection)
         {
-            ObservableCollection<Product> temp = new ObservableCollection<Product>();
-            foreach (var product in observableCollection)
+            ObservableCollection<Product> outPutObservableCollection = new ObservableCollection<Product>();
+            foreach (string category in Enum.GetNames(typeof(EnumCategory.ProductCategory)))
             {
-
+                foreach (var product in inputObservableCollection)
+                {
+                    if (product.Category.ToString() == category)
+                    {
+                        outPutObservableCollection.Add(product);
+                    }
+                }
             }
 
-            foreach (var VARIABLE in temp)
-            {
-                Debug.WriteLine(VARIABLE.Name);
-            }
+            return outPutObservableCollection;
         }
         #endregion
 
