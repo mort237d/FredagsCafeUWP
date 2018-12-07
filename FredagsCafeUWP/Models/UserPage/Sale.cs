@@ -212,26 +212,14 @@ namespace FredagsCafeUWP
                                 product.AmountToBeSold += basket.AmountToBeSold;
                                 tempGraphBool = true;
                             }
-                            
                         }
 
                         if (!tempGraphBool)
                         {
                             _statListClass.ProductGraphList.Add(new Product(basket.Name, basket.AmountToBeSold));
-                            
-
-                            //tempGraphList.Add(new Product(basket.Name, basket.AmountToBeSold));
                         }
                         else tempGraphBool = false;
                     }
-
-//                    foreach (var tempProduct in tempGraphList)
-//                    {
-//                        if (tempGraphList.Count != 0)
-//                        {
-//                            _statListClass.ProductGraphList.Add(new Product(tempProduct.Name, tempProduct.AmountToBeSold));
-//                        }
-//                    }
                 }
             }
         }
