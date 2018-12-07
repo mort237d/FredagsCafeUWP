@@ -83,7 +83,7 @@ namespace FredagsCafeUWP
 
         }
 
-        public async Task LoadAsync()
+        public async void LoadAsync()
         {
             try
             {
