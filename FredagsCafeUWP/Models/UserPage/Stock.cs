@@ -240,7 +240,6 @@ namespace FredagsCafeUWP.Models
         #region ButtonMethods
         public async void AddProductToObList()
         {
-            SortOCByType(Products);
 
             bool productExist = false;
             if (AddNameTb != null)
@@ -485,18 +484,21 @@ namespace FredagsCafeUWP.Models
             else await _message.Error("Intet produkt valgt", "Vælg venligst et produkt.");
         }
 
-        public void SortOCByType(ObservableCollection<Product> observableCollection)
+        public ObservableCollection<Product> SortOCByType(ObservableCollection<Product> inputObservableCollection)
         {
             ObservableCollection<Product> temp = new ObservableCollection<Product>();
-            foreach (var product in observableCollection)
+            foreach (string category in Enum.GetNames(typeof(EnumCategory.ProductCategory)))
             {
-
+                foreach (var product in inputObservableCollection)
+                {
+                    if (product.Category.ToString() == category)
+                    {
+                        temp.Add(product);
+                    }
+                }
             }
 
-            foreach (var VARIABLE in temp)
-            {
-                Debug.WriteLine(VARIABLE.Name);
-            }
+            return temp;
         }
         #endregion
 
