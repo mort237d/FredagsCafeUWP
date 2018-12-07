@@ -552,7 +552,7 @@ namespace FredagsCafeUWP.Models
             Debug.WriteLine("products.count: " + Products.Count);
         }
 
-        public async Task LoadAsync()
+        public async void LoadAsync()
         {
             try
             {

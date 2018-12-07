@@ -70,6 +70,9 @@ namespace FredagsCafeUWP.ViewModels
 
         private RelayCommand _eventImageBrowserCommand;
 
+        private RelayCommand _changeAdminCommand;
+
+
         #endregion
 
         public UserViewModel()
@@ -120,6 +123,8 @@ namespace FredagsCafeUWP.ViewModels
             ResetReceiptsCommand = new RelayCommand(Sale.ResetReceipt);
 
             ChangeSettingsCommand = new RelayCommand(AccountSettingsClass.ChangeSettings);
+
+            ChangeAdminCommand = new RelayCommand(Administration.ChangeAdmin);
         }
 
         #region Props
@@ -367,10 +372,17 @@ namespace FredagsCafeUWP.ViewModels
             set { _changeSettingsCommand = value; }
         }
 
+
         public RelayCommand EventImageBrowserCommand
         {
             get { return _eventImageBrowserCommand; }
             set { _eventImageBrowserCommand = value; }
+        }
+
+        public RelayCommand ChangeAdminCommand
+        {
+            get { return _changeAdminCommand; }
+            set { _changeAdminCommand = value; }
         }
 
         #endregion
