@@ -426,6 +426,7 @@ namespace FredagsCafeUWP.Models
         public async void BrowseAddImageButton()
         {
             AddImageSourceTb = await BrowseAddImageWindowTask();
+            ShowAddProductPopUp = true;
         }
 
         public async Task<string> BrowseChangeImageWindowTask()
@@ -446,6 +447,7 @@ namespace FredagsCafeUWP.Models
         public async void BrowseChangeImageButton()
         {
             ChangeImageSourceTb = await BrowseChangeImageWindowTask();
+            ShowChangeProductPopUp = true;
         }
 
         public void ShowAddProductPopUpMethod()

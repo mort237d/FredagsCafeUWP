@@ -342,12 +342,6 @@ namespace FredagsCafeUWP.ViewModels
             set { _resetReceiptsCommand = value; }
         }
 
-        //public ChangeProductClass ChangeProductClass
-        //{
-        //    get { return _changeProductClass; }
-        //    set { _changeProductClass = value; }
-        //}
-
         public RelayCommand ShowAddEventUserPopUpCommand
         {
             get { return _showAddEventUserPopUpCommand; }
@@ -398,8 +392,6 @@ namespace FredagsCafeUWP.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
-
-        //ToDo ( ͡° ͜ʖ ͡°)
-        //Todo make Morten STFU and be nice
+        
     }
 }
