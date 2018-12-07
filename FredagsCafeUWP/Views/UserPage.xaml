@@ -95,7 +95,7 @@
                                 <TextBox IsReadOnly="True" PlaceholderText="ImageSource" Text="{Binding Stock.ChangeImageSourceTb, Mode=TwoWay}"/>
                                 <Button Content="..." Width="40" Command="{Binding BrowseChangeImageCommand}"/>
                             </StackPanel>
-                            <ComboBox Name="JohnHitler" Margin="2" PlaceholderText="{Binding Path=Text, ElementName=tcombo, UpdateSourceTrigger=PropertyChanged}" Width="320" SelectionChanged="Comboboxo_OnSelectionChanged">
+                            <ComboBox Name="JohnHitler" Margin="2" PlaceholderText="{Binding Path=Text, ElementName=tcombo}" Width="320" SelectionChanged="Comboboxo_OnSelectionChanged">
                                 <ComboBoxItem Content="Øl"/>
                                 <ComboBoxItem Content="Sodavand"/>
                                 <ComboBoxItem Content="Cider"/>
@@ -104,7 +104,7 @@
                                 <ComboBoxItem Content="Shot"/>
                                 <ComboBoxItem Content="Andet"/>
                             </ComboBox>
-                            <TextBlock  Name="tcombo" Text="{Binding Stock.ChangeTypeTb, Mode=TwoWay}" Visibility="Collapsed"/>
+                            <TextBlock Name="tcombo" Text="{Binding Stock.ChangeTypeTb, Mode=TwoWay}" Visibility="Collapsed"/>
                         </StackPanel>
                     </StackPanel>
                     <Button Margin="20" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Center" Content="Ændre produkt" Command="{Binding ChangeProductCommand}"/>
