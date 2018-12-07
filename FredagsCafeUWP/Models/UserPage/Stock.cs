@@ -281,25 +281,25 @@ namespace FredagsCafeUWP.Models
                                     switch (AddTypeTb)
                                     {
                                         case "Øl":
-                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", ColorRed, EnumCategory.ProductCategory.Beer));
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", ColorRed, EnumCategory.ProductCategoryBeer.Beer));
                                             break;
                                         case "Sodavand":
-                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", ColorRed, EnumCategory.ProductCategory.Soda));
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", ColorRed, EnumCategory.ProductCategoryBeer.Soda));
                                             break;
                                         case "Cider":
-                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", ColorRed, EnumCategory.ProductCategory.Cider));
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", ColorRed, EnumCategory.ProductCategoryBeer.Cider));
                                             break;
                                         case "Drink":
-                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", ColorRed, EnumCategory.ProductCategory.Drink));
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", ColorRed, EnumCategory.ProductCategoryBeer.Drink));
                                             break;
                                         case "Flaske":
-                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", ColorRed, EnumCategory.ProductCategory.Bottle));
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", ColorRed, EnumCategory.ProductCategoryBeer.Bottle));
                                             break;
                                         case "Shot":
-                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", ColorRed, EnumCategory.ProductCategory.Shot));
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", ColorRed, EnumCategory.ProductCategoryBeer.Shot));
                                             break;
                                         case "Andet":
-                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", ColorRed, EnumCategory.ProductCategory.Other));
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", ColorRed, EnumCategory.ProductCategoryBeer.Other));
                                             break;
                                     }
                                 }
@@ -308,25 +308,25 @@ namespace FredagsCafeUWP.Models
                                     switch (AddTypeTb)
                                     {
                                         case "Øl":
-                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", ColorGreen, EnumCategory.ProductCategory.Beer));
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", ColorGreen, EnumCategory.ProductCategoryBeer.Beer));
                                             break;
                                         case "Sodavand":
-                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", ColorGreen, EnumCategory.ProductCategory.Soda));
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", ColorGreen, EnumCategory.ProductCategoryBeer.Soda));
                                             break;
                                         case "Cider":
-                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", ColorGreen, EnumCategory.ProductCategory.Cider));
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", ColorGreen, EnumCategory.ProductCategoryBeer.Cider));
                                             break;
                                         case "Drink":
-                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", ColorGreen, EnumCategory.ProductCategory.Drink));
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", ColorGreen, EnumCategory.ProductCategoryBeer.Drink));
                                             break;
                                         case "Flaske":
-                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", ColorGreen, EnumCategory.ProductCategory.Bottle));
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", ColorGreen, EnumCategory.ProductCategoryBeer.Bottle));
                                             break;
                                         case "Shot":
-                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", ColorGreen, EnumCategory.ProductCategory.Shot));
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", ColorGreen, EnumCategory.ProductCategoryBeer.Shot));
                                             break;
                                         case "Andet":
-                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", ColorGreen, EnumCategory.ProductCategory.Other));
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", ColorGreen, EnumCategory.ProductCategoryBeer.Other));
                                             break;
                                     }
                                 }
@@ -338,25 +338,25 @@ namespace FredagsCafeUWP.Models
                                     switch (AddTypeTb)
                                     {
                                         case "Øl":
-                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, ColorRed, EnumCategory.ProductCategory.Beer));
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, ColorRed, EnumCategory.ProductCategoryBeer.Beer));
                                             break;
                                         case "Sodavand":
-                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, ColorRed, EnumCategory.ProductCategory.Soda));
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, ColorRed, EnumCategory.ProductCategoryBeer.Soda));
                                             break;
                                         case "Cider":
-                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, ColorRed, EnumCategory.ProductCategory.Cider));
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, ColorRed, EnumCategory.ProductCategoryBeer.Cider));
                                             break;
                                         case "Drink":
-                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, ColorRed, EnumCategory.ProductCategory.Drink));
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, ColorRed, EnumCategory.ProductCategoryBeer.Drink));
                                             break;
                                         case "Flaske":
-                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, ColorRed, EnumCategory.ProductCategory.Bottle));
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, ColorRed, EnumCategory.ProductCategoryBeer.Bottle));
                                             break;
                                         case "Shot":
-                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, ColorRed, EnumCategory.ProductCategory.Shot));
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, ColorRed, EnumCategory.ProductCategoryBeer.Shot));
                                             break;
                                         case "Andet":
-                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, ColorRed, EnumCategory.ProductCategory.Other));
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, ColorRed, EnumCategory.ProductCategoryBeer.Other));
                                             break;
                                     }
                                 }
@@ -366,25 +366,25 @@ namespace FredagsCafeUWP.Models
                                     switch (AddTypeTb)
                                     {
                                         case "Øl":
-                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, ColorGreen, EnumCategory.ProductCategory.Beer));
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, ColorGreen, EnumCategory.ProductCategoryBeer.Beer));
                                             break;
                                         case "Sodavand":
-                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, ColorGreen, EnumCategory.ProductCategory.Soda));
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, ColorGreen, EnumCategory.ProductCategoryBeer.Soda));
                                             break;
                                         case "Cider":
-                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, ColorGreen, EnumCategory.ProductCategory.Cider));
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, ColorGreen, EnumCategory.ProductCategoryBeer.Cider));
                                             break;
                                         case "Drink":
-                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, ColorGreen, EnumCategory.ProductCategory.Drink));
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, ColorGreen, EnumCategory.ProductCategoryBeer.Drink));
                                             break;
                                         case "Flaske":
-                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, ColorGreen, EnumCategory.ProductCategory.Bottle));
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, ColorGreen, EnumCategory.ProductCategoryBeer.Bottle));
                                             break;
                                         case "Shot":
-                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, ColorGreen, EnumCategory.ProductCategory.Shot));
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, ColorGreen, EnumCategory.ProductCategoryBeer.Shot));
                                             break;
                                         case "Andet":
-                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, ColorGreen, EnumCategory.ProductCategory.Other));
+                                            Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, ColorGreen, EnumCategory.ProductCategoryBeer.Other));
                                             break;
                                     }
                                 }
@@ -462,7 +462,7 @@ namespace FredagsCafeUWP.Models
                 ChangeSellingPriceTb = SelectedProduct.SellingPrice.ToString();
                 ChangeAmountTb = SelectedProduct.Amount.ToString();
                 ChangeImageSourceTb = SelectedProduct.ImageSource;
-                ChangeTypeTb = SelectedProduct.Category.ToString();
+                ChangeTypeTb = SelectedProduct.CategoryBeer.ToString();
 
 
                 ShowChangeProductPopUp = true;
@@ -484,25 +484,25 @@ namespace FredagsCafeUWP.Models
             switch (ChangeTypeTb)
             {
                 case "Øl":
-                    SelectedProduct.Category = EnumCategory.ProductCategory.Beer;
+                    SelectedProduct.CategoryBeer = EnumCategory.ProductCategoryBeer.Beer;
                     break;
                 case "Sodavand":
-                    SelectedProduct.Category = EnumCategory.ProductCategory.Soda;
+                    SelectedProduct.CategoryBeer = EnumCategory.ProductCategoryBeer.Soda;
                     break;
                 case "Cider":
-                    SelectedProduct.Category = EnumCategory.ProductCategory.Cider;
+                    SelectedProduct.CategoryBeer = EnumCategory.ProductCategoryBeer.Cider;
                     break;
                 case "Drink":
-                    SelectedProduct.Category = EnumCategory.ProductCategory.Drink;
+                    SelectedProduct.CategoryBeer = EnumCategory.ProductCategoryBeer.Drink;
                     break;
                 case "Flaske":
-                    SelectedProduct.Category = EnumCategory.ProductCategory.Bottle;
+                    SelectedProduct.CategoryBeer = EnumCategory.ProductCategoryBeer.Bottle;
                     break;
                 case "Shot":
-                    SelectedProduct.Category = EnumCategory.ProductCategory.Shot;
+                    SelectedProduct.CategoryBeer = EnumCategory.ProductCategoryBeer.Shot;
                     break;
                 case "Andet":
-                    SelectedProduct.Category = EnumCategory.ProductCategory.Other;
+                    SelectedProduct.CategoryBeer = EnumCategory.ProductCategoryBeer.Other;
                     break;
             }
 
@@ -528,11 +528,149 @@ namespace FredagsCafeUWP.Models
         public ObservableCollection<Product> SortOCByType(ObservableCollection<Product> inputObservableCollection)
         {
             ObservableCollection<Product> outPutObservableCollection = new ObservableCollection<Product>();
-            foreach (string category in Enum.GetNames(typeof(EnumCategory.ProductCategory)))
+            foreach (string category in Enum.GetNames(typeof(EnumCategory.ProductCategoryBeer)))
             {
                 foreach (var product in inputObservableCollection)
                 {
-                    if (product.Category.ToString() == category)
+                    if (product.CategoryBeer.ToString() == category)
+                    {
+                        outPutObservableCollection.Add(product);
+                    }
+                }
+            }
+
+            return outPutObservableCollection;
+        }
+
+
+        public ObservableCollection<Product> Test(ObservableCollection<Product> inputObservableCollection, int whereToBegin)
+        {
+            ObservableCollection<Product> outPutObservableCollection = new ObservableCollection<Product>();
+            switch (whereToBegin)
+            {
+                case 1: outPutObservableCollection = TestBeer(inputObservableCollection);
+                    break;
+                case 2: outPutObservableCollection = TestBottle(inputObservableCollection);
+                    break;
+                case 3: outPutObservableCollection = TestCider(inputObservableCollection);
+                    break;
+                case 4: outPutObservableCollection = TestDrink(inputObservableCollection);
+                    break;
+                case 5: outPutObservableCollection = TestOther(inputObservableCollection);
+                    break;
+                case 6: outPutObservableCollection = TestShot(inputObservableCollection);
+                    break;
+                case 7: outPutObservableCollection = TestSoda(inputObservableCollection);
+                    break;
+            } 
+
+            return outPutObservableCollection;
+        }
+
+        private ObservableCollection<Product> TestBeer(ObservableCollection<Product> inputObservableCollection)
+        {
+            ObservableCollection<Product> outPutObservableCollection = new ObservableCollection<Product>();
+            foreach (string category in Enum.GetNames(typeof(EnumCategory.ProductCategoryBeer)))
+            {
+                foreach (var product in inputObservableCollection)
+                {
+                    if (product.CategoryBeer.ToString() == category)
+                    {
+                        outPutObservableCollection.Add(product);
+                    }
+                }
+            }
+
+            return outPutObservableCollection;
+        }
+        private ObservableCollection<Product> TestBottle(ObservableCollection<Product> inputObservableCollection)
+        {
+            ObservableCollection<Product> outPutObservableCollection = new ObservableCollection<Product>();
+            foreach (string category in Enum.GetNames(typeof(EnumCategory.ProductCategoryBottle)))
+            {
+                foreach (var product in inputObservableCollection)
+                {
+                    if (product.CategoryBeer.ToString() == category)
+                    {
+                        outPutObservableCollection.Add(product);
+                    }
+                }
+            }
+
+            return outPutObservableCollection;
+        }
+        private ObservableCollection<Product> TestCider(ObservableCollection<Product> inputObservableCollection)
+        {
+            ObservableCollection<Product> outPutObservableCollection = new ObservableCollection<Product>();
+            foreach (string category in Enum.GetNames(typeof(EnumCategory.ProductCategoryCider)))
+            {
+                foreach (var product in inputObservableCollection)
+                {
+                    if (product.CategoryBeer.ToString() == category)
+                    {
+                        outPutObservableCollection.Add(product);
+                    }
+                }
+            }
+
+            return outPutObservableCollection;
+        }
+        private ObservableCollection<Product> TestDrink(ObservableCollection<Product> inputObservableCollection)
+        {
+            ObservableCollection<Product> outPutObservableCollection = new ObservableCollection<Product>();
+            foreach (string category in Enum.GetNames(typeof(EnumCategory.ProductCategoryDrink)))
+            {
+                foreach (var product in inputObservableCollection)
+                {
+                    if (product.CategoryBeer.ToString() == category)
+                    {
+                        outPutObservableCollection.Add(product);
+                    }
+                }
+            }
+
+            return outPutObservableCollection;
+        }
+        private ObservableCollection<Product> TestOther(ObservableCollection<Product> inputObservableCollection)
+        {
+            ObservableCollection<Product> outPutObservableCollection = new ObservableCollection<Product>();
+            foreach (string category in Enum.GetNames(typeof(EnumCategory.ProductCategoryOther)))
+            {
+                foreach (var product in inputObservableCollection)
+                {
+                    if (product.CategoryBeer.ToString() == category)
+                    {
+                        outPutObservableCollection.Add(product);
+                    }
+                }
+            }
+
+            return outPutObservableCollection;
+        }
+        private ObservableCollection<Product> TestShot(ObservableCollection<Product> inputObservableCollection)
+        {
+            ObservableCollection<Product> outPutObservableCollection = new ObservableCollection<Product>();
+            foreach (string category in Enum.GetNames(typeof(EnumCategory.ProductCategoryShot)))
+            {
+                foreach (var product in inputObservableCollection)
+                {
+                    if (product.CategoryBeer.ToString() == category)
+                    {
+                        outPutObservableCollection.Add(product);
+                    }
+                }
+            }
+
+            return outPutObservableCollection;
+        }
+        private ObservableCollection<Product> TestSoda(ObservableCollection<Product> inputObservableCollection)
+        {
+            ObservableCollection<Product> outPutObservableCollection = new ObservableCollection<Product>();
+            foreach (string category in Enum.GetNames(typeof(EnumCategory.ProductCategorySoda)))
+            {
+                foreach (var product in inputObservableCollection)
+                {
+                    if (product.CategoryBeer.ToString() == category)
                     {
                         outPutObservableCollection.Add(product);
                     }
@@ -564,18 +702,18 @@ namespace FredagsCafeUWP.Models
             {
                 Products = new ObservableCollection<Product>()
                 {
-                    new Product(2, 5, "Tuborg Classic", 48, 0, "ProductImages/TuborgClassic.png", ColorGreen, EnumCategory.ProductCategory.Beer),
-                    new Product(2, 5, "Grøn Tuborg", 48, 0, "ProductImages/GrønTuborg.png", ColorGreen, EnumCategory.ProductCategory.Beer),
-                    new Product(2, 5, "Tuborg Gylden Dame", 48, 0, "ProductImages/TuborgGuldDame.png", ColorGreen, EnumCategory.ProductCategory.Beer),
-                    new Product(2, 5, "Carlsberg", 48, 0, "ProductImages/Carlsberg.png", ColorGreen, EnumCategory.ProductCategory.Beer),
-                    new Product(2, 5, "Cola Zero", 48, 0, "ProductImages/ColaZero.png", ColorGreen, EnumCategory.ProductCategory.Soda),
-                    new Product(2, 5, "Cola", 48, 0, "ProductImages/Cola.png", ColorGreen, EnumCategory.ProductCategory.Soda),
-                    new Product(2, 5, "Mokai", 48, 0, "ProductImages/Mokai.png", ColorGreen, EnumCategory.ProductCategory.Cider),
-                    new Product(2, 5, "Mokai Jordbær Lime", 48, 0, "ProductImages/MokaiStrawberryLime.png", ColorGreen, EnumCategory.ProductCategory.Cider),
-                    new Product(2, 5, "Somersby Apple Cider", 48, 0, "ProductImages/SomersbyApple.png", ColorGreen, EnumCategory.ProductCategory.Cider),
-                    new Product(2, 5, "Somersby Pear Cider", 48, 0, "ProductImages/SomersbyPear.png", ColorGreen, EnumCategory.ProductCategory.Cider),
-                    new Product(2, 5, "Breezer", 48, 0, "ProductImages/Breezer.png", ColorGreen, EnumCategory.ProductCategory.Drink),
-                    new Product(2, 5, "Fanta", 48, 0, "ProductImages/Fanta.png", ColorGreen, EnumCategory.ProductCategory.Soda)
+                    new Product(2, 5, "Tuborg Classic", 48, 0, "ProductImages/TuborgClassic.png", ColorGreen, EnumCategory.ProductCategoryBeer.Beer),
+                    new Product(2, 5, "Grøn Tuborg", 48, 0, "ProductImages/GrønTuborg.png", ColorGreen, EnumCategory.ProductCategoryBeer.Beer),
+                    new Product(2, 5, "Tuborg Gylden Dame", 48, 0, "ProductImages/TuborgGuldDame.png", ColorGreen, EnumCategory.ProductCategoryBeer.Beer),
+                    new Product(2, 5, "Carlsberg", 48, 0, "ProductImages/Carlsberg.png", ColorGreen, EnumCategory.ProductCategoryBeer.Beer),
+                    new Product(2, 5, "Cola Zero", 48, 0, "ProductImages/ColaZero.png", ColorGreen, EnumCategory.ProductCategoryBeer.Soda),
+                    new Product(2, 5, "Cola", 48, 0, "ProductImages/Cola.png", ColorGreen, EnumCategory.ProductCategoryBeer.Soda),
+                    new Product(2, 5, "Mokai", 48, 0, "ProductImages/Mokai.png", ColorGreen, EnumCategory.ProductCategoryBeer.Cider),
+                    new Product(2, 5, "Mokai Jordbær Lime", 48, 0, "ProductImages/MokaiStrawberryLime.png", ColorGreen, EnumCategory.ProductCategoryBeer.Cider),
+                    new Product(2, 5, "Somersby Apple Cider", 48, 0, "ProductImages/SomersbyApple.png", ColorGreen, EnumCategory.ProductCategoryBeer.Cider),
+                    new Product(2, 5, "Somersby Pear Cider", 48, 0, "ProductImages/SomersbyPear.png", ColorGreen, EnumCategory.ProductCategoryBeer.Cider),
+                    new Product(2, 5, "Breezer", 48, 0, "ProductImages/Breezer.png", ColorGreen, EnumCategory.ProductCategoryBeer.Drink),
+                    new Product(2, 5, "Fanta", 48, 0, "ProductImages/Fanta.png", ColorGreen, EnumCategory.ProductCategoryBeer.Soda)
                 };
                 
             }

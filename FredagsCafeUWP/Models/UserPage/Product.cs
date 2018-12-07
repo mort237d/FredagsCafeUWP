@@ -17,12 +17,12 @@ namespace FredagsCafeUWP.Models
         private int _amountToBeSold;
         private int _discountAtThisAmount;
         private double _discountPricePerItem;
-        private EnumCategory.ProductCategory _category;
+        private EnumCategory.ProductCategoryBeer _categoryBeer;
 
         #endregion
 
         #region Constructors
-        public Product(double buyingPrice, double sellingPrice, string name, int amount, int amountSold, string imageSource, string foregroundColor, EnumCategory.ProductCategory productCategory )
+        public Product(double buyingPrice, double sellingPrice, string name, int amount, int amountSold, string imageSource, string foregroundColor, EnumCategory.ProductCategoryBeer productCategoryBeer )
         {
             BuyingPrice = buyingPrice;
             SellingPrice = sellingPrice;
@@ -31,7 +31,7 @@ namespace FredagsCafeUWP.Models
             AmountSold = amountSold;
             ImageSource = imageSource;
             ForegroundColor = foregroundColor;
-            Category = productCategory;
+            CategoryBeer = productCategoryBeer;
         }
 
         public Product(double buyingPrice, double sellingPrice, string name, int amount, int amountSold, string imageSource, string foregroundColor, int amountToBeSold)
@@ -160,10 +160,10 @@ namespace FredagsCafeUWP.Models
             }
         }
 
-        public EnumCategory.ProductCategory Category
+        public EnumCategory.ProductCategoryBeer CategoryBeer
         {
-            get { return _category; }
-            set { _category = value; }
+            get { return _categoryBeer; }
+            set { _categoryBeer = value; }
         }
 
         #endregion
