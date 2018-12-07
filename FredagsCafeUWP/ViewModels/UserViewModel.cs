@@ -68,6 +68,8 @@ namespace FredagsCafeUWP.ViewModels
 
         private RelayCommand _resetReceiptsCommand;
 
+        private RelayCommand _eventImageBrowserCommand;
+
         #endregion
 
         public UserViewModel()
@@ -109,6 +111,8 @@ namespace FredagsCafeUWP.ViewModels
 
             BrowseAddImageCommand = new RelayCommand(Stock.BrowseAddImageButton);
             BrowseChangeImageCommand = new RelayCommand(Stock.BrowseChangeImageButton);
+
+            EventImageBrowserCommand = new RelayCommand(EventPage.BrowseAddImageButton);
 
             AddProductCommand = new RelayCommand(Stock.AddProductToObList);
             ChangeProductCommand = new RelayCommand(Stock.ChangeProductOfObList);
@@ -361,6 +365,12 @@ namespace FredagsCafeUWP.ViewModels
         {
             get { return _changeSettingsCommand; }
             set { _changeSettingsCommand = value; }
+        }
+
+        public RelayCommand EventImageBrowserCommand
+        {
+            get { return _eventImageBrowserCommand; }
+            set { _eventImageBrowserCommand = value; }
         }
 
         #endregion

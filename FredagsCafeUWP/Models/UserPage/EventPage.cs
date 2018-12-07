@@ -4,6 +4,9 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using Windows.Storage;
+using Windows.Storage.Pickers;
+using Windows.UI.Xaml.Controls;
 using FredagsCafeUWP.Annotations;
 
 namespace FredagsCafeUWP.Models
@@ -25,6 +28,8 @@ namespace FredagsCafeUWP.Models
         private string _eventLocationTb;
         private string _eventDescriptionTb;
         private string _eventMaxUsersTb;
+        private string _eventImageTb;
+        private string _eventDateTimeTb;
 
         private bool _showAddEventPopUp = false;
         private bool _showAddEventUserPopUp = false;
@@ -163,6 +168,26 @@ namespace FredagsCafeUWP.Models
             }
         }
 
+        public string EventImageTb
+        {
+            get { return _eventImageTb; }
+            set
+            {
+                _eventImageTb = value; 
+                OnPropertyChanged();
+            }
+        }
+
+        public string EventDateTimeTb
+        {
+            get { return _eventDateTimeTb; }
+            set
+            {
+                _eventDateTimeTb = value; 
+                OnPropertyChanged();
+            }
+        }
+
         public void ShowAddEventPopUpMethod()
         {
             ShowAddEventPopUp = true;
@@ -225,12 +250,19 @@ namespace FredagsCafeUWP.Models
             {
                 if (int.TryParse(EventMaxUsersTb, out int intEventMaxUsersTb))
                 {
-                    Events.Add(new Event(EventNameTb, EventLocationTb, EventDescriptionTb, EventMaxUsersTb, new ObservableCollection<EventUser>()));
+                    if (EventImageTb != null || EventImageTb == "")
+                    {
+                        Events.Add(new Event(EventNameTb, EventLocationTb, EventDescriptionTb, EventMaxUsersTb, EventImageTb, EventDateTimeTb, new ObservableCollection<EventUser>()));
+                    }
+                    else Events.Add(new Event(EventNameTb, EventLocationTb, EventDescriptionTb, EventMaxUsersTb, "EventImages/Event.jpg", EventDateTimeTb, new ObservableCollection<EventUser>()));
+
 
                     EventNameTb = null;
                     EventLocationTb = null;
                     EventDescriptionTb = null;
                     EventMaxUsersTb = null;
+                    EventDateTimeTb = null;
+                    EventImageTb = null;
 
                     ShowAddEventPopUp = false;
                 }
@@ -269,7 +301,7 @@ namespace FredagsCafeUWP.Models
             {
                 Events = new ObservableCollection<Event>()
                 {
-                    new Event("Øl-Bowling", "Haven", "Husk bajer!", "12", new ObservableCollection<EventUser>()
+                    new Event("Øl-Bowling", "Haven", "Husk bajer!", "12", "EventImages/Event.jpg", "Today", new ObservableCollection<EventUser>()
                     {
                         new EventUser("Morten", "@edu.easj.dk"),
                         new EventUser("Lucas", "@edu.easj.dk")
@@ -278,6 +310,27 @@ namespace FredagsCafeUWP.Models
             }
 
         }
+
+        public async void BrowseAddImageButton()
+        {
+            EventImageTb = await BrowseAddImageWindowTask();
+        }
+
+        public async Task<string> BrowseAddImageWindowTask()
+        {
+            FileOpenPicker openPicker = new FileOpenPicker();
+            openPicker.ViewMode = PickerViewMode.Thumbnail;
+            openPicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+            openPicker.FileTypeFilter.Add(".jpg");
+            openPicker.FileTypeFilter.Add(".jpeg");
+            openPicker.FileTypeFilter.Add(".png");
+            TextBlock outputTextBlock = new TextBlock();
+
+            StorageFile file = await openPicker.PickSingleFileAsync();
+            if (file != null) return outputTextBlock.Text = "EventImages/" + file.Name;
+            else return outputTextBlock.Text = "";
+        }
+
         #endregion
 
         #region INotify

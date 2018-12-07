@@ -154,6 +154,11 @@
                     <TextBox Margin="2" Text="{Binding EventPage.EventLocationTb, Mode=TwoWay}" PlaceholderText="Placering"/>
                     <TextBox Margin="2" Text="{Binding EventPage.EventDescriptionTb, Mode=TwoWay}" PlaceholderText="Beskrivelse"/>
                     <TextBox Margin="2" Text="{Binding EventPage.EventMaxUsersTb, Mode=TwoWay}" PlaceholderText="Maks antal deltager"/>
+                    <TextBox Margin="2" Text="{Binding EventPage.EventDateTimeTb, Mode=TwoWay}" PlaceholderText="Dato/tid"/>
+                    <StackPanel>
+                        <TextBox Margin="2" Text="{Binding EventPage.EventImageTb, Mode=TwoWay}" PlaceholderText="Billede"/>
+                        <Button Content="..." Width="40" Command="{Binding EventImageBrowserCommand}"/>
+                    </StackPanel>
                     <Button Margin="2" Command="{Binding AddEventCommand}" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Content="Tilføj event"/>
                 </StackPanel>
             </StackPanel>
@@ -426,11 +431,21 @@
                             <DataTemplate>
                                 <StackPanel>
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock FontWeight="Bold" Text="{Binding Name}"/>
-                                        <TextBlock Text="{Binding Location}"/>
-                                        <TextBlock Text="{Binding MaxUsers}"/>
+                                        <Image Source="{Binding Image}" Width="100" Height="100"/>
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock Text="Event:"/>
+                                            <TextBlock Text="Lokation:"/>
+                                            <TextBlock Text="Maks. antal: "/>
+                                            <TextBlock Text="Dato/tid: "/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Vertical" Margin="5,0,0,0">
+                                            <TextBlock FontWeight="Bold" Text="{Binding Name}"/>
+                                            <TextBlock Text="{Binding Location}"/>
+                                            <TextBlock Text="{Binding MaxUsers}"/>
+                                            <TextBlock Text="{Binding DateTime}"/>
+                                        </StackPanel>
                                     </StackPanel>
-                                    <TextBlock Text="{Binding Description}"></TextBlock>
+                                    <TextBlock Text="{Binding Description}"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
