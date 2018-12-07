@@ -92,6 +92,7 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Models\Encrypt.cs" />
     <Compile Include="Models\UserPage\EnumCategory.cs" />
     <Compile Include="Models\Account\AccountSettingsClass.cs" />
     <Compile Include="App.xaml.cs">
