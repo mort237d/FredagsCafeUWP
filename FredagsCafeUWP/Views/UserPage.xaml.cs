@@ -1,4 +1,5 @@
-﻿using Windows.ApplicationModel.Core;
+﻿using System.Diagnostics;
+using Windows.ApplicationModel.Core;
 using Windows.UI;
 using Windows.UI.Core.Preview;
 using Windows.UI.ViewManagement;
@@ -37,8 +38,7 @@ namespace FredagsCafeUWP
             _administration.LoadAsync();
             _logOnLogOff.LoadAsync();
             _eventPage.LoadAsync();
-
-            //adm decrypt
+            
             foreach (var user in _administration.Users)
             {
                 user.Name = _encrypt.DeCrypt(user.Name); 
@@ -59,18 +59,17 @@ namespace FredagsCafeUWP
         private async void OnCloseRequest(object sender, SystemNavigationCloseRequestedPreviewEventArgs e)
         {
             e.Handled = true;
-
-            //adm encrypt
+            
             foreach (var user in _administration.Users)
             {
                 user.Name = _encrypt.Encrypting(user.Name);
                 user.Admin = _encrypt.Encrypting(user.Admin);
-                user.Education = _encrypt.Encrypting(user.Education);
-                user.Email = _encrypt.Encrypting(user.Email);
-                user.Grade = _encrypt.Encrypting(user.Grade);
-                user.Password = _encrypt.Encrypting(user.Password);
-                user.TelephoneNumber = _encrypt.Encrypting(user.TelephoneNumber);
-                user.UserName = _encrypt.Encrypting(user.UserName);
+                user.Education = _encrypt.Encrypting(user.Education);                      
+                user.Email = _encrypt.Encrypting(user.Email);                              
+                user.Grade = _encrypt.Encrypting(user.Grade);                              
+                user.Password = _encrypt.Encrypting(user.Password);                        
+                user.TelephoneNumber = _encrypt.Encrypting(user.TelephoneNumber);          
+                user.UserName = _encrypt.Encrypting(user.UserName);                        
                 user.ImageSource = _encrypt.Encrypting(user.ImageSource);
             }
 
