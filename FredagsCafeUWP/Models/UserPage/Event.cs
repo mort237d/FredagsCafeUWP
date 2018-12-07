@@ -12,6 +12,8 @@ namespace FredagsCafeUWP.Models
         public string Location { get; set; }
         public string Description { get; set; }
         public string MaxUsers { get; set; }
+        public string Image { get; set; }
+        public string DateTime { get; set; }
 
         public ObservableCollection<EventUser> EventsUsers
         {
@@ -24,12 +26,14 @@ namespace FredagsCafeUWP.Models
         }
 
         #region Constructors
-        public Event(string name, string location, string description, string maxUsers, ObservableCollection<EventUser> eventUsers)
+        public Event(string name, string location, string description, string maxUsers, string image, string dateTime, ObservableCollection<EventUser> eventUsers)
         {
             Name = name;
             Location = location;
             Description = description;
             MaxUsers = maxUsers;
+            Image = image;
+            DateTime = dateTime;
 
             EventsUsers = eventUsers;
         }
