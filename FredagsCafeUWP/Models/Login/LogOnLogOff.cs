@@ -77,17 +77,6 @@ namespace FredagsCafeUWP
 
         public void logOffMethod()
         {
-            if (Administration.CurrentUser == null) //TODO Delete when program is done
-            {
-                foreach (var user in Administration.Users)
-                {
-                    if (user.Name == "Morten")
-                    {
-                        Administration.CurrentUser = user;
-                    }
-                }
-            }
-            
             LogInLogOutList.Add(Administration.CurrentUser.Name + " logged off at " + DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy"));
 
 
