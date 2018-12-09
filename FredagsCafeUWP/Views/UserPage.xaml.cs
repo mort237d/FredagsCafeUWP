@@ -94,12 +94,16 @@ namespace FredagsCafeUWP
                 string temp = ((ComboBoxItem)Comboboxo.SelectedItem).Content.ToString();
                 tbcombo.Text = temp;
             }
-            else if (JohnHitler.SelectedItem != null)
+            if (JohnHitler.SelectedItem != null)
             {
                 string temp2 = ((ComboBoxItem)JohnHitler.SelectedItem).Content.ToString();
                 tcombo.Text = temp2;
             }
-
+            if (ComboboxSort.SelectedItem != null)
+            {
+                string temp3 = ((ComboBoxItem)ComboboxSort.SelectedItem).Content.ToString();
+                TBComboboxSorted.Text = temp3;
+            }
         }
     }
 }
