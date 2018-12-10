@@ -34,18 +34,18 @@ namespace FredagsCafeUWP
 
             Loader();
 
-            //foreach (var user in _administration.Users)
-            //{
-            //    user.Name = _encrypt.DeCrypt(user.Name); 
-            //    user.Admin = _encrypt.DeCrypt(user.Admin);
-            //    user.Education = _encrypt.DeCrypt(user.Education);
-            //    user.Email = _encrypt.DeCrypt(user.Email);
-            //    user.Grade = _encrypt.DeCrypt(user.Grade);
-            //    user.Password = _encrypt.DeCrypt(user.Password);
-            //    user.TelephoneNumber = _encrypt.DeCrypt(user.TelephoneNumber);
-            //    user.UserName = _encrypt.DeCrypt(user.UserName);
-            //    user.ImageSource = _encrypt.DeCrypt(user.ImageSource);
-            //}
+            foreach (var user in _administration.Users)
+            {
+                user.Name = _encrypt.DeCrypt(user.Name);
+                user.Admin = _encrypt.DeCrypt(user.Admin);
+                user.Education = _encrypt.DeCrypt(user.Education);
+                user.Email = _encrypt.DeCrypt(user.Email);
+                user.Grade = _encrypt.DeCrypt(user.Grade);
+                user.Password = _encrypt.DeCrypt(user.Password);
+                user.TelephoneNumber = _encrypt.DeCrypt(user.TelephoneNumber);
+                user.UserName = _encrypt.DeCrypt(user.UserName);
+                user.ImageSource = _encrypt.DeCrypt(user.ImageSource);
+            }
             SystemNavigationManagerPreview.GetForCurrentView().CloseRequested += this.OnCloseRequest;
 
         }
@@ -63,19 +63,19 @@ namespace FredagsCafeUWP
         private async void OnCloseRequest(object sender, SystemNavigationCloseRequestedPreviewEventArgs e)
         {
             e.Handled = true;
-            
-            //foreach (var user in _administration.Users)
-            //{
-            //    user.Name = _encrypt.Encrypting(user.Name);
-            //    user.Admin = _encrypt.Encrypting(user.Admin);
-            //    user.Education = _encrypt.Encrypting(user.Education);                      
-            //    user.Email = _encrypt.Encrypting(user.Email);                              
-            //    user.Grade = _encrypt.Encrypting(user.Grade);                              
-            //    user.Password = _encrypt.Encrypting(user.Password);                        
-            //    user.TelephoneNumber = _encrypt.Encrypting(user.TelephoneNumber);          
-            //    user.UserName = _encrypt.Encrypting(user.UserName);                        
-            //    user.ImageSource = _encrypt.Encrypting(user.ImageSource);
-            //}
+
+            foreach (var user in _administration.Users)
+            {
+                user.Name = _encrypt.Encrypting(user.Name);
+                user.Admin = _encrypt.Encrypting(user.Admin);
+                user.Education = _encrypt.Encrypting(user.Education);
+                user.Email = _encrypt.Encrypting(user.Email);
+                user.Grade = _encrypt.Encrypting(user.Grade);
+                user.Password = _encrypt.Encrypting(user.Password);
+                user.TelephoneNumber = _encrypt.Encrypting(user.TelephoneNumber);
+                user.UserName = _encrypt.Encrypting(user.UserName);
+                user.ImageSource = _encrypt.Encrypting(user.ImageSource);
+            }
 
             await _administration.SaveAsync();
             await _stock.SaveAsync();

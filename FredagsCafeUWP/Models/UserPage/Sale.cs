@@ -225,11 +225,6 @@ namespace FredagsCafeUWP.Models.UserPage
                 }
             }
         }
-
-        public void ResetReceipt()
-        {
-            Receipts.Clear();
-        }
         public async void CompleteSale()
         {
             string productAmountLow = null;

@@ -164,6 +164,8 @@ namespace FredagsCafeUWP.Models
         #region Singleton
 
         private static Administration _instance;
+        private Encrypt _encrypt = new Encrypt();
+
         public static Administration Instance
         {
             get
@@ -223,6 +225,7 @@ namespace FredagsCafeUWP.Models
         public async void BrowseImageButton()
         {
             ImageTb = await BrowseImageWindowTask();
+            ShowAddUserPopUp = true;
         }
 
 
@@ -283,11 +286,13 @@ namespace FredagsCafeUWP.Models
             }
         }
 
-        public void ChangeAdmin()
+        public async void ChangeAdmin()
         {
-            _message.YesNo("Giv admin videre",
+           await _message.YesNo("Giv admin videre",
                 "Er du sikker på at du vil give admin videre til " + SelectedUser.Name + "?");
         }
+
+
 
         #endregion
 
@@ -318,7 +323,19 @@ namespace FredagsCafeUWP.Models
                     new User("Lucas", "EASJ", "Datamatiker", "Lucas@edu.easj.dk", "12345678", "Lucas", "Lucas", _standardImage, ""),
                     new User("Christian", "EASJ", "Datamatiker", "Christian@edu.easj.dk", "12345678", "Christian", "Christian", _standardImage, "")
                 };
-                
+
+                foreach (var user in Users)
+                {
+                    user.Name = _encrypt.Encrypting(user.Name);
+                    user.Admin = _encrypt.Encrypting(user.Admin);
+                    user.Education = _encrypt.Encrypting(user.Education);
+                    user.Email = _encrypt.Encrypting(user.Email);
+                    user.Grade = _encrypt.Encrypting(user.Grade);
+                    user.Password = _encrypt.Encrypting(user.Password);
+                    user.TelephoneNumber = _encrypt.Encrypting(user.TelephoneNumber);
+                    user.UserName = _encrypt.Encrypting(user.UserName);
+                    user.ImageSource = _encrypt.Encrypting(user.ImageSource);
+                }
             }
 
         }

@@ -62,15 +62,19 @@ namespace FredagsCafeUWP.ViewModels
 
         private RelayCommand _showAccountPopUp;
 
+        private RelayCommand _showAdminAccountPopUp;
+
         private RelayCommand _deleteReceiptCommand;
 
         private RelayCommand _userImageBrowserCommand;
 
-        private RelayCommand _resetReceiptsCommand;
-
         private RelayCommand _eventImageBrowserCommand;
 
         private RelayCommand _changeAdminCommand;
+
+        private RelayCommand _userAdminChange;
+
+        private RelayCommand _changeSelectedAccountSettings;
 
 
         #endregion
@@ -102,6 +106,7 @@ namespace FredagsCafeUWP.ViewModels
 
 
             ShowAccountPopUp = new RelayCommand(AccountSettingsClass.ShowAccountSettingsPopUpMethod);
+            ShowAdminAccountPopUp = new RelayCommand(AccountSettingsClass.ShowAdminAccountPopUpMethod);
 
             GoToHelpPageCommand = new RelayCommand(Help.GoToHelpPage);
 
@@ -119,12 +124,12 @@ namespace FredagsCafeUWP.ViewModels
 
             AddProductCommand = new RelayCommand(Stock.AddProductToObList);
             ChangeProductCommand = new RelayCommand(Stock.ChangeProductOfObList);
-            
-            ResetReceiptsCommand = new RelayCommand(Sale.ResetReceipt);
 
             ChangeSettingsCommand = new RelayCommand(AccountSettingsClass.ChangeSettings);
 
             ChangeAdminCommand = new RelayCommand(Administration.ChangeAdmin);
+
+            ChangeSelectedAccountSettings = new RelayCommand(AccountSettingsClass.ChangeSelectedAccountSettingsMethod);
         }
 
         #region Props
@@ -336,11 +341,6 @@ namespace FredagsCafeUWP.ViewModels
             get { return _showAddEventPopUpCommand; }
             set { _showAddEventPopUpCommand = value; }
         }
-        public RelayCommand ResetReceiptsCommand
-        {
-            get { return _resetReceiptsCommand; }
-            set { _resetReceiptsCommand = value; }
-        }
 
         public RelayCommand ShowAddEventUserPopUpCommand
         {
@@ -377,6 +377,24 @@ namespace FredagsCafeUWP.ViewModels
         {
             get { return _changeAdminCommand; }
             set { _changeAdminCommand = value; }
+        }
+
+        public RelayCommand UserAdminChange
+        {
+            get { return _userAdminChange; }
+            set { _userAdminChange = value; }
+        }
+
+        public RelayCommand ShowAdminAccountPopUp
+        {
+            get { return _showAdminAccountPopUp; }
+            set { _showAdminAccountPopUp = value; }
+        }
+
+        public RelayCommand ChangeSelectedAccountSettings
+        {
+            get { return _changeSelectedAccountSettings; }
+            set { _changeSelectedAccountSettings = value; }
         }
 
         #endregion
