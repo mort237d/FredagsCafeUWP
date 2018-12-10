@@ -62,6 +62,8 @@ namespace FredagsCafeUWP.ViewModels
 
         private RelayCommand _showAccountPopUp;
 
+        private RelayCommand _showAdminAccountPopUp;
+
         private RelayCommand _deleteReceiptCommand;
 
         private RelayCommand _userImageBrowserCommand;
@@ -71,6 +73,10 @@ namespace FredagsCafeUWP.ViewModels
         private RelayCommand _eventImageBrowserCommand;
 
         private RelayCommand _changeAdminCommand;
+
+        private RelayCommand _userAdminChange;
+
+        private RelayCommand _changeSelectedAccountSettings;
 
 
         #endregion
@@ -102,6 +108,7 @@ namespace FredagsCafeUWP.ViewModels
 
 
             ShowAccountPopUp = new RelayCommand(AccountSettingsClass.ShowAccountSettingsPopUpMethod);
+            ShowAdminAccountPopUp = new RelayCommand(AccountSettingsClass.ShowAdminAccountPopUpMethod);
 
             GoToHelpPageCommand = new RelayCommand(Help.GoToHelpPage);
 
@@ -125,6 +132,12 @@ namespace FredagsCafeUWP.ViewModels
             ChangeSettingsCommand = new RelayCommand(AccountSettingsClass.ChangeSettings);
 
             ChangeAdminCommand = new RelayCommand(Administration.ChangeAdmin);
+
+            //UserAdminChange = new RelayCommand(Administration.UserAdminChange);
+
+            ChangeSelectedAccountSettings = new RelayCommand(AccountSettingsClass.ChangeSelectedAccountSettingsMethod);
+
+
         }
 
         #region Props
@@ -377,6 +390,24 @@ namespace FredagsCafeUWP.ViewModels
         {
             get { return _changeAdminCommand; }
             set { _changeAdminCommand = value; }
+        }
+
+        public RelayCommand UserAdminChange
+        {
+            get { return _userAdminChange; }
+            set { _userAdminChange = value; }
+        }
+
+        public RelayCommand ShowAdminAccountPopUp
+        {
+            get { return _showAdminAccountPopUp; }
+            set { _showAdminAccountPopUp = value; }
+        }
+
+        public RelayCommand ChangeSelectedAccountSettings
+        {
+            get { return _changeSelectedAccountSettings; }
+            set { _changeSelectedAccountSettings = value; }
         }
 
         #endregion

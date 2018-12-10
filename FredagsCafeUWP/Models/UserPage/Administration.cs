@@ -283,11 +283,13 @@ namespace FredagsCafeUWP.Models
             }
         }
 
-        public void ChangeAdmin()
+        public async void ChangeAdmin()
         {
-            _message.YesNo("Giv admin videre",
+           await _message.YesNo("Giv admin videre",
                 "Er du sikker på at du vil give admin videre til " + SelectedUser.Name + "?");
         }
+
+
 
         #endregion
 

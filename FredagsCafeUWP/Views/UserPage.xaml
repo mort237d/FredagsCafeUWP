@@ -220,6 +220,45 @@
             </StackPanel>
         </Popup>
 
+        <Popup IsOpen="{Binding AccountSettingsClass.ShowAdminAccountPopup}" Grid.RowSpan="2" Width="400" Height="1000" HorizontalAlignment="Right" LightDismissOverlayMode="On" IsLightDismissEnabled="True" Margin="0,0,-12,0">
+            <Popup.ChildTransitions>
+                <TransitionCollection>
+                    <PaneThemeTransition Edge="Top"/>
+                </TransitionCollection>
+            </Popup.ChildTransitions>
+
+            <StackPanel Background="#6CA0DC" Height="1000" Width="400">
+                <StackPanel>
+                    <TextBlock Text="Ændre bruger" FontWeight="Bold" FontSize="50" HorizontalAlignment="Center"></TextBlock>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel HorizontalAlignment="Center" Orientation="Vertical" Grid.ColumnSpan="2">
+                            <TextBlock Text="Navn" Height="32" Margin="0,5,0,0"></TextBlock>
+                            <TextBlock Text="Klasse" Height="32"></TextBlock>
+                            <TextBlock Text="Skole" Height="32"></TextBlock>
+                            <TextBlock Text="Email" Height="32"></TextBlock>
+                            <TextBlock Text="Tlf. nummer" Height="32"></TextBlock>
+                            <TextBlock Text="Brugernavn" Height="32"></TextBlock>
+                            <TextBlock Text="Kodeord" Height="32"></TextBlock>
+                            <TextBlock Text="Bekræft kodeord" Height="32"></TextBlock>
+                        </StackPanel >
+                        <StackPanel Margin="5,0,0,0" HorizontalAlignment="Center" Orientation="Vertical">
+                            <TextBox PlaceholderText="Navn" Text="{Binding AccountSettingsClass.NameTb, Mode=TwoWay}"/>
+                            <TextBox PlaceholderText="Klasse" Text="{Binding AccountSettingsClass.GradeTb, Mode=TwoWay}"/>
+                            <TextBox PlaceholderText="Skole" Text="{Binding AccountSettingsClass.EducationTb, Mode=TwoWay}"/>
+                            <TextBox IsReadOnly="True" PlaceholderText="email" Text="{Binding AccountSettingsClass.EmailTb, Mode=TwoWay}"/>
+                            <TextBox PlaceholderText="Tlf. nummer" Text="{Binding AccountSettingsClass.TelephoneNumberTb, Mode=TwoWay}"/>
+                            <TextBox PlaceholderText="Username" Text="{Binding AccountSettingsClass.UserNameTb, Mode=TwoWay}"/>
+                            <PasswordBox PlaceholderText="Password" Password="{Binding AccountSettingsClass.PasswordTb, Mode=TwoWay}"/>
+                            <PasswordBox PlaceholderText="Bekræft kodeord" Password="{Binding AccountSettingsClass.ConfirmPasswordTb, Mode=TwoWay}"/>
+                        </StackPanel>
+
+                    </StackPanel>
+
+                    <Button Style="{StaticResource RoundedButtonStyle}" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Skift kontoindstillinger" Command="{Binding ChangeSelectedAccountSettings}" Grid.ColumnSpan="2" Margin="0,0,0,0"/>
+                </StackPanel>
+            </StackPanel>
+        </Popup>
+
         <Pivot Style="{StaticResource CustomPivotStyle}" x:Name="RootPivot" Grid.Row="1">
 
             <!--#region SalgRegion-->
@@ -423,6 +462,8 @@
                         <Button Style="{StaticResource RoundedButtonStyle}" Content="Fjern medarbejder" Visibility="{Binding Administration.Visible}" Command="{Binding RemoveUserCommand}"/>
                         <Button Style="{StaticResource RoundedButtonStyle}" Content="Tilføj medarbejder" Visibility="{Binding Administration.Visible}" Command="{Binding ShowAddUserPopUpCommand}"/>
                         <Button Style="{StaticResource RoundedButtonStyle}" Content="Giv admin" Visibility="{Binding Administration.Visible}" Command="{Binding ChangeAdminCommand}"/>
+                        <Button Style="{StaticResource RoundedButtonStyle}" Content="Ændre bruger kontoindstillinger" Visibility="{Binding Administration.Visible}" Command="{Binding ShowAdminAccountPopUp}"/>
+
                     </StackPanel>
 
 

@@ -23,6 +23,7 @@ namespace FredagsCafeUWP
         private string _confirmPasswordTb;
 
         private bool _showAccountSettingsPopUp = false;
+        private bool _showAdminAccountPopup = false;
 
         public string NameTb
         {
@@ -114,15 +115,19 @@ namespace FredagsCafeUWP
             }
         }
 
+        public bool ShowAdminAccountPopup
+        {
+            get { return _showAdminAccountPopup; }
+            set
+            {
+                _showAdminAccountPopup = value;
+                OnPropertyChanged();
+            }
+        }
+
         public AccountSettingsClass()
         {
-            NameTb = _administration.CurrentUser.Name;
-            GradeTb = _administration.CurrentUser.Grade;
-            EducationTb = _administration.CurrentUser.Education;
-            EmailTb = _administration.CurrentUser.Email;
-            TelephoneNumberTb = _administration.CurrentUser.TelephoneNumber;
-            UserNameTb = _administration.CurrentUser.UserName;
-            PasswordTb = _administration.CurrentUser.Password;
+            
         }
 
         public void ChangeSettings()
@@ -147,6 +152,38 @@ namespace FredagsCafeUWP
                         if (_administration.CurrentUser.Email == user.Email)
                         {
                             _administration.Users[_administration.Users.IndexOf(user)] = _administration.CurrentUser;
+                            break;
+                        }
+                    }
+
+                    ShowAccountSettingsPopUp = false;
+                }
+            }
+        }
+
+        public void ChangeSelectedAccountSettingsMethod()
+        {
+            if (_administration.SelectedUser.Name == NameTb || _administration.SelectedUser.Grade == GradeTb ||
+                _administration.SelectedUser.Education == EducationTb || _administration.SelectedUser.Email == EmailTb ||
+                _administration.SelectedUser.TelephoneNumber == TelephoneNumberTb ||
+                _administration.SelectedUser.UserName == UserNameTb ||
+                _administration.SelectedUser.Password == PasswordTb)
+            {
+                if (PasswordTb == ConfirmPasswordTb)
+                {
+                    _administration.SelectedUser.Name = NameTb;
+                    _administration.SelectedUser.Grade = GradeTb;
+                    _administration.SelectedUser.Education = EducationTb;
+                    _administration.SelectedUser.Email = EmailTb;
+                    _administration.SelectedUser.TelephoneNumber = TelephoneNumberTb;
+                    _administration.SelectedUser.UserName = UserNameTb;
+                    _administration.SelectedUser.Password = PasswordTb;
+                    foreach (var user in _administration.Users)
+                    {
+                        if (_administration.SelectedUser.Email == user.Email)
+                        {
+                            _administration.Users[_administration.Users.IndexOf(user)] = _administration.SelectedUser;
+                            break;
                         }
                     }
 
@@ -157,8 +194,30 @@ namespace FredagsCafeUWP
 
         public void ShowAccountSettingsPopUpMethod()
         {
+            NameTb = _administration.CurrentUser.Name;
+            GradeTb = _administration.CurrentUser.Grade;
+            EducationTb = _administration.CurrentUser.Education;
+            EmailTb = _administration.CurrentUser.Email;
+            TelephoneNumberTb = _administration.CurrentUser.TelephoneNumber;
+            UserNameTb = _administration.CurrentUser.UserName;
+            PasswordTb = _administration.CurrentUser.Password;
+
             ShowAccountSettingsPopUp = true;
         }
+
+        public void ShowAdminAccountPopUpMethod()
+        {
+            NameTb = _administration.SelectedUser.Name;
+            GradeTb = _administration.SelectedUser.Grade;
+            EducationTb = _administration.SelectedUser.Education;
+            EmailTb = _administration.SelectedUser.Email;
+            TelephoneNumberTb = _administration.SelectedUser.TelephoneNumber;
+            UserNameTb = _administration.SelectedUser.UserName;
+            PasswordTb = _administration.SelectedUser.Password;
+
+            ShowAdminAccountPopup  = true;
+        }
+
 
         #region INotify
 
