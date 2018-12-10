@@ -225,6 +225,7 @@ namespace FredagsCafeUWP.Models
         public async void BrowseImageButton()
         {
             ImageTb = await BrowseImageWindowTask();
+            ShowAddUserPopUp = true;
         }
 
 
