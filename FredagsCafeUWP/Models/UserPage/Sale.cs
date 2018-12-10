@@ -107,7 +107,6 @@ namespace FredagsCafeUWP.Models.UserPage
             if (SelectedProduct != null)
             {
                 SelectedProduct.AmountToBeSold++;
-                //TotalTb += SelectedProduct.SellingPrice;
             }
         }
 
@@ -116,13 +115,11 @@ namespace FredagsCafeUWP.Models.UserPage
             if (SelectedProduct != null && SelectedProduct.AmountToBeSold > 0)
             {
                 SelectedProduct.AmountToBeSold--;
-                //TotalTb -= SelectedProduct.SellingPrice;
             }
         }
 
         public void AddItemsToBasket()
         {
-            //Basket.Clear();
             Basket = new List<Product>();
             foreach (var product in _stock.Products)
             {
