@@ -68,8 +68,6 @@ namespace FredagsCafeUWP.ViewModels
 
         private RelayCommand _userImageBrowserCommand;
 
-        private RelayCommand _resetReceiptsCommand;
-
         private RelayCommand _eventImageBrowserCommand;
 
         private RelayCommand _changeAdminCommand;
@@ -126,18 +124,12 @@ namespace FredagsCafeUWP.ViewModels
 
             AddProductCommand = new RelayCommand(Stock.AddProductToObList);
             ChangeProductCommand = new RelayCommand(Stock.ChangeProductOfObList);
-            
-            ResetReceiptsCommand = new RelayCommand(Sale.ResetReceipt);
 
             ChangeSettingsCommand = new RelayCommand(AccountSettingsClass.ChangeSettings);
 
             ChangeAdminCommand = new RelayCommand(Administration.ChangeAdmin);
 
-            //UserAdminChange = new RelayCommand(Administration.UserAdminChange);
-
             ChangeSelectedAccountSettings = new RelayCommand(AccountSettingsClass.ChangeSelectedAccountSettingsMethod);
-
-
         }
 
         #region Props
@@ -348,11 +340,6 @@ namespace FredagsCafeUWP.ViewModels
         {
             get { return _showAddEventPopUpCommand; }
             set { _showAddEventPopUpCommand = value; }
-        }
-        public RelayCommand ResetReceiptsCommand
-        {
-            get { return _resetReceiptsCommand; }
-            set { _resetReceiptsCommand = value; }
         }
 
         public RelayCommand ShowAddEventUserPopUpCommand

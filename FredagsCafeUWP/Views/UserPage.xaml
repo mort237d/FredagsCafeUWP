@@ -319,11 +319,9 @@
                     <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,5,5">
                         <Button Style="{StaticResource RoundedButtonStyle}" Content="Beregn total" Command="{Binding CalculateTotalPriceCommand}" Margin="0,0,5,0" />
                         <Button Style="{StaticResource RoundedButtonStyle}" Content="Betal" Command="{Binding CompleteSaleCommand}"/>
-                        <Button Content="Reset Kvitering" Command="{Binding ResetReceiptsCommand}"/>
                     </StackPanel>
 
-                    <Button Style="{StaticResource RoundedButtonStyle}" Foreground="White" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Slet 
-                            aktion" Command="{Binding DeleteReceiptCommand}"  Margin="0,0,5,5"/>
+                    <Button Style="{StaticResource RoundedButtonStyle}" Foreground="White" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Slet transaktion" Command="{Binding DeleteReceiptCommand}"  Margin="0,0,5,5"/>
 
                     <ListView  Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Sale.Receipts}" SelectedItem="{Binding Sale.SelectedReceipt,Mode=TwoWay}">
                         <ListView.ItemTemplate>
