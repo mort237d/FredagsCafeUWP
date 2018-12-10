@@ -130,7 +130,7 @@ namespace FredagsCafeUWP.Models
 
         #endregion
 
-        private EventPage() //TODO Tilføj img og tidspunkt til events
+        private EventPage()
         {
             _message = new Message(this);
         }
