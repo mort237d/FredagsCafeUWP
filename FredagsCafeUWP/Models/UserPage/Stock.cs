@@ -16,8 +16,7 @@ namespace FredagsCafeUWP.Models
     public class Stock : INotifyPropertyChanged
     {
         #region Field
-        private bool _showAddProductPopUp = false;
-        private bool _showChangeProductPopUp = false;
+        private bool _showAddProductPopUp , _showChangeProductPopUp = false;
 
         private readonly Message _message;
         private Product _selectedProduct = new Product();
@@ -32,19 +31,11 @@ namespace FredagsCafeUWP.Models
 
         private string _productPriceChangeTb;
 
-        private string _addNameTb;
-        private string _addBuyingPriceTb;
-        private string _addSellingPriceTb;
-        private string _addAmountTb;
+        private string _addNameTb, _addBuyingPriceTb, _addSellingPriceTb, _addAmountTb, _addTypeTb;
         private string _addImageSourceTb = "";
-        private string _addTypeTb;
 
-        private string _changeNameTb;
-        private string _changeBuyingPriceTb;
-        private string _changeSellingPriceTb;
-        private string _changeAmountTb;
+        private string _changeNameTb,_changeBuyingPriceTb, _changeSellingPriceTb, _changeAmountTb, _changeTypeTb;
         private string _changeImageSourceTb = "";
-        private string _changeTypeTb;
         #endregion
 
         private Stock()
@@ -251,13 +242,11 @@ namespace FredagsCafeUWP.Models
                  OnPropertyChanged();
              }
         }
-
         #endregion
 
         #region ButtonMethods
         public async void AddProductToObList()
         {
-
              bool productExist = false;
              if (AddNameTb != null)
              {
@@ -435,8 +424,7 @@ namespace FredagsCafeUWP.Models
                  ChangeAmountTb = SelectedProduct.Amount.ToString();
                  ChangeImageSourceTb = SelectedProduct.ImageSource;
                  ChangeTypeTb = SelectedProduct.Category.ToString();
-
-
+                
                  ShowChangeProductPopUp = true;
              }
              else await _message.Error("Intet produkt valgt", "Vælg venligst et produkt.");
@@ -478,12 +466,7 @@ namespace FredagsCafeUWP.Models
                       break;
              }
 
-             ChangeNameTb = null;
-             ChangeBuyingPriceTb = null;
-             ChangeSellingPriceTb = null;
-             ChangeAmountTb = null;
-             ChangeImageSourceTb = null;
-             ChangeTypeTb = null;  //Todo Combobox selected item bliver ikke placeholder text begrund af underlig binding
+             ChangeNameTb = ChangeBuyingPriceTb = ChangeSellingPriceTb = ChangeAmountTb = ChangeImageSourceTb = ChangeTypeTb = null;  //Todo Combobox selected item bliver ikke placeholder text begrund af underlig binding
 
              ShowChangeProductPopUp = false;
         }
@@ -499,13 +482,6 @@ namespace FredagsCafeUWP.Models
         #endregion
 
         #region Save/Load
-
-        public async Task SaveAsync()
-        {
-             Debug.WriteLine("Saving product async...");
-             await XmlReadWriteClass.SaveObjectToXml(Products, "stock.xml");
-             Debug.WriteLine("products.count: " + Products.Count);
-        }
 
         public async void LoadAsync()
         {

@@ -288,13 +288,6 @@ namespace FredagsCafeUWP.Models
         }
 
         #region save/load
-        public async Task SaveAsync()
-        {
-            Debug.WriteLine("Saving list async...");
-            await XmlReadWriteClass.SaveObjectToXml(Events, "events.xml");
-            Debug.WriteLine("events.count: " + Events.Count);
-        }
-
         public async void LoadAsync()
         {
             try

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
@@ -18,7 +19,7 @@ namespace FredagsCafeUWP
         private string _wrongLogin;
         private string _wrongLoginColor;
         private Administration _administration = Administration.Instance;
-        private List<string> _logInLogOutList = new List<string>();
+        private ObservableCollection<string> _logInLogOutList = new ObservableCollection<string>();
 
         private int i = 0;
         #region Props
@@ -43,7 +44,7 @@ namespace FredagsCafeUWP
             }
         }
 
-        public List<string> LogInLogOutList
+        public ObservableCollection<string> LogInLogOutList
         {
             get { return _logInLogOutList; }
             set { _logInLogOutList = value; }
@@ -130,19 +131,12 @@ namespace FredagsCafeUWP
 
         #region Save/Load
 
-        public async Task SaveAsync()
-        {
-            Debug.WriteLine("Saving loginlogout async...");
-            await XmlReadWriteClass.SaveObjectToXml(LogInLogOutList, "loginlogout.xml");
-            Debug.WriteLine("loginlogoutlist.count: " + LogInLogOutList.Count);
-        }
-
         public async void LoadAsync()
         {
             try
             {
                 Debug.WriteLine("loading loginlogout async...");
-                LogInLogOutList = await XmlReadWriteClass.ReadObjectFromXmlFileAsync<List<string>>("loginlogout.xml");
+                LogInLogOutList = await XmlReadWriteClass.ReadObjectFromXmlFileAsync<ObservableCollection<string>>("loginlogout.xml");
                 Debug.WriteLine("loginlogoutlist.count:" + LogInLogOutList.Count);
             }
             catch (Exception)

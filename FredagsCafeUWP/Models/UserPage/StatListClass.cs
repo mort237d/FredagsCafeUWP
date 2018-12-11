@@ -71,17 +71,6 @@ namespace FredagsCafeUWP
         
 
         #region save/load
-        public async Task SaveAsync()
-        {
-            Debug.WriteLine("Saving stats async...");
-            await XmlReadWriteClass.SaveObjectToXml(StatList, "stats.xml");
-            Debug.WriteLine("stats.count: " + StatList.Count);
-
-            Debug.WriteLine("Saving productStats async...");
-            await XmlReadWriteClass.SaveObjectToXml(ProductGraphList, "productStats.xml");
-            Debug.WriteLine("productStats.count: " + ProductGraphList.Count);
-
-        }
 
         public async void LoadAsync()
         {

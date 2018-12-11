@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
@@ -29,6 +31,13 @@ namespace FredagsCafeUWP
             {
                 serializer.Serialize(stream, objectToSave);
             }
+        }
+
+        public static async Task SaveAsync<T>(ObservableCollection<T> collection, string fileName)
+        {
+            Debug.WriteLine("Saving " + fileName + " async...");
+            await XmlReadWriteClass.SaveObjectToXml(collection, fileName + ".xml");
+            Debug.WriteLine(fileName + ".count: " + collection.Count);
         }
     }
 }

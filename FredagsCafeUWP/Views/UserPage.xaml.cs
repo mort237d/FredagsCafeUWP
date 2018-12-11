@@ -77,14 +77,20 @@ namespace FredagsCafeUWP
                 user.ImageSource = _encrypt.Encrypting(user.ImageSource);
             }
 
-            await _administration.SaveAsync();
-            await _stock.SaveAsync();
-            await _sale.SaveAsync();
-            await _statListClass.SaveAsync();
-            await _logOnLogOff.SaveAsync();
-            await _eventPage.SaveAsync();
+            await Saver();
 
             CoreApplication.Exit();
+        }
+
+        private async System.Threading.Tasks.Task Saver()
+        {
+            await XmlReadWriteClass.SaveAsync(_administration.Users, "administration");
+            await XmlReadWriteClass.SaveAsync(_stock.Products, "stock");
+            await XmlReadWriteClass.SaveAsync(_sale.Receipts, "receipt");
+            await XmlReadWriteClass.SaveAsync(_statListClass.StatList, "stats");
+            await XmlReadWriteClass.SaveAsync(_statListClass.ProductGraphList, "productStats");
+            await XmlReadWriteClass.SaveAsync(_logOnLogOff.LogInLogOutList, "loginlogout");
+            await XmlReadWriteClass.SaveAsync(_eventPage.Events, "events");
         }
 
         private void Comboboxo_OnSelectionChanged(object sender, SelectionChangedEventArgs e)

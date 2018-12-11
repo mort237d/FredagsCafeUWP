@@ -419,7 +419,7 @@
                             <Button HorizontalAlignment="Center" Style="{StaticResource RoundedButtonStyle}" Content="Tilføj produkt" Command="{Binding ShowAddProductPopUpCommand}"/>
                             <Button HorizontalAlignment="Center" Style="{StaticResource RoundedButtonStyle}" Content="Slet produkt" Command="{Binding RemoveProductCommand}" Margin="0,5,0,0"/>
                         </StackPanel>
-                        <StackPanel VerticalAlignment="Bottom" Margin="250,0,0,0" HorizontalAlignment="Left">
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="2">
                             <ComboBox Name="ComboboxSort2" Margin="2" PlaceholderText="Type" Width="320" SelectionChanged="Comboboxo_OnSelectionChanged">
                                 <ComboBoxItem Content="Øl"/>
                                 <ComboBoxItem Content="Sodavand"/>

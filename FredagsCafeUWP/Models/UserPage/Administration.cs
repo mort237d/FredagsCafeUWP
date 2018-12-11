@@ -283,13 +283,6 @@ namespace FredagsCafeUWP.Models
 
         #region Save/Load
 
-        public async Task SaveAsync()
-        {
-            Debug.WriteLine("Saving user async...");
-            await XmlReadWriteClass.SaveObjectToXml(Users, "administration.xml");
-            Debug.WriteLine("user.count: " + Users.Count);
-        }
-
         public async void LoadAsync()
         {
             try

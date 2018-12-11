@@ -344,14 +344,6 @@ namespace FredagsCafeUWP.Models.UserPage
         #endregion
 
         #region Save/Load
-
-        public async Task SaveAsync()
-        {
-            Debug.WriteLine("Saving receipt async...");
-            await XmlReadWriteClass.SaveObjectToXml(Receipts, "receipt.xml");
-            Debug.WriteLine("receipts.count: " + Receipts.Count);
-        }
-
         public async void LoadAsync()
         {
             try
