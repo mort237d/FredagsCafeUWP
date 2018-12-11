@@ -482,7 +482,6 @@ namespace FredagsCafeUWP.Models
         #endregion
 
         #region Save/Load
-
         public async void LoadAsync()
         {
              try
@@ -508,11 +507,8 @@ namespace FredagsCafeUWP.Models
                       new Product(2, 5, "Breezer", 48, 0, "ProductImages/Breezer.png", ColorGreen, EnumCategory.ProductCategory.Drink),
                       new Product(2, 5, "Fanta", 48, 0, "ProductImages/Fanta.png", ColorGreen, EnumCategory.ProductCategory.Soda)
                  };
-                 
              }
-             
         }
-
         #endregion
 
         #region INotify
