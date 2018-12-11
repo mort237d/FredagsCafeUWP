@@ -19,7 +19,7 @@ namespace FredagsCafeUWP
         private string _wrongLogin;
         private string _wrongLoginColor;
         private Administration _administration = Administration.Instance;
-        private ObservableCollection<string> _logInLogOutList = new ObservableCollection<string>();
+        private ObservableCollection<string> _logInLogOutList;
 
         private int i = 0;
         #region Props
@@ -141,7 +141,7 @@ namespace FredagsCafeUWP
             }
             catch (Exception)
             {
-                
+                LogInLogOutList = new ObservableCollection<string>();
             }
 
         }

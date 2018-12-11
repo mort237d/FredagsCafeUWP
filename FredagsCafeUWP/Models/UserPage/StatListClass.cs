@@ -3,9 +3,9 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 using FredagsCafeUWP.Annotations;
 using FredagsCafeUWP.Models;
+using FredagsCafeUWP.Models.UserPage;
 
 namespace FredagsCafeUWP 
 {
@@ -13,8 +13,6 @@ namespace FredagsCafeUWP
     {
         private static ObservableCollection<Statistics> _statList = new ObservableCollection<Statistics>();
         private ObservableCollection<Product> _productGraphList = new ObservableCollection<Product>();
-//        private double totalSaleValueSum;
-//        private double totalBuyValueSum;
 
         private StatListClass()
         {
@@ -57,18 +55,72 @@ namespace FredagsCafeUWP
 
         #endregion
 
-        public void AddTotalSaleValue(double totalSaleValueSum, double totalBuyValueSum)
+        public void AddTotalSaleValue()
         { 
-            
             StatList.Clear();
-            StatList.Add(new Statistics(totalSaleValueSum,"Indkomst"));
-            StatList.Add(new Statistics(totalBuyValueSum, "Udgifter"));
-            StatList.Add(new Statistics((totalSaleValueSum-totalBuyValueSum),"Profit"));
+            StatList.Add(new Statistics(SellingTotal(), "Indkomst"));
+            StatList.Add(new Statistics(BuyingTotal(), "Udgifter"));
+            StatList.Add(new Statistics((SellingTotal() - BuyingTotal()),"Profit"));
             StatList.Add(new Statistics(0,""));
-
         }
 
-        
+        public double SellingTotal()
+        {
+            double totalSaleValueSum = 0;
+            foreach (var receipt in Sale.Instance.Receipts)
+            {
+                foreach (var basket in receipt.Basket)
+                {
+                    totalSaleValueSum += basket.SellingPrice * basket.AmountToBeSold;
+                }
+            }
+            return totalSaleValueSum;
+        }
+        public double BuyingTotal()
+        {
+            double totalBuyValueSum = 0;
+            foreach (var receipt in Sale.Instance.Receipts)
+            {
+                foreach (var basket in receipt.Basket)
+                {
+                    totalBuyValueSum += basket.BuyingPrice * basket.AmountToBeSold;
+                }
+            }
+            return totalBuyValueSum;
+        }
+
+        public void ProductViewGraph()
+        {
+            bool tempGraphBool = false;
+            ProductGraphList.Clear();
+            ProductGraphList.Add(new Product("", 0));
+            foreach (var receipt in Sale.Instance.Receipts)
+            {
+                foreach (var basket in receipt.Basket)
+                {
+                    if (ProductGraphList.Count == 0)
+                        ProductGraphList.Add(new Product(basket.Name, basket.AmountToBeSold));
+                    else
+                    {
+                        foreach (var product in ProductGraphList)
+                        {
+                            if (product.Name == basket.Name)
+                            {
+                                product.AmountToBeSold += basket.AmountToBeSold;
+                                tempGraphBool = true;
+                            }
+                        }
+
+                        if (!tempGraphBool)
+                        {
+                            ProductGraphList.Add(new Product(basket.Name, basket.AmountToBeSold));
+                        }
+                        else tempGraphBool = false;
+                    }
+                }
+            }
+        }
+
 
         #region save/load
 

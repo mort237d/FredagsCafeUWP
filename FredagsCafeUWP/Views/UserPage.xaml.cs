@@ -1,5 +1,4 @@
-﻿using System;
-using Windows.ApplicationModel.Core;
+﻿using Windows.ApplicationModel.Core;
 using Windows.UI;
 using Windows.UI.Core.Preview;
 using Windows.UI.ViewManagement;
@@ -63,6 +62,11 @@ namespace FredagsCafeUWP
         private async void OnCloseRequest(object sender, SystemNavigationCloseRequestedPreviewEventArgs e)
         {
             e.Handled = true;
+
+            foreach (var product in _stock.Products)
+            {
+                product.AmountToBeSold = 0;
+            }
 
             foreach (var user in _administration.Users)
             {
