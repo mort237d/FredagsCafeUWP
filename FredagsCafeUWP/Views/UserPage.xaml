@@ -313,7 +313,7 @@
                             <ComboBoxItem Content="Shot"/>
                             <ComboBoxItem Content="Andet"/>
                         </ComboBox>
-                        <TextBlock  Name="TBComboboxSorted" Text="{Binding Stock.SortProductsTb, Mode=TwoWay}" Visibility="Collapsed"/>
+                        <TextBlock  Name="TBComboboxSorted" Text="{Binding SortProducts.SortProductsTb, Mode=TwoWay}" Visibility="Collapsed"/>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,5,5">

@@ -9,6 +9,7 @@ using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.UI.Xaml.Controls;
 using FredagsCafeUWP.Annotations;
+using FredagsCafeUWP.Models.UserPage;
 
 namespace FredagsCafeUWP.Models
 {
@@ -44,8 +45,6 @@ namespace FredagsCafeUWP.Models
         private string _changeAmountTb;
         private string _changeImageSourceTb = "";
         private string _changeTypeTb;
-
-        private string _sortProductsTb;
         #endregion
 
         private Stock()
@@ -249,19 +248,6 @@ namespace FredagsCafeUWP.Models
              set
              {
                  _changeTypeTb = value; 
-                 OnPropertyChanged();
-             }
-        }
-
-        public string SortProductsTb
-        {
-             get => _sortProductsTb;
-             set
-             {
-                 OnPropertyChanged();
-                 _sortProductsTb = value;
-                 int temp = ConvertMethod();
-                 Products = SortObservableCollectionMethodTest(Products, temp);
                  OnPropertyChanged();
              }
         }
@@ -510,219 +496,6 @@ namespace FredagsCafeUWP.Models
              }
              else await _message.Error("Intet produkt valgt", "Vælg venligst et produkt.");
         }
-
-        #region SortMethod
-        public ObservableCollection<Product> SortObservableCollectionMethodTest(ObservableCollection<Product> inputObservableCollection, int whereToBegin)
-        {
-             ObservableCollection<Product> outPutObservableCollection = new ObservableCollection<Product>();
-             switch (whereToBegin)
-             {
-                 case 1:
-                      outPutObservableCollection = SortHelpBeer(inputObservableCollection);
-                      break;
-                 case 2:
-                      outPutObservableCollection = SortHelpSoda(inputObservableCollection);
-                      break;
-                 case 3:
-                      outPutObservableCollection = SortHelpCider(inputObservableCollection);
-                      break;
-                 case 4:
-                      outPutObservableCollection = SortHelpDrink(inputObservableCollection);
-                      break;
-                 case 5:
-                      outPutObservableCollection = SortHelpBottle(inputObservableCollection);
-                      break;
-                 case 6:
-                      outPutObservableCollection = SortHelpShot(inputObservableCollection);
-                      break;
-                 case 7:
-                      outPutObservableCollection = SortHelpOther(inputObservableCollection);
-                      break;
-             }
-
-             foreach (var VARIABLE in outPutObservableCollection)
-             {
-                 Debug.WriteLine(VARIABLE.Name + " " + VARIABLE.Category);
-             }
-             OnPropertyChanged();
-             return outPutObservableCollection;
-        }
-        private ObservableCollection<Product> SortHelpBeer(ObservableCollection<Product> inputObservableCollection)
-        {
-             ObservableCollection<Product> outPutObservableCollection = new ObservableCollection<Product>();
-
-             foreach (string category in Enum.GetNames(typeof(EnumCategory.ProductCategory)))
-             {
-                 foreach (var product in inputObservableCollection)
-                 {
-                      if (product.Category.ToString() == category) outPutObservableCollection.Add(product);
-                 }
-             }
-
-             return outPutObservableCollection;
-        }
-        private ObservableCollection<Product> SortHelpSoda(ObservableCollection<Product> inputObservableCollection)
-        {
-             ObservableCollection<Product> outPutObservableCollection = new ObservableCollection<Product>();
-
-             foreach (string category in Enum.GetNames(typeof(EnumCategory.ProductCategory)).Skip(1))
-             {
-                 foreach (var product in inputObservableCollection)
-                 {
-                      if (product.Category.ToString() == category) outPutObservableCollection.Add(product);
-                 }
-             }
-             foreach (string category in Enum.GetNames(typeof(EnumCategory.ProductCategory)).Take(1))
-             {
-                 foreach (var product in inputObservableCollection)
-                 {
-                      if (product.Category.ToString() == category) outPutObservableCollection.Add(product);
-                 }
-             }
-
-             return outPutObservableCollection;
-        }
-        private ObservableCollection<Product> SortHelpCider(ObservableCollection<Product> inputObservableCollection)
-        {
-             ObservableCollection<Product> outPutObservableCollection = new ObservableCollection<Product>();
-
-             foreach (string category in Enum.GetNames(typeof(EnumCategory.ProductCategory)).Skip(2))
-             {
-                 foreach (var product in inputObservableCollection)
-                 {
-                      if (product.Category.ToString() == category) outPutObservableCollection.Add(product);
-                 }
-             }
-             foreach (string category in Enum.GetNames(typeof(EnumCategory.ProductCategory)).Take(2))
-             {
-                 foreach (var product in inputObservableCollection)
-                 {
-                      if (product.Category.ToString() == category) outPutObservableCollection.Add(product);
-                 }
-             }
-
-             return outPutObservableCollection;
-        }
-        private ObservableCollection<Product> SortHelpDrink(ObservableCollection<Product> inputObservableCollection)
-        {
-             ObservableCollection<Product> outPutObservableCollection = new ObservableCollection<Product>();
-
-             foreach (string category in Enum.GetNames(typeof(EnumCategory.ProductCategory)).Skip(3))
-             {
-                 foreach (var product in inputObservableCollection)
-                 {
-                      if (product.Category.ToString() == category) outPutObservableCollection.Add(product);
-                 }
-             }
-             foreach (string category in Enum.GetNames(typeof(EnumCategory.ProductCategory)).Take(3))
-             {
-                 foreach (var product in inputObservableCollection)
-                 {
-                      if (product.Category.ToString() == category) outPutObservableCollection.Add(product);
-                 }
-             }
-
-             return outPutObservableCollection;
-        }
-        private ObservableCollection<Product> SortHelpBottle(ObservableCollection<Product> inputObservableCollection)
-        {
-             ObservableCollection<Product> outPutObservableCollection = new ObservableCollection<Product>();
-
-             foreach (string category in Enum.GetNames(typeof(EnumCategory.ProductCategory)).Skip(4))
-             {
-                 foreach (var product in inputObservableCollection)
-                 {
-                      if (product.Category.ToString() == category) outPutObservableCollection.Add(product);
-                 }
-             }
-             foreach (string category in Enum.GetNames(typeof(EnumCategory.ProductCategory)).Take(4))
-             {
-                 foreach (var product in inputObservableCollection)
-                 {
-                      if (product.Category.ToString() == category) outPutObservableCollection.Add(product);
-                 }
-             }
-
-             return outPutObservableCollection;
-        }
-        private ObservableCollection<Product> SortHelpShot(ObservableCollection<Product> inputObservableCollection)
-        {
-             ObservableCollection<Product> outPutObservableCollection = new ObservableCollection<Product>();
-
-             foreach (string category in Enum.GetNames(typeof(EnumCategory.ProductCategory)).Skip(5))
-             {
-                 foreach (var product in inputObservableCollection)
-                 {
-                      if (product.Category.ToString() == category) outPutObservableCollection.Add(product);
-                 }
-             }
-             foreach (string category in Enum.GetNames(typeof(EnumCategory.ProductCategory)).Take(5))
-             {
-                 foreach (var product in inputObservableCollection)
-                 {
-                      if (product.Category.ToString() == category) outPutObservableCollection.Add(product);
-                 }
-             }
-
-             return outPutObservableCollection;
-        }
-        private ObservableCollection<Product> SortHelpOther(ObservableCollection<Product> inputObservableCollection)
-        {
-             ObservableCollection<Product> outPutObservableCollection = new ObservableCollection<Product>();
-
-             foreach (string category in Enum.GetNames(typeof(EnumCategory.ProductCategory)).Skip(6))
-             {
-                 foreach (var product in inputObservableCollection)
-                 {
-                      if (product.Category.ToString() == category) outPutObservableCollection.Add(product);
-                 }
-             }
-             foreach (string category in Enum.GetNames(typeof(EnumCategory.ProductCategory)).Take(6))
-             {
-                 foreach (var product in inputObservableCollection)
-                 {
-                      if (product.Category.ToString() == category) outPutObservableCollection.Add(product);
-                 }
-             }
-
-             return outPutObservableCollection;
-        }
-
-        private int ConvertMethod()
-        {
-             int temp = 0;
-             if (SortProductsTb == "Øl")
-             {
-                 temp = 1;
-             }
-             else if (SortProductsTb == "Sodavand")
-             {
-                 temp = 2;
-             }
-             else if (SortProductsTb == "Cider")
-             {
-                 temp = 3;
-             }
-             else if (SortProductsTb == "Drink")
-             {
-                 temp = 4;
-             }
-             else if (SortProductsTb == "Flaske")
-             {
-                 temp = 5;
-             }
-             else if (SortProductsTb == "Shot")
-             {
-                 temp = 6;
-             }
-             else if (SortProductsTb == "Andet")
-             {
-                 temp = 7;
-             }
-
-             return temp;
-        }
-        #endregion
         #endregion
 
         #region Save/Load

@@ -21,6 +21,7 @@ namespace FredagsCafeUWP.ViewModels
         private Statistics _statistics;
         private AccountSettingsClass _accountSettingsClass = new AccountSettingsClass();
         private Help _help = new Help();
+        private SortProducts _sortProducts = new SortProducts();
 
         private RelayCommand _removeProductCommand;
 
@@ -395,6 +396,12 @@ namespace FredagsCafeUWP.ViewModels
         {
             get { return _changeSelectedAccountSettings; }
             set { _changeSelectedAccountSettings = value; }
+        }
+
+        public SortProducts SortProducts
+        {
+            get { return _sortProducts; }
+            set { _sortProducts = value; }
         }
 
         #endregion
