@@ -16,6 +16,7 @@ namespace FredagsCafeUWP.Models
         #region Field
 
         private static Message _message;
+        BrowseImages _browseImages = new BrowseImages();
 
         public readonly string _standardImage = "UserImages/Profile-icon.png";
 
@@ -207,25 +208,9 @@ namespace FredagsCafeUWP.Models
             ShowAddUserPopUp = true;
         }
 
-        public async Task<string> BrowseImageWindowTask()
+        public void BrowseImageButton()
         {
-            FileOpenPicker openPicker = new FileOpenPicker();
-            openPicker.ViewMode = PickerViewMode.Thumbnail;
-            openPicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
-            openPicker.FileTypeFilter.Add(".jpg");
-            openPicker.FileTypeFilter.Add(".jpeg");
-            openPicker.FileTypeFilter.Add(".png");
-            TextBlock outputTextBlock = new TextBlock();
-
-            StorageFile file = await openPicker.PickSingleFileAsync();
-            if (file != null) return outputTextBlock.Text = "UserImages/" + file.Name;
-            else return outputTextBlock.Text = "";
-        }
-
-        public async void BrowseImageButton()
-        {
-            ImageTb = await BrowseImageWindowTask();
-            ShowAddUserPopUp = true;
+            _browseImages.BrowseImageButton(ImageTb, "UserImages/", ShowAddUserPopUp);
         }
 
 

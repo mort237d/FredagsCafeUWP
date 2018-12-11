@@ -20,6 +20,7 @@ namespace FredagsCafeUWP.Models
         private ObservableCollection<Event> _events;
         private Event _selectedEvent;
         private EventUser _selectedEventUser;
+        BrowseImages _browseImages = new BrowseImages();
 
         private string _userNameTb;
         private string _userEmailTb;
@@ -281,27 +282,10 @@ namespace FredagsCafeUWP.Models
             else await _message.Error("Intet event valgt", "Vælg venligst et event.");
         }
 
-        public async void BrowseAddImageButton()
+        public void BrowseAddImageButton()
         {
-            EventImageTb = await BrowseAddImageWindowTask();
-            ShowAddEventPopUp = true;
+            _browseImages.BrowseImageButton(EventImageTb, "EventImages/", ShowAddEventPopUp);
         }
-
-        public async Task<string> BrowseAddImageWindowTask()
-        {
-            FileOpenPicker openPicker = new FileOpenPicker();
-            openPicker.ViewMode = PickerViewMode.Thumbnail;
-            openPicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
-            openPicker.FileTypeFilter.Add(".jpg");
-            openPicker.FileTypeFilter.Add(".jpeg");
-            openPicker.FileTypeFilter.Add(".png");
-            TextBlock outputTextBlock = new TextBlock();
-
-            StorageFile file = await openPicker.PickSingleFileAsync();
-            if (file != null) return outputTextBlock.Text = "EventImages/" + file.Name;
-            else return outputTextBlock.Text = "";
-        }
-
 
         #region save/load
         public async Task SaveAsync()

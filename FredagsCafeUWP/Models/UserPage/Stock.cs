@@ -20,6 +20,7 @@ namespace FredagsCafeUWP.Models
 
         private readonly Message _message;
         private Product _selectedProduct = new Product();
+        private BrowseImages _browseImages = new BrowseImages();
 
         private ObservableCollection<Product> _products;
 
@@ -422,47 +423,15 @@ namespace FredagsCafeUWP.Models
              }
              else await _message.Error("Forkert input", "Produktet skal have et navn.");
         }
-
-        public async Task<string> BrowseAddImageWindowTask()
+        
+        public void BrowseAddImageButton()
         {
-             FileOpenPicker openPicker = new FileOpenPicker();
-             openPicker.ViewMode = PickerViewMode.Thumbnail;
-             openPicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
-             openPicker.FileTypeFilter.Add(".jpg");
-             openPicker.FileTypeFilter.Add(".jpeg");
-             openPicker.FileTypeFilter.Add(".png");
-             TextBlock outputTextBlock = new TextBlock();
-
-             StorageFile file = await openPicker.PickSingleFileAsync();
-             if (file != null) return outputTextBlock.Text = "ProductImages/" + file.Name;
-             else return outputTextBlock.Text = "";
+             _browseImages.BrowseImageButton(AddImageSourceTb, "ProductImages/", ShowAddProductPopUp);
         }
 
-        public async void BrowseAddImageButton()
+        public void BrowseChangeImageButton()
         {
-             AddImageSourceTb = await BrowseAddImageWindowTask();
-             ShowAddProductPopUp = true;
-        }
-
-        public async Task<string> BrowseChangeImageWindowTask()
-        {
-             FileOpenPicker openPicker = new FileOpenPicker();
-             openPicker.ViewMode = PickerViewMode.Thumbnail;
-             openPicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
-             openPicker.FileTypeFilter.Add(".jpg");
-             openPicker.FileTypeFilter.Add(".jpeg");
-             openPicker.FileTypeFilter.Add(".png");
-             TextBlock outputTextBlock = new TextBlock();
-
-             StorageFile file = await openPicker.PickSingleFileAsync();
-             if (file != null) return outputTextBlock.Text = "ProductImages/" + file.Name;
-             else return outputTextBlock.Text = "";
-        }
-
-        public async void BrowseChangeImageButton()
-        {
-             ChangeImageSourceTb = await BrowseChangeImageWindowTask();
-             ShowChangeProductPopUp = true;
+            _browseImages.BrowseImageButton(ChangeImageSourceTb, "ProductImages/", ShowChangeProductPopUp);
         }
 
         public void ShowAddProductPopUpMethod()
