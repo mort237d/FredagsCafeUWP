@@ -45,12 +45,12 @@
 
             <StackPanel Background="#6CA0DC" Height="1000" Width="400">
                 <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0">
-                    <TextBlock Text="Tilføj Produkt" FontWeight="Bold" FontSize="50" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="Tilføj Produkt" FontWeight="Bold" FontSize="50" HorizontalAlignment="Center"/>
                     <TextBox Margin="2" PlaceholderText="Navn" Text="{Binding Stock.AddNameTb, Mode=TwoWay}"/>
                     <TextBox Margin="2" PlaceholderText="Købspris" Text="{Binding Stock.AddBuyingPriceTb, Mode=TwoWay}"/>
                     <TextBox Margin="2" PlaceholderText="Salgspris" Text="{Binding Stock.AddSellingPriceTb, Mode=TwoWay}"/>
                     <TextBox Margin="2" PlaceholderText="Antal" Text="{Binding Stock.AddAmountTb, Mode=TwoWay}"/>
-                    <ComboBox Name="Comboboxo" Margin="2" PlaceholderText="Type" Width="320" SelectionChanged="Comboboxo_OnSelectionChanged">
+                    <ComboBox Name="Comboboxo" PlaceholderText="Type" Width="320" SelectionChanged="Comboboxo_OnSelectionChanged">
                         <ComboBoxItem Content="Øl"/>
                         <ComboBoxItem Content="Sodavand"/>
                         <ComboBoxItem Content="Cider"/>
@@ -303,7 +303,7 @@
                         <TextBlock FontSize="30" FontWeight="Bold" Margin="2,0,0,0" Foreground="White" Text=",-"/>
                     </StackPanel>
 
-                    <StackPanel VerticalAlignment="Bottom" Margin="5,0,0.4,5" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center">
+                    <StackPanel VerticalAlignment="Bottom" Margin="250,0,0,0" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left">
                         <ComboBox Name="ComboboxSort" Margin="2" PlaceholderText="Type" Width="320" SelectionChanged="Comboboxo_OnSelectionChanged">
                             <ComboBoxItem Content="Øl"/>
                             <ComboBoxItem Content="Sodavand"/>
@@ -419,7 +419,18 @@
                             <Button HorizontalAlignment="Center" Style="{StaticResource RoundedButtonStyle}" Content="Tilføj produkt" Command="{Binding ShowAddProductPopUpCommand}"/>
                             <Button HorizontalAlignment="Center" Style="{StaticResource RoundedButtonStyle}" Content="Slet produkt" Command="{Binding RemoveProductCommand}" Margin="0,5,0,0"/>
                         </StackPanel>
-
+                        <StackPanel VerticalAlignment="Bottom" Margin="250,0,0,0" HorizontalAlignment="Left">
+                            <ComboBox Name="ComboboxSort2" Margin="2" PlaceholderText="Type" Width="320" SelectionChanged="Comboboxo_OnSelectionChanged">
+                                <ComboBoxItem Content="Øl"/>
+                                <ComboBoxItem Content="Sodavand"/>
+                                <ComboBoxItem Content="Cider"/>
+                                <ComboBoxItem Content="Drink"/>
+                                <ComboBoxItem Content="Flaske"/>
+                                <ComboBoxItem Content="Shot"/>
+                                <ComboBoxItem Content="Andet"/>
+                            </ComboBox>
+                            
+                        </StackPanel>
                         <Button HorizontalAlignment="Right" Style="{StaticResource RoundedButtonStyle}" Content="Ændre produkt" Command="{Binding ShowChangeProductPopUpCommand}"></Button>
                     </Grid>
 

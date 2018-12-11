@@ -104,6 +104,12 @@ namespace FredagsCafeUWP
                 string temp3 = ((ComboBoxItem)ComboboxSort.SelectedItem).Content.ToString();
                 TBComboboxSorted.Text = temp3;
             }
+
+            if (ComboboxSort2.SelectedItem != null)
+            {
+                string temp4 = ((ComboBoxItem) ComboboxSort2.SelectedItem).Content.ToString();
+                TBComboboxSorted.Text = temp4;
+            }
         }
     }
 }
