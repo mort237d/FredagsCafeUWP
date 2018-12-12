@@ -221,7 +221,7 @@ namespace FredagsCafeUWP.Models.UserPage
                     item.ForegroundColor = _colorRed;
                 }
             }
-            else await _message.Error("Ingen transaktion valgt", "Vælg venligst en.");
+            else await _message.Error("Ingen transaktion valgt", "Vælg venligst en transaktion for at slette.");
         }
 
         public double DiscountedTotal()

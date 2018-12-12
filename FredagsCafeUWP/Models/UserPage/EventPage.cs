@@ -273,7 +273,7 @@ namespace FredagsCafeUWP.Models
             Debug.WriteLine("removeEvent");
             if (SelectedEvent != null)
             {
-                await _message.YesNo("Slet event", "Er du sikker på at du vil slette " + SelectedEvent + "?");
+                await _message.YesNo("Slet event", "Er du sikker på at du vil slette " + SelectedEvent.Name + "?");
             }
             else await _message.Error("Intet event valgt", "Vælg venligst et event for at fjerne det.");
         }
