@@ -298,18 +298,7 @@ namespace FredagsCafeUWP.Models
                     new User("Christian", "EASJ", "Datamatiker", "Christian@edu.easj.dk", "12345678", "Christian", "Christian", _standardImage, "")
                 };
 
-                foreach (var user in Users)
-                {
-                    user.Name = _encrypt.Encrypting(user.Name);
-                    user.Admin = _encrypt.Encrypting(user.Admin);
-                    user.Education = _encrypt.Encrypting(user.Education);
-                    user.Email = _encrypt.Encrypting(user.Email);
-                    user.Grade = _encrypt.Encrypting(user.Grade);
-                    user.Password = _encrypt.Encrypting(user.Password);
-                    user.TelephoneNumber = _encrypt.Encrypting(user.TelephoneNumber);
-                    user.UserName = _encrypt.Encrypting(user.UserName);
-                    user.ImageSource = _encrypt.Encrypting(user.ImageSource);
-                }
+                _encrypt.EncryptUsers();
             }
 
         }

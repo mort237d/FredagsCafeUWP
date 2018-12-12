@@ -33,18 +33,7 @@ namespace FredagsCafeUWP
 
             Loader();
 
-            foreach (var user in _administration.Users)
-            {
-                user.Name = _encrypt.DeCrypt(user.Name);
-                user.Admin = _encrypt.DeCrypt(user.Admin);
-                user.Education = _encrypt.DeCrypt(user.Education);
-                user.Email = _encrypt.DeCrypt(user.Email);
-                user.Grade = _encrypt.DeCrypt(user.Grade);
-                user.Password = _encrypt.DeCrypt(user.Password);
-                user.TelephoneNumber = _encrypt.DeCrypt(user.TelephoneNumber);
-                user.UserName = _encrypt.DeCrypt(user.UserName);
-                user.ImageSource = _encrypt.DeCrypt(user.ImageSource);
-            }
+            _encrypt.DecryptUsers();
             SystemNavigationManagerPreview.GetForCurrentView().CloseRequested += this.OnCloseRequest;
 
         }
@@ -68,18 +57,7 @@ namespace FredagsCafeUWP
                 product.AmountToBeSold = 0;
             }
 
-            foreach (var user in _administration.Users)
-            {
-                user.Name = _encrypt.Encrypting(user.Name);
-                user.Admin = _encrypt.Encrypting(user.Admin);
-                user.Education = _encrypt.Encrypting(user.Education);
-                user.Email = _encrypt.Encrypting(user.Email);
-                user.Grade = _encrypt.Encrypting(user.Grade);
-                user.Password = _encrypt.Encrypting(user.Password);
-                user.TelephoneNumber = _encrypt.Encrypting(user.TelephoneNumber);
-                user.UserName = _encrypt.Encrypting(user.UserName);
-                user.ImageSource = _encrypt.Encrypting(user.ImageSource);
-            }
+            _encrypt.EncryptUsers();
 
             await Saver();
 
