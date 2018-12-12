@@ -3,10 +3,6 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
-using Windows.Storage;
-using Windows.Storage.Pickers;
-using Windows.UI.Xaml.Controls;
 using FredagsCafeUWP.Annotations;
 
 namespace FredagsCafeUWP.Models

@@ -14,9 +14,10 @@ namespace FredagsCafeUWP.Models
         private readonly Administration _administration;
         private Sale _sale;
         private EventPage _eventPage;
+        private AccountSettingsClass _accountSettingsClass;
 
         #endregion
-        
+
         public Message(Stock stock)
         {
             _stock = stock;
@@ -35,6 +36,11 @@ namespace FredagsCafeUWP.Models
         public Message(EventPage eventPage)
         {
             _eventPage = eventPage;
+        }
+
+        public Message(AccountSettingsClass accountSettingsClass)
+        {
+            _accountSettingsClass = accountSettingsClass;
         }
 
         //private static Message instance;

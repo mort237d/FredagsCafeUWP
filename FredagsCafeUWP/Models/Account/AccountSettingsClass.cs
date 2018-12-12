@@ -9,7 +9,7 @@ namespace FredagsCafeUWP
 
     {
         private Administration _administration = Administration.Instance;
-
+        private Message _message;
 
         private readonly string _standardImage = "UserImages/Profile-icon.png";
 
@@ -127,7 +127,7 @@ namespace FredagsCafeUWP
 
         public AccountSettingsClass()
         {
-            
+            _message = new Message(this);
         }
 
         public void ChangeSettings()
@@ -207,15 +207,19 @@ namespace FredagsCafeUWP
 
         public void ShowAdminAccountPopUpMethod()
         {
-            NameTb = _administration.SelectedUser.Name;
-            GradeTb = _administration.SelectedUser.Grade;
-            EducationTb = _administration.SelectedUser.Education;
-            EmailTb = _administration.SelectedUser.Email;
-            TelephoneNumberTb = _administration.SelectedUser.TelephoneNumber;
-            UserNameTb = _administration.SelectedUser.UserName;
-            PasswordTb = _administration.SelectedUser.Password;
+            if (_administration.SelectedUser != null)
+            {
+                NameTb = _administration.SelectedUser.Name;
+                GradeTb = _administration.SelectedUser.Grade;
+                EducationTb = _administration.SelectedUser.Education;
+                EmailTb = _administration.SelectedUser.Email;
+                TelephoneNumberTb = _administration.SelectedUser.TelephoneNumber;
+                UserNameTb = _administration.SelectedUser.UserName;
+                PasswordTb = _administration.SelectedUser.Password;
 
-            ShowAdminAccountPopup  = true;
+                ShowAdminAccountPopup = true;
+            }
+            else _message.Error("Ingen bruger valgt", "Vælg venligst en bruger du vil ændre.");
         }
 
 

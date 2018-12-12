@@ -3,10 +3,6 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
-using Windows.Storage;
-using Windows.Storage.Pickers;
-using Windows.UI.Xaml.Controls;
 using FredagsCafeUWP.Annotations;
 
 namespace FredagsCafeUWP.Models
@@ -240,9 +236,9 @@ namespace FredagsCafeUWP.Models
                 {
                     await _message.YesNo("Slet bruger af eventet", "Er du sikker på at du vil slette " + SelectedEventUser.Name + " fra " + SelectedEvent.Name + "?");
                 }
-                else await _message.Error("Ingen bruger valgt", "Vælg venligst en bruger.");
+                else await _message.Error("Ingen deltager valgt", "Vælg venligst en deæltager for at slette.");
             }
-            else await _message.Error("Intet event valgt", "Vælg venligst et event.");
+            else await _message.Error("Intet event valgt", "Vælg venligst et event for at fjerne en deltager.");
         }
 
         public async void AddEvent()
@@ -279,7 +275,7 @@ namespace FredagsCafeUWP.Models
             {
                 await _message.YesNo("Slet event", "Er du sikker på at du vil slette " + SelectedEvent + "?");
             }
-            else await _message.Error("Intet event valgt", "Vælg venligst et event.");
+            else await _message.Error("Intet event valgt", "Vælg venligst et event for at fjerne det.");
         }
 
         public void BrowseAddImageButton()
