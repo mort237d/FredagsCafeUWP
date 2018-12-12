@@ -269,8 +269,8 @@ namespace FredagsCafeUWP.Models
 
         public async void ChangeAdmin()
         {
-           await _message.YesNo("Giv admin videre",
-                "Er du sikker på at du vil give admin videre til " + SelectedUser.Name + "?");
+            if (SelectedUser != null) await _message.YesNo("Giv admin videre", "Er du sikker på at du vil give admin videre til " + SelectedUser.Name + "?");
+            else await _message.Error("Ingen bruger valgt", "Vælg venligst en bruger.");
         }
 
 
