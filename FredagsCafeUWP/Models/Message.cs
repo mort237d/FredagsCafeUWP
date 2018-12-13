@@ -11,7 +11,7 @@ namespace FredagsCafeUWP.Models
         #region Field
 
         private Stock _stock;
-        private readonly Administration _administration;
+        private Administration _administration;
         private Sale _sale;
         private EventPage _eventPage;
         private AccountSettingsClass _accountSettingsClass;
@@ -43,19 +43,6 @@ namespace FredagsCafeUWP.Models
             _accountSettingsClass = accountSettingsClass;
         }
 
-        //private static Message instance;
-        //public static Message Instance
-        //{
-        //    get
-        //    {
-        //        if (instance == null)
-        //        {
-        //            instance = new Message();
-        //        }
-        //        return instance;
-        //    }
-        //}
-
         #region Methods
 
         public async Task Error(string title, string content)
@@ -83,30 +70,22 @@ namespace FredagsCafeUWP.Models
             var command = await dialog.ShowAsync();
 
             if (command == yesCommand)
-            {
-                Debug.WriteLine("Yes");                                                                                                                                                                                                                                                                                                 
+            {                                                                                                                                                                                                                                                                                             
                 if (title == "Slet produkt")_stock.Products.Remove(_stock.SelectedProduct);
-                if (title == "Slet bruger")_administration.Users.Remove(_administration.SelectedUser);
-                if (title == "Slet bruger af eventet")_eventPage.SelectedEvent.EventsUsers.Remove(_eventPage.SelectedEventUser);
-                if (title == "Slet event")_eventPage.Events.Remove(_eventPage.SelectedEvent);
-                if (title == "Giv admin videre")
+                else if (title == "Slet bruger")_administration.Users.Remove(_administration.SelectedUser);
+                else if (title == "Slet bruger af eventet")_eventPage.SelectedEvent.EventsUsers.Remove(_eventPage.SelectedEventUser);
+                else if (title == "Slet event")_eventPage.Events.Remove(_eventPage.SelectedEvent);
+                else if (title == "Giv admin videre")
                 {
                     _administration.CurrentUser.Admin = null;
-                    foreach (var user in _administration.Users)
-                    {
-                        if (user.Email == _administration.CurrentUser.Email)
-                        {
-                            user.Admin = null;
-                        }
-                    }
+                    foreach (var user in _administration.Users) if (user.Email == _administration.CurrentUser.Email) user.Admin = null;
                     _administration.SelectedUser.Admin = "Admin";
 
                     _administration.ButtonVisibility(_administration.CurrentUser);
                 }
-                }
+            }
             else if (command == noCommand)
             {
-                Debug.WriteLine("No");
             }
         }
 

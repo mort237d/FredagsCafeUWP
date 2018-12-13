@@ -345,6 +345,7 @@
                                                 <Style TargetType="ListViewItem">
                                                     <Setter Property="MinHeight" Value="1"/>
                                                     <Setter Property="Height" Value="20"/>
+                                                    <Setter Property="IsHitTestVisible" Value="False"/>
                                                 </Style>
                                             </ListView.ItemContainerStyle>
                                             <ListView.ItemTemplate>

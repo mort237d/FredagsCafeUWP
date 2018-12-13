@@ -6,17 +6,10 @@ namespace FredagsCafeUWP.Models
 {
     public class Product : INotifyPropertyChanged
     {
-        #region Fields
-        private double _buyingPrice;
-        private double _sellingPrice;
-        private string _name;
-        private int _amountInStock;
-        private int _amountSold;
-        private string _imageSource;
-        private string _foregroundColor = "ForestGreen";
-        private int _amountToBeSold;
-        private int _discountAtThisAmount;
-        private double _discountPricePerItem;
+        #region Field
+        private double _buyingPrice, _sellingPrice, _discountPricePerItem;
+        private string _name, _imageSource, _foregroundColor;
+        private int _amountInStock, _amountSold, _amountToBeSold, _discountAtThisAmount;
         private EnumCategory.ProductCategory _category;
 
         #endregion

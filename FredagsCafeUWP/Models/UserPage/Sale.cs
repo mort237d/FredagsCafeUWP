@@ -222,6 +222,8 @@ namespace FredagsCafeUWP.Models.UserPage
                     item.ForegroundColor = _colorRed;
                 }
             }
+            else if (SelectedReceipt.Color == _colorRed)
+                await _message.Error("Transaktion er allerede slette", "Transaktion kan ikke slettes da den allerede er slettet.");
             else await _message.Error("Ingen transaktion valgt", "Vælg venligst en transaktion for at slette.");
         }
 

@@ -12,11 +12,9 @@ namespace FredagsCafeUWP
         #region Fields
 
         private string _saleDateTime = DateTime.Now.ToString("dd/MM/yyyy - HH:mm:ss");
-        private string _cvr = "000000-0000";
-        private string _phoneNumber = "+45 0000 0000";
+        private string _cvr, _phoneNumber, _color;
         private int _saleNumber;
         private double _subTotal;
-        private string _color = "Black";
         private List<Product> _basket;
 
         #endregion
