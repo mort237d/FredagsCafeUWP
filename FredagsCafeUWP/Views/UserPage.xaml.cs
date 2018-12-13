@@ -80,18 +80,20 @@ namespace FredagsCafeUWP
         {
             if (Comboboxo.SelectedItem != null)
             {
-                string temp = ((ComboBoxItem)Comboboxo.SelectedItem).Content.ToString();
-                tbcombo.Text = temp;
+                string selectedContent = ((ComboBoxItem)Comboboxo.SelectedItem).Content.ToString();
+                tbcombo.Text = selectedContent;
+                Comboboxo.SelectedItem = null;
             }
             if (JohnHitler.SelectedItem != null)
             {
-                string temp2 = ((ComboBoxItem)JohnHitler.SelectedItem).Content.ToString();
-                tcombo.Text = temp2;
+                string selectedContent = ((ComboBoxItem)JohnHitler.SelectedItem).Content.ToString();
+                tcombo.Text = selectedContent;
+                JohnHitler.SelectedItem = null;
             }
             if (ComboboxSort.SelectedItem != null)
             {
-                string temp3 = ((ComboBoxItem)ComboboxSort.SelectedItem).Content.ToString();
-                TBComboboxSorted.Text = temp3;
+                string selectedContent = ((ComboBoxItem)ComboboxSort.SelectedItem).Content.ToString();
+                TBComboboxSorted.Text = selectedContent;
                 ComboboxSort2.SelectedItem = null;
             }
         }
@@ -100,8 +102,8 @@ namespace FredagsCafeUWP
         {
             if (ComboboxSort2.SelectedItem != null)
             {
-                string temp4 = ((ComboBoxItem)ComboboxSort2.SelectedItem).Content.ToString();
-                TBComboboxSorted.Text = temp4;
+                string selectedContent = ((ComboBoxItem)ComboboxSort2.SelectedItem).Content.ToString();
+                TBComboboxSorted.Text = selectedContent;
                 ComboboxSort.SelectedItem = null;
             }
         }
