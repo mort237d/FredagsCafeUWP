@@ -13,14 +13,16 @@ namespace FredagsCafeUWP
 {
     public class LogOnLogOff : INotifyPropertyChanged
     {
+        #region Field
+
         public string UserName { get; set; }
         public string PassWord { get; set; }
-        private string _wrongLogin;
-        private string _wrongLoginColor;
+        private string _wrongLogin, _wrongLoginColor;
         private Administration _administration = Administration.Instance;
         private ObservableCollection<string> _logInLogOutList;
 
-        private int i = 0;
+        #endregion
+
         #region Props
 
         public string WrongLogin
@@ -49,18 +51,14 @@ namespace FredagsCafeUWP
             set { _logInLogOutList = value; }
         }
 
-        public Administration Administration
-        {
-            get { return _administration; }
-            set { _administration = value; }
-        }
-
         #endregion
 
         private LogOnLogOff()
         {
             
         }
+
+        #region Singleton
 
         private static LogOnLogOff instance;
         public static LogOnLogOff Instance
@@ -75,19 +73,14 @@ namespace FredagsCafeUWP
             }
         }
 
-        public void logOffMethod()
+        #endregion
+
+        #region ButtonMethods
+
+        public void LogOffMethod()
         {
-            LogInLogOutList.Add(Administration.CurrentUser.Name + " logged off at " + DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy"));
-
-
-
-            i = 0;
-            foreach (var loginlogoff in LogInLogOutList)
-            {
-                Debug.WriteLine(i + " " + loginlogoff);
-                i++;
-            }
-
+            LogInLogOutList.Add(_administration.CurrentUser.Name + " logged off at " + DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy"));
+            
             Frame currentFrame = Window.Current.Content as Frame;
             currentFrame.Navigate(typeof(LoginPage));
         }
@@ -95,23 +88,16 @@ namespace FredagsCafeUWP
         public void CheckLogin()
         {
             bool temp = false;
-            foreach (var user in Administration.Users)
+            foreach (var user in _administration.Users)
             {
                 if (user.UserName == UserName && user.Password == PassWord)
                 {
-                    Administration.CurrentUser = user;
+                    _administration.CurrentUser = user;
                     LogInLogOutList.Add(UserName + " logged in at " + DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy"));
 
-                    Administration.ButtonVisibility(user);
+                    _administration.ButtonVisibility(user);
 
                     PassWord = null;
-
-                    i = 0;
-                    foreach (var loginlogoff in LogInLogOutList)
-                    {
-                        Debug.WriteLine(i + " " + loginlogoff);
-                        i++;
-                    }
 
                     temp = true;
                     break;
@@ -127,6 +113,8 @@ namespace FredagsCafeUWP
                 WrongLogin = "Forkert Password eller Username";
             }
         }
+
+        #endregion
 
         #region Save/Load
 

@@ -18,7 +18,6 @@ namespace FredagsCafeUWP.Models
                 Frame frame = new Frame();
                 frame.Navigate(typeof(HelpPage), null);
                 Window.Current.Content = frame;
-                // You have to activate the window in order to show it later.
                 Window.Current.Activate();
 
                 newViewId = ApplicationView.GetForCurrentView().Id;

@@ -103,7 +103,7 @@ namespace FredagsCafeUWP.ViewModels
 
             CalculateTotalPriceCommand = new RelayCommand(Sale.DiscountedTotalcalculator);
 
-            LogOffCommand = new RelayCommand(LogOnLogOff.logOffMethod);
+            LogOffCommand = new RelayCommand(LogOnLogOff.LogOffMethod);
 
 
             ShowAccountPopUp = new RelayCommand(AccountSettingsClass.ShowAccountSettingsPopUpMethod);
