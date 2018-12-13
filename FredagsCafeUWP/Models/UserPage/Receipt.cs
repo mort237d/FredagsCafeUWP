@@ -11,10 +11,10 @@ namespace FredagsCafeUWP
     {
         #region Fields
 
-        private string _saleDateTime = DateTime.Now.ToString("dd/MM/yyyy - HH:mm:ss");
+        public string SaleDateTime { get; set; } = DateTime.Now.ToString("dd/MM/yyyy - HH:mm:ss");
         private string _color;
-        public string _cvr { get; set; }
-        public string _phoneNumber { get; set; }
+        //public string _cvr { get; set; }
+        //public string _phoneNumber { get; set; }
         public int SaleNumber { get; set; }
         public double SubTotal { get; set; }
         public double Savings { get; set; }
@@ -35,7 +35,6 @@ namespace FredagsCafeUWP
             
         }
 
-        #region Props
         public string Color
         {
             get => _color;
@@ -45,7 +44,6 @@ namespace FredagsCafeUWP
                 OnPropertyChanged();
             }
         }
-        #endregion
 
         #region Inotify
 
