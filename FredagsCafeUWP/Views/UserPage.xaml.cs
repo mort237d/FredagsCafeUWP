@@ -1,4 +1,5 @@
-﻿using Windows.ApplicationModel.Core;
+﻿using System.Threading.Tasks;
+using Windows.ApplicationModel.Core;
 using Windows.UI;
 using Windows.UI.Core.Preview;
 using Windows.UI.ViewManagement;
@@ -38,14 +39,14 @@ namespace FredagsCafeUWP
 
         }
 
-        private void Loader()
+        private async Task Loader()
         {
-            _administration.LoadAsync();
-            _stock.LoadAsync();
-            _sale.LoadAsync();
-            _statListClass.LoadAsync();
-            _logOnLogOff.LoadAsync();
-            _eventPage.LoadAsync();
+            await _administration.LoadAsync();
+            await _stock.LoadAsync();
+            await _sale.LoadAsync();
+            await _statListClass.LoadAsync();
+            await _logOnLogOff.LoadAsync();
+            await _eventPage.LoadAsync();
         }
 
         private async void OnCloseRequest(object sender, SystemNavigationCloseRequestedPreviewEventArgs e)

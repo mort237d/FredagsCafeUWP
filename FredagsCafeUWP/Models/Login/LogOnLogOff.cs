@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using FredagsCafeUWP.Annotations;
@@ -129,7 +130,7 @@ namespace FredagsCafeUWP
 
         #region Save/Load
 
-        public async void LoadAsync()
+        public async Task LoadAsync()
         {
             try
             {
