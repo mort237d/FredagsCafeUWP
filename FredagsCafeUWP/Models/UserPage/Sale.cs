@@ -26,8 +26,6 @@ namespace FredagsCafeUWP.Models.UserPage
 
         private double _totalTb;
 
-        private int _noItems = 0;
-
         private StatListClass _statListClass = StatListClass.Instance;
 
         #endregion
@@ -168,16 +166,17 @@ namespace FredagsCafeUWP.Models.UserPage
         public async void CompleteSale()
         {
             string productAmountLow = null;
-            double temp = SubTotal();
-            if (temp > 0)
+            double total = SubTotal();
+
+            if (total > 0)
             {
                 AddItemsToBasket();
-                double temp2 = DiscountedTotal();
-                int count = Receipts.Count + 1;
+                double savings = total- DiscountedTotal(); 
+                int saleNumber = Receipts.Count + 1;
 
-                Receipts.Insert(0, new Receipt(temp2, count, Basket));
+                Receipts.Insert(0, new Receipt(DiscountedTotal(), saleNumber, savings, Basket));
 
-                TotalTb = _noItems;
+                TotalTb = 0; //Total price is 0 after a sale
 
                 _statListClass.ProductViewGraph();
                 _statListClass.AddTotalSaleValue();
@@ -194,7 +193,7 @@ namespace FredagsCafeUWP.Models.UserPage
                 if (productAmountLow != null) await _message.Error("Lavt lager", "Der er lavt lager af:\n" + productAmountLow);
 
             }
-            else if (temp != -1) await _message.Error("Ingen vare tilføjet", "Tilføj venligst vare for at betale.");
+            else if (total != -1) await _message.Error("Ingen vare tilføjet", "Tilføj venligst vare for at betale.");
         }
 
         public async void DeleteReceipt()

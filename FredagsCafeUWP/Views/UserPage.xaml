@@ -122,7 +122,7 @@
 
             <StackPanel Background="#6CA0DC" Height="1000" Width="400">
                 <StackPanel Margin="40">
-                    <TextBlock Text="Tilføj Bruger" FontWeight="Bold" FontSize="50" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="Tilføj Bruger" FontWeight="Bold" FontSize="50" HorizontalAlignment="Center"/>
                     <TextBox Margin="2" PlaceholderText="Navn" Text="{Binding Administration.NameTb, Mode=TwoWay}"/>
                     <TextBox Margin="2" PlaceholderText="Klasse" Text="{Binding Administration.GradeTb, Mode=TwoWay}"/>
                     <TextBox Margin="2" PlaceholderText="Skole" Text="{Binding Administration.EducationTb, Mode=TwoWay}"/>
@@ -149,7 +149,7 @@
 
             <StackPanel Background="#6CA0DC" Height="1000" Width="400">
                 <StackPanel>
-                    <TextBlock Text="Tilføj Event" FontWeight="Bold" FontSize="50" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="Tilføj Event" FontWeight="Bold" FontSize="50" HorizontalAlignment="Center"/>
                     <TextBox Margin="2" Text="{Binding EventPage.EventNameTb, Mode=TwoWay}" PlaceholderText="Navn"/>
                     <TextBox Margin="2" Text="{Binding EventPage.EventLocationTb, Mode=TwoWay}" PlaceholderText="Placering"/>
                     <TextBox Margin="2" Text="{Binding EventPage.EventDescriptionTb, Mode=TwoWay}" PlaceholderText="Beskrivelse"/>
@@ -173,9 +173,9 @@
 
             <StackPanel Background="#6CA0DC" Height="1000" Width="400">
                 <StackPanel>
-                    <TextBlock Text="Tilføj Deltager" FontWeight="Bold" FontSize="50" HorizontalAlignment="Center"></TextBlock>
-                    <TextBox Margin="2" Text="{Binding EventPage.UserNameTb, Mode=TwoWay}" PlaceholderText="Navn"></TextBox>
-                    <TextBox Margin="2" Text="{Binding EventPage.UserEmailTb, Mode=TwoWay}" PlaceholderText="Email"></TextBox>
+                    <TextBlock Text="Tilføj Deltager" FontWeight="Bold" FontSize="50" HorizontalAlignment="Center"/>
+                    <TextBox Margin="2" Text="{Binding EventPage.UserNameTb, Mode=TwoWay}" PlaceholderText="Navn"/>
+                    <TextBox Margin="2" Text="{Binding EventPage.UserEmailTb, Mode=TwoWay}" PlaceholderText="Email"/>
                     <Button Margin="2" Command="{Binding AddEventUserCommand}" Style="{StaticResource RoundedButtonStyle}" Content="Tilføj deltager" HorizontalAlignment="Center"/>
                 </StackPanel>
             </StackPanel>
@@ -190,17 +190,17 @@
 
             <StackPanel Background="#6CA0DC" Height="1000" Width="400">
                 <StackPanel>
-                    <TextBlock Text="Ændre bruger" FontWeight="Bold" FontSize="50" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="Ændre bruger" FontWeight="Bold" FontSize="50" HorizontalAlignment="Center"/>
                     <StackPanel Orientation="Horizontal">
                         <StackPanel HorizontalAlignment="Center" Orientation="Vertical" Grid.ColumnSpan="2">
-                            <TextBlock Text="Navn" Height="32" Margin="0,5,0,0"></TextBlock>
-                            <TextBlock Text="Klasse" Height="32"></TextBlock>
-                            <TextBlock Text="Skole" Height="32"></TextBlock>
-                            <TextBlock Text="Email" Height="32"></TextBlock>
-                            <TextBlock Text="Tlf. nummer" Height="32"></TextBlock>
-                            <TextBlock Text="Brugernavn" Height="32"></TextBlock>
-                            <TextBlock Text="Kodeord" Height="32"></TextBlock>
-                            <TextBlock Text="Bekræft kodeord" Height="32"></TextBlock>
+                            <TextBlock Text="Navn" Height="32" Margin="0,5,0,0"/>
+                            <TextBlock Text="Klasse" Height="32"/>
+                            <TextBlock Text="Skole" Height="32"/>
+                            <TextBlock Text="Email" Height="32"/>
+                            <TextBlock Text="Tlf. nummer" Height="32"/>
+                            <TextBlock Text="Brugernavn" Height="32"/>
+                            <TextBlock Text="Kodeord" Height="32"/>
+                            <TextBlock Text="Bekræft kodeord" Height="32"/>
                         </StackPanel >
                         <StackPanel Margin="5,0,0,0" HorizontalAlignment="Center" Orientation="Vertical">
                             <TextBox PlaceholderText="Navn" Text="{Binding AccountSettingsClass.NameTb, Mode=TwoWay}"/>
@@ -229,17 +229,17 @@
 
             <StackPanel Background="#6CA0DC" Height="1000" Width="400">
                 <StackPanel>
-                    <TextBlock Text="Ændre bruger" FontWeight="Bold" FontSize="50" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="Ændre bruger" FontWeight="Bold" FontSize="50" HorizontalAlignment="Center"/>
                     <StackPanel Orientation="Horizontal">
                         <StackPanel HorizontalAlignment="Center" Orientation="Vertical" Grid.ColumnSpan="2">
-                            <TextBlock Text="Navn" Height="32" Margin="0,5,0,0"></TextBlock>
-                            <TextBlock Text="Klasse" Height="32"></TextBlock>
-                            <TextBlock Text="Skole" Height="32"></TextBlock>
-                            <TextBlock Text="Email" Height="32"></TextBlock>
-                            <TextBlock Text="Tlf. nummer" Height="32"></TextBlock>
-                            <TextBlock Text="Brugernavn" Height="32"></TextBlock>
-                            <TextBlock Text="Kodeord" Height="32"></TextBlock>
-                            <TextBlock Text="Bekræft kodeord" Height="32"></TextBlock>
+                            <TextBlock Text="Navn" Height="32" Margin="0,5,0,0"/>
+                            <TextBlock Text="Klasse" Height="32"/>
+                            <TextBlock Text="Skole" Height="32"/>
+                            <TextBlock Text="Email" Height="32"/>
+                            <TextBlock Text="Tlf. nummer" Height="32"/>
+                            <TextBlock Text="Brugernavn" Height="32"/>
+                            <TextBlock Text="Kodeord" Height="32"/>
+                            <TextBlock Text="Bekræft kodeord" Height="32"/>
                         </StackPanel >
                         <StackPanel Margin="5,0,0,0" HorizontalAlignment="Center" Orientation="Vertical">
                             <TextBox PlaceholderText="Navn" Text="{Binding AccountSettingsClass.NameTb, Mode=TwoWay}"/>
@@ -339,6 +339,10 @@
                                         <TextBlock Foreground="{Binding Color}" Text="Total: "/>
                                         <TextBlock Foreground="{Binding Color}" Text="{Binding SubTotal}"/>
                                     </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="5">
+                                        <TextBlock Foreground="{Binding Color}" Text="Rabat: "/>
+                                        <TextBlock Foreground="{Binding Color}" Text="{Binding Savings}"/>
+                                    </StackPanel>
                                     <StackPanel Orientation="Horizontal">
                                         <ListView ItemsSource="{Binding Basket}">
                                             <ListView.ItemContainerStyle>
@@ -361,7 +365,7 @@
                                             </ListView.ItemTemplate>
                                         </ListView>
                                     </StackPanel>
-                                    <Line X2="600" Opacity="1" Stroke="#6CA0DC"></Line>
+                                    <Line X2="600" Opacity="1" Stroke="#6CA0DC"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
@@ -430,9 +434,8 @@
                                 <ComboBoxItem Content="Shot"/>
                                 <ComboBoxItem Content="Andet"/>
                             </ComboBox>
-                            <TextBlock  Name="TBComboboxSorted2" Text="{Binding SortProducts.SortProductsTb2, Mode=TwoWay}" Visibility="Collapsed"/>
                         </StackPanel>
-                        <Button HorizontalAlignment="Right" Style="{StaticResource RoundedButtonStyle}" Content="Ændre produkt" Command="{Binding ShowChangeProductPopUpCommand}"></Button>
+                        <Button HorizontalAlignment="Right" Style="{StaticResource RoundedButtonStyle}" Content="Ændre produkt" Command="{Binding ShowChangeProductPopUpCommand}"/>
                     </Grid>
 
                 </Grid>
@@ -522,8 +525,8 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock FontWeight="Bold" Text="{Binding Name}"></TextBlock>
-                                    <TextBlock Text="{Binding Email}"></TextBlock>
+                                    <TextBlock FontWeight="Bold" Text="{Binding Name}"/>
+                                    <TextBlock Text="{Binding Email}"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>

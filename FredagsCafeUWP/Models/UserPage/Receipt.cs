@@ -12,18 +12,22 @@ namespace FredagsCafeUWP
         #region Fields
 
         private string _saleDateTime = DateTime.Now.ToString("dd/MM/yyyy - HH:mm:ss");
-        private string _cvr, _phoneNumber, _color;
-        private int _saleNumber;
-        private double _subTotal;
-        private List<Product> _basket;
+        private string _color;
+        public string _cvr { get; set; }
+        public string _phoneNumber { get; set; }
+        public int SaleNumber { get; set; }
+        public double SubTotal { get; set; }
+        public double Savings { get; set; }
+        public List<Product> Basket { get; set; }
 
         #endregion
 
-        public Receipt(double subTotal, int saleNumber, List<Product> basket)
+        public Receipt(double subTotal, int saleNumber, double savings, List<Product> basket)
         {
             SubTotal = subTotal;
             SaleNumber = saleNumber;
-            _basket = basket;
+            Savings = savings;
+            Basket = basket;
         }
 
         public Receipt()
@@ -32,31 +36,6 @@ namespace FredagsCafeUWP
         }
 
         #region Props
-
-        public List<Product> Basket
-        {
-            get => _basket;
-            set => _basket = value;
-        }
-
-        public double SubTotal
-        {
-            get => _subTotal;
-            set => _subTotal = value;
-        }
-
-        public int SaleNumber
-        {
-            get { return _saleNumber; }
-            set { _saleNumber = value; }
-        }
-
-        public string SaleDateTime
-        {
-            get { return _saleDateTime; }
-            set { _saleDateTime = value; }
-        }
-
         public string Color
         {
             get => _color;
@@ -66,22 +45,6 @@ namespace FredagsCafeUWP
                 OnPropertyChanged();
             }
         }
-
-        public void ChangeCvr(string newCvr)
-        {
-            if (!string.IsNullOrEmpty(newCvr))
-            {
-                _cvr = newCvr;
-            }
-        }
-        public void ChangePhoneNumber(string phoneNumber)
-        {
-            if (!string.IsNullOrEmpty(phoneNumber))
-            {
-                _phoneNumber = phoneNumber;
-            }
-        }
-
         #endregion
 
         #region Inotify
