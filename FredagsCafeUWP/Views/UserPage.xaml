@@ -47,8 +47,8 @@
                 <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0">
                     <TextBlock Text="Tilføj Produkt" FontWeight="Bold" FontSize="50" HorizontalAlignment="Center"/>
                     <TextBox Margin="2" PlaceholderText="Navn" Text="{Binding Stock.AddNameTb, Mode=TwoWay}"/>
-                    <TextBox Margin="2" PlaceholderText="Købspris" Text="{Binding Stock.AddBuyingPriceTb, Mode=TwoWay}"/>
-                    <TextBox Margin="2" PlaceholderText="Salgspris" Text="{Binding Stock.AddSellingPriceTb, Mode=TwoWay}"/>
+                    <TextBox Margin="2" PlaceholderText="Købspris pr. stk." Text="{Binding Stock.AddBuyingPriceTb, Mode=TwoWay}"/>
+                    <TextBox Margin="2" PlaceholderText="Salgspris pr. stk." Text="{Binding Stock.AddSellingPriceTb, Mode=TwoWay}"/>
                     <TextBox Margin="2" PlaceholderText="Antal" Text="{Binding Stock.AddAmountTb, Mode=TwoWay}"/>
                     <ComboBox Name="Comboboxo" PlaceholderText="Type" Width="320" SelectionChanged="Comboboxo_OnSelectionChanged">
                         <ComboBoxItem Content="Øl"/>
@@ -64,6 +64,8 @@
                         <TextBox IsReadOnly="True" PlaceholderText="ImageSource" Width="280" Text="{Binding Stock.AddImageSourceTb, Mode=TwoWay}"/>
                         <Button Content="..." Width="40" Command="{Binding BrowseAddImageCommand}"/>
                     </StackPanel>
+                    <TextBox Margin="2" PlaceholderText="Tilbud ved x antal stk." Text="{Binding Stock.AddDiscountAtThisAmountTb, Mode=TwoWay}"/>
+                    <TextBox Margin="2" PlaceholderText="Tilbudspris pr. stk." Text="{Binding Stock.AddDiscountPricePerPieceTb, Mode=TwoWay}"/>
                     <Button Margin="20" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Center" Content="Tilføj produkt" Command="{Binding AddProductCommand}"/>
                 </StackPanel>
             </StackPanel>
