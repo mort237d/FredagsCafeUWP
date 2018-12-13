@@ -124,7 +124,7 @@ namespace FredagsCafeUWP
             }
             else
             {
-                WrongLogin = "Der er sku noget galt du";
+                WrongLogin = "Forkert Password eller Username";
             }
         }
 

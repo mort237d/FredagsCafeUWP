@@ -420,7 +420,7 @@
                             <Button HorizontalAlignment="Center" Style="{StaticResource RoundedButtonStyle}" Content="Slet produkt" Command="{Binding RemoveProductCommand}" Margin="0,5,0,0"/>
                         </StackPanel>
                         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="2">
-                            <ComboBox Name="ComboboxSort2" Margin="2" PlaceholderText="Type" Width="320" SelectionChanged="Comboboxo_OnSelectionChanged">
+                            <ComboBox Name="ComboboxSort2" Margin="2" PlaceholderText="Type" Width="320" SelectionChanged="Comboboxo_OnSelectionChanged2">
                                 <ComboBoxItem Content="Øl"/>
                                 <ComboBoxItem Content="Sodavand"/>
                                 <ComboBoxItem Content="Cider"/>
@@ -429,7 +429,7 @@
                                 <ComboBoxItem Content="Shot"/>
                                 <ComboBoxItem Content="Andet"/>
                             </ComboBox>
-                            
+                            <TextBlock  Name="TBComboboxSorted2" Text="{Binding SortProducts.SortProductsTb2, Mode=TwoWay}" Visibility="Collapsed"/>
                         </StackPanel>
                         <Button HorizontalAlignment="Right" Style="{StaticResource RoundedButtonStyle}" Content="Ændre produkt" Command="{Binding ShowChangeProductPopUpCommand}"></Button>
                     </Grid>

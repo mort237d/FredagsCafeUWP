@@ -12,6 +12,7 @@ namespace FredagsCafeUWP
 {
     public class StatListClass : INotifyPropertyChanged
     {
+        private string _colorRed = "Red";
         private static ObservableCollection<Statistics> _statList = new ObservableCollection<Statistics>();
         private ObservableCollection<Product> _productGraphList = new ObservableCollection<Product>();
 
@@ -77,6 +78,7 @@ namespace FredagsCafeUWP
             }
             return totalSaleValueSum;
         }
+
         public double BuyingTotal()
         {
             double totalBuyValueSum = 0;
@@ -89,6 +91,8 @@ namespace FredagsCafeUWP
             }
             return totalBuyValueSum;
         }
+
+
 
         public void ProductViewGraph()
         {
@@ -105,14 +109,14 @@ namespace FredagsCafeUWP
                     {
                         foreach (var product in ProductGraphList)
                         {
-                            if (product.Name == basket.Name)
+                            if (product.Name == basket.Name && basket.ForegroundColor != _colorRed)
                             {
                                 product.AmountToBeSold += basket.AmountToBeSold;
                                 tempGraphBool = true;
                             }
                         }
 
-                        if (!tempGraphBool)
+                        if (!tempGraphBool && basket.ForegroundColor != _colorRed)
                         {
                             ProductGraphList.Add(new Product(basket.Name, basket.AmountToBeSold));
                         }
@@ -121,6 +125,9 @@ namespace FredagsCafeUWP
                 }
             }
         }
+
+
+
 
 
         #region save/load
@@ -151,6 +158,8 @@ namespace FredagsCafeUWP
 
         }
         #endregion
+
+
 
 
 

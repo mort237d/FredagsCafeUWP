@@ -10,6 +10,7 @@ namespace FredagsCafeUWP.Models.UserPage
     public class SortProducts : INotifyPropertyChanged
     {
         private string _sortProductsTb;
+        private string _sortProductsTb2;
 
         public string SortProductsTb
         {
@@ -18,7 +19,19 @@ namespace FredagsCafeUWP.Models.UserPage
             {
                 OnPropertyChanged();
                 _sortProductsTb = value;
-                int temp = ConvertMethod();
+                int temp = ConvertMethod(_sortProductsTb);
+                Stock.Instance.Products = SortObservableCollectionMethodTest(Stock.Instance.Products, temp);
+                OnPropertyChanged();
+            }
+        }
+        public string SortProductsTb2
+        {
+            get { return _sortProductsTb2; }
+            set
+            {
+                OnPropertyChanged();
+                _sortProductsTb2 = value;
+                int temp = ConvertMethod(_sortProductsTb2);
                 Stock.Instance.Products = SortObservableCollectionMethodTest(Stock.Instance.Products, temp);
                 OnPropertyChanged();
             }
@@ -68,37 +81,17 @@ namespace FredagsCafeUWP.Models.UserPage
             return outPutObservableCollection;
         }
 
-        private int ConvertMethod()
+        private int ConvertMethod(string SortProductsTb)
         {
             int temp = 0;
-            if (SortProductsTb == "Øl")
-            {
-                temp = 1;
-            }
-            else if (SortProductsTb == "Sodavand")
-            {
-                temp = 2;
-            }
-            else if (SortProductsTb == "Cider")
-            {
-                temp = 3;
-            }
-            else if (SortProductsTb == "Drink")
-            {
-                temp = 4;
-            }
-            else if (SortProductsTb == "Flaske")
-            {
-                temp = 5;
-            }
-            else if (SortProductsTb == "Shot")
-            {
-                temp = 6;
-            }
-            else if (SortProductsTb == "Andet")
-            {
-                temp = 7;
-            }
+
+            if (SortProductsTb == "Øl") temp = 1;
+            else if (SortProductsTb == "Sodavand") temp = 2;
+            else if (SortProductsTb == "Cider") temp = 3;
+            else if (SortProductsTb == "Drink") temp = 4;
+            else if (SortProductsTb == "Flaske") temp = 5;
+            else if (SortProductsTb == "Shot") temp = 6;
+            else if (SortProductsTb == "Andet") temp = 7;
 
             return temp;
         }
