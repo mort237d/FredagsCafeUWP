@@ -92,6 +92,7 @@ namespace FredagsCafeUWP
             {
                 string temp3 = ((ComboBoxItem)ComboboxSort.SelectedItem).Content.ToString();
                 TBComboboxSorted.Text = temp3;
+                ComboboxSort2.SelectedItem = null;
             }
         }
 
@@ -100,7 +101,8 @@ namespace FredagsCafeUWP
             if (ComboboxSort2.SelectedItem != null)
             {
                 string temp4 = ((ComboBoxItem)ComboboxSort2.SelectedItem).Content.ToString();
-                TBComboboxSorted2.Text = temp4;
+                TBComboboxSorted.Text = temp4;
+                ComboboxSort.SelectedItem = null;
             }
         }
     }
