@@ -65,7 +65,7 @@ namespace FredagsCafeUWP
             CoreApplication.Exit();
         }
 
-        private async System.Threading.Tasks.Task Saver()
+        private async Task Saver()
         {
             await XmlReadWriteClass.SaveAsync(_administration.Users, "administration");
             await XmlReadWriteClass.SaveAsync(_stock.Products, "stock");

@@ -6,24 +6,21 @@ using FredagsCafeUWP.Models;
 namespace FredagsCafeUWP
 {
     public class AccountSettingsClass : INotifyPropertyChanged
-
     {
+        #region Field
+
         private Administration _administration = Administration.Instance;
         private Message _message;
 
         private readonly string _standardImage = "UserImages/Profile-icon.png";
 
-        private string _nameTb;
-        private string _gradeTb;
-        private string _educationTb;
-        private string _emailTb;
-        private string _telephoneNumberTb;
-        private string _userNameTb;
-        private string _passwordTb;
-        private string _confirmPasswordTb;
+        private string _nameTb, _gradeTb, _educationTb, _emailTb, _telephoneNumberTb, _userNameTb, _passwordTb, _confirmPasswordTb;
 
-        private bool _showAccountSettingsPopUp = false;
-        private bool _showAdminAccountPopup = false;
+        private bool _showAccountSettingsPopUp, _showAdminAccountPopup;
+
+        #endregion
+
+        #region Props
 
         public string NameTb
         {
@@ -125,12 +122,16 @@ namespace FredagsCafeUWP
             }
         }
 
+        #endregion
+
         public AccountSettingsClass()
         {
             _message = new Message(this);
         }
 
-        public void ChangeSettings()
+        #region ButtonMethods
+
+        public async void ChangeSettings()
         {
             if (_administration.CurrentUser.Name == NameTb || _administration.CurrentUser.Grade == GradeTb ||
                 _administration.CurrentUser.Education == EducationTb || _administration.CurrentUser.Email == EmailTb ||
@@ -158,10 +159,12 @@ namespace FredagsCafeUWP
 
                     ShowAccountSettingsPopUp = false;
                 }
+                else await _message.Error("Forkert password", "Passwords stemmer ikke overens.");
             }
+            else await _message.Error("Intet ændret", "Intet er blevet ændret.");
         }
 
-        public void ChangeSelectedAccountSettingsMethod()
+        public async void ChangeSelectedAccountSettingsMethod()
         {
             if (_administration.SelectedUser.Name == NameTb || _administration.SelectedUser.Grade == GradeTb ||
                 _administration.SelectedUser.Education == EducationTb || _administration.SelectedUser.Email == EmailTb ||
@@ -189,7 +192,9 @@ namespace FredagsCafeUWP
 
                     ShowAccountSettingsPopUp = false;
                 }
+                else await _message.Error("Forkert password", "Passwords stemmer ikke overens.");
             }
+            else await _message.Error("Intet ændret", "Intet er blevet ændret.");
         }
 
         public void ShowAccountSettingsPopUpMethod()
@@ -222,7 +227,8 @@ namespace FredagsCafeUWP
             else _message.Error("Ingen bruger valgt", "Vælg venligst en bruger du vil ændre.");
         }
 
-
+        #endregion
+        
         #region INotify
 
         public event PropertyChangedEventHandler PropertyChanged;
