@@ -17,23 +17,17 @@ namespace FredagsCafeUWP.Models
 
         public readonly string _standardImage = "UserImages/Profile-icon.png";
 
-        private string _nameTb;
-        private string _gradeTb;
-        private string _educationTb;
-        private string _emailTb;
-        private string _telephoneNumberTb;
-        private string _userNameTb;
+        private string _nameTb,_gradeTb,_educationTb,_emailTb,_telephoneNumberTb,_userNameTb,_passwordTb,_confirmPasswordTb;
         private string _imageTb = "";
-        private string _passwordTb;
-        private string _confirmPasswordTb;
 
         private string _visible;
 
-        private bool _showAddUserPopUp = false;
+        private bool _showAddUserPopUp;
 
-        private ObservableCollection<User> _users = new ObservableCollection<User>();
-        private User _selectedUser;
-        private User _currentUser;
+        private ObservableCollection<User> _users;
+        private User _selectedUser, _currentUser;
+
+        private Encrypt _encrypt = new Encrypt();
 
         #endregion
 
@@ -147,41 +141,12 @@ namespace FredagsCafeUWP.Models
             }
         }
 
-        #endregion
-
-        private Administration()
-        {
-            _message = new Message(this);
-
-            if (CurrentUser == null)
-            {
-                CurrentUser = new User("Morten", "EASJ", "Datamatiker", "Morten@edu.easj.dk", "12345678", "Morten", "Morten", _standardImage, "");
-            }
-        }
-
-        #region Singleton
-
-        private static Administration _instance;
-        private Encrypt _encrypt = new Encrypt();
-
-        public static Administration Instance
-        {
-            get
-            {
-                if (_instance == null)
-                {
-                    _instance = new Administration();
-                }
-                return _instance;
-            }
-        }
-
         public string Visible
         {
             get { return _visible; }
             set
             {
-                _visible = value; 
+                _visible = value;
                 OnPropertyChanged();
             }
         }
@@ -198,6 +163,34 @@ namespace FredagsCafeUWP.Models
 
         #endregion
 
+        private Administration()
+        {
+            _message = new Message(this);
+
+            if (CurrentUser == null) //TODO Delete at the end
+            {
+                CurrentUser = new User("Morten", "EASJ", "Datamatiker", "Morten@edu.easj.dk", "12345678", "Morten", "Morten", _standardImage, "");
+            }
+        }
+
+        #region Singleton
+
+        private static Administration _instance;
+
+        public static Administration Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new Administration();
+                }
+                return _instance;
+            }
+        }
+
+        #endregion
+        
         #region ButtonMethods
 
         public void ShowAddUserPopUpMethod()
@@ -209,26 +202,23 @@ namespace FredagsCafeUWP.Models
         {
             _browseImages.BrowseImageButton(ImageTb, "UserImages/", ShowAddUserPopUp);
         }
-
-
+        
         public async void AddUser()
         {
-            if (NameTb != null && GradeTb != null && EducationTb != null && EmailTb != null &&
-                TelephoneNumberTb != null && UserNameTb != null && PasswordTb != null)
+            if ((NameTb ?? GradeTb ?? EducationTb ?? EmailTb ?? TelephoneNumberTb ?? UserNameTb ?? PasswordTb) != null)
             {
                 if (EmailTb.Contains("@edu.easj.dk") || EmailTb.Contains("@easj.dk"))
                 {
-                    foreach (var u in Users)
+                    foreach (var user in Users)
                     {
-                        if (u.Email.Equals(EmailTb))
+                        if (user.Email.Equals(EmailTb))
                         {
-                            await _message.Error("Email findes allerede",
-                                u.Email + " findes allerede til en anden bruger");
+                            await _message.Error("Email findes allerede",user.Email + " findes allerede til en anden bruger");
                             return;
                         }
                     }
 
-                    if (int.TryParse(TelephoneNumberTb, out int intTelephoneNumberT) && TelephoneNumberTb.Length == 8)
+                    if (int.TryParse(TelephoneNumberTb, out _) && TelephoneNumberTb.Length == 8)
                     {
                         if (PasswordTb == ConfirmPasswordTb)
                         {
@@ -237,15 +227,11 @@ namespace FredagsCafeUWP.Models
 
                             NameTb = GradeTb = EducationTb = EmailTb = TelephoneNumberTb = UserNameTb = ImageTb = PasswordTb = ConfirmPasswordTb = null;                            
                         }
-                        else
-                            await _message.Error("Uoverensstemmelser",
-                                "Password stemmer ikke over ens med confirm password");
+                        else await _message.Error("Uoverensstemmelser","Password stemmer ikke over ens med confirm password");
                     }
                     else await _message.Error("Forkert input","Telefonnummert skal være et tal på 8 cifre.");
                 }
-                else
-                    await _message.Error("Forkert email",
-                        "Du skal bruge en \"@edu.easj.dk\" eller en \"@easj.dk\" mail.");
+                else await _message.Error("Forkert email","Du skal bruge en \"@edu.easj.dk\" eller en \"@easj.dk\" mail.");
             }
             else await _message.Error("Manglende input", "Tekstfelter mangler at blive udfyldt");
         }
@@ -258,14 +244,8 @@ namespace FredagsCafeUWP.Models
 
         public void ButtonVisibility(User userToCheck)
         {
-            if (userToCheck.Admin == "Admin")
-            {
-                Visible = "Visible";
-            }
-            else
-            {
-                Visible = "Collapsed";
-            }
+            if (userToCheck.Admin == "Admin") Visible = "Visible";
+            else Visible = "Collapsed";
         }
 
         public async void ChangeAdmin()
@@ -273,9 +253,6 @@ namespace FredagsCafeUWP.Models
             if (SelectedUser != null) await _message.YesNo("Giv admin videre", "Er du sikker på at du vil give admin videre til " + SelectedUser.Name + "?");
             else await _message.Error("Ingen bruger valgt", "Vælg venligst en bruger.");
         }
-
-
-
         #endregion
 
         #region Save/Load
