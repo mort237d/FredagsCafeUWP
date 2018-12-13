@@ -50,7 +50,7 @@
                     <TextBox Margin="2" PlaceholderText="Købspris pr. stk." Text="{Binding Stock.AddBuyingPriceTb, Mode=TwoWay}"/>
                     <TextBox Margin="2" PlaceholderText="Salgspris pr. stk." Text="{Binding Stock.AddSellingPriceTb, Mode=TwoWay}"/>
                     <TextBox Margin="2" PlaceholderText="Antal" Text="{Binding Stock.AddAmountTb, Mode=TwoWay}"/>
-                    <ComboBox Name="Comboboxo" PlaceholderText="Type" Width="320" SelectionChanged="Comboboxo_OnSelectionChanged">
+                    <ComboBox Margin="2" Name="Comboboxo" PlaceholderText="Type" Width="320" SelectionChanged="Comboboxo_OnSelectionChanged">
                         <ComboBoxItem Content="Øl"/>
                         <ComboBoxItem Content="Sodavand"/>
                         <ComboBoxItem Content="Cider"/>
@@ -88,6 +88,9 @@
                             <TextBlock Height="32" Margin="2" Text="Salgspris"/>
                             <TextBlock Height="32" Margin="2" Text="Antal"/>
                             <TextBlock Height="32" Text="ImageSource" Margin="2"/>
+                            <TextBlock Height="34" Margin="2" Text=""/>
+                            <TextBlock Height="32" Margin="2" Text="Tilbud pr. x stk."/>
+                            <TextBlock Height="32" Margin="2" Text="Tilbudpris pr. stk."/>
                         </StackPanel>
                         <StackPanel Name="test" Width="250">
                             <TextBox Margin="2" PlaceholderText="Navn" Text="{Binding Stock.ChangeNameTb, Mode=TwoWay}"/>
@@ -107,6 +110,8 @@
                                 <ComboBoxItem Content="Shot"/>
                                 <ComboBoxItem Content="Andet"/>
                             </ComboBox>
+                            <TextBox Margin="2" PlaceholderText="Tilbud ved x antal stk." Text="{Binding Stock.ChangeDiscountAtThisAmountTb, Mode=TwoWay}"/>
+                            <TextBox Margin="2" PlaceholderText="Tilbudspris pr. stk." Text="{Binding Stock.ChangeDiscountPricePerPieceTb, Mode=TwoWay}"/>
                             <TextBlock Name="tcombo" Text="{Binding Stock.ChangeTypeTb, Mode=TwoWay}" Visibility="Collapsed"/>
                         </StackPanel>
                     </StackPanel>
