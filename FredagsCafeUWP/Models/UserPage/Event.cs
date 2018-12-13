@@ -18,11 +18,7 @@ namespace FredagsCafeUWP.Models
         public ObservableCollection<EventUser> EventsUsers
         {
             get => _eventsUsers;
-            set
-            {
-                _eventsUsers = value;
-                OnPropertyChanged();
-            } 
+            set{_eventsUsers = value;} 
         }
 
         #region Constructors

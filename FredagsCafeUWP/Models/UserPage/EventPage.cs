@@ -19,30 +19,62 @@ namespace FredagsCafeUWP.Models
         private EventUser _selectedEventUser;
         BrowseImages _browseImages = new BrowseImages();
 
-        private string _userNameTb;
-        private string _userEmailTb;
+        private string _userNameTb, _userEmailTb;
 
-        private string _eventNameTb;
-        private string _eventLocationTb;
-        private string _eventDescriptionTb;
-        private string _eventMaxUsersTb;
-        private string _eventImageTb;
-        private string _eventDateTimeTb;
+        private string _eventNameTb,_eventLocationTb,_eventDescriptionTb,_eventMaxUsersTb,_eventImageTb,_eventDateTimeTb;
 
-        private bool _showAddEventPopUp = false;
-        private bool _showAddEventUserPopUp = false;
+        private bool _showAddEventPopUp, _showAddEventUserPopUp;
 
         #endregion
 
         #region Props
+
+        public bool ShowAddEventPopUp
+        {
+            get { return _showAddEventPopUp; }
+            set
+            {
+                _showAddEventPopUp = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool ShowAddEventUserPopUp
+        {
+            get { return _showAddEventUserPopUp; }
+            set
+            {
+                _showAddEventUserPopUp = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string EventImageTb
+        {
+            get { return _eventImageTb; }
+            set
+            {
+                _eventImageTb = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string EventDateTimeTb
+        {
+            get { return _eventDateTimeTb; }
+            set
+            {
+                _eventDateTimeTb = value;
+                OnPropertyChanged();
+            }
+        }
 
         public ObservableCollection<Event> Events
         {
             get { return _events; }
             set
             {
-                _events = value; 
-                OnPropertyChanged();
+                _events = value;
             }
         }
 
@@ -133,6 +165,8 @@ namespace FredagsCafeUWP.Models
             _message = new Message(this);
         }
 
+        #region Singleton
+
         private static EventPage instance;
         public static EventPage Instance
         {
@@ -146,45 +180,9 @@ namespace FredagsCafeUWP.Models
             }
         }
 
-        public bool ShowAddEventPopUp
-        {
-            get { return _showAddEventPopUp; }
-            set
-            {
-                _showAddEventPopUp = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public bool ShowAddEventUserPopUp
-        {
-            get { return _showAddEventUserPopUp; }
-            set
-            {
-                _showAddEventUserPopUp = value; 
-                OnPropertyChanged();
-            }
-        }
-
-        public string EventImageTb
-        {
-            get { return _eventImageTb; }
-            set
-            {
-                _eventImageTb = value; 
-                OnPropertyChanged();
-            }
-        }
-
-        public string EventDateTimeTb
-        {
-            get { return _eventDateTimeTb; }
-            set
-            {
-                _eventDateTimeTb = value; 
-                OnPropertyChanged();
-            }
-        }
+        #endregion
+        
+        #region ButtonMethods
 
         public void ShowAddEventPopUpMethod()
         {
@@ -215,8 +213,7 @@ namespace FredagsCafeUWP.Models
 
                         SelectedEvent.EventsUsers.Add(new EventUser(UserNameTb, UserEmailTb));
 
-                        UserNameTb = null;
-                        UserEmailTb = null;
+                        UserNameTb = UserEmailTb = null;
 
                         ShowAddEventUserPopUp = false;
                     }
@@ -226,11 +223,9 @@ namespace FredagsCafeUWP.Models
             }
             else await _message.Error("Manglende input", "Tekstfelter mangler at blive udfyldt");
         }
-                
 
         public async void RemoveUser()
         {
-            Debug.WriteLine("removeEventUser");
             if (SelectedEvent != null)
             {
                 if (SelectedEventUser != null)
@@ -246,7 +241,7 @@ namespace FredagsCafeUWP.Models
         {
             if (EventNameTb != null && EventDescriptionTb != null && EventLocationTb != null && EventMaxUsersTb != null)
             {
-                if (int.TryParse(EventMaxUsersTb, out int intEventMaxUsersTb))
+                if (int.TryParse(EventMaxUsersTb, out _))
                 {
                     if (EventImageTb != null || EventImageTb == "")
                     {
@@ -254,13 +249,7 @@ namespace FredagsCafeUWP.Models
                     }
                     else Events.Add(new Event(EventNameTb, EventLocationTb, EventDescriptionTb, EventMaxUsersTb, "EventImages/Event.jpg", EventDateTimeTb, new ObservableCollection<EventUser>()));
 
-
-                    EventNameTb = null;
-                    EventLocationTb = null;
-                    EventDescriptionTb = null;
-                    EventMaxUsersTb = null;
-                    EventDateTimeTb = null;
-                    EventImageTb = null;
+                    EventNameTb = EventLocationTb = EventDescriptionTb = EventMaxUsersTb = EventDateTimeTb = EventImageTb = null;
 
                     ShowAddEventPopUp = false;
                 }
@@ -271,7 +260,6 @@ namespace FredagsCafeUWP.Models
 
         public async void RemoveEvent()
         {
-            Debug.WriteLine("removeEvent");
             if (SelectedEvent != null)
             {
                 await _message.YesNo("Slet event", "Er du sikker på at du vil slette " + SelectedEvent.Name + "?");
@@ -283,6 +271,8 @@ namespace FredagsCafeUWP.Models
         {
             _browseImages.BrowseImageButton(EventImageTb, "EventImages/", ShowAddEventPopUp);
         }
+
+        #endregion
 
         #region save/load
         public async Task LoadAsync()
