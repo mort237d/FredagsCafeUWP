@@ -198,9 +198,10 @@ namespace FredagsCafeUWP.Models
             ShowAddUserPopUp = true;
         }
 
-        public void BrowseImageButton()
+        public async void BrowseImageButton()
         {
-            _browseImages.BrowseImageButton(ImageTb, "UserImages/", ShowAddUserPopUp);
+            ImageTb = await _browseImages.BrowseImageWindow("UserImages/");
+            ShowAddUserPopUpMethod();
         }
         
         public async void AddUser()

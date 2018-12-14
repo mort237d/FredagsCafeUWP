@@ -267,9 +267,10 @@ namespace FredagsCafeUWP.Models
             else await _message.Error("Intet event valgt", "Vælg venligst et event for at fjerne det.");
         }
 
-        public void BrowseAddImageButton()
+        public async void BrowseAddImageButton()
         {
-            _browseImages.BrowseImageButton(EventImageTb, "EventImages/", ShowAddEventPopUp);
+            EventImageTb = await _browseImages.BrowseImageWindow("EventImages/");
+            ShowAddEventPopUpMethod();
         }
 
         #endregion

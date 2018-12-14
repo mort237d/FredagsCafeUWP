@@ -428,14 +428,16 @@ namespace FredagsCafeUWP.Models
             Debug.WriteLine("Discount at this amount " + Products.Last().DiscountAtThisAmount + "\nDiscountPrice " + Products.Last().DiscountPricePerItem);
         }
         
-        public void BrowseAddImageButton()
+        public async void BrowseAddImageButton()
         {
-             _browseImages.BrowseImageButton(AddImageSourceTb, "ProductImages/", ShowAddProductPopUp);
+            AddImageSourceTb = await _browseImages.BrowseImageWindow("ProductImages/");
+            ShowAddProductPopUpMethod();
         }
 
-        public void BrowseChangeImageButton()
+        public async void BrowseChangeImageButton()
         {
-            _browseImages.BrowseImageButton(ChangeImageSourceTb, "ProductImages/", ShowChangeProductPopUp);
+            ChangeImageSourceTb = await _browseImages.BrowseImageWindow("ProductImages/");
+            ShowChangeProductPopUpMethod();
         }
 
         public void ShowAddProductPopUpMethod()
