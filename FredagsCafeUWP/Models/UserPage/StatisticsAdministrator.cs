@@ -77,13 +77,23 @@ namespace FredagsCafeUWP
             double totalSaleValueSum = 0;
             foreach (var receipt in SaleAdministrator.Instance.Receipts)
             {
-                foreach (var basket in receipt.Basket)
+                
+
+                foreach (var product in receipt.Basket)
                 {
-                    if (basket.ForegroundColor != _colorRed)
+                    if (product.DiscountAtThisAmount != 0 || product.DiscountPricePerItem != 0)
                     {
-                        totalSaleValueSum += basket.SellingPrice * basket.AmountToBeSold;
+                        if (product.ForegroundColor != _colorRed) totalSaleValueSum += SaleAdministrator.Instance.VolumeDiscount(product.DiscountAtThisAmount, product.AmountToBeSold, product.DiscountPricePerItem, product.SellingPrice);
                     }
+                    else totalSaleValueSum += product.AmountToBeSold * product.SellingPrice;
                 }
+                //                foreach (var basket in receipt.Basket)
+                //                {
+                //                    if (basket.ForegroundColor != _colorRed)
+                //                    {
+                //                        totalSaleValueSum += basket.SellingPrice * basket.AmountToBeSold;
+                //                    }
+                //                }
             }
             return totalSaleValueSum;
         }
