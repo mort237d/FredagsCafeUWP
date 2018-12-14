@@ -119,7 +119,7 @@ namespace FredagsCafeUWP.Models.UserPage
             Basket = new List<Product>();
             foreach (var product in _stockAdministrator.Products)
             {
-                if (product.AmountToBeSold != 0) Basket.Add(new Product(product.BuyingPrice, product.SellingPrice, product.Name, product.Amount, product.AmountSold, product.ImageSource, "Black", product.AmountToBeSold, product.DiscountAtThisAmount, product.DiscountPricePerItem));
+                if (product.AmountToBeSold != 0) Basket.Add(new Product(product.BuyingPrice, product.SellingPrice, product.Name, product.Amount, product.ImageSource, "Black", product.AmountToBeSold, product.DiscountAtThisAmount, product.DiscountPricePerItem));
             }
         }
 
