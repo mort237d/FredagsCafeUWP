@@ -155,16 +155,16 @@
             </Popup.ChildTransitions>
 
             <StackPanel Background="#6CA0DC" Height="1000" Width="400">
-                <StackPanel>
+                <StackPanel HorizontalAlignment="Center">
                     <TextBlock Text="Tilføj Event" FontWeight="Bold" FontSize="50" HorizontalAlignment="Center"/>
                     <TextBox Margin="2" Text="{Binding EventAdministrator.EventNameTb, Mode=TwoWay}" PlaceholderText="Navn"/>
                     <TextBox Margin="2" Text="{Binding EventAdministrator.EventLocationTb, Mode=TwoWay}" PlaceholderText="Placering"/>
                     <TextBox Margin="2" Text="{Binding EventAdministrator.EventDescriptionTb, Mode=TwoWay}" PlaceholderText="Beskrivelse"/>
                     <TextBox Margin="2" Text="{Binding EventAdministrator.EventMaxUsersTb, Mode=TwoWay}" PlaceholderText="Maks antal deltager"/>
                     <TextBox Margin="2" Text="{Binding EventAdministrator.EventDateTimeTb, Mode=TwoWay}" PlaceholderText="Dato/tid"/>
-                    <StackPanel>
-                        <TextBox Margin="2" Text="{Binding EventAdministrator.EventImageTb, Mode=TwoWay}" PlaceholderText="Billede"/>
-                        <Button Content="..." Width="40" Command="{Binding EventImageBrowserCommand}"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBox Width="230" Margin="2" Text="{Binding EventAdministrator.EventImageTb, Mode=TwoWay}" PlaceholderText="Billede"/>
+                        <Button Content="..." Command="{Binding EventImageBrowserCommand}"/>
                     </StackPanel>
                     <Button Margin="2" Command="{Binding AddEventCommand}" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Content="Tilføj event"/>
                 </StackPanel>
@@ -179,7 +179,7 @@
             </Popup.ChildTransitions>
 
             <StackPanel Background="#6CA0DC" Height="1000" Width="400">
-                <StackPanel>
+                <StackPanel HorizontalAlignment="Center">
                     <TextBlock Text="Tilføj Deltager" FontWeight="Bold" FontSize="50" HorizontalAlignment="Center"/>
                     <TextBox Margin="2" Text="{Binding EventAdministrator.UserNameTb, Mode=TwoWay}" PlaceholderText="Navn"/>
                     <TextBox Margin="2" Text="{Binding EventAdministrator.UserEmailTb, Mode=TwoWay}" PlaceholderText="Email"/>
@@ -198,7 +198,7 @@
             <StackPanel Background="#6CA0DC" Height="1000" Width="400">
                 <StackPanel>
                     <TextBlock Text="Ændre bruger" FontWeight="Bold" FontSize="50" HorizontalAlignment="Center"/>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <StackPanel HorizontalAlignment="Center" Orientation="Vertical" Grid.ColumnSpan="2">
                             <TextBlock Text="Navn" Height="32" Margin="0,5,0,0"/>
                             <TextBlock Text="Klasse" Height="32"/>
@@ -237,7 +237,7 @@
             <StackPanel Background="#6CA0DC" Height="1000" Width="400">
                 <StackPanel>
                     <TextBlock Text="Ændre bruger" FontWeight="Bold" FontSize="50" HorizontalAlignment="Center"/>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <StackPanel HorizontalAlignment="Center" Orientation="Vertical" Grid.ColumnSpan="2">
                             <TextBlock Text="Navn" Height="32" Margin="0,5,0,0"/>
                             <TextBlock Text="Klasse" Height="32"/>
@@ -505,15 +505,15 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel>
-                                    <StackPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Horizontal" Margin="5">
                                         <Image Source="{Binding Image}" Width="100" Height="100"/>
-                                        <StackPanel Orientation="Vertical">
+                                        <StackPanel Orientation="Vertical" Margin="5,0,0,0" VerticalAlignment="Center">
                                             <TextBlock Text="Event:"/>
                                             <TextBlock Text="Lokation:"/>
                                             <TextBlock Text="Maks. antal: "/>
                                             <TextBlock Text="Dato/tid: "/>
                                         </StackPanel>
-                                        <StackPanel Orientation="Vertical" Margin="5,0,0,0">
+                                        <StackPanel Orientation="Vertical" Margin="5,0,0,0" VerticalAlignment="Center">
                                             <TextBlock FontWeight="Bold" Text="{Binding Name}"/>
                                             <TextBlock Text="{Binding Location}"/>
                                             <TextBlock Text="{Binding MaxUsers}"/>
@@ -531,7 +531,7 @@
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock FontWeight="Bold" Text="{Binding Name}"/>
-                                    <TextBlock Text="{Binding Email}"/>
+                                    <TextBlock Margin="5,0,0,0" Text="{Binding Email}"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>

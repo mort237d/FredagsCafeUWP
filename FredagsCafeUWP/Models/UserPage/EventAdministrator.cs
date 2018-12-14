@@ -288,11 +288,14 @@ namespace FredagsCafeUWP.Models
             {
                 Events = new ObservableCollection<Event>()
                 {
-                    new Event("Øl-Bowling", "Haven", "Husk bajer!", "12", "EventImages/Event.jpg", "Today", new ObservableCollection<EventUser>()
+                    new Event("Default", "", "BESKRIVELSE", "", "EventImages/Event.png", "Today", new ObservableCollection<EventUser>()
                     {
                         new EventUser("Morten", "@edu.easj.dk"),
                         new EventUser("Lucas", "@edu.easj.dk")
-                    })
+                    }),
+                    new Event("Øl-Bowling", "Haven", "Husk bajer!", "12", "EventImages/ØlBowling.png", "Tomorrow", new ObservableCollection<EventUser>()),
+                    new Event("Bord-Tennis", "Indendørs", "Husk Bat!", "12", "EventImages/TableTennis.png", "Some day", new ObservableCollection<EventUser>()),
+                    new Event("Bord-Fodbold", "Indendørs", "Husk jule bajer!", "12", "EventImages/TableSocker.png", "Juleaften", new ObservableCollection<EventUser>())
                 };
             }
 
