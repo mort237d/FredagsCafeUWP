@@ -251,6 +251,7 @@ namespace FredagsCafeUWP.Models.UserPage
         public double VolumeDiscount(int discountAtThisAmount, int itemsToBeDiscounted, double discountPrice, double normalPrice)
         {
             double total = itemsToBeDiscounted * normalPrice;
+            discountPrice = discountPrice / discountAtThisAmount;
             int temp = 0;
             while (true)
             {
