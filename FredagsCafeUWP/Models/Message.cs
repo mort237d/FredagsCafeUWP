@@ -10,37 +10,37 @@ namespace FredagsCafeUWP.Models
     {
         #region Field
 
-        private Stock _stock;
-        private Administration _administration;
-        private Sale _sale;
-        private EventPage _eventPage;
-        private AccountSettingsClass _accountSettingsClass;
+        private StockAdministrator _stockAdministrator;
+        private UserAdministrator _userAdministrator;
+        private SaleAdministrator _sale;
+        private EventAdministrator _eventAdministrator;
+        private AccountSettings _accountSettings;
 
         #endregion
 
-        public Message(Stock stock)
+        public Message(StockAdministrator stockAdministrator)
         {
-            _stock = stock;
+            _stockAdministrator = stockAdministrator;
         }
 
-        public Message(Administration administration)
+        public Message(UserAdministrator userAdministrator)
         {
-            _administration = administration;
+            _userAdministrator = userAdministrator;
         }
 
-        public Message(Sale sale)
+        public Message(SaleAdministrator sale)
         {
             _sale = sale;
         }
 
-        public Message(EventPage eventPage)
+        public Message(EventAdministrator eventAdministrator)
         {
-            _eventPage = eventPage;
+            _eventAdministrator = eventAdministrator;
         }
 
-        public Message(AccountSettingsClass accountSettingsClass)
+        public Message(AccountSettings accountSettings)
         {
-            _accountSettingsClass = accountSettingsClass;
+            _accountSettings = accountSettings;
         }
 
         #region Methods
@@ -71,17 +71,17 @@ namespace FredagsCafeUWP.Models
 
             if (command == yesCommand)
             {                                                                                                                                                                                                                                                                                             
-                if (title == "Slet produkt")_stock.Products.Remove(_stock.SelectedProduct);
-                else if (title == "Slet bruger")_administration.Users.Remove(_administration.SelectedUser);
-                else if (title == "Slet bruger af eventet")_eventPage.SelectedEvent.EventsUsers.Remove(_eventPage.SelectedEventUser);
-                else if (title == "Slet event")_eventPage.Events.Remove(_eventPage.SelectedEvent);
+                if (title == "Slet produkt")_stockAdministrator.Products.Remove(_stockAdministrator.SelectedProduct);
+                else if (title == "Slet bruger")_userAdministrator.Users.Remove(_userAdministrator.SelectedUser);
+                else if (title == "Slet bruger af eventet")_eventAdministrator.SelectedEvent.EventsUsers.Remove(_eventAdministrator.SelectedEventUser);
+                else if (title == "Slet event")_eventAdministrator.Events.Remove(_eventAdministrator.SelectedEvent);
                 else if (title == "Giv admin videre")
                 {
-                    _administration.CurrentUser.Admin = null;
-                    foreach (var user in _administration.Users) if (user.Email == _administration.CurrentUser.Email) user.Admin = null;
-                    _administration.SelectedUser.Admin = "Admin";
+                    _userAdministrator.CurrentUser.Admin = null;
+                    foreach (var user in _userAdministrator.Users) if (user.Email == _userAdministrator.CurrentUser.Email) user.Admin = null;
+                    _userAdministrator.SelectedUser.Admin = "Admin";
 
-                    _administration.ButtonVisibility(_administration.CurrentUser);
+                    _userAdministrator.ButtonVisibility(_userAdministrator.CurrentUser);
                 }
             }
             else if (command == noCommand)

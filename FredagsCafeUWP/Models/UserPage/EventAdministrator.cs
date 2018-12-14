@@ -8,7 +8,7 @@ using FredagsCafeUWP.Annotations;
 
 namespace FredagsCafeUWP.Models
 {
-    public class EventPage : INotifyPropertyChanged
+    public class EventAdministrator : INotifyPropertyChanged
     {
         #region Field
 
@@ -160,21 +160,21 @@ namespace FredagsCafeUWP.Models
 
         #endregion
 
-        private EventPage()
+        private EventAdministrator()
         {
             _message = new Message(this);
         }
 
         #region Singleton
 
-        private static EventPage instance;
-        public static EventPage Instance
+        private static EventAdministrator instance;
+        public static EventAdministrator Instance
         {
             get
             {
                 if (instance == null)
                 {
-                    instance = new EventPage();
+                    instance = new EventAdministrator();
                 }
                 return instance;
             }
@@ -280,7 +280,7 @@ namespace FredagsCafeUWP.Models
             try
             {
                 Debug.WriteLine("loading list async...");
-                Events = await XmlReadWriteClass.ReadObjectFromXmlFileAsync<ObservableCollection<Event>>("events.xml");
+                Events = await XmlReadWrite.ReadObjectFromXmlFileAsync<ObservableCollection<Event>>("events.xml");
                 Debug.WriteLine("events.count:" + Events.Count);
             }
             catch (Exception)

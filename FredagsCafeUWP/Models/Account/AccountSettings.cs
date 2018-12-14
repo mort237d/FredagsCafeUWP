@@ -5,11 +5,11 @@ using FredagsCafeUWP.Models;
 
 namespace FredagsCafeUWP
 {
-    public class AccountSettingsClass : INotifyPropertyChanged
+    public class AccountSettings : INotifyPropertyChanged
     {
         #region Field
 
-        private Administration _administration = Administration.Instance;
+        private UserAdministrator _userAdministrator = UserAdministrator.Instance;
         private Message _message;
 
         private readonly string _standardImage = "UserImages/Profile-icon.png";
@@ -124,7 +124,7 @@ namespace FredagsCafeUWP
 
         #endregion
 
-        public AccountSettingsClass()
+        public AccountSettings()
         {
             _message = new Message(this);
         }
@@ -133,26 +133,26 @@ namespace FredagsCafeUWP
 
         public async void ChangeSettings()
         {
-            if (_administration.CurrentUser.Name == NameTb || _administration.CurrentUser.Grade == GradeTb ||
-                _administration.CurrentUser.Education == EducationTb || _administration.CurrentUser.Email == EmailTb ||
-                _administration.CurrentUser.TelephoneNumber == TelephoneNumberTb ||
-                _administration.CurrentUser.UserName == UserNameTb ||
-                _administration.CurrentUser.Password == PasswordTb)
+            if (_userAdministrator.CurrentUser.Name == NameTb || _userAdministrator.CurrentUser.Grade == GradeTb ||
+                _userAdministrator.CurrentUser.Education == EducationTb || _userAdministrator.CurrentUser.Email == EmailTb ||
+                _userAdministrator.CurrentUser.TelephoneNumber == TelephoneNumberTb ||
+                _userAdministrator.CurrentUser.UserName == UserNameTb ||
+                _userAdministrator.CurrentUser.Password == PasswordTb)
             {
                 if (PasswordTb == ConfirmPasswordTb)
                 {
-                    _administration.CurrentUser.Name = NameTb;
-                    _administration.CurrentUser.Grade = GradeTb;
-                    _administration.CurrentUser.Education = EducationTb;
-                    _administration.CurrentUser.Email = EmailTb;
-                    _administration.CurrentUser.TelephoneNumber = TelephoneNumberTb;
-                    _administration.CurrentUser.UserName = UserNameTb;
-                    _administration.CurrentUser.Password = PasswordTb;
-                    foreach (var user in _administration.Users)
+                    _userAdministrator.CurrentUser.Name = NameTb;
+                    _userAdministrator.CurrentUser.Grade = GradeTb;
+                    _userAdministrator.CurrentUser.Education = EducationTb;
+                    _userAdministrator.CurrentUser.Email = EmailTb;
+                    _userAdministrator.CurrentUser.TelephoneNumber = TelephoneNumberTb;
+                    _userAdministrator.CurrentUser.UserName = UserNameTb;
+                    _userAdministrator.CurrentUser.Password = PasswordTb;
+                    foreach (var user in _userAdministrator.Users)
                     {
-                        if (_administration.CurrentUser.Email == user.Email)
+                        if (_userAdministrator.CurrentUser.Email == user.Email)
                         {
-                            _administration.Users[_administration.Users.IndexOf(user)] = _administration.CurrentUser;
+                            _userAdministrator.Users[_userAdministrator.Users.IndexOf(user)] = _userAdministrator.CurrentUser;
                             break;
                         }
                     }
@@ -166,26 +166,26 @@ namespace FredagsCafeUWP
 
         public async void ChangeSelectedAccountSettingsMethod()
         {
-            if (_administration.SelectedUser.Name == NameTb || _administration.SelectedUser.Grade == GradeTb ||
-                _administration.SelectedUser.Education == EducationTb || _administration.SelectedUser.Email == EmailTb ||
-                _administration.SelectedUser.TelephoneNumber == TelephoneNumberTb ||
-                _administration.SelectedUser.UserName == UserNameTb ||
-                _administration.SelectedUser.Password == PasswordTb)
+            if (_userAdministrator.SelectedUser.Name == NameTb || _userAdministrator.SelectedUser.Grade == GradeTb ||
+                _userAdministrator.SelectedUser.Education == EducationTb || _userAdministrator.SelectedUser.Email == EmailTb ||
+                _userAdministrator.SelectedUser.TelephoneNumber == TelephoneNumberTb ||
+                _userAdministrator.SelectedUser.UserName == UserNameTb ||
+                _userAdministrator.SelectedUser.Password == PasswordTb)
             {
                 if (PasswordTb == ConfirmPasswordTb)
                 {
-                    _administration.SelectedUser.Name = NameTb;
-                    _administration.SelectedUser.Grade = GradeTb;
-                    _administration.SelectedUser.Education = EducationTb;
-                    _administration.SelectedUser.Email = EmailTb;
-                    _administration.SelectedUser.TelephoneNumber = TelephoneNumberTb;
-                    _administration.SelectedUser.UserName = UserNameTb;
-                    _administration.SelectedUser.Password = PasswordTb;
-                    foreach (var user in _administration.Users)
+                    _userAdministrator.SelectedUser.Name = NameTb;
+                    _userAdministrator.SelectedUser.Grade = GradeTb;
+                    _userAdministrator.SelectedUser.Education = EducationTb;
+                    _userAdministrator.SelectedUser.Email = EmailTb;
+                    _userAdministrator.SelectedUser.TelephoneNumber = TelephoneNumberTb;
+                    _userAdministrator.SelectedUser.UserName = UserNameTb;
+                    _userAdministrator.SelectedUser.Password = PasswordTb;
+                    foreach (var user in _userAdministrator.Users)
                     {
-                        if (_administration.SelectedUser.Email == user.Email)
+                        if (_userAdministrator.SelectedUser.Email == user.Email)
                         {
-                            _administration.Users[_administration.Users.IndexOf(user)] = _administration.SelectedUser;
+                            _userAdministrator.Users[_userAdministrator.Users.IndexOf(user)] = _userAdministrator.SelectedUser;
                             break;
                         }
                     }
@@ -199,28 +199,28 @@ namespace FredagsCafeUWP
 
         public void ShowAccountSettingsPopUpMethod()
         {
-            NameTb = _administration.CurrentUser.Name;
-            GradeTb = _administration.CurrentUser.Grade;
-            EducationTb = _administration.CurrentUser.Education;
-            EmailTb = _administration.CurrentUser.Email;
-            TelephoneNumberTb = _administration.CurrentUser.TelephoneNumber;
-            UserNameTb = _administration.CurrentUser.UserName;
-            PasswordTb = _administration.CurrentUser.Password;
+            NameTb = _userAdministrator.CurrentUser.Name;
+            GradeTb = _userAdministrator.CurrentUser.Grade;
+            EducationTb = _userAdministrator.CurrentUser.Education;
+            EmailTb = _userAdministrator.CurrentUser.Email;
+            TelephoneNumberTb = _userAdministrator.CurrentUser.TelephoneNumber;
+            UserNameTb = _userAdministrator.CurrentUser.UserName;
+            PasswordTb = _userAdministrator.CurrentUser.Password;
 
             ShowAccountSettingsPopUp = true;
         }
 
         public void ShowAdminAccountPopUpMethod()
         {
-            if (_administration.SelectedUser != null)
+            if (_userAdministrator.SelectedUser != null)
             {
-                NameTb = _administration.SelectedUser.Name;
-                GradeTb = _administration.SelectedUser.Grade;
-                EducationTb = _administration.SelectedUser.Education;
-                EmailTb = _administration.SelectedUser.Email;
-                TelephoneNumberTb = _administration.SelectedUser.TelephoneNumber;
-                UserNameTb = _administration.SelectedUser.UserName;
-                PasswordTb = _administration.SelectedUser.Password;
+                NameTb = _userAdministrator.SelectedUser.Name;
+                GradeTb = _userAdministrator.SelectedUser.Grade;
+                EducationTb = _userAdministrator.SelectedUser.Education;
+                EmailTb = _userAdministrator.SelectedUser.Email;
+                TelephoneNumberTb = _userAdministrator.SelectedUser.TelephoneNumber;
+                UserNameTb = _userAdministrator.SelectedUser.UserName;
+                PasswordTb = _userAdministrator.SelectedUser.Password;
 
                 ShowAdminAccountPopup = true;
             }

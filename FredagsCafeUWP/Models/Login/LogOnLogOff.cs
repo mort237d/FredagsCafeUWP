@@ -18,7 +18,7 @@ namespace FredagsCafeUWP
         public string UserName { get; set; }
         public string PassWord { get; set; }
         private string _wrongLogin, _wrongLoginColor;
-        private Administration _administration = Administration.Instance;
+        private UserAdministrator _userAdministrator = UserAdministrator.Instance;
         private ObservableCollection<string> _logInLogOutList;
 
         #endregion
@@ -79,7 +79,7 @@ namespace FredagsCafeUWP
 
         public void LogOffMethod()
         {
-            LogInLogOutList.Add(_administration.CurrentUser.Name + " logged off at " + DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy"));
+            LogInLogOutList.Add(_userAdministrator.CurrentUser.Name + " logged off at " + DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy"));
             
             Frame currentFrame = Window.Current.Content as Frame;
             currentFrame.Navigate(typeof(LoginPage));
@@ -88,14 +88,14 @@ namespace FredagsCafeUWP
         public void CheckLogin()
         {
             bool temp = false;
-            foreach (var user in _administration.Users)
+            foreach (var user in _userAdministrator.Users)
             {
                 if (user.UserName == UserName && user.Password == PassWord)
                 {
-                    _administration.CurrentUser = user;
+                    _userAdministrator.CurrentUser = user;
                     LogInLogOutList.Add(UserName + " logged in at " + DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy"));
 
-                    _administration.ButtonVisibility(user);
+                    _userAdministrator.ButtonVisibility(user);
 
                     PassWord = null;
 
@@ -123,7 +123,7 @@ namespace FredagsCafeUWP
             try
             {
                 Debug.WriteLine("loading loginlogout async...");
-                LogInLogOutList = await XmlReadWriteClass.ReadObjectFromXmlFileAsync<ObservableCollection<string>>("loginlogout.xml");
+                LogInLogOutList = await XmlReadWrite.ReadObjectFromXmlFileAsync<ObservableCollection<string>>("loginlogout.xml");
                 Debug.WriteLine("loginlogoutlist.count:" + LogInLogOutList.Count);
             }
             catch (Exception)

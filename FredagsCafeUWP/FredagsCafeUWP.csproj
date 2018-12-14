@@ -95,7 +95,7 @@
     <Compile Include="Models\BrowseImages.cs" />
     <Compile Include="Models\Encrypt.cs" />
     <Compile Include="Models\UserPage\EnumCategory.cs" />
-    <Compile Include="Models\Account\AccountSettingsClass.cs" />
+    <Compile Include="Models\Account\AccountSettings.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -106,28 +106,28 @@
     </Compile>
     <Compile Include="Models\Login\LogOnLogOff.cs" />
     <Compile Include="Models\UserPage\Statistics.cs" />
-    <Compile Include="Models\UserPage\StatListClass.cs" />
+    <Compile Include="Models\UserPage\StatisticsAdministrator.cs" />
     <Compile Include="Models\UserPage\Event.cs" />
-    <Compile Include="Models\UserPage\EventPage.cs" />
+    <Compile Include="Models\UserPage\EventAdministrator.cs" />
     <Compile Include="Models\UserPage\EventUser.cs" />
     <Compile Include="Views\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\Message.cs" />
-    <Compile Include="ViewModels\LoginPageViewModel.cs" />
-    <Compile Include="Models\UserPage\Administration.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="Models\UserPage\UserAdministrator.cs" />
     <Compile Include="Models\User.cs" />
-    <Compile Include="Models\UserPage\Stock.cs" />
+    <Compile Include="Models\UserPage\StockAdministrator.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\UserPage\Product.cs" />
     <Compile Include="Models\UserPage\Receipt.cs" />
-    <Compile Include="Models\UserPage\Sale.cs" />
+    <Compile Include="Models\UserPage\SaleAdministrator.cs" />
     <Compile Include="Views\UserPage.xaml.cs">
       <DependentUpon>UserPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\UserViewModel.cs" />
-    <Compile Include="Models\XMLReadWriteClass.cs" />
+    <Compile Include="Models\XMLReadWrite.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

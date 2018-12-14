@@ -8,7 +8,7 @@ using FredagsCafeUWP.Annotations;
 
 namespace FredagsCafeUWP.Models
 {
-    public class Administration : INotifyPropertyChanged
+    public class UserAdministrator : INotifyPropertyChanged
     {
         #region Field
 
@@ -163,7 +163,7 @@ namespace FredagsCafeUWP.Models
 
         #endregion
 
-        private Administration()
+        private UserAdministrator()
         {
             _message = new Message(this);
 
@@ -175,15 +175,15 @@ namespace FredagsCafeUWP.Models
 
         #region Singleton
 
-        private static Administration _instance;
+        private static UserAdministrator _instance;
 
-        public static Administration Instance
+        public static UserAdministrator Instance
         {
             get
             {
                 if (_instance == null)
                 {
-                    _instance = new Administration();
+                    _instance = new UserAdministrator();
                 }
                 return _instance;
             }
@@ -262,7 +262,7 @@ namespace FredagsCafeUWP.Models
             try
             {
                 Debug.WriteLine("loading user async...");
-                Users = await XmlReadWriteClass.ReadObjectFromXmlFileAsync<ObservableCollection<User>>("administration.xml");
+                Users = await XmlReadWrite.ReadObjectFromXmlFileAsync<ObservableCollection<User>>("userAdministrator.xml");
                 Debug.WriteLine("user.count:" + Users.Count);
             }
             catch (Exception)

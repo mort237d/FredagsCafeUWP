@@ -8,7 +8,7 @@ using Windows.Storage;
 
 namespace FredagsCafeUWP
 {
-    internal class XmlReadWriteClass
+    internal class XmlReadWrite
     {
         public static async Task<T> ReadObjectFromXmlFileAsync<T>(string filename)
         {
@@ -36,7 +36,7 @@ namespace FredagsCafeUWP
         public static async Task SaveAsync<T>(ObservableCollection<T> collection, string fileName)
         {
             Debug.WriteLine("Saving " + fileName + " async...");
-            await XmlReadWriteClass.SaveObjectToXml(collection, fileName + ".xml");
+            await XmlReadWrite.SaveObjectToXml(collection, fileName + ".xml");
             Debug.WriteLine(fileName + ".count: " + collection.Count);
         }
     }

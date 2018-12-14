@@ -11,11 +11,11 @@ namespace FredagsCafeUWP
 {
     public sealed partial class UserPage : Page
     {
-        private Stock _stock = Stock.Instance;
-        private Sale _sale = Sale.Instance;
-        private EventPage _eventPage = EventPage.Instance;
-        private StatListClass _statListClass = StatListClass.Instance;
-        private Administration _administration = Administration.Instance;
+        private StockAdministrator _stockAdministrator = StockAdministrator.Instance;
+        private SaleAdministrator _sale = SaleAdministrator.Instance;
+        private EventAdministrator _eventAdministrator = EventAdministrator.Instance;
+        private StatisticsAdministrator _statisticsAdministrator = StatisticsAdministrator.Instance;
+        private UserAdministrator _userAdministrator = UserAdministrator.Instance;
         private LogOnLogOff _logOnLogOff = LogOnLogOff.Instance;
         private Encrypt _encrypt = new Encrypt();
 
@@ -41,19 +41,19 @@ namespace FredagsCafeUWP
 
         private async Task Loader()
         {
-            await _administration.LoadAsync();
-            await _stock.LoadAsync();
+            await _userAdministrator.LoadAsync();
+            await _stockAdministrator.LoadAsync();
             await _sale.LoadAsync();
-            await _statListClass.LoadAsync();
+            await _statisticsAdministrator.LoadAsync();
             await _logOnLogOff.LoadAsync();
-            await _eventPage.LoadAsync();
+            await _eventAdministrator.LoadAsync();
         }
 
         private async void OnCloseRequest(object sender, SystemNavigationCloseRequestedPreviewEventArgs e)
         {
             e.Handled = true;
 
-            foreach (var product in _stock.Products)
+            foreach (var product in _stockAdministrator.Products)
             {
                 product.AmountToBeSold = 0;
             }
@@ -67,13 +67,13 @@ namespace FredagsCafeUWP
 
         private async Task Saver()
         {
-            await XmlReadWriteClass.SaveAsync(_administration.Users, "administration");
-            await XmlReadWriteClass.SaveAsync(_stock.Products, "stock");
-            await XmlReadWriteClass.SaveAsync(_sale.Receipts, "receipt");
-            await XmlReadWriteClass.SaveAsync(_statListClass.StatList, "stats");
-            await XmlReadWriteClass.SaveAsync(_statListClass.ProductGraphList, "productStats");
-            await XmlReadWriteClass.SaveAsync(_logOnLogOff.LogInLogOutList, "loginlogout");
-            await XmlReadWriteClass.SaveAsync(_eventPage.Events, "events");
+            await XmlReadWrite.SaveAsync(_userAdministrator.Users, "userAdministrator");
+            await XmlReadWrite.SaveAsync(_stockAdministrator.Products, "stockAdministrator");
+            await XmlReadWrite.SaveAsync(_sale.Receipts, "receipt");
+            await XmlReadWrite.SaveAsync(_statisticsAdministrator.StatList, "stats");
+            await XmlReadWrite.SaveAsync(_statisticsAdministrator.ProductGraphList, "productStats");
+            await XmlReadWrite.SaveAsync(_logOnLogOff.LogInLogOutList, "loginlogout");
+            await XmlReadWrite.SaveAsync(_eventAdministrator.Events, "events");
         }
 
         private void Comboboxo_OnSelectionChanged(object sender, SelectionChangedEventArgs e)

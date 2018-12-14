@@ -2,13 +2,13 @@
 
 namespace FredagsCafeUWP
 {
-    internal class LoginPageViewModel
+    internal class LoginViewModel
     {
         public RelayCommand LoginRelayCommand { get; set; }
 
         public RelayCommand RecoverAccountCommand { get; set; }
 
-        public LoginPageViewModel()
+        public LoginViewModel()
         {
             LoginRelayCommand = new RelayCommand(LogOnLogOff.Instance.CheckLogin);
 

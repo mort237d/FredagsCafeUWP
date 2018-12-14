@@ -19,7 +19,7 @@ namespace FredagsCafeUWP.Models.UserPage
                 OnPropertyChanged();
                 _sortProductsTb = value;
                 int temp = ConvertMethod(_sortProductsTb);
-                Stock.Instance.Products = SortObservableCollectionMethodTest(Stock.Instance.Products, temp);
+                StockAdministrator.Instance.Products = SortObservableCollectionMethodTest(StockAdministrator.Instance.Products, temp);
                 OnPropertyChanged();
             }
         }

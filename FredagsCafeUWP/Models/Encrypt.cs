@@ -62,7 +62,7 @@ namespace FredagsCafeUWP.Models
 
         public void EncryptUsers()
         {
-            foreach (var user in Administration.Instance.Users)
+            foreach (var user in UserAdministrator.Instance.Users)
             {
                 user.Name = Encrypting(user.Name);
                 user.Admin = Encrypting(user.Admin);
@@ -78,7 +78,7 @@ namespace FredagsCafeUWP.Models
 
         public void DecryptUsers()
         {
-            foreach (var user in Administration.Instance.Users)
+            foreach (var user in UserAdministrator.Instance.Users)
             {
                 user.Name = DeCrypt(user.Name);
                 user.Admin = DeCrypt(user.Admin);

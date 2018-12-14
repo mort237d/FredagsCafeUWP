@@ -8,7 +8,7 @@
     mc:Ignorable="d"
     Background="#6CA0DC">
     <Page.DataContext>
-        <local:LoginPageViewModel/>
+        <local:LoginViewModel/>
     </Page.DataContext>
 
     <Grid>

@@ -10,27 +10,27 @@ using FredagsCafeUWP.Models.UserPage;
 
 namespace FredagsCafeUWP 
 {
-    public class StatListClass : INotifyPropertyChanged
+    public class StatisticsAdministrator : INotifyPropertyChanged
     {
         private string _colorRed = "Red";
         private static ObservableCollection<Statistics> _statList;
         private ObservableCollection<Product> _productGraphList;
 
-        private StatListClass()
+        private StatisticsAdministrator()
         {
             
         }
 
         #region Singleton
 
-        private static StatListClass instance;
-        public static StatListClass Instance
+        private static StatisticsAdministrator instance;
+        public static StatisticsAdministrator Instance
         {
             get
             {
                 if (instance == null)
                 {
-                    instance = new StatListClass();
+                    instance = new StatisticsAdministrator();
                 }
                 return instance;
             }
@@ -75,7 +75,7 @@ namespace FredagsCafeUWP
         public double SellingTotal()
         {
             double totalSaleValueSum = 0;
-            foreach (var receipt in Sale.Instance.Receipts)
+            foreach (var receipt in SaleAdministrator.Instance.Receipts)
             {
                 foreach (var basket in receipt.Basket)
                 {
@@ -91,7 +91,7 @@ namespace FredagsCafeUWP
         public double BuyingTotal()
         {
             double totalBuyValueSum = 0;
-            foreach (var receipt in Sale.Instance.Receipts)
+            foreach (var receipt in SaleAdministrator.Instance.Receipts)
             {
                 foreach (var basket in receipt.Basket)
                 {
@@ -110,7 +110,7 @@ namespace FredagsCafeUWP
             bool tempGraphBool = false;
             ProductGraphList.Clear();
             ProductGraphList.Add(new Product("", 0));
-            foreach (var receipt in Sale.Instance.Receipts)
+            foreach (var receipt in SaleAdministrator.Instance.Receipts)
             {
                 foreach (var basket in receipt.Basket)
                 {
@@ -146,7 +146,7 @@ namespace FredagsCafeUWP
             try
             {
                 Debug.WriteLine("loading stats async...");
-                StatList = await XmlReadWriteClass.ReadObjectFromXmlFileAsync<ObservableCollection<Statistics>>("stats.xml");
+                StatList = await XmlReadWrite.ReadObjectFromXmlFileAsync<ObservableCollection<Statistics>>("stats.xml");
                 Debug.WriteLine("stats.count:" + StatList.Count);
             }
             catch (Exception)
@@ -157,7 +157,7 @@ namespace FredagsCafeUWP
             try
             {
                 Debug.WriteLine("loading productStats async...");
-                ProductGraphList = await XmlReadWriteClass.ReadObjectFromXmlFileAsync<ObservableCollection<Product>>("productStats.xml");
+                ProductGraphList = await XmlReadWrite.ReadObjectFromXmlFileAsync<ObservableCollection<Product>>("productStats.xml");
                 Debug.WriteLine("productStats.count:" + ProductGraphList.Count);
             }
             catch (Exception)

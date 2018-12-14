@@ -7,15 +7,15 @@ namespace FredagsCafeUWP.ViewModels
     public class UserViewModel
     {
         #region Field
-        private Stock _stock = Stock.Instance;
-        private Sale _sale = Sale.Instance;
-        private EventPage _eventPage = EventPage.Instance;
-        private Administration _administration = Administration.Instance;
-        private StatListClass _statList = StatListClass.Instance;
+        private StockAdministrator _stockAdministrator = StockAdministrator.Instance;
+        private SaleAdministrator _sale = SaleAdministrator.Instance;
+        private EventAdministrator _eventAdministrator = EventAdministrator.Instance;
+        private UserAdministrator _userAdministrator = UserAdministrator.Instance;
+        private StatisticsAdministrator _statList = StatisticsAdministrator.Instance;
         private LogOnLogOff _logOnLogOff = LogOnLogOff.Instance;
         private Product _product;
         private Statistics _statistics;
-        private AccountSettingsClass _accountSettingsClass = new AccountSettingsClass();
+        private AccountSettings _accountSettings = new AccountSettings();
         private Help _help = new Help();
         private SortProducts _sortProducts = new SortProducts();
         #endregion
@@ -27,10 +27,10 @@ namespace FredagsCafeUWP.ViewModels
             set => _product = value;
         }
 
-        public Administration Administration
+        public UserAdministrator UserAdministrator
         {
-            get => _administration;
-            set => _administration = value;
+            get => _userAdministrator;
+            set => _userAdministrator = value;
         }
 
         public Statistics Statistics
@@ -39,13 +39,13 @@ namespace FredagsCafeUWP.ViewModels
             set { _statistics = value; }
         }
 
-        public Sale Sale
+        public SaleAdministrator Sale
         {
             get => _sale;
             set => _sale = value;
         }
 
-        public StatListClass StatList
+        public StatisticsAdministrator StatList
         {
             get { return _statList; }
             set { _statList = value; }
@@ -57,10 +57,10 @@ namespace FredagsCafeUWP.ViewModels
             set { _logOnLogOff = value; }
         }
 
-        public AccountSettingsClass AccountSettingsClass
+        public AccountSettings AccountSettings
         {
-            get { return _accountSettingsClass; }
-            set { _accountSettingsClass = value; }
+            get { return _accountSettings; }
+            set { _accountSettings = value; }
         }
 
         public Help Help
@@ -69,16 +69,16 @@ namespace FredagsCafeUWP.ViewModels
             set { _help = value; }
         }
 
-        public Stock Stock
+        public StockAdministrator StockAdministrator
         {
-            get { return _stock; }
-            set { _stock = value; }
+            get { return _stockAdministrator; }
+            set { _stockAdministrator = value; }
         }
 
-        public EventPage EventPage
+        public EventAdministrator EventAdministrator
         {
-            get { return _eventPage; }
-            set { _eventPage = value; }
+            get { return _eventAdministrator; }
+            set { _eventAdministrator = value; }
         }
 
         public SortProducts SortProducts
@@ -129,19 +129,19 @@ namespace FredagsCafeUWP.ViewModels
 
         public UserViewModel()
         {
-            RemoveProductCommand = new RelayCommand(Stock.RemoveProductFromObList);
-            ShowAddProductPopUpCommand = new RelayCommand(Stock.ShowAddProductPopUpMethod);
-            ShowChangeProductPopUpCommand = new RelayCommand(Stock.ShowChangeProductPopUpMethod);
-            BrowseAddImageCommand = new RelayCommand(Stock.BrowseAddImageButton);
-            BrowseChangeImageCommand = new RelayCommand(Stock.BrowseChangeImageButton);
-            AddProductCommand = new RelayCommand(Stock.AddProductToObList);
-            ChangeProductCommand = new RelayCommand(Stock.ChangeProductOfObList);
+            RemoveProductCommand = new RelayCommand(StockAdministrator.RemoveProductFromObList);
+            ShowAddProductPopUpCommand = new RelayCommand(StockAdministrator.ShowAddProductPopUpMethod);
+            ShowChangeProductPopUpCommand = new RelayCommand(StockAdministrator.ShowChangeProductPopUpMethod);
+            BrowseAddImageCommand = new RelayCommand(StockAdministrator.BrowseAddImageButton);
+            BrowseChangeImageCommand = new RelayCommand(StockAdministrator.BrowseChangeImageButton);
+            AddProductCommand = new RelayCommand(StockAdministrator.AddProductToObList);
+            ChangeProductCommand = new RelayCommand(StockAdministrator.ChangeProductOfObList);
 
-            ShowAddUserPopUpCommand = new RelayCommand(Administration.ShowAddUserPopUpMethod);
-            AddUserCommand = new RelayCommand(Administration.AddUser);
-            RemoveUserCommand = new RelayCommand(Administration.RemoveUser);
-            UserImageBrowserCommand = new RelayCommand(Administration.BrowseImageButton);
-            ChangeAdminCommand = new RelayCommand(Administration.ChangeAdmin);
+            ShowAddUserPopUpCommand = new RelayCommand(UserAdministrator.ShowAddUserPopUpMethod);
+            AddUserCommand = new RelayCommand(UserAdministrator.AddUser);
+            RemoveUserCommand = new RelayCommand(UserAdministrator.RemoveUser);
+            UserImageBrowserCommand = new RelayCommand(UserAdministrator.BrowseImageButton);
+            ChangeAdminCommand = new RelayCommand(UserAdministrator.ChangeAdmin);
 
             CompleteSaleCommand = new RelayCommand(Sale.CompleteSale);
             CalculateTotalPriceCommand = new RelayCommand(Sale.DiscountedTotalcalculator);
@@ -149,20 +149,20 @@ namespace FredagsCafeUWP.ViewModels
             RemoveOneFromSaleCommand = new RelayCommand(Sale.RemoveProductButton);
             DeleteReceiptCommand = new RelayCommand(Sale.DeleteReceipt);
 
-            ShowAddEventUserPopUpCommand = new RelayCommand(EventPage.ShowAddEventUserPopUpMethod);
-            AddEventUserCommand = new RelayCommand(EventPage.AddUser);
-            RemoveEventUserCommand = new RelayCommand(EventPage.RemoveUser);
-            ShowAddEventPopUpCommand = new RelayCommand(EventPage.ShowAddEventPopUpMethod);
-            AddEventCommand = new RelayCommand(EventPage.AddEvent);
-            RemoveEventCommand = new RelayCommand(EventPage.RemoveEvent);
-            EventImageBrowserCommand = new RelayCommand(EventPage.BrowseAddImageButton);
+            ShowAddEventUserPopUpCommand = new RelayCommand(EventAdministrator.ShowAddEventUserPopUpMethod);
+            AddEventUserCommand = new RelayCommand(EventAdministrator.AddUser);
+            RemoveEventUserCommand = new RelayCommand(EventAdministrator.RemoveUser);
+            ShowAddEventPopUpCommand = new RelayCommand(EventAdministrator.ShowAddEventPopUpMethod);
+            AddEventCommand = new RelayCommand(EventAdministrator.AddEvent);
+            RemoveEventCommand = new RelayCommand(EventAdministrator.RemoveEvent);
+            EventImageBrowserCommand = new RelayCommand(EventAdministrator.BrowseAddImageButton);
             
             LogOffCommand = new RelayCommand(LogOnLogOff.LogOffMethod);
 
-            ShowAccountPopUp = new RelayCommand(AccountSettingsClass.ShowAccountSettingsPopUpMethod);
-            ShowAdminAccountPopUp = new RelayCommand(AccountSettingsClass.ShowAdminAccountPopUpMethod);
-            ChangeSettingsCommand = new RelayCommand(AccountSettingsClass.ChangeSettings);
-            ChangeSelectedAccountSettings = new RelayCommand(AccountSettingsClass.ChangeSelectedAccountSettingsMethod);
+            ShowAccountPopUp = new RelayCommand(AccountSettings.ShowAccountSettingsPopUpMethod);
+            ShowAdminAccountPopUp = new RelayCommand(AccountSettings.ShowAdminAccountPopUpMethod);
+            ChangeSettingsCommand = new RelayCommand(AccountSettings.ChangeSettings);
+            ChangeSelectedAccountSettings = new RelayCommand(AccountSettings.ChangeSelectedAccountSettingsMethod);
 
             GoToHelpPageCommand = new RelayCommand(Help.GoToHelpPage);
         }

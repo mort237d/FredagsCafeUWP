@@ -36,7 +36,7 @@
         </CommandBar>
         <!--#endregion-->
 
-        <Popup IsOpen="{Binding Stock.ShowAddProductPopUp}" Grid.RowSpan="2" Width="400" Height="1000" HorizontalAlignment="Left" VerticalAlignment="Top" LightDismissOverlayMode="On" IsLightDismissEnabled="True" Margin="-12,0,0,0">
+        <Popup IsOpen="{Binding StockAdministrator.ShowAddProductPopUp}" Grid.RowSpan="2" Width="400" Height="1000" HorizontalAlignment="Left" VerticalAlignment="Top" LightDismissOverlayMode="On" IsLightDismissEnabled="True" Margin="-12,0,0,0">
             <Popup.ChildTransitions>
                 <TransitionCollection>
                     <PaneThemeTransition Edge="Left"/>
@@ -46,10 +46,10 @@
             <StackPanel Background="#6CA0DC" Height="1000" Width="400">
                 <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0">
                     <TextBlock Text="Tilføj Produkt" FontWeight="Bold" FontSize="50" HorizontalAlignment="Center"/>
-                    <TextBox Margin="2" PlaceholderText="Navn" Text="{Binding Stock.AddNameTb, Mode=TwoWay}"/>
-                    <TextBox Margin="2" PlaceholderText="Købspris pr. stk." Text="{Binding Stock.AddBuyingPriceTb, Mode=TwoWay}"/>
-                    <TextBox Margin="2" PlaceholderText="Salgspris pr. stk." Text="{Binding Stock.AddSellingPriceTb, Mode=TwoWay}"/>
-                    <TextBox Margin="2" PlaceholderText="Antal" Text="{Binding Stock.AddAmountTb, Mode=TwoWay}"/>
+                    <TextBox Margin="2" PlaceholderText="Navn" Text="{Binding StockAdministrator.AddNameTb, Mode=TwoWay}"/>
+                    <TextBox Margin="2" PlaceholderText="Købspris pr. stk." Text="{Binding StockAdministrator.AddBuyingPriceTb, Mode=TwoWay}"/>
+                    <TextBox Margin="2" PlaceholderText="Salgspris pr. stk." Text="{Binding StockAdministrator.AddSellingPriceTb, Mode=TwoWay}"/>
+                    <TextBox Margin="2" PlaceholderText="Antal" Text="{Binding StockAdministrator.AddAmountTb, Mode=TwoWay}"/>
                     <ComboBox Margin="2" Name="Comboboxo" PlaceholderText="Type" Width="320" SelectionChanged="Comboboxo_OnSelectionChanged">
                         <ComboBoxItem Content="Øl"/>
                         <ComboBoxItem Content="Sodavand"/>
@@ -59,19 +59,19 @@
                         <ComboBoxItem Content="Shot"/>
                         <ComboBoxItem Content="Andet"/>
                     </ComboBox>
-                    <TextBlock  Name="tbcombo" Text="{Binding Stock.AddTypeTb, Mode=TwoWay}" Visibility="Collapsed"/>
+                    <TextBlock  Name="tbcombo" Text="{Binding StockAdministrator.AddTypeTb, Mode=TwoWay}" Visibility="Collapsed"/>
                     <StackPanel Orientation="Horizontal" Margin="2">
-                        <TextBox IsReadOnly="True" PlaceholderText="ImageSource" Width="280" Text="{Binding Stock.AddImageSourceTb, Mode=TwoWay}"/>
+                        <TextBox IsReadOnly="True" PlaceholderText="ImageSource" Width="280" Text="{Binding StockAdministrator.AddImageSourceTb, Mode=TwoWay}"/>
                         <Button Content="..." Width="40" Command="{Binding BrowseAddImageCommand}"/>
                     </StackPanel>
-                    <TextBox Margin="2" PlaceholderText="Tilbud ved x antal stk." Text="{Binding Stock.AddDiscountAtThisAmountTb, Mode=TwoWay}"/>
-                    <TextBox Margin="2" PlaceholderText="Tilbudspris pr. stk." Text="{Binding Stock.AddDiscountPricePerPieceTb, Mode=TwoWay}"/>
+                    <TextBox Margin="2" PlaceholderText="Tilbud ved x antal stk." Text="{Binding StockAdministrator.AddDiscountAtThisAmountTb, Mode=TwoWay}"/>
+                    <TextBox Margin="2" PlaceholderText="Tilbudspris pr. stk." Text="{Binding StockAdministrator.AddDiscountPricePerPieceTb, Mode=TwoWay}"/>
                     <Button Margin="20" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Center" Content="Tilføj produkt" Command="{Binding AddProductCommand}"/>
                 </StackPanel>
             </StackPanel>
         </Popup>
 
-        <Popup IsOpen="{Binding Stock.ShowChangeProductPopUp}" Grid.RowSpan="2" Width="400" Height="1000" HorizontalAlignment="Right" LightDismissOverlayMode="On" IsLightDismissEnabled="True" Margin="0,0,-12,0">
+        <Popup IsOpen="{Binding StockAdministrator.ShowChangeProductPopUp}" Grid.RowSpan="2" Width="400" Height="1000" HorizontalAlignment="Right" LightDismissOverlayMode="On" IsLightDismissEnabled="True" Margin="0,0,-12,0">
             <Popup.ChildTransitions>
                 <TransitionCollection>
                     <PaneThemeTransition Edge="Right"/>
@@ -93,12 +93,12 @@
                             <TextBlock Height="32" Margin="2" Text="Tilbudpris pr. stk."/>
                         </StackPanel>
                         <StackPanel Name="test" Width="250">
-                            <TextBox Margin="2" PlaceholderText="Navn" Text="{Binding Stock.ChangeNameTb, Mode=TwoWay}"/>
-                            <TextBox Margin="2" PlaceholderText="Købspris" Text="{Binding Stock.ChangeBuyingPriceTb, Mode=TwoWay}"/>
-                            <TextBox Margin="2" PlaceholderText="Salgspris" Text="{Binding Stock.ChangeSellingPriceTb, Mode=TwoWay}"/>
-                            <TextBox Margin="2" PlaceholderText="Antal" Text="{Binding Stock.ChangeAmountTb, Mode=TwoWay}"/>
+                            <TextBox Margin="2" PlaceholderText="Navn" Text="{Binding StockAdministrator.ChangeNameTb, Mode=TwoWay}"/>
+                            <TextBox Margin="2" PlaceholderText="Købspris" Text="{Binding StockAdministrator.ChangeBuyingPriceTb, Mode=TwoWay}"/>
+                            <TextBox Margin="2" PlaceholderText="Salgspris" Text="{Binding StockAdministrator.ChangeSellingPriceTb, Mode=TwoWay}"/>
+                            <TextBox Margin="2" PlaceholderText="Antal" Text="{Binding StockAdministrator.ChangeAmountTb, Mode=TwoWay}"/>
                             <StackPanel Orientation="Horizontal" Margin="2">
-                                <TextBox IsReadOnly="True" PlaceholderText="ImageSource" Width="205" Text="{Binding Stock.ChangeImageSourceTb, Mode=TwoWay}"/>
+                                <TextBox IsReadOnly="True" PlaceholderText="ImageSource" Width="205" Text="{Binding StockAdministrator.ChangeImageSourceTb, Mode=TwoWay}"/>
                                 <Button Content="..." Width="40" Command="{Binding BrowseChangeImageCommand}"/>
                             </StackPanel>
                             <ComboBox Name="JohnHitler" Margin="2"  PlaceholderText="{Binding Path=Text, ElementName=tcombo, UpdateSourceTrigger=PropertyChanged}" Width="246" SelectionChanged="Comboboxo_OnSelectionChanged">
@@ -110,9 +110,9 @@
                                 <ComboBoxItem Content="Shot"/>
                                 <ComboBoxItem Content="Andet"/>
                             </ComboBox>
-                            <TextBox Margin="2" PlaceholderText="Tilbud ved x antal stk." Text="{Binding Stock.ChangeDiscountAtThisAmountTb, Mode=TwoWay}"/>
-                            <TextBox Margin="2" PlaceholderText="Tilbudspris pr. stk." Text="{Binding Stock.ChangeDiscountPricePerPieceTb, Mode=TwoWay}"/>
-                            <TextBlock Name="tcombo" Text="{Binding Stock.ChangeTypeTb, Mode=TwoWay}" Visibility="Collapsed"/>
+                            <TextBox Margin="2" PlaceholderText="Tilbud ved x antal stk." Text="{Binding StockAdministrator.ChangeDiscountAtThisAmountTb, Mode=TwoWay}"/>
+                            <TextBox Margin="2" PlaceholderText="Tilbudspris pr. stk." Text="{Binding StockAdministrator.ChangeDiscountPricePerPieceTb, Mode=TwoWay}"/>
+                            <TextBlock Name="tcombo" Text="{Binding StockAdministrator.ChangeTypeTb, Mode=TwoWay}" Visibility="Collapsed"/>
                         </StackPanel>
                     </StackPanel>
                     <Button Margin="20" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Center" Content="Ændre produkt" Command="{Binding ChangeProductCommand}"/>
@@ -120,7 +120,7 @@
             </StackPanel>
         </Popup>
 
-        <Popup IsOpen="{Binding Administration.ShowAddUserPopUp}" Grid.RowSpan="2" Width="400" Height="1000" HorizontalAlignment="Right" LightDismissOverlayMode="On" IsLightDismissEnabled="True" Margin="-12,0,0,0">
+        <Popup IsOpen="{Binding UserAdministrator.ShowAddUserPopUp}" Grid.RowSpan="2" Width="400" Height="1000" HorizontalAlignment="Right" LightDismissOverlayMode="On" IsLightDismissEnabled="True" Margin="-12,0,0,0">
             <Popup.ChildTransitions>
                 <TransitionCollection>
                     <PaneThemeTransition Edge="Right"/>
@@ -130,24 +130,24 @@
             <StackPanel Background="#6CA0DC" Height="1000" Width="400">
                 <StackPanel Margin="40">
                     <TextBlock Text="Tilføj Bruger" FontWeight="Bold" FontSize="50" HorizontalAlignment="Center"/>
-                    <TextBox Margin="2" PlaceholderText="Navn" Text="{Binding Administration.NameTb, Mode=TwoWay}"/>
-                    <TextBox Margin="2" PlaceholderText="Klasse" Text="{Binding Administration.GradeTb, Mode=TwoWay}"/>
-                    <TextBox Margin="2" PlaceholderText="Skole" Text="{Binding Administration.EducationTb, Mode=TwoWay}"/>
-                    <TextBox Margin="2" PlaceholderText="email" Text="{Binding Administration.EmailTb, Mode=TwoWay}"/>
-                    <TextBox Margin="2" PlaceholderText="Tlf. nummer" Text="{Binding Administration.TelephoneNumberTb, Mode=TwoWay}"/>
-                    <TextBox Margin="2" PlaceholderText="Username" Text="{Binding Administration.UserNameTb, Mode=TwoWay}"/>
+                    <TextBox Margin="2" PlaceholderText="Navn" Text="{Binding UserAdministrator.NameTb, Mode=TwoWay}"/>
+                    <TextBox Margin="2" PlaceholderText="Klasse" Text="{Binding UserAdministrator.GradeTb, Mode=TwoWay}"/>
+                    <TextBox Margin="2" PlaceholderText="Skole" Text="{Binding UserAdministrator.EducationTb, Mode=TwoWay}"/>
+                    <TextBox Margin="2" PlaceholderText="email" Text="{Binding UserAdministrator.EmailTb, Mode=TwoWay}"/>
+                    <TextBox Margin="2" PlaceholderText="Tlf. nummer" Text="{Binding UserAdministrator.TelephoneNumberTb, Mode=TwoWay}"/>
+                    <TextBox Margin="2" PlaceholderText="Username" Text="{Binding UserAdministrator.UserNameTb, Mode=TwoWay}"/>
                     <StackPanel Orientation="Horizontal">
-                        <TextBox Margin="2" PlaceholderText="Billede" Width="284" Text="{Binding Administration.ImageTb, Mode=TwoWay}"/>
+                        <TextBox Margin="2" PlaceholderText="Billede" Width="284" Text="{Binding UserAdministrator.ImageTb, Mode=TwoWay}"/>
                         <Button Content="..." Width="auto" Command="{Binding UserImageBrowserCommand}"/>
                     </StackPanel>
-                    <PasswordBox Margin="2" PlaceholderText="Password" Password="{Binding Administration.PasswordTb, Mode=TwoWay}"/>
-                    <PasswordBox Margin="2" PlaceholderText="Confirm Password" Password="{Binding Administration.ConfirmPasswordTb, Mode=TwoWay}"/>
+                    <PasswordBox Margin="2" PlaceholderText="Password" Password="{Binding UserAdministrator.PasswordTb, Mode=TwoWay}"/>
+                    <PasswordBox Margin="2" PlaceholderText="Confirm Password" Password="{Binding UserAdministrator.ConfirmPasswordTb, Mode=TwoWay}"/>
                     <Button Style="{StaticResource RoundedButtonStyle}"  HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="20" Content="Tilføj medarbejder" Command="{Binding AddUserCommand}"/>
                 </StackPanel>
             </StackPanel>
         </Popup>
 
-        <Popup IsOpen="{Binding EventPage.ShowAddEventPopUp}" Grid.RowSpan="2" Width="400" Height="1000" HorizontalAlignment="Left" LightDismissOverlayMode="On" IsLightDismissEnabled="True" Margin="-12,0,0,0">
+        <Popup IsOpen="{Binding EventAdministrator.ShowAddEventPopUp}" Grid.RowSpan="2" Width="400" Height="1000" HorizontalAlignment="Left" LightDismissOverlayMode="On" IsLightDismissEnabled="True" Margin="-12,0,0,0">
             <Popup.ChildTransitions>
                 <TransitionCollection>
                     <PaneThemeTransition Edge="Left"/>
@@ -157,13 +157,13 @@
             <StackPanel Background="#6CA0DC" Height="1000" Width="400">
                 <StackPanel>
                     <TextBlock Text="Tilføj Event" FontWeight="Bold" FontSize="50" HorizontalAlignment="Center"/>
-                    <TextBox Margin="2" Text="{Binding EventPage.EventNameTb, Mode=TwoWay}" PlaceholderText="Navn"/>
-                    <TextBox Margin="2" Text="{Binding EventPage.EventLocationTb, Mode=TwoWay}" PlaceholderText="Placering"/>
-                    <TextBox Margin="2" Text="{Binding EventPage.EventDescriptionTb, Mode=TwoWay}" PlaceholderText="Beskrivelse"/>
-                    <TextBox Margin="2" Text="{Binding EventPage.EventMaxUsersTb, Mode=TwoWay}" PlaceholderText="Maks antal deltager"/>
-                    <TextBox Margin="2" Text="{Binding EventPage.EventDateTimeTb, Mode=TwoWay}" PlaceholderText="Dato/tid"/>
+                    <TextBox Margin="2" Text="{Binding EventAdministrator.EventNameTb, Mode=TwoWay}" PlaceholderText="Navn"/>
+                    <TextBox Margin="2" Text="{Binding EventAdministrator.EventLocationTb, Mode=TwoWay}" PlaceholderText="Placering"/>
+                    <TextBox Margin="2" Text="{Binding EventAdministrator.EventDescriptionTb, Mode=TwoWay}" PlaceholderText="Beskrivelse"/>
+                    <TextBox Margin="2" Text="{Binding EventAdministrator.EventMaxUsersTb, Mode=TwoWay}" PlaceholderText="Maks antal deltager"/>
+                    <TextBox Margin="2" Text="{Binding EventAdministrator.EventDateTimeTb, Mode=TwoWay}" PlaceholderText="Dato/tid"/>
                     <StackPanel>
-                        <TextBox Margin="2" Text="{Binding EventPage.EventImageTb, Mode=TwoWay}" PlaceholderText="Billede"/>
+                        <TextBox Margin="2" Text="{Binding EventAdministrator.EventImageTb, Mode=TwoWay}" PlaceholderText="Billede"/>
                         <Button Content="..." Width="40" Command="{Binding EventImageBrowserCommand}"/>
                     </StackPanel>
                     <Button Margin="2" Command="{Binding AddEventCommand}" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Content="Tilføj event"/>
@@ -171,7 +171,7 @@
             </StackPanel>
         </Popup>
 
-        <Popup IsOpen="{Binding EventPage.ShowAddEventUserPopUp}" Grid.RowSpan="2" Width="400" Height="1000" HorizontalAlignment="Right" LightDismissOverlayMode="On" IsLightDismissEnabled="True" Margin="0,0,-12,0">
+        <Popup IsOpen="{Binding EventAdministrator.ShowAddEventUserPopUp}" Grid.RowSpan="2" Width="400" Height="1000" HorizontalAlignment="Right" LightDismissOverlayMode="On" IsLightDismissEnabled="True" Margin="0,0,-12,0">
             <Popup.ChildTransitions>
                 <TransitionCollection>
                     <PaneThemeTransition Edge="Right"/>
@@ -181,14 +181,14 @@
             <StackPanel Background="#6CA0DC" Height="1000" Width="400">
                 <StackPanel>
                     <TextBlock Text="Tilføj Deltager" FontWeight="Bold" FontSize="50" HorizontalAlignment="Center"/>
-                    <TextBox Margin="2" Text="{Binding EventPage.UserNameTb, Mode=TwoWay}" PlaceholderText="Navn"/>
-                    <TextBox Margin="2" Text="{Binding EventPage.UserEmailTb, Mode=TwoWay}" PlaceholderText="Email"/>
+                    <TextBox Margin="2" Text="{Binding EventAdministrator.UserNameTb, Mode=TwoWay}" PlaceholderText="Navn"/>
+                    <TextBox Margin="2" Text="{Binding EventAdministrator.UserEmailTb, Mode=TwoWay}" PlaceholderText="Email"/>
                     <Button Margin="2" Command="{Binding AddEventUserCommand}" Style="{StaticResource RoundedButtonStyle}" Content="Tilføj deltager" HorizontalAlignment="Center"/>
                 </StackPanel>
             </StackPanel>
         </Popup>
 
-        <Popup IsOpen="{Binding AccountSettingsClass.ShowAccountSettingsPopUp}" Grid.RowSpan="2" Width="400" Height="1000" HorizontalAlignment="Right" LightDismissOverlayMode="On" IsLightDismissEnabled="True" Margin="0,0,-12,0">
+        <Popup IsOpen="{Binding AccountSettings.ShowAccountSettingsPopUp}" Grid.RowSpan="2" Width="400" Height="1000" HorizontalAlignment="Right" LightDismissOverlayMode="On" IsLightDismissEnabled="True" Margin="0,0,-12,0">
             <Popup.ChildTransitions>
                 <TransitionCollection>
                     <PaneThemeTransition Edge="Top"/>
@@ -210,14 +210,14 @@
                             <TextBlock Text="Bekræft kodeord" Height="32"/>
                         </StackPanel >
                         <StackPanel Margin="5,0,0,0" HorizontalAlignment="Center" Orientation="Vertical">
-                            <TextBox PlaceholderText="Navn" Text="{Binding AccountSettingsClass.NameTb, Mode=TwoWay}"/>
-                            <TextBox PlaceholderText="Klasse" Text="{Binding AccountSettingsClass.GradeTb, Mode=TwoWay}"/>
-                            <TextBox PlaceholderText="Skole" Text="{Binding AccountSettingsClass.EducationTb, Mode=TwoWay}"/>
-                            <TextBox IsReadOnly="True" PlaceholderText="email" Text="{Binding AccountSettingsClass.EmailTb, Mode=TwoWay}"/>
-                            <TextBox PlaceholderText="Tlf. nummer" Text="{Binding AccountSettingsClass.TelephoneNumberTb, Mode=TwoWay}"/>
-                            <TextBox PlaceholderText="Username" Text="{Binding AccountSettingsClass.UserNameTb, Mode=TwoWay}"/>
-                            <PasswordBox PlaceholderText="Password" Password="{Binding AccountSettingsClass.PasswordTb, Mode=TwoWay}"/>
-                            <PasswordBox PlaceholderText="Bekræft kodeord" Password="{Binding AccountSettingsClass.ConfirmPasswordTb, Mode=TwoWay}"/>
+                            <TextBox PlaceholderText="Navn" Text="{Binding AccountSettings.NameTb, Mode=TwoWay}"/>
+                            <TextBox PlaceholderText="Klasse" Text="{Binding AccountSettings.GradeTb, Mode=TwoWay}"/>
+                            <TextBox PlaceholderText="Skole" Text="{Binding AccountSettings.EducationTb, Mode=TwoWay}"/>
+                            <TextBox IsReadOnly="True" PlaceholderText="email" Text="{Binding AccountSettings.EmailTb, Mode=TwoWay}"/>
+                            <TextBox PlaceholderText="Tlf. nummer" Text="{Binding AccountSettings.TelephoneNumberTb, Mode=TwoWay}"/>
+                            <TextBox PlaceholderText="Username" Text="{Binding AccountSettings.UserNameTb, Mode=TwoWay}"/>
+                            <PasswordBox PlaceholderText="Password" Password="{Binding AccountSettings.PasswordTb, Mode=TwoWay}"/>
+                            <PasswordBox PlaceholderText="Bekræft kodeord" Password="{Binding AccountSettings.ConfirmPasswordTb, Mode=TwoWay}"/>
                         </StackPanel>
 
                     </StackPanel>
@@ -227,7 +227,7 @@
             </StackPanel>
         </Popup>
 
-        <Popup IsOpen="{Binding AccountSettingsClass.ShowAdminAccountPopup}" Grid.RowSpan="2" Width="400" Height="1000" HorizontalAlignment="Right" LightDismissOverlayMode="On" IsLightDismissEnabled="True" Margin="0,0,-12,0">
+        <Popup IsOpen="{Binding AccountSettings.ShowAdminAccountPopup}" Grid.RowSpan="2" Width="400" Height="1000" HorizontalAlignment="Right" LightDismissOverlayMode="On" IsLightDismissEnabled="True" Margin="0,0,-12,0">
             <Popup.ChildTransitions>
                 <TransitionCollection>
                     <PaneThemeTransition Edge="Top"/>
@@ -249,14 +249,14 @@
                             <TextBlock Text="Bekræft kodeord" Height="32"/>
                         </StackPanel >
                         <StackPanel Margin="5,0,0,0" HorizontalAlignment="Center" Orientation="Vertical">
-                            <TextBox PlaceholderText="Navn" Text="{Binding AccountSettingsClass.NameTb, Mode=TwoWay}"/>
-                            <TextBox PlaceholderText="Klasse" Text="{Binding AccountSettingsClass.GradeTb, Mode=TwoWay}"/>
-                            <TextBox PlaceholderText="Skole" Text="{Binding AccountSettingsClass.EducationTb, Mode=TwoWay}"/>
-                            <TextBox IsReadOnly="True" PlaceholderText="email" Text="{Binding AccountSettingsClass.EmailTb, Mode=TwoWay}"/>
-                            <TextBox PlaceholderText="Tlf. nummer" Text="{Binding AccountSettingsClass.TelephoneNumberTb, Mode=TwoWay}"/>
-                            <TextBox PlaceholderText="Username" Text="{Binding AccountSettingsClass.UserNameTb, Mode=TwoWay}"/>
-                            <PasswordBox PlaceholderText="Password" Password="{Binding AccountSettingsClass.PasswordTb, Mode=TwoWay}"/>
-                            <PasswordBox PlaceholderText="Bekræft kodeord" Password="{Binding AccountSettingsClass.ConfirmPasswordTb, Mode=TwoWay}"/>
+                            <TextBox PlaceholderText="Navn" Text="{Binding AccountSettings.NameTb, Mode=TwoWay}"/>
+                            <TextBox PlaceholderText="Klasse" Text="{Binding AccountSettings.GradeTb, Mode=TwoWay}"/>
+                            <TextBox PlaceholderText="Skole" Text="{Binding AccountSettings.EducationTb, Mode=TwoWay}"/>
+                            <TextBox IsReadOnly="True" PlaceholderText="email" Text="{Binding AccountSettings.EmailTb, Mode=TwoWay}"/>
+                            <TextBox PlaceholderText="Tlf. nummer" Text="{Binding AccountSettings.TelephoneNumberTb, Mode=TwoWay}"/>
+                            <TextBox PlaceholderText="Username" Text="{Binding AccountSettings.UserNameTb, Mode=TwoWay}"/>
+                            <PasswordBox PlaceholderText="Password" Password="{Binding AccountSettings.PasswordTb, Mode=TwoWay}"/>
+                            <PasswordBox PlaceholderText="Bekræft kodeord" Password="{Binding AccountSettings.ConfirmPasswordTb, Mode=TwoWay}"/>
                         </StackPanel>
 
                     </StackPanel>
@@ -280,7 +280,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <GridView Name="GridViewStock" ItemsSource="{Binding Stock.Products}" SelectedItem="{Binding Sale.SelectedProduct, Mode=TwoWay}">
+                    <GridView Name="GridViewStock" ItemsSource="{Binding StockAdministrator.Products}" SelectedItem="{Binding Sale.SelectedProduct, Mode=TwoWay}">
                         <GridView.ItemTemplate>
                             <DataTemplate x:DataType="models:Product">
                                 <StackPanel Margin="10">
@@ -393,7 +393,7 @@
                     </Grid.RowDefinitions>
 
 
-                    <GridView ItemContainerStyle="{StaticResource CustomGridViewItemContainerStyle}" Style="{StaticResource CustomGridViewStyle}" ItemsSource="{Binding Stock.Products}" SelectedItem="{Binding Stock.SelectedProduct, Mode=TwoWay}" Margin="10,10,10,0">
+                    <GridView ItemContainerStyle="{StaticResource CustomGridViewItemContainerStyle}" Style="{StaticResource CustomGridViewStyle}" ItemsSource="{Binding StockAdministrator.Products}" SelectedItem="{Binding StockAdministrator.SelectedProduct, Mode=TwoWay}" Margin="10,10,10,0">
                         <GridView.ItemTemplate>
                             <DataTemplate x:DataType="models:Product">
                                 <StackPanel Orientation="Horizontal" Margin="10">
@@ -460,7 +460,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <GridView ItemsSource="{Binding Administration.Users}" SelectedItem="{Binding Administration.SelectedUser, Mode=TwoWay}">
+                    <GridView ItemsSource="{Binding UserAdministrator.Users}" SelectedItem="{Binding UserAdministrator.SelectedUser, Mode=TwoWay}">
                         <GridView.ItemTemplate>
                             <DataTemplate x:DataType="models:User">
                                 <StackPanel Orientation="Horizontal" Margin="10">
@@ -479,10 +479,10 @@
                     <Rectangle Fill="#6CA0DC" Grid.Row="1" Margin="-23,0,-23,-10"/>
 
                     <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10">
-                        <Button Style="{StaticResource RoundedButtonStyle}" Content="Fjern medarbejder" Visibility="{Binding Administration.Visible}" Command="{Binding RemoveUserCommand}"/>
-                        <Button Style="{StaticResource RoundedButtonStyle}" Content="Tilføj medarbejder" Visibility="{Binding Administration.Visible}" Command="{Binding ShowAddUserPopUpCommand}"/>
-                        <Button Style="{StaticResource RoundedButtonStyle}" Content="Giv admin" Visibility="{Binding Administration.Visible}" Command="{Binding ChangeAdminCommand}"/>
-                        <Button Style="{StaticResource RoundedButtonStyle}" Content="Ændre bruger kontoindstillinger" Visibility="{Binding Administration.Visible}" Command="{Binding ShowAdminAccountPopUp}"/>
+                        <Button Style="{StaticResource RoundedButtonStyle}" Content="Fjern medarbejder" Visibility="{Binding UserAdministrator.Visible}" Command="{Binding RemoveUserCommand}"/>
+                        <Button Style="{StaticResource RoundedButtonStyle}" Content="Tilføj medarbejder" Visibility="{Binding UserAdministrator.Visible}" Command="{Binding ShowAddUserPopUpCommand}"/>
+                        <Button Style="{StaticResource RoundedButtonStyle}" Content="Giv admin" Visibility="{Binding UserAdministrator.Visible}" Command="{Binding ChangeAdminCommand}"/>
+                        <Button Style="{StaticResource RoundedButtonStyle}" Content="Ændre bruger kontoindstillinger" Visibility="{Binding UserAdministrator.Visible}" Command="{Binding ShowAdminAccountPopUp}"/>
 
                     </StackPanel>
 
@@ -503,7 +503,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <ListView Header="Events:" ItemsSource="{Binding EventPage.Events}" SelectedItem="{Binding EventPage.SelectedEvent, Mode=TwoWay}">
+                    <ListView Header="Events:" ItemsSource="{Binding EventAdministrator.Events}" SelectedItem="{Binding EventAdministrator.SelectedEvent, Mode=TwoWay}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel>
@@ -528,7 +528,7 @@
                         </ListView.ItemTemplate>
                     </ListView>
 
-                    <ListView Grid.Row="0" Grid.Column="1" Header="Deltagere:" ItemsSource="{Binding EventPage.SelectedEvent.EventsUsers}" SelectedItem="{Binding EventPage.SelectedEventUser, Mode=TwoWay}">
+                    <ListView Grid.Row="0" Grid.Column="1" Header="Deltagere:" ItemsSource="{Binding EventAdministrator.SelectedEvent.EventsUsers}" SelectedItem="{Binding EventAdministrator.SelectedEventUser, Mode=TwoWay}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">

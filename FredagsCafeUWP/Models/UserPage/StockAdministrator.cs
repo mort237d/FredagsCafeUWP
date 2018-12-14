@@ -9,7 +9,7 @@ using FredagsCafeUWP.Annotations;
 
 namespace FredagsCafeUWP.Models
 {
-    public class Stock : INotifyPropertyChanged
+    public class StockAdministrator : INotifyPropertyChanged
     {
         #region Field
         private bool _showAddProductPopUp , _showChangeProductPopUp = false;
@@ -34,21 +34,21 @@ namespace FredagsCafeUWP.Models
         private string _changeImageSourceTb = "";
         #endregion
 
-        private Stock()
+        private StockAdministrator()
         {
              _message = new Message(this);
         }
 
         #region Singleton
 
-        private static Stock _instance;
-        public static Stock Instance
+        private static StockAdministrator _instance;
+        public static StockAdministrator Instance
         {
              get
              {
                  if (_instance == null)
                  {
-                      _instance = new Stock();
+                      _instance = new StockAdministrator();
                  }
                  return _instance;
              }
@@ -527,7 +527,7 @@ namespace FredagsCafeUWP.Models
              try
              {
                  Debug.WriteLine("loading product async...");
-                 Products = await XmlReadWriteClass.ReadObjectFromXmlFileAsync<ObservableCollection<Product>>("stock.xml");
+                 Products = await XmlReadWrite.ReadObjectFromXmlFileAsync<ObservableCollection<Product>>("stockAdministrator.xml");
                  Debug.WriteLine("products.count:" + Products.Count);
              }
              catch (Exception)

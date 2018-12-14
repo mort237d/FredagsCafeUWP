@@ -9,7 +9,7 @@ using FredagsCafeUWP.Annotations;
 
 namespace FredagsCafeUWP.Models.UserPage
 {
-    public class Sale : INotifyPropertyChanged
+    public class SaleAdministrator : INotifyPropertyChanged
     {
         #region Field
 
@@ -20,31 +20,31 @@ namespace FredagsCafeUWP.Models.UserPage
         private readonly string _colorGreen = "ForestGreen";
 
         private Message _message;
-        private Stock _stock = Stock.Instance;
+        private StockAdministrator _stockAdministrator = StockAdministrator.Instance;
         private Product _selectedProduct;
         private Receipt _selectedReceipt;
 
         private double _totalTb;
 
-        private StatListClass _statListClass = StatListClass.Instance;
+        private StatisticsAdministrator _statisticsAdministrator = StatisticsAdministrator.Instance;
 
         #endregion
 
-        private  Sale()
+        private  SaleAdministrator()
         {
             _message = new Message(this);
         }
 
         #region Singleton
 
-        private static Sale _instance;
-        public static Sale Instance
+        private static SaleAdministrator _instance;
+        public static SaleAdministrator Instance
         {
             get
             {
                 if (_instance == null)
                 {
-                    _instance = new Sale();
+                    _instance = new SaleAdministrator();
                 }
                 return _instance;
             }
@@ -117,7 +117,7 @@ namespace FredagsCafeUWP.Models.UserPage
         public void AddItemsToBasket()
         {
             Basket = new List<Product>();
-            foreach (var product in _stock.Products)
+            foreach (var product in _stockAdministrator.Products)
             {
                 if (product.AmountToBeSold != 0) Basket.Add(new Product(product.BuyingPrice, product.SellingPrice, product.Name, product.Amount, product.AmountSold, product.ImageSource, "Black", product.AmountToBeSold, product.DiscountAtThisAmount, product.DiscountPricePerItem));
             }
@@ -130,7 +130,7 @@ namespace FredagsCafeUWP.Models.UserPage
             bool isNotInstuck = false;
             string productsNotInStuck = null;
 
-            foreach (var product in _stock.Products)
+            foreach (var product in _stockAdministrator.Products)
             {
                 if (product.AmountToBeSold > product.Amount)
                 {
@@ -141,7 +141,7 @@ namespace FredagsCafeUWP.Models.UserPage
 
             if (!isNotInstuck)
             {
-                foreach (var product in _stock.Products)
+                foreach (var product in _stockAdministrator.Products)
                 {
                     if (product.AmountToBeSold > 0)
                     {
@@ -176,10 +176,10 @@ namespace FredagsCafeUWP.Models.UserPage
 
                 TotalTb = 0; //Total price is 0 after a sale
 
-                _statListClass.ProductViewGraph();
-                _statListClass.AddTotalSaleValue();
+                _statisticsAdministrator.ProductViewGraph();
+                _statisticsAdministrator.AddTotalSaleValue();
 
-                foreach (var product in _stock.Products)
+                foreach (var product in _stockAdministrator.Products)
                 {
                     product.AmountToBeSold = 0;
                     if (product.Amount < 10 && product.ForegroundColor != _colorRed)
@@ -200,12 +200,12 @@ namespace FredagsCafeUWP.Models.UserPage
             {
                 foreach (var basket in SelectedReceipt.Basket)
                 {
-                    foreach (var product in _stock.Products)
+                    foreach (var product in _stockAdministrator.Products)
                     {
                         if (product.Name == basket.Name)
                         {
                             product.Amount += basket.AmountToBeSold;
-                            if (product.Amount < _stock.MinAmount) product.ForegroundColor = _colorRed;
+                            if (product.Amount < _stockAdministrator.MinAmount) product.ForegroundColor = _colorRed;
                             else product.ForegroundColor = _colorGreen;
 
                             break;
@@ -218,8 +218,8 @@ namespace FredagsCafeUWP.Models.UserPage
                 {
                     item.ForegroundColor = _colorRed;
                 }
-                _statListClass.ProductViewGraph();
-                _statListClass.AddTotalSaleValue();
+                _statisticsAdministrator.ProductViewGraph();
+                _statisticsAdministrator.AddTotalSaleValue();
             }
             else if (SelectedReceipt.Color == _colorRed)
                 await _message.Error("Transaktion er allerede slette", "Transaktion kan ikke slettes da den allerede er slettet.");
@@ -276,7 +276,7 @@ namespace FredagsCafeUWP.Models.UserPage
             try
             {
                 Debug.WriteLine("loading receipt async...");
-                Receipts = await XmlReadWriteClass.ReadObjectFromXmlFileAsync<ObservableCollection<Receipt>>("receipt.xml");
+                Receipts = await XmlReadWrite.ReadObjectFromXmlFileAsync<ObservableCollection<Receipt>>("receipt.xml");
                 Debug.WriteLine("receipts.count:" + Receipts.Count);
             }
             catch (Exception)
