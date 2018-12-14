@@ -407,10 +407,6 @@
                                             <TextBlock Foreground="{Binding ForegroundColor}" Text="stk"/>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="Solgt: "/>
-                                            <TextBlock Text="{Binding AmountSold}" Margin="2,0,2,0"/>
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal">
                                             <TextBlock Text="Indkøbspris: kr."/>
                                             <TextBlock Text="{Binding BuyingPrice}" Margin="2,0,2,0"/>
                                             <TextBlock Text=",-"/>

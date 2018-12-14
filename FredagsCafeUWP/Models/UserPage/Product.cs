@@ -9,19 +9,18 @@ namespace FredagsCafeUWP.Models
         #region Field
         private double _buyingPrice, _sellingPrice, _discountPricePerItem;
         private string _name, _imageSource, _foregroundColor;
-        private int _amountInStock, _amountSold, _amountToBeSold, _discountAtThisAmount;
+        private int _amountInStock, _amountToBeSold, _discountAtThisAmount;
         private EnumCategory.ProductCategory _category;
 
         #endregion
 
         #region Constructors
-        public Product(double buyingPrice, double sellingPrice, string name, int amount, int amountSold, string imageSource, string foregroundColor, EnumCategory.ProductCategory productCategory, int discountAtThisAmount, double discountPricePerItem)
+        public Product(double buyingPrice, double sellingPrice, string name, int amount, string imageSource, string foregroundColor, EnumCategory.ProductCategory productCategory, int discountAtThisAmount, double discountPricePerItem)
         {
             BuyingPrice = buyingPrice;
             SellingPrice = sellingPrice;
             Name = name;
             Amount = amount;
-            AmountSold = amountSold;
             ImageSource = imageSource;
             ForegroundColor = foregroundColor;
             Category = productCategory;
@@ -29,13 +28,12 @@ namespace FredagsCafeUWP.Models
             DiscountPricePerItem = discountPricePerItem;
         }
 
-        public Product(double buyingPrice, double sellingPrice, string name, int amount, int amountSold, string imageSource, string foregroundColor, int amountToBeSold, int discountAtThisAmount, double discountPricePerItem)
+        public Product(double buyingPrice, double sellingPrice, string name, int amount, string imageSource, string foregroundColor, int amountToBeSold, int discountAtThisAmount, double discountPricePerItem)
         {
             BuyingPrice = buyingPrice;
             SellingPrice = sellingPrice;
             Name = name;
             Amount = amount;
-            AmountSold = amountSold;
             ImageSource = imageSource;
             ForegroundColor = foregroundColor;
             AmountToBeSold = amountToBeSold;
@@ -93,16 +91,6 @@ namespace FredagsCafeUWP.Models
             set
             {
                 _amountInStock = value; 
-                OnPropertyChanged();
-            }
-        }
-
-        public int AmountSold
-        {
-            get => _amountSold;
-            set
-            {
-                _amountSold = value; 
                 OnPropertyChanged();
             }
         }

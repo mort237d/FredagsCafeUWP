@@ -303,25 +303,25 @@ namespace FredagsCafeUWP.Models
                                           switch (AddTypeTb)
                                           {
                                             case "Øl":
-                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", ColorRed, EnumCategory.ProductCategory.Beer, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
+                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, "ProductImages/BlankDåse.png", ColorRed, EnumCategory.ProductCategory.Beer, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
                                                 break;
                                             case "Sodavand":
-                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", ColorRed, EnumCategory.ProductCategory.Soda, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
+                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, "ProductImages/BlankDåse.png", ColorRed, EnumCategory.ProductCategory.Soda, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
                                                 break;
                                             case "Cider":
-                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", ColorRed, EnumCategory.ProductCategory.Cider, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
+                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, "ProductImages/BlankDåse.png", ColorRed, EnumCategory.ProductCategory.Cider, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
                                                 break;
                                             case "Drink":
-                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", ColorRed, EnumCategory.ProductCategory.Drink, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
+                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, "ProductImages/BlankDåse.png", ColorRed, EnumCategory.ProductCategory.Drink, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
                                                 break;
                                             case "Flaske":
-                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", ColorRed, EnumCategory.ProductCategory.Bottle, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
+                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, "ProductImages/BlankDåse.png", ColorRed, EnumCategory.ProductCategory.Bottle, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
                                                 break;
                                             case "Shot":
-                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", ColorRed, EnumCategory.ProductCategory.Shot, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
+                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, "ProductImages/BlankDåse.png", ColorRed, EnumCategory.ProductCategory.Shot, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
                                                 break;
                                             default:
-                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", ColorRed, EnumCategory.ProductCategory.Other, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
+                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, "ProductImages/BlankDåse.png", ColorRed, EnumCategory.ProductCategory.Other, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
                                                 break;
                                         }
                                       }
@@ -330,25 +330,25 @@ namespace FredagsCafeUWP.Models
                                           switch (AddTypeTb)
                                           {
                                             case "Øl":
-                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", ColorGreen, EnumCategory.ProductCategory.Beer, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
+                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, "ProductImages/BlankDåse.png", ColorGreen, EnumCategory.ProductCategory.Beer, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
                                                 break;
                                             case "Sodavand":
-                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", ColorGreen, EnumCategory.ProductCategory.Soda, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
+                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, "ProductImages/BlankDåse.png", ColorGreen, EnumCategory.ProductCategory.Soda, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
                                                 break;
                                             case "Cider":
-                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", ColorGreen, EnumCategory.ProductCategory.Cider, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
+                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, "ProductImages/BlankDåse.png", ColorGreen, EnumCategory.ProductCategory.Cider, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
                                                 break;
                                             case "Drink":
-                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", ColorGreen, EnumCategory.ProductCategory.Drink, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
+                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, "ProductImages/BlankDåse.png", ColorGreen, EnumCategory.ProductCategory.Drink, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
                                                 break;
                                             case "Flaske":
-                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", ColorGreen, EnumCategory.ProductCategory.Bottle, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
+                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, "ProductImages/BlankDåse.png", ColorGreen, EnumCategory.ProductCategory.Bottle, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
                                                 break;
                                             case "Shot":
-                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", ColorGreen, EnumCategory.ProductCategory.Shot, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
+                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, "ProductImages/BlankDåse.png", ColorGreen, EnumCategory.ProductCategory.Shot, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
                                                 break;
                                               default:
-                                                  Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", ColorGreen, EnumCategory.ProductCategory.Other, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
+                                                  Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, "ProductImages/BlankDåse.png", ColorGreen, EnumCategory.ProductCategory.Other, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
                                                   break;
                                         }
                                       }
@@ -360,25 +360,25 @@ namespace FredagsCafeUWP.Models
                                           switch (AddTypeTb)
                                           {
                                             case "Øl":
-                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, ColorRed, EnumCategory.ProductCategory.Beer, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
+                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, AddImageSourceTb, ColorRed, EnumCategory.ProductCategory.Beer, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
                                                 break;
                                             case "Sodavand":
-                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, ColorRed, EnumCategory.ProductCategory.Soda, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
+                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, AddImageSourceTb, ColorRed, EnumCategory.ProductCategory.Soda, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
                                                 break;
                                             case "Cider":
-                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, ColorRed, EnumCategory.ProductCategory.Cider, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
+                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, AddImageSourceTb, ColorRed, EnumCategory.ProductCategory.Cider, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
                                                 break;
                                             case "Drink":
-                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, ColorRed, EnumCategory.ProductCategory.Drink, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
+                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, AddImageSourceTb, ColorRed, EnumCategory.ProductCategory.Drink, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
                                                 break;
                                             case "Flaske":
-                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, ColorRed, EnumCategory.ProductCategory.Bottle, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
+                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, AddImageSourceTb, ColorRed, EnumCategory.ProductCategory.Bottle, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
                                                 break;
                                             case "Shot":
-                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, ColorRed, EnumCategory.ProductCategory.Shot, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
+                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, AddImageSourceTb, ColorRed, EnumCategory.ProductCategory.Shot, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
                                                 break;
                                               default:
-                                                  Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, ColorRed, EnumCategory.ProductCategory.Other, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
+                                                  Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, AddImageSourceTb, ColorRed, EnumCategory.ProductCategory.Other, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
                                                   break;
                                         }
                                       }
@@ -388,25 +388,25 @@ namespace FredagsCafeUWP.Models
                                           switch (AddTypeTb)
                                           {
                                             case "Øl":
-                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, ColorGreen, EnumCategory.ProductCategory.Beer, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
+                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, AddImageSourceTb, ColorGreen, EnumCategory.ProductCategory.Beer, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
                                                 break;
                                             case "Sodavand":
-                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, ColorGreen, EnumCategory.ProductCategory.Soda, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
+                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, AddImageSourceTb, ColorGreen, EnumCategory.ProductCategory.Soda, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
                                                 break;
                                             case "Cider":
-                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, ColorGreen, EnumCategory.ProductCategory.Cider, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
+                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, AddImageSourceTb, ColorGreen, EnumCategory.ProductCategory.Cider, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
                                                 break;
                                             case "Drink":
-                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, ColorGreen, EnumCategory.ProductCategory.Drink, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
+                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, AddImageSourceTb, ColorGreen, EnumCategory.ProductCategory.Drink, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
                                                 break;
                                             case "Flaske":
-                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, ColorGreen, EnumCategory.ProductCategory.Bottle, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
+                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, AddImageSourceTb, ColorGreen, EnumCategory.ProductCategory.Bottle, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
                                                 break;
                                             case "Shot":
-                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, ColorGreen, EnumCategory.ProductCategory.Shot, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
+                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, AddImageSourceTb, ColorGreen, EnumCategory.ProductCategory.Shot, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
                                                 break;
                                             default:
-                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, ColorGreen, EnumCategory.ProductCategory.Other, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
+                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, AddImageSourceTb, ColorGreen, EnumCategory.ProductCategory.Other, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
                                                 break;
                                           }
                                       }
@@ -534,18 +534,18 @@ namespace FredagsCafeUWP.Models
              {
                  Products = new ObservableCollection<Product>()
                  {  //Todo Remove when program is done
-                      new Product(2, 5, "Tuborg Classic", 48, 0, "ProductImages/TuborgClassic.png", ColorGreen, EnumCategory.ProductCategory.Beer,3,3),
-                      new Product(2, 5, "Grøn Tuborg", 48, 0, "ProductImages/GrønTuborg.png", ColorGreen, EnumCategory.ProductCategory.Beer,3,3),
-                      new Product(2, 5, "Tuborg Gylden Dame", 48, 0, "ProductImages/TuborgGuldDame.png", ColorGreen, EnumCategory.ProductCategory.Beer,3,3),
-                      new Product(2, 5, "Carlsberg", 48, 0, "ProductImages/Carlsberg.png", ColorGreen, EnumCategory.ProductCategory.Beer,3,3),
-                      new Product(2, 5, "Cola Zero", 48, 0, "ProductImages/ColaZero.png", ColorGreen, EnumCategory.ProductCategory.Soda,3,3),
-                      new Product(2, 5, "Cola", 48, 0, "ProductImages/Cola.png", ColorGreen, EnumCategory.ProductCategory.Soda,3,3),
-                      new Product(2, 5, "Mokai", 48, 0, "ProductImages/Mokai.png", ColorGreen, EnumCategory.ProductCategory.Cider,3,3),
-                      new Product(2, 5, "Mokai Jordbær Lime", 48, 0, "ProductImages/MokaiStrawberryLime.png", ColorGreen, EnumCategory.ProductCategory.Cider,3,3),
-                      new Product(2, 5, "Somersby Apple Cider", 48, 0, "ProductImages/SomersbyApple.png", ColorGreen, EnumCategory.ProductCategory.Cider,3,3),
-                      new Product(2, 5, "Somersby Pear Cider", 48, 0, "ProductImages/SomersbyPear.png", ColorGreen, EnumCategory.ProductCategory.Cider,3,3),
-                      new Product(2, 5, "Breezer", 48, 0, "ProductImages/Breezer.png", ColorGreen, EnumCategory.ProductCategory.Drink,3,3),
-                      new Product(2, 5, "Fanta", 48, 0, "ProductImages/Fanta.png", ColorGreen, EnumCategory.ProductCategory.Soda,3,3)
+                      new Product(2, 5, "Tuborg Classic", 48, "ProductImages/TuborgClassic.png", ColorGreen, EnumCategory.ProductCategory.Beer,3,3),
+                      new Product(2, 5, "Grøn Tuborg", 48, "ProductImages/GrønTuborg.png", ColorGreen, EnumCategory.ProductCategory.Beer,3,3),
+                      new Product(2, 5, "Tuborg Gylden Dame", 48, "ProductImages/TuborgGuldDame.png", ColorGreen, EnumCategory.ProductCategory.Beer,3,3),
+                      new Product(2, 5, "Carlsberg", 48, "ProductImages/Carlsberg.png", ColorGreen, EnumCategory.ProductCategory.Beer,3,3),
+                      new Product(2, 5, "Cola Zero", 48, "ProductImages/ColaZero.png", ColorGreen, EnumCategory.ProductCategory.Soda,3,3),
+                      new Product(2, 5, "Cola", 48,  "ProductImages/Cola.png", ColorGreen, EnumCategory.ProductCategory.Soda,3,3),
+                      new Product(2, 5, "Mokai", 48,  "ProductImages/Mokai.png", ColorGreen, EnumCategory.ProductCategory.Cider,3,3),
+                      new Product(2, 5, "Mokai Jordbær Lime", 48,  "ProductImages/MokaiStrawberryLime.png", ColorGreen, EnumCategory.ProductCategory.Cider,3,3),
+                      new Product(2, 5, "Somersby Apple Cider", 48,  "ProductImages/SomersbyApple.png", ColorGreen, EnumCategory.ProductCategory.Cider,3,3),
+                      new Product(2, 5, "Somersby Pear Cider", 48,  "ProductImages/SomersbyPear.png", ColorGreen, EnumCategory.ProductCategory.Cider,3,3),
+                      new Product(2, 5, "Breezer", 48,  "ProductImages/Breezer.png", ColorGreen, EnumCategory.ProductCategory.Drink,3,3),
+                      new Product(2, 5, "Fanta", 48,  "ProductImages/Fanta.png", ColorGreen, EnumCategory.ProductCategory.Soda,3,3)
                  };
              }
         }
