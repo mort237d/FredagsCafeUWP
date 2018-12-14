@@ -65,7 +65,7 @@
                         <Button Content="..." Width="40" Command="{Binding BrowseAddImageCommand}"/>
                     </StackPanel>
                     <TextBox Margin="2" PlaceholderText="Tilbud ved x antal stk." Text="{Binding StockAdministrator.AddDiscountAtThisAmountTb, Mode=TwoWay}"/>
-                    <TextBox Margin="2" PlaceholderText="Tilbudspris pr. stk." Text="{Binding StockAdministrator.AddDiscountPricePerPieceTb, Mode=TwoWay}"/>
+                    <TextBox Margin="2" PlaceholderText="Tilbudspris" Text="{Binding StockAdministrator.AddDiscountPricePerPieceTb, Mode=TwoWay}"/>
                     <Button Margin="20" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Center" Content="Tilføj produkt" Command="{Binding AddProductCommand}"/>
                 </StackPanel>
             </StackPanel>
@@ -90,7 +90,7 @@
                             <TextBlock Height="32" Text="ImageSource" Margin="2"/>
                             <TextBlock Height="34" Margin="2" Text="Type"/>
                             <TextBlock Height="32" Margin="2" Text="Tilbud pr. x stk."/>
-                            <TextBlock Height="32" Margin="2" Text="Tilbudpris pr. stk."/>
+                            <TextBlock Height="32" Margin="2" Text="Tilbudpris"/>
                         </StackPanel>
                         <StackPanel Name="test" Width="250">
                             <TextBox Margin="2" PlaceholderText="Navn" Text="{Binding StockAdministrator.ChangeNameTb, Mode=TwoWay}"/>
