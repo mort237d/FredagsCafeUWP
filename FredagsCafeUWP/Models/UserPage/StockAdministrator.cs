@@ -293,11 +293,12 @@ namespace FredagsCafeUWP.Models
                       {
                           if (doubleBuyingPriceTb > 0 && doubleSellingPriceTb > 0 && AddAmountTb != null && intAmountTb >= 0)
                           {
-                              if (doubleDiscountPricePerItemTb > 0 && intDiscountAtThisAmountTb != 0 || doubleDiscountPricePerItemTb != 0 && intDiscountAtThisAmountTb > 0 || doubleDiscountPricePerItemTb == 0 && intDiscountAtThisAmountTb == 0)
+                              if (doubleDiscountPricePerItemTb > 0 && intDiscountAtThisAmountTb > 0)
                               {
-                                  
-                                  if (string.IsNullOrEmpty(AddImageSourceTb))
-                                  {
+                                 if (doubleDiscountPricePerItemTb > 0 && intDiscountAtThisAmountTb != 0 || doubleDiscountPricePerItemTb != 0 && intDiscountAtThisAmountTb > 0 || doubleDiscountPricePerItemTb == 0 && intDiscountAtThisAmountTb == 0)
+                                 {
+                                    if (string.IsNullOrEmpty(AddImageSourceTb))
+                                    {
                                       if (intAmountTb < MinAmount)
                                       {
                                           switch (AddTypeTb)
@@ -417,7 +418,9 @@ namespace FredagsCafeUWP.Models
                                   ShowAddProductPopUp = false;
                               }
                               else await _message.Error("Forkert input", "En varer skal enten have tilbud eller ingen tilbud");
-                          } 
+                          }
+                          else await _message.Error("Forkert input", "Rabat kan ikke være mindre end 0.");
+                          }
                           else await _message.Error("Forkert input", "Købspris og Salgspris skal være mere en 0.");
                       }
                       else await _message.Error("Forkert input", "Købspris, Salgspris og Antal skal være tal.");
@@ -428,14 +431,16 @@ namespace FredagsCafeUWP.Models
             Debug.WriteLine("Discount at this amount " + Products.Last().DiscountAtThisAmount + "\nDiscountPrice " + Products.Last().DiscountPricePerItem);
         }
         
-        public void BrowseAddImageButton()
+        public async void BrowseAddImageButton()
         {
-             _browseImages.BrowseImageButton(AddImageSourceTb, "ProductImages/", ShowAddProductPopUp);
+            AddImageSourceTb = await _browseImages.BrowseImageWindow("ProductImages/");
+            ShowAddProductPopUpMethod();
         }
 
-        public void BrowseChangeImageButton()
+        public async void BrowseChangeImageButton()
         {
-            _browseImages.BrowseImageButton(ChangeImageSourceTb, "ProductImages/", ShowChangeProductPopUp);
+            ChangeImageSourceTb = await _browseImages.BrowseImageWindow("ProductImages/");
+            ShowChangeProductPopUpMethod();
         }
 
         public void ShowAddProductPopUpMethod()
@@ -475,10 +480,19 @@ namespace FredagsCafeUWP.Models
 
              SelectedProduct.ImageSource = ChangeImageSourceTb;
 
-            if (double.TryParse(ChangeDiscountPricePerPieceTb, out double doubleDiscountPricePerPieceTb)) SelectedProduct.DiscountPricePerItem = doubleDiscountPricePerPieceTb;
-            else await _message.Error("Forket input", "Rabat ved x antal skal være et helt tal.");
-
-            if (int.TryParse(ChangeDiscountAtThisAmountTb, out int intChangeDiscountAtThisAmountTb)) SelectedProduct.DiscountAtThisAmount = intChangeDiscountAtThisAmountTb;
+            if (int.TryParse(ChangeDiscountAtThisAmountTb, out int intChangeDiscountAtThisAmountTb) && double.TryParse(ChangeDiscountPricePerPieceTb, out double doubleDiscountPricePerPieceTb))
+            {
+                if (intChangeDiscountAtThisAmountTb > 0 && doubleDiscountPricePerPieceTb > 0)
+                {
+                    if (doubleDiscountPricePerPieceTb > 0 && intChangeDiscountAtThisAmountTb != 0 || doubleDiscountPricePerPieceTb != 0 && intChangeDiscountAtThisAmountTb > 0 || doubleDiscountPricePerPieceTb == 0 && intChangeDiscountAtThisAmountTb == 0)
+                    {
+                        SelectedProduct.DiscountAtThisAmount = intChangeDiscountAtThisAmountTb;
+                        SelectedProduct.DiscountPricePerItem = doubleDiscountPricePerPieceTb;
+                    }
+                    else await  _message.Error("Forkert input", "En varer skal enten have tilbud eller ingen tilbud");
+                }
+                else await _message.Error("Forkert input", "Rabat kan ikke være mindre end 0.");
+            }
             else await _message.Error("Forket input", "Rabat ved x antal skal være et helt tal.");
 
             switch (ChangeTypeTb)

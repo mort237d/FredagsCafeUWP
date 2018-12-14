@@ -8,7 +8,7 @@ namespace FredagsCafeUWP.Models
 {
     class BrowseImages
     {
-        private async Task<string> BrowseImageWindow(string path)
+        public async Task<string> BrowseImageWindow(string path)
         {
             FileOpenPicker openPicker = new FileOpenPicker();
             openPicker.ViewMode = PickerViewMode.Thumbnail;
@@ -21,12 +21,6 @@ namespace FredagsCafeUWP.Models
             StorageFile file = await openPicker.PickSingleFileAsync();
             if (file != null) return outputTextBlock.Text = path + file.Name;
             else return outputTextBlock.Text = "";
-        }
-
-        public async void BrowseImageButton(string ImageSource, string path, bool PopUp)
-        {
-            ImageSource = await BrowseImageWindow(path);
-            PopUp = true;
         }
     }
 }
