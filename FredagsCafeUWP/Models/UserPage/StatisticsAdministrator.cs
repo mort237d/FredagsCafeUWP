@@ -149,35 +149,6 @@ namespace FredagsCafeUWP
 
         #endregion
         
-        #region save/load
-
-        public async Task LoadAsync()
-        {
-            try
-            {
-                Debug.WriteLine("loading stats async...");
-                StatList = await XmlReadWrite.ReadObjectFromXmlFileAsync<ObservableCollection<Statistics>>("stats.xml");
-                Debug.WriteLine("stats.count:" + StatList.Count);
-            }
-            catch (Exception)
-            {
-                StatList = new ObservableCollection<Statistics>();
-            }
-
-            try
-            {
-                Debug.WriteLine("loading productStats async...");
-                ProductGraphList = await XmlReadWrite.ReadObjectFromXmlFileAsync<ObservableCollection<Product>>("productStats.xml");
-                Debug.WriteLine("productStats.count:" + ProductGraphList.Count);
-            }
-            catch (Exception)
-            {
-                ProductGraphList = new ObservableCollection<Product>();
-            }
-
-        }
-        #endregion
-        
         #region INotify
 
         public event PropertyChangedEventHandler PropertyChanged;

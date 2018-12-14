@@ -271,23 +271,6 @@ namespace FredagsCafeUWP.Models.UserPage
 
         #endregion
 
-        #region Save/Load
-        public async Task LoadAsync()
-        {
-            try
-            {
-                Debug.WriteLine("loading receipt async...");
-                Receipts = await XmlReadWrite.ReadObjectFromXmlFileAsync<ObservableCollection<Receipt>>("receipt.xml");
-                Debug.WriteLine("receipts.count:" + Receipts.Count);
-            }
-            catch (Exception)
-            {
-                Receipts = new ObservableCollection<Receipt>();
-            }
-        }
-
-        #endregion
-
         #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
         [NotifyPropertyChangedInvocator]

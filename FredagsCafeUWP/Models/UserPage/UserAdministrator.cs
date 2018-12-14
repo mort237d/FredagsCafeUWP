@@ -166,11 +166,6 @@ namespace FredagsCafeUWP.Models
         private UserAdministrator()
         {
             _message = new Message(this);
-
-            if (CurrentUser == null) //TODO Delete at the end
-            {
-                CurrentUser = new User("Morten", "EASJ", "Datamatiker", "Morten@edu.easj.dk", "12345678", "Morten", "Morten", _standardImage, "");
-            }
         }
 
         #region Singleton
@@ -258,34 +253,6 @@ namespace FredagsCafeUWP.Models
             if (SelectedUser != null) await _message.YesNo("Giv admin videre", "Er du sikker på at du vil give admin videre til " + SelectedUser.Name + "?");
             else await _message.Error("Ingen bruger valgt", "Vælg venligst en bruger.");
         }
-        #endregion
-
-        #region Save/Load
-
-        public async Task LoadAsync()
-        {
-            try
-            {
-                Debug.WriteLine("loading user async...");
-                Users = await XmlReadWrite.ReadObjectFromXmlFileAsync<ObservableCollection<User>>("userAdministrator.xml");
-                Debug.WriteLine("user.count:" + Users.Count);
-            }
-            catch (Exception)
-            {
-                Users = new ObservableCollection<User>()
-                {
-                    new User("Morten", "EASJ", "Datamatiker", "Morten@edu.easj.dk", "12345678", "Morten", "Morten", _standardImage, "Admin"),
-                    new User("Daniel", "EASJ", "Datamatiker", "Daniel@edu.easj.dk", "12345678", "Daniel", "Daniel", _standardImage, ""),
-                    new User("Jacob", "EASJ", "Datamatiker", "Jacob@edu.easj.dk", "12345678", "Jacob", "Jacob", _standardImage, ""),
-                    new User("Lucas", "EASJ", "Datamatiker", "Lucas@edu.easj.dk", "12345678", "Lucas", "Lucas", _standardImage, "")
-                    //new User("Admin", "", "", "Admin@edu.easj.dk", "", "Admin", "Admin", _standardImage, "Admin")
-                };//TODO Add Admin Admin user as an start user.
-
-                _encrypt.EncryptUsers();
-            }
-
-        }
-
         #endregion
 
         #region INotify

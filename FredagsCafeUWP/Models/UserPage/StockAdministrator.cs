@@ -534,37 +534,7 @@ namespace FredagsCafeUWP.Models
              else await _message.Error("Intet produkt valgt", "Vælg venligst et produkt.");
         }
         #endregion
-
-        #region Save/Load
-        public async Task LoadAsync()
-        {
-             try
-             {
-                 Debug.WriteLine("loading product async...");
-                 Products = await XmlReadWrite.ReadObjectFromXmlFileAsync<ObservableCollection<Product>>("stockAdministrator.xml");
-                 Debug.WriteLine("products.count:" + Products.Count);
-             }
-             catch (Exception)
-             {
-                 Products = new ObservableCollection<Product>()
-                 {  //Todo Remove when program is done
-                      new Product(2, 5, "Tuborg Classic", 48, "ProductImages/TuborgClassic.png", ColorGreen, EnumCategory.ProductCategory.Beer,3,3),
-                      new Product(2, 5, "Grøn Tuborg", 48, "ProductImages/GrønTuborg.png", ColorGreen, EnumCategory.ProductCategory.Beer,3,3),
-                      new Product(2, 5, "Tuborg Gylden Dame", 48, "ProductImages/TuborgGuldDame.png", ColorGreen, EnumCategory.ProductCategory.Beer,3,3),
-                      new Product(2, 5, "Carlsberg", 48, "ProductImages/Carlsberg.png", ColorGreen, EnumCategory.ProductCategory.Beer,3,3),
-                      new Product(2, 5, "Cola Zero", 48, "ProductImages/ColaZero.png", ColorGreen, EnumCategory.ProductCategory.Soda,3,3),
-                      new Product(2, 5, "Cola", 48,  "ProductImages/Cola.png", ColorGreen, EnumCategory.ProductCategory.Soda,3,3),
-                      new Product(2, 5, "Mokai", 48,  "ProductImages/Mokai.png", ColorGreen, EnumCategory.ProductCategory.Cider,3,3),
-                      new Product(2, 5, "Mokai Jordbær Lime", 48,  "ProductImages/MokaiStrawberryLime.png", ColorGreen, EnumCategory.ProductCategory.Cider,3,3),
-                      new Product(2, 5, "Somersby Apple Cider", 48,  "ProductImages/SomersbyApple.png", ColorGreen, EnumCategory.ProductCategory.Cider,3,3),
-                      new Product(2, 5, "Somersby Pear Cider", 48,  "ProductImages/SomersbyPear.png", ColorGreen, EnumCategory.ProductCategory.Cider,3,3),
-                      new Product(2, 5, "Breezer", 48,  "ProductImages/Breezer.png", ColorGreen, EnumCategory.ProductCategory.Drink,3,3),
-                      new Product(2, 5, "Fanta", 48,  "ProductImages/Fanta.png", ColorGreen, EnumCategory.ProductCategory.Soda,3,3)
-                 };
-             }
-        }
-        #endregion
-
+        
         #region INotify
         public event PropertyChangedEventHandler PropertyChanged;
 

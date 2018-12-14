@@ -5,7 +5,8 @@ namespace FredagsCafeUWP
 {
     internal class LoginViewModel
     {
-        private Help _help = new Help();
+        public LogOnLogOff LogOnLogOff { get; set; } = LogOnLogOff.Instance;
+        public Help Help { get; set; } = new Help();
 
         public RelayCommand LoginRelayCommand { get; set; }
 
@@ -15,7 +16,7 @@ namespace FredagsCafeUWP
         {
             LoginRelayCommand = new RelayCommand(LogOnLogOff.Instance.CheckLogin);
 
-            GoToHelpPageCommand = new RelayCommand(_help.GoToHelpPage);
+            GoToHelpPageCommand = new RelayCommand(Help.GoToHelpPage);
         }
     }
 }

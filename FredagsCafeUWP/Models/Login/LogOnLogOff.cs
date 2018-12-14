@@ -116,25 +116,6 @@ namespace FredagsCafeUWP
 
         #endregion
 
-        #region Save/Load
-
-        public async Task LoadAsync()
-        {
-            try
-            {
-                Debug.WriteLine("loading loginlogout async...");
-                LogInLogOutList = await XmlReadWrite.ReadObjectFromXmlFileAsync<ObservableCollection<string>>("loginlogout.xml");
-                Debug.WriteLine("loginlogoutlist.count:" + LogInLogOutList.Count);
-            }
-            catch (Exception)
-            {
-                LogInLogOutList = new ObservableCollection<string>();
-            }
-
-        }
-
-        #endregion
-
         #region INotify
 
         public event PropertyChangedEventHandler PropertyChanged;

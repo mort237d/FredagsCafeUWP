@@ -274,37 +274,7 @@ namespace FredagsCafeUWP.Models
         }
 
         #endregion
-
-        #region save/load
-        public async Task LoadAsync()
-        {
-            try
-            {
-                Debug.WriteLine("loading list async...");
-                Events = await XmlReadWrite.ReadObjectFromXmlFileAsync<ObservableCollection<Event>>("events.xml");
-                Debug.WriteLine("events.count:" + Events.Count);
-            }
-            catch (Exception)
-            {
-                Events = new ObservableCollection<Event>()
-                {
-                    new Event("Default", "", "BESKRIVELSE", "", "EventImages/Event.png", "Today", new ObservableCollection<EventUser>()
-                    {
-                        new EventUser("Morten", "@edu.easj.dk"),
-                        new EventUser("Lucas", "@edu.easj.dk")
-                    }),
-                    new Event("Øl-Bowling", "Haven", "Husk bajer!", "12", "EventImages/ØlBowling.png", "Tomorrow", new ObservableCollection<EventUser>()),
-                    new Event("Bord-Tennis", "Indendørs", "Husk Bat!", "12", "EventImages/TableTennis.png", "Some day", new ObservableCollection<EventUser>()),
-                    new Event("Bord-Fodbold", "Indendørs", "Husk jule bajer!", "12", "EventImages/TableSocker.png", "Juleaften", new ObservableCollection<EventUser>())
-                };
-            }
-
-        }
-
         
-
-        #endregion
-
         #region INotify
 
         public event PropertyChangedEventHandler PropertyChanged;
