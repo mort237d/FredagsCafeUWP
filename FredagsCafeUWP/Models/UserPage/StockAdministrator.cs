@@ -293,7 +293,7 @@ namespace FredagsCafeUWP.Models
                       {
                           if (doubleBuyingPriceTb > 0 && doubleSellingPriceTb > 0 && AddAmountTb != null && intAmountTb >= 0)
                           {
-                              if (doubleDiscountPricePerItemTb > 0 && intDiscountAtThisAmountTb != 0 || doubleDiscountPricePerItemTb != 0 && intDiscountAtThisAmountTb > 0)
+                              if (doubleDiscountPricePerItemTb > 0 && intDiscountAtThisAmountTb != 0 || doubleDiscountPricePerItemTb != 0 && intDiscountAtThisAmountTb > 0 || doubleDiscountPricePerItemTb == 0 && intDiscountAtThisAmountTb == 0)
                               {
                                   
                                   if (string.IsNullOrEmpty(AddImageSourceTb))
