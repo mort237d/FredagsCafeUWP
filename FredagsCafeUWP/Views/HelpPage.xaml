@@ -25,6 +25,9 @@
             <PivotItem Header="Statistik">
                 <TextBlock Text="Statistik hjælp" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
             </PivotItem>
+            <PivotItem Header="LogIn">
+                <TextBlock Text="For at logge ind første gang skal du bruge UserName:'Admin' og Password:'Admin'" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+            </PivotItem>
         </Pivot>
     </Grid>
 </Page>

@@ -141,7 +141,10 @@
     <Content Include="Assets\LargeTile.scale-150.png" />
     <Content Include="Assets\LargeTile.scale-200.png" />
     <Content Include="Assets\LargeTile.scale-400.png" />
-    <Content Include="Views\EventImages\Event.jpg" />
+    <Content Include="Views\EventImages\Event.png" />
+    <Content Include="Views\EventImages\TableSocker.png" />
+    <Content Include="Views\EventImages\TableTennis.png" />
+    <Content Include="Views\EventImages\ØlBowling.png" />
     <Content Include="Views\UserImages\220px-John_Oliver_November_2016.jpg" />
     <Content Include="Views\UserImages\Profile-icon.png" />
     <Content Include="Assets\SmallTile.scale-100.png" />
