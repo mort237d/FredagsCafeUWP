@@ -265,7 +265,7 @@ namespace FredagsCafeUWP.Models.UserPage
             {
                 total -= normalPrice - discountPrice;
             }
-            return total;
+            return Math.Round(total);
         }
 
         #endregion
