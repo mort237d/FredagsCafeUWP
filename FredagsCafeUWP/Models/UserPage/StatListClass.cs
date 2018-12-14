@@ -72,7 +72,10 @@ namespace FredagsCafeUWP
             {
                 foreach (var basket in receipt.Basket)
                 {
-                    totalSaleValueSum += basket.SellingPrice * basket.AmountToBeSold;
+                    if (basket.ForegroundColor != _colorRed)
+                    {
+                        totalSaleValueSum += basket.SellingPrice * basket.AmountToBeSold;
+                    }
                 }
             }
             return totalSaleValueSum;
@@ -85,7 +88,11 @@ namespace FredagsCafeUWP
             {
                 foreach (var basket in receipt.Basket)
                 {
-                    totalBuyValueSum += basket.BuyingPrice * basket.AmountToBeSold;
+
+                    if (basket.ForegroundColor != _colorRed)
+                    {
+                        totalBuyValueSum += basket.BuyingPrice * basket.AmountToBeSold;
+                    }
                 }
             }
             return totalBuyValueSum;

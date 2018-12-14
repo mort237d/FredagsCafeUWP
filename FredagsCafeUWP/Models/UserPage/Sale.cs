@@ -33,8 +33,6 @@ namespace FredagsCafeUWP.Models.UserPage
 
         private  Sale()
         {
-            Receipts = new ObservableCollection<Receipt>();
-
             _message = new Message(this);
         }
 
@@ -220,6 +218,8 @@ namespace FredagsCafeUWP.Models.UserPage
                 {
                     item.ForegroundColor = _colorRed;
                 }
+                _statListClass.ProductViewGraph();
+                _statListClass.AddTotalSaleValue();
             }
             else await _message.Error("Ingen transaktion valgt", "Vælg venligst en transaktion for at slette.");
         }
