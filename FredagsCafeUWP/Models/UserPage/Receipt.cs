@@ -11,52 +11,28 @@ namespace FredagsCafeUWP
     {
         #region Fields
 
-        private string _saleDateTime = DateTime.Now.ToString("dd/MM/yyyy - HH:mm:ss");
-        private string _cvr = "000000-0000";
-        private string _phoneNumber = "+45 0000 0000";
-        private int _saleNumber;
-        private double _subTotal;
-        private string _color = "Black";
-        private List<Product> _basket;
+        public string SaleDateTime { get; set; } = DateTime.Now.ToString("dd/MM/yyyy - HH:mm:ss");
+        private string _color;
+        //public string _cvr { get; set; }
+        //public string _phoneNumber { get; set; }
+        public int SaleNumber { get; set; }
+        public double SubTotal { get; set; }
+        public double Savings { get; set; }
+        public List<Product> Basket { get; set; }
 
         #endregion
 
-        public Receipt(double subTotal, int saleNumber, List<Product> basket)
+        public Receipt(double subTotal, int saleNumber, double savings, List<Product> basket)
         {
             SubTotal = subTotal;
             SaleNumber = saleNumber;
-            _basket = basket;
+            Savings = savings;
+            Basket = basket;
         }
 
         public Receipt()
         {
             
-        }
-
-        #region Props
-
-        public List<Product> Basket
-        {
-            get => _basket;
-            set => _basket = value;
-        }
-
-        public double SubTotal
-        {
-            get => _subTotal;
-            set => _subTotal = value;
-        }
-
-        public int SaleNumber
-        {
-            get { return _saleNumber; }
-            set { _saleNumber = value; }
-        }
-
-        public string SaleDateTime
-        {
-            get { return _saleDateTime; }
-            set { _saleDateTime = value; }
         }
 
         public string Color
@@ -68,23 +44,6 @@ namespace FredagsCafeUWP
                 OnPropertyChanged();
             }
         }
-
-        public void ChangeCvr(string newCvr)
-        {
-            if (!string.IsNullOrEmpty(newCvr))
-            {
-                _cvr = newCvr;
-            }
-        }
-        public void ChangePhoneNumber(string phoneNumber)
-        {
-            if (!string.IsNullOrEmpty(phoneNumber))
-            {
-                _phoneNumber = phoneNumber;
-            }
-        }
-
-        #endregion
 
         #region Inotify
 

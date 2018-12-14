@@ -1,4 +1,5 @@
-﻿using Windows.ApplicationModel.Core;
+﻿using System.Threading.Tasks;
+using Windows.ApplicationModel.Core;
 using Windows.UI;
 using Windows.UI.Core.Preview;
 using Windows.UI.ViewManagement;
@@ -38,14 +39,14 @@ namespace FredagsCafeUWP
 
         }
 
-        private void Loader()
+        private async Task Loader()
         {
-            _administration.LoadAsync();
-            _stock.LoadAsync();
-            _sale.LoadAsync();
-            _statListClass.LoadAsync();
-            _logOnLogOff.LoadAsync();
-            _eventPage.LoadAsync();
+            await _administration.LoadAsync();
+            await _stock.LoadAsync();
+            await _sale.LoadAsync();
+            await _statListClass.LoadAsync();
+            await _logOnLogOff.LoadAsync();
+            await _eventPage.LoadAsync();
         }
 
         private async void OnCloseRequest(object sender, SystemNavigationCloseRequestedPreviewEventArgs e)
@@ -64,7 +65,7 @@ namespace FredagsCafeUWP
             CoreApplication.Exit();
         }
 
-        private async System.Threading.Tasks.Task Saver()
+        private async Task Saver()
         {
             await XmlReadWriteClass.SaveAsync(_administration.Users, "administration");
             await XmlReadWriteClass.SaveAsync(_stock.Products, "stock");
@@ -79,18 +80,21 @@ namespace FredagsCafeUWP
         {
             if (Comboboxo.SelectedItem != null)
             {
-                string temp = ((ComboBoxItem)Comboboxo.SelectedItem).Content.ToString();
-                tbcombo.Text = temp;
+                string selectedContent = ((ComboBoxItem)Comboboxo.SelectedItem).Content.ToString();
+                tbcombo.Text = selectedContent;
+                Comboboxo.SelectedItem = null;
             }
             if (JohnHitler.SelectedItem != null)
             {
-                string temp2 = ((ComboBoxItem)JohnHitler.SelectedItem).Content.ToString();
-                tcombo.Text = temp2;
+                string selectedContent = ((ComboBoxItem)JohnHitler.SelectedItem).Content.ToString();
+                tcombo.Text = selectedContent;
+                JohnHitler.SelectedItem = null;
             }
             if (ComboboxSort.SelectedItem != null)
             {
-                string temp3 = ((ComboBoxItem)ComboboxSort.SelectedItem).Content.ToString();
-                TBComboboxSorted.Text = temp3;
+                string selectedContent = ((ComboBoxItem)ComboboxSort.SelectedItem).Content.ToString();
+                TBComboboxSorted.Text = selectedContent;
+                ComboboxSort2.SelectedItem = null;
             }
         }
 
@@ -98,8 +102,9 @@ namespace FredagsCafeUWP
         {
             if (ComboboxSort2.SelectedItem != null)
             {
-                string temp4 = ((ComboBoxItem)ComboboxSort2.SelectedItem).Content.ToString();
-                TBComboboxSorted2.Text = temp4;
+                string selectedContent = ((ComboBoxItem)ComboboxSort2.SelectedItem).Content.ToString();
+                TBComboboxSorted.Text = selectedContent;
+                ComboboxSort.SelectedItem = null;
             }
         }
     }

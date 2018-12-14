@@ -10,7 +10,6 @@ namespace FredagsCafeUWP.Models.UserPage
     public class SortProducts : INotifyPropertyChanged
     {
         private string _sortProductsTb;
-        private string _sortProductsTb2;
 
         public string SortProductsTb
         {
@@ -20,18 +19,6 @@ namespace FredagsCafeUWP.Models.UserPage
                 OnPropertyChanged();
                 _sortProductsTb = value;
                 int temp = ConvertMethod(_sortProductsTb);
-                Stock.Instance.Products = SortObservableCollectionMethodTest(Stock.Instance.Products, temp);
-                OnPropertyChanged();
-            }
-        }
-        public string SortProductsTb2
-        {
-            get { return _sortProductsTb2; }
-            set
-            {
-                OnPropertyChanged();
-                _sortProductsTb2 = value;
-                int temp = ConvertMethod(_sortProductsTb2);
                 Stock.Instance.Products = SortObservableCollectionMethodTest(Stock.Instance.Products, temp);
                 OnPropertyChanged();
             }

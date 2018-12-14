@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using FredagsCafeUWP.Annotations;
 using FredagsCafeUWP.Models;
 using FredagsCafeUWP.Models.UserPage;
@@ -12,13 +13,15 @@ namespace FredagsCafeUWP
     public class StatListClass : INotifyPropertyChanged
     {
         private string _colorRed = "Red";
-        private static ObservableCollection<Statistics> _statList = new ObservableCollection<Statistics>();
-        private ObservableCollection<Product> _productGraphList = new ObservableCollection<Product>();
+        private static ObservableCollection<Statistics> _statList;
+        private ObservableCollection<Product> _productGraphList;
 
         private StatListClass()
         {
             
         }
+
+        #region Singleton
 
         private static StatListClass instance;
         public static StatListClass Instance
@@ -32,6 +35,8 @@ namespace FredagsCafeUWP
                 return instance;
             }
         }
+
+        #endregion
 
         #region Props
         public ObservableCollection<Statistics> StatList
@@ -55,6 +60,8 @@ namespace FredagsCafeUWP
         }
 
         #endregion
+
+        #region Methods
 
         public void AddTotalSaleValue()
         { 
@@ -97,9 +104,7 @@ namespace FredagsCafeUWP
             }
             return totalBuyValueSum;
         }
-
-
-
+        
         public void ProductViewGraph()
         {
             bool tempGraphBool = false;
@@ -132,13 +137,11 @@ namespace FredagsCafeUWP
             }
         }
 
-
-
-
-
+        #endregion
+        
         #region save/load
 
-        public async void LoadAsync()
+        public async Task LoadAsync()
         {
             try
             {
@@ -164,11 +167,7 @@ namespace FredagsCafeUWP
 
         }
         #endregion
-
-
-
-
-
+        
         #region INotify
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -180,7 +179,5 @@ namespace FredagsCafeUWP
         }
 
         #endregion
-
-       
     }
 }

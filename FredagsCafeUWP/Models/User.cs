@@ -8,17 +8,7 @@ namespace FredagsCafeUWP.Models
     {
         #region Field
 
-        private string _name;
-        private string _grade;
-        private string _education;
-        private string _email;
-        private string _telephoneNumber;
-        private string _userName;
-        private string _password;
-        private string _imageSource;
-        private string _admin;
-
-        private string _visible;
+        private string _name, _grade,_education,_email,_telephoneNumber,_userName,_password,_imageSource,_admin;
 
         #endregion
 
@@ -128,12 +118,6 @@ namespace FredagsCafeUWP.Models
                 _admin = value; 
                 OnPropertyChanged();
             }
-        }
-
-        public string Visible
-        {
-            get { return _visible; }
-            set { _visible = value; }
         }
 
         #endregion
