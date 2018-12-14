@@ -6,9 +6,13 @@ namespace FredagsCafeUWP
     {
         public RelayCommand LoginRelayCommand { get; set; }
 
+        public RelayCommand RecoverAccountCommand { get; set; }
+
         public LoginPageViewModel()
         {
             LoginRelayCommand = new RelayCommand(LogOnLogOff.Instance.CheckLogin);
+
+            //RecoverAccountCommand = new RelayCommand();
         }
     }
 }

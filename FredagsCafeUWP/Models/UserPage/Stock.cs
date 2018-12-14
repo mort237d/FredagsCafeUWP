@@ -506,7 +506,7 @@ namespace FredagsCafeUWP.Models
                       break;
              }
 
-             ChangeNameTb = ChangeBuyingPriceTb = ChangeSellingPriceTb = ChangeAmountTb = ChangeImageSourceTb = ChangeTypeTb = null;  //Todo Combobox selected item bliver ikke placeholder text begrund af underlig binding
+             ChangeNameTb = ChangeBuyingPriceTb = ChangeSellingPriceTb = ChangeAmountTb = ChangeImageSourceTb = ChangeTypeTb = null;
 
              ShowChangeProductPopUp = false;
         }
@@ -533,7 +533,7 @@ namespace FredagsCafeUWP.Models
              catch (Exception)
              {
                  Products = new ObservableCollection<Product>()
-                 {
+                 {  //Todo Remove when program is done
                       new Product(2, 5, "Tuborg Classic", 48, 0, "ProductImages/TuborgClassic.png", ColorGreen, EnumCategory.ProductCategory.Beer,3,3),
                       new Product(2, 5, "Grøn Tuborg", 48, 0, "ProductImages/GrønTuborg.png", ColorGreen, EnumCategory.ProductCategory.Beer,3,3),
                       new Product(2, 5, "Tuborg Gylden Dame", 48, 0, "ProductImages/TuborgGuldDame.png", ColorGreen, EnumCategory.ProductCategory.Beer,3,3),
