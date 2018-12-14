@@ -12,7 +12,7 @@ namespace FredagsCafeUWP.Models
     public class StockAdministrator : INotifyPropertyChanged
     {
         #region Field
-        private bool _showAddProductPopUp , _showChangeProductPopUp = false;
+        private bool _showAddProductPopUp = false, _showChangeProductPopUp = false;
 
         private readonly Message _message;
         private Product _selectedProduct = new Product();
@@ -320,10 +320,10 @@ namespace FredagsCafeUWP.Models
                                             case "Shot":
                                                 Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", ColorRed, EnumCategory.ProductCategory.Shot, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
                                                 break;
-                                            case "Andet":
+                                            default:
                                                 Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", ColorRed, EnumCategory.ProductCategory.Other, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
                                                 break;
-                                          }
+                                        }
                                       }
                                       else
                                       { 
@@ -347,10 +347,10 @@ namespace FredagsCafeUWP.Models
                                             case "Shot":
                                                 Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", ColorGreen, EnumCategory.ProductCategory.Shot, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
                                                 break;
-                                            case "Andet":
-                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", ColorGreen, EnumCategory.ProductCategory.Other, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
-                                                break;
-                                          }
+                                              default:
+                                                  Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, "ProductImages/BlankDåse.png", ColorGreen, EnumCategory.ProductCategory.Other, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
+                                                  break;
+                                        }
                                       }
                                   }
                                   else
@@ -377,10 +377,10 @@ namespace FredagsCafeUWP.Models
                                             case "Shot":
                                                 Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, ColorRed, EnumCategory.ProductCategory.Shot, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
                                                 break;
-                                            case "Andet":
-                                                Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, ColorRed, EnumCategory.ProductCategory.Other, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
-                                                break;
-                                          }
+                                              default:
+                                                  Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, ColorRed, EnumCategory.ProductCategory.Other, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
+                                                  break;
+                                        }
                                       }
 
                                       else
@@ -405,7 +405,7 @@ namespace FredagsCafeUWP.Models
                                             case "Shot":
                                                 Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, ColorGreen, EnumCategory.ProductCategory.Shot, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
                                                 break;
-                                            case "Andet":
+                                            default:
                                                 Products.Add(new Product(doubleBuyingPriceTb, doubleSellingPriceTb, AddNameTb, intAmountTb, 0, AddImageSourceTb, ColorGreen, EnumCategory.ProductCategory.Other, intDiscountAtThisAmountTb, doubleDiscountPricePerItemTb));
                                                 break;
                                           }

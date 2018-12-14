@@ -238,8 +238,12 @@ namespace FredagsCafeUWP.Models
 
         public async void RemoveUser()
         {
-            if (SelectedUser != null) await _message.YesNo("Slet bruger", "Er du sikker på at du vil slette " + SelectedUser.Name + "?");
-            else await _message.Error("Ingen bruger valgt", "Vælg venligst en bruger.");
+            if (SelectedUser != CurrentUser)
+            {
+                if (SelectedUser != null) await _message.YesNo("Slet bruger", "Er du sikker på at du vil slette " + SelectedUser.Name + "?");
+                else await _message.Error("Ingen bruger valgt", "Vælg venligst en bruger.");
+            }
+            else await _message.Error("Sletning ugyldig", "Det er ikke muligt at slette dig selv i admin tilstand");
         }
 
         public void ButtonVisibility(User userToCheck)

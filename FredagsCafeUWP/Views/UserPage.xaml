@@ -88,7 +88,7 @@
                             <TextBlock Height="32" Margin="2" Text="Salgspris"/>
                             <TextBlock Height="32" Margin="2" Text="Antal"/>
                             <TextBlock Height="32" Text="ImageSource" Margin="2"/>
-                            <TextBlock Height="34" Margin="2" Text=""/>
+                            <TextBlock Height="34" Margin="2" Text="Type"/>
                             <TextBlock Height="32" Margin="2" Text="Tilbud pr. x stk."/>
                             <TextBlock Height="32" Margin="2" Text="Tilbudpris pr. stk."/>
                         </StackPanel>
@@ -342,14 +342,6 @@
                                         <TextBlock Foreground="{Binding Color}" Text="Salgs nummer: "/>
                                         <TextBlock Foreground="{Binding Color}" Text="{Binding SaleNumber}"/>
                                     </StackPanel>
-                                    <StackPanel Orientation="Horizontal" Spacing="5">
-                                        <TextBlock Foreground="{Binding Color}" Text="Total: "/>
-                                        <TextBlock Foreground="{Binding Color}" Text="{Binding SubTotal}"/>
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal" Spacing="5">
-                                        <TextBlock Foreground="{Binding Color}" Text="Rabat: "/>
-                                        <TextBlock Foreground="{Binding Color}" Text="{Binding Savings}"/>
-                                    </StackPanel>
                                     <StackPanel Orientation="Horizontal">
                                         <ListView ItemsSource="{Binding Basket}">
                                             <ListView.ItemContainerStyle>
@@ -371,6 +363,16 @@
                                                 </DataTemplate>
                                             </ListView.ItemTemplate>
                                         </ListView>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="5">
+                                        <TextBlock FontWeight="Bold" Foreground="{Binding Color}" Text="Rabat: "/>
+                                        <TextBlock Foreground="{Binding Color}" Text="{Binding Savings}"/>
+                                        <TextBlock Foreground="{Binding Color}" Text="kr."/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="5">
+                                        <TextBlock FontWeight="Bold" Foreground="{Binding Color}" Text="Total: "/>
+                                        <TextBlock Foreground="{Binding Color}" Text="{Binding SubTotal}"/>
+                                        <TextBlock Foreground="{Binding Color}" Text="kr."/>
                                     </StackPanel>
                                     <Line X2="600" Opacity="1" Stroke="#6CA0DC"/>
                                 </StackPanel>
