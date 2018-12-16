@@ -169,7 +169,7 @@ namespace FredagsCafeUWP
         {
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
-
+            _encrypt.EncryptUsers();
             await XmlReadWrite.SaveAsync(UserAdministrator.Instance.Users, "userAdministrator");
             await XmlReadWrite.SaveAsync(StockAdministrator.Instance.Products, "stockAdministrator");
             await XmlReadWrite.SaveAsync(SaleAdministrator.Instance.Receipts, "receipt");
@@ -178,12 +178,12 @@ namespace FredagsCafeUWP
             await XmlReadWrite.SaveAsync(LogOnLogOff.Instance.LogInLogOutList, "loginlogout");
             await XmlReadWrite.SaveAsync(EventAdministrator.Instance.Events, "events");
 
-            _encrypt.EncryptUsers();
+            _encrypt.DecryptUsers();
 
-            foreach (var product in StockAdministrator.Instance.Products)
-            {
-                product.AmountToBeSold = 0;
-            }
+            //foreach (var product in StockAdministrator.Instance.Products)
+            //{
+            //    product.AmountToBeSold = 0;
+            //}
 
             Debug.WriteLine("Closing: ");
             foreach (var user in UserAdministrator.Instance.Users)
