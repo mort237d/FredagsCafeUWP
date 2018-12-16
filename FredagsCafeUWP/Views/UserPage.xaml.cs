@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
 using Windows.UI;
@@ -12,9 +13,32 @@ namespace FredagsCafeUWP
 {
     public sealed partial class UserPage : Page
     {
+        private Encrypt _encrypt = new Encrypt();
         public UserPage()
         {
             InitializeComponent();
+            SystemNavigationManagerPreview.GetForCurrentView().CloseRequested += this.OnCloseRequest;
+
+        }
+
+        private async void OnCloseRequest(object sender, SystemNavigationCloseRequestedPreviewEventArgs e)
+        {
+            e.Handled = true;
+
+            _encrypt.EncryptUsers();
+
+            foreach (var product in StockAdministrator.Instance.Products)
+            {
+                product.AmountToBeSold = 0;
+            }
+
+            Debug.WriteLine("Closing: ");
+            foreach (var user in UserAdministrator.Instance.Users)
+            {
+                Debug.WriteLine(user.UserName);
+            }
+
+            CoreApplication.Exit();
         }
 
         private void Comboboxo_OnSelectionChanged(object sender, SelectionChangedEventArgs e)

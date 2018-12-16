@@ -178,18 +178,7 @@ namespace FredagsCafeUWP
             await XmlReadWrite.SaveAsync(LogOnLogOff.Instance.LogInLogOutList, "loginlogout");
             await XmlReadWrite.SaveAsync(EventAdministrator.Instance.Events, "events");
 
-            _encrypt.EncryptUsers();
 
-            foreach (var product in StockAdministrator.Instance.Products)
-            {
-                product.AmountToBeSold = 0;
-            }
-
-            Debug.WriteLine("Closing: ");
-            foreach (var user in UserAdministrator.Instance.Users)
-            {
-                Debug.WriteLine(user.UserName);
-            }
 
             deferral.Complete();
         }
