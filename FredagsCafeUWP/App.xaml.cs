@@ -122,6 +122,11 @@ namespace FredagsCafeUWP
 
                     _encrypt.DecryptUsers();
 
+                    foreach (var product in StockAdministrator.Instance.Products)
+                    {
+                        product.AmountToBeSold = 0;
+                    }
+
                     Debug.WriteLine("Starting: ");
                     foreach (var user in UserAdministrator.Instance.Users)
                     {
@@ -180,11 +185,6 @@ namespace FredagsCafeUWP
             await XmlReadWrite.SaveAsync(EventAdministrator.Instance.Events, "events");
 
             _encrypt.DecryptUsers();
-
-            //foreach (var product in StockAdministrator.Instance.Products)
-            //{
-            //    product.AmountToBeSold = 0;
-            //}
 
             Debug.WriteLine("Closing: ");
             foreach (var user in UserAdministrator.Instance.Users)
