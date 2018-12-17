@@ -221,6 +221,8 @@ namespace FredagsCafeUWP.Models
                             if (string.IsNullOrEmpty(ImageTb)) Users.Add(new User(NameTb, GradeTb, EducationTb, EmailTb, TelephoneNumberTb, UserNameTb, PasswordTb, _standardImage, ""));
                             else Users.Add(new User(NameTb, GradeTb, EducationTb, EmailTb, TelephoneNumberTb, UserNameTb, PasswordTb, ImageTb, ""));
 
+                            ShowAddUserPopUp = false;
+
                             NameTb = GradeTb = EducationTb = EmailTb = TelephoneNumberTb = UserNameTb = ImageTb = PasswordTb = ConfirmPasswordTb = null;                            
                         }
                         else await _message.Error("Uoverensstemmelser","Password stemmer ikke over ens med confirm password");
