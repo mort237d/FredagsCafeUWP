@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 using FredagsCafeUWP.Annotations;
+using FredagsCafeUWP.Models;
 
-namespace FredagsCafeUWP.Models
+namespace FredagsCafeUWP
 {
     public class StockAdministrator : INotifyPropertyChanged
     {

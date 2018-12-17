@@ -95,16 +95,16 @@
     <Compile Include="Models\BrowseImages.cs" />
     <Compile Include="Models\Encrypt.cs" />
     <Compile Include="Models\UserPage\EnumCategory.cs" />
-    <Compile Include="Models\Account\AccountSettings.cs" />
+    <Compile Include="Models\AccountSettings.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\Help\Help.cs" />
+    <Compile Include="Models\Help.cs" />
     <Compile Include="Models\UserPage\SortProducts.cs" />
     <Compile Include="Views\HelpPage.xaml.cs">
       <DependentUpon>HelpPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\Login\LogOnLogOff.cs" />
+    <Compile Include="Models\LogOnLogOff.cs" />
     <Compile Include="Models\UserPage\Statistics.cs" />
     <Compile Include="Models\UserPage\StatisticsAdministrator.cs" />
     <Compile Include="Models\UserPage\Event.cs" />

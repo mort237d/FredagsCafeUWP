@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
-using FredagsCafeUWP.Models.UserPage;
+using FredagsCafeUWP.Models;
 
-namespace FredagsCafeUWP.Models
+namespace FredagsCafeUWP
 {
     internal class Message
     {
@@ -12,9 +11,7 @@ namespace FredagsCafeUWP.Models
 
         private StockAdministrator _stockAdministrator;
         private UserAdministrator _userAdministrator;
-        private SaleAdministrator _sale;
         private EventAdministrator _eventAdministrator;
-        private AccountSettings _accountSettings;
 
         #endregion
 
@@ -28,19 +25,9 @@ namespace FredagsCafeUWP.Models
             _userAdministrator = userAdministrator;
         }
 
-        public Message(SaleAdministrator sale)
-        {
-            _sale = sale;
-        }
-
         public Message(EventAdministrator eventAdministrator)
         {
             _eventAdministrator = eventAdministrator;
-        }
-
-        public Message(AccountSettings accountSettings)
-        {
-            _accountSettings = accountSettings;
         }
 
         #region Methods

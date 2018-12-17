@@ -1,4 +1,4 @@
-﻿namespace FredagsCafeUWP
+﻿namespace FredagsCafeUWP.Models
 {
     public class EnumCategory
     {

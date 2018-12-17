@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using FredagsCafeUWP.Annotations;
+using FredagsCafeUWP.Models;
 
-namespace FredagsCafeUWP.Models.UserPage
+namespace FredagsCafeUWP
 {
     public class SaleAdministrator : INotifyPropertyChanged
     {
@@ -32,7 +32,6 @@ namespace FredagsCafeUWP.Models.UserPage
 
         private  SaleAdministrator()
         {
-            _message = new Message(this);
         }
 
         #region Singleton
@@ -124,7 +123,7 @@ namespace FredagsCafeUWP.Models.UserPage
         }
 
 
-        public double SubTotal()
+        public async Task<double> SubTotal()
         {
             double subTotal = 0;
             bool isNotInstuck = false;
@@ -155,7 +154,7 @@ namespace FredagsCafeUWP.Models.UserPage
             }
             else
             {
-                _message.Error("Ikke nok på lager", "Det gælder disse produkter:\n" + productsNotInStuck);
+                await _message.Error("Ikke nok på lager", "Det gælder disse produkter:\n" + productsNotInStuck);
                 return -1;
             }
             return Math.Round(subTotal);
@@ -164,7 +163,7 @@ namespace FredagsCafeUWP.Models.UserPage
         public async void CompleteSale()
         {
             string productAmountLow = null;
-            double total = SubTotal();
+            double total = await SubTotal();
 
             if (total > 0)
             {

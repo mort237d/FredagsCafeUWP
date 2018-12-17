@@ -6,8 +6,7 @@
     xmlns:viewModels="using:FredagsCafeUWP.ViewModels"
     xmlns:charting="using:WinRTXamlToolkit.Controls.DataVisualization.Charting"
     xmlns:models="using:FredagsCafeUWP.Models"
-    xmlns:Custom="using:Microsoft.Xaml.Interactivity" xmlns:Custom1="using:Microsoft.Xaml.Interactions.Core"
-      xmlns:controls="using:WinRTXamlToolkit.Controls"
+      xmlns:fredagsCafeUwp="using:FredagsCafeUWP"
       x:Class="FredagsCafeUWP.UserPage"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -36,7 +35,7 @@
         </CommandBar>
         <!--#endregion-->
 
-        <Popup IsOpen="{Binding StockAdministrator.ShowAddProductPopUp}" Grid.RowSpan="2" Width="400" Height="1000" HorizontalAlignment="Left" VerticalAlignment="Top" LightDismissOverlayMode="On" IsLightDismissEnabled="True" Margin="-12,0,0,0">
+        <Popup IsOpen="{Binding StockAdministrator.ShowAddProductPopUp}" Grid.Row="0" Grid.RowSpan="2" Width="400" Height="1000" HorizontalAlignment="Left" VerticalAlignment="Top" LightDismissOverlayMode="On" IsLightDismissEnabled="True" Margin="-12,0,0,0">
             <Popup.ChildTransitions>
                 <TransitionCollection>
                     <PaneThemeTransition Edge="Left"/>
@@ -59,7 +58,7 @@
                         <ComboBoxItem Content="Shot"/>
                         <ComboBoxItem Content="Andet"/>
                     </ComboBox>
-                    <TextBlock  Name="tbcombo" Text="{Binding StockAdministrator.AddTypeTb, Mode=TwoWay}" Visibility="Collapsed"/>
+                    <TextBlock  Name="Tbcombo" Text="{Binding StockAdministrator.AddTypeTb, Mode=TwoWay}" Visibility="Collapsed"/>
                     <StackPanel Orientation="Horizontal" Margin="2">
                         <TextBox IsReadOnly="True" PlaceholderText="ImageSource" Width="280" Text="{Binding StockAdministrator.AddImageSourceTb, Mode=TwoWay}"/>
                         <Button Content="..." Width="40" Command="{Binding BrowseAddImageCommand}"/>
@@ -71,7 +70,7 @@
             </StackPanel>
         </Popup>
 
-        <Popup IsOpen="{Binding StockAdministrator.ShowChangeProductPopUp}" Grid.RowSpan="2" Width="400" Height="1000" HorizontalAlignment="Right" LightDismissOverlayMode="On" IsLightDismissEnabled="True" Margin="0,0,-12,0">
+        <Popup IsOpen="{Binding StockAdministrator.ShowChangeProductPopUp}" Grid.Row="0" Grid.RowSpan="2" Width="400" Height="1000" HorizontalAlignment="Right" LightDismissOverlayMode="On" IsLightDismissEnabled="True" Margin="0,0,-12,0">
             <Popup.ChildTransitions>
                 <TransitionCollection>
                     <PaneThemeTransition Edge="Right"/>
@@ -92,7 +91,7 @@
                             <TextBlock Height="32" Margin="2" Text="Tilbud pr. x stk."/>
                             <TextBlock Height="32" Margin="2" Text="Tilbudpris"/>
                         </StackPanel>
-                        <StackPanel Name="test" Width="250">
+                        <StackPanel Width="250">
                             <TextBox Margin="2" PlaceholderText="Navn" Text="{Binding StockAdministrator.ChangeNameTb, Mode=TwoWay}"/>
                             <TextBox Margin="2" PlaceholderText="Købspris" Text="{Binding StockAdministrator.ChangeBuyingPriceTb, Mode=TwoWay}"/>
                             <TextBox Margin="2" PlaceholderText="Salgspris" Text="{Binding StockAdministrator.ChangeSellingPriceTb, Mode=TwoWay}"/>
@@ -101,7 +100,7 @@
                                 <TextBox IsReadOnly="True" PlaceholderText="ImageSource" Width="205" Text="{Binding StockAdministrator.ChangeImageSourceTb, Mode=TwoWay}"/>
                                 <Button Content="..." Width="40" Command="{Binding BrowseChangeImageCommand}"/>
                             </StackPanel>
-                            <ComboBox Name="JohnHitler" Margin="2"  PlaceholderText="{Binding Path=Text, ElementName=tcombo, UpdateSourceTrigger=PropertyChanged}" Width="246" SelectionChanged="Comboboxo_OnSelectionChanged">
+                            <ComboBox Name="JohnHitler" Margin="2"  PlaceholderText="{Binding Path=Text, ElementName=Tcombo, UpdateSourceTrigger=PropertyChanged}" Width="246" SelectionChanged="Comboboxo_OnSelectionChanged">
                                 <ComboBoxItem Content="Øl"/>
                                 <ComboBoxItem Content="Sodavand"/>
                                 <ComboBoxItem Content="Cider"/>
@@ -112,7 +111,7 @@
                             </ComboBox>
                             <TextBox Margin="2" PlaceholderText="Tilbud ved x antal stk." Text="{Binding StockAdministrator.ChangeDiscountAtThisAmountTb, Mode=TwoWay}"/>
                             <TextBox Margin="2" PlaceholderText="Tilbudspris pr. stk." Text="{Binding StockAdministrator.ChangeDiscountPricePerPieceTb, Mode=TwoWay}"/>
-                            <TextBlock Name="tcombo" Text="{Binding StockAdministrator.ChangeTypeTb, Mode=TwoWay}" Visibility="Collapsed"/>
+                            <TextBlock Name="Tcombo" Text="{Binding StockAdministrator.ChangeTypeTb, Mode=TwoWay}" Visibility="Collapsed"/>
                         </StackPanel>
                     </StackPanel>
                     <Button Margin="20" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Center" Content="Ændre produkt" Command="{Binding ChangeProductCommand}"/>
@@ -120,7 +119,7 @@
             </StackPanel>
         </Popup>
 
-        <Popup IsOpen="{Binding UserAdministrator.ShowAddUserPopUp}" Grid.RowSpan="2" Width="400" Height="1000" HorizontalAlignment="Right" LightDismissOverlayMode="On" IsLightDismissEnabled="True" Margin="-12,0,0,0">
+        <Popup IsOpen="{Binding UserAdministrator.ShowAddUserPopUp}" Grid.Row="0" Grid.RowSpan="2" Width="400" Height="1000" HorizontalAlignment="Right" LightDismissOverlayMode="On" IsLightDismissEnabled="True" Margin="-12,0,0,0">
             <Popup.ChildTransitions>
                 <TransitionCollection>
                     <PaneThemeTransition Edge="Right"/>
@@ -147,7 +146,7 @@
             </StackPanel>
         </Popup>
 
-        <Popup IsOpen="{Binding EventAdministrator.ShowAddEventPopUp}" Grid.RowSpan="2" Width="400" Height="1000" HorizontalAlignment="Left" LightDismissOverlayMode="On" IsLightDismissEnabled="True" Margin="-12,0,0,0">
+        <Popup IsOpen="{Binding EventAdministrator.ShowAddEventPopUp}" Grid.Row="0" Grid.RowSpan="2" Width="400" Height="1000" HorizontalAlignment="Left" LightDismissOverlayMode="On" IsLightDismissEnabled="True" Margin="-12,0,0,0">
             <Popup.ChildTransitions>
                 <TransitionCollection>
                     <PaneThemeTransition Edge="Left"/>
@@ -171,7 +170,7 @@
             </StackPanel>
         </Popup>
 
-        <Popup IsOpen="{Binding EventAdministrator.ShowAddEventUserPopUp}" Grid.RowSpan="2" Width="400" Height="1000" HorizontalAlignment="Right" LightDismissOverlayMode="On" IsLightDismissEnabled="True" Margin="0,0,-12,0">
+        <Popup IsOpen="{Binding EventAdministrator.ShowAddEventUserPopUp}" Grid.Row="0" Grid.RowSpan="2" Width="400" Height="1000" HorizontalAlignment="Right" LightDismissOverlayMode="On" IsLightDismissEnabled="True" Margin="0,0,-12,0">
             <Popup.ChildTransitions>
                 <TransitionCollection>
                     <PaneThemeTransition Edge="Right"/>
@@ -188,7 +187,7 @@
             </StackPanel>
         </Popup>
 
-        <Popup IsOpen="{Binding AccountSettings.ShowAccountSettingsPopUp}" Grid.RowSpan="2" Width="400" Height="1000" HorizontalAlignment="Right" LightDismissOverlayMode="On" IsLightDismissEnabled="True" Margin="0,0,-12,0">
+        <Popup IsOpen="{Binding AccountSettings.ShowAccountSettingsPopUp}" Grid.Row="0" Grid.RowSpan="2" Width="400" Height="1000" HorizontalAlignment="Right" LightDismissOverlayMode="On" IsLightDismissEnabled="True" Margin="0,0,-12,0">
             <Popup.ChildTransitions>
                 <TransitionCollection>
                     <PaneThemeTransition Edge="Top"/>
@@ -199,7 +198,7 @@
                 <StackPanel>
                     <TextBlock Text="Ændre bruger" FontWeight="Bold" FontSize="50" HorizontalAlignment="Center"/>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <StackPanel HorizontalAlignment="Center" Orientation="Vertical" Grid.ColumnSpan="2">
+                        <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
                             <TextBlock Text="Navn" Height="32" Margin="0,5,0,0"/>
                             <TextBlock Text="Klasse" Height="32"/>
                             <TextBlock Text="Skole" Height="32"/>
@@ -222,12 +221,12 @@
 
                     </StackPanel>
 
-                    <Button Style="{StaticResource RoundedButtonStyle}" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Skift kontoindstillinger" Command="{Binding ChangeSettingsCommand}" Grid.ColumnSpan="2" Margin="0,0,0,0"/>
+                    <Button Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Center" Content="Skift kontoindstillinger" Command="{Binding ChangeSettingsCommand}" Margin="0,0,0,0"/>
                 </StackPanel>
             </StackPanel>
         </Popup>
 
-        <Popup IsOpen="{Binding AccountSettings.ShowAdminAccountPopup}" Grid.RowSpan="2" Width="400" Height="1000" HorizontalAlignment="Right" LightDismissOverlayMode="On" IsLightDismissEnabled="True" Margin="0,0,-12,0">
+        <Popup IsOpen="{Binding AccountSettings.ShowAdminAccountPopup}" Grid.Row="0" Grid.RowSpan="2" Width="400" Height="1000" HorizontalAlignment="Right" LightDismissOverlayMode="On" IsLightDismissEnabled="True" Margin="0,0,-12,0">
             <Popup.ChildTransitions>
                 <TransitionCollection>
                     <PaneThemeTransition Edge="Top"/>
@@ -238,7 +237,7 @@
                 <StackPanel>
                     <TextBlock Text="Ændre bruger" FontWeight="Bold" FontSize="50" HorizontalAlignment="Center"/>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <StackPanel HorizontalAlignment="Center" Orientation="Vertical" Grid.ColumnSpan="2">
+                        <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
                             <TextBlock Text="Navn" Height="32" Margin="0,5,0,0"/>
                             <TextBlock Text="Klasse" Height="32"/>
                             <TextBlock Text="Skole" Height="32"/>
@@ -261,12 +260,12 @@
 
                     </StackPanel>
 
-                    <Button Style="{StaticResource RoundedButtonStyle}" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Skift kontoindstillinger" Command="{Binding ChangeSelectedAccountSettings}" Grid.ColumnSpan="2" Margin="0,0,0,0"/>
+                    <Button Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Center" Content="Skift kontoindstillinger" Command="{Binding ChangeSelectedAccountSettings}" Margin="0,0,0,0"/>
                 </StackPanel>
             </StackPanel>
         </Popup>
 
-        <Pivot Style="{StaticResource CustomPivotStyle}" x:Name="RootPivot" Grid.Row="1">
+        <Pivot Style="{StaticResource CustomPivotStyle}" Grid.Row="1">
 
             <!--#region SalgRegion-->
             <PivotItem Header="Salg">
@@ -280,7 +279,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <GridView Name="GridViewStock" ItemsSource="{Binding StockAdministrator.Products}" SelectedItem="{Binding Sale.SelectedProduct, Mode=TwoWay}">
+                    <GridView ItemsSource="{Binding StockAdministrator.Products}" SelectedItem="{Binding Sale.SelectedProduct, Mode=TwoWay}">
                         <GridView.ItemTemplate>
                             <DataTemplate x:DataType="models:Product">
                                 <StackPanel Margin="10">
@@ -320,7 +319,7 @@
                             <ComboBoxItem Content="Shot"/>
                             <ComboBoxItem Content="Andet"/>
                         </ComboBox>
-                        <TextBlock  Name="TBComboboxSorted" Text="{Binding SortProducts.SortProductsTb, Mode=TwoWay}" Visibility="Collapsed"/>
+                        <TextBlock  Name="TbComboboxSorted" Text="{Binding SortProducts.SortProductsTb, Mode=TwoWay}" Visibility="Collapsed"/>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,5,5">
@@ -328,7 +327,7 @@
                         <Button Style="{StaticResource RoundedButtonStyle}" Content="Betal" Command="{Binding CompleteSaleCommand}"/>
                     </StackPanel>
 
-                    <Button Style="{StaticResource RoundedButtonStyle}" Foreground="White" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Slet transaktion" Command="{Binding DeleteReceiptCommand}"  Margin="0,0,5,5"/>
+                    <Button Style="{StaticResource RoundedButtonStyle}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Slet transaktion" Command="{Binding DeleteReceiptCommand}"  Margin="0,0,5,5"/>
 
                     <ListView  Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Sale.Receipts}" SelectedItem="{Binding Sale.SelectedReceipt,Mode=TwoWay}">
                         <ListView.ItemTemplate>
@@ -460,7 +459,7 @@
 
                     <GridView ItemsSource="{Binding UserAdministrator.Users}" SelectedItem="{Binding UserAdministrator.SelectedUser, Mode=TwoWay}">
                         <GridView.ItemTemplate>
-                            <DataTemplate x:DataType="models:User">
+                            <DataTemplate x:DataType="fredagsCafeUwp:User">
                                 <StackPanel Orientation="Horizontal" Margin="10">
                                     <Image Source="{Binding ImageSource, Mode=TwoWay}" Height="100" Width="100"/>
                                     <StackPanel>
@@ -495,6 +494,7 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
+                        <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="6*"/>
@@ -539,7 +539,7 @@
 
                     <Rectangle Fill="#6CA0DC" Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="1" Margin="-23,0,-23,-10"/>
 
-                    <StackPanel Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Bottom" Margin="0,0,10,10" HorizontalAlignment="Right">
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" VerticalAlignment="Bottom" Margin="0,0,10,10" HorizontalAlignment="Right">
                         <Button Command="{Binding RemoveEventCommand}" Style="{StaticResource RoundedButtonStyle}" Content="Fjern event"/>
                         <Button Command="{Binding ShowAddEventPopUpCommand}" Style="{StaticResource RoundedButtonStyle}"  Content="Tilføj event"/>
                     </StackPanel>
@@ -558,10 +558,10 @@
 
                 <StackPanel Orientation="Horizontal" Margin="80" >
 
-                    <charting:Chart x:Name="ProfitStat" Width="480" >
+                    <charting:Chart Width="480" >
                         <charting:ColumnSeries Title="" ItemsSource="{Binding StatList.StatList,Mode=TwoWay}" IndependentValuePath="ProfitType" DependentValuePath="TotalIncome"/>
                     </charting:Chart>
-                    <charting:Chart x:Name="ProductGraph" Width="740" >
+                    <charting:Chart Width="740" >
                         <charting:BarSeries Title="" ItemsSource="{Binding StatList.ProductGraphList,Mode=TwoWay}" IndependentValuePath="Name" DependentValuePath="AmountToBeSold"/>
                     </charting:Chart>
                 </StackPanel>

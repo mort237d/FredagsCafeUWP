@@ -1,5 +1,4 @@
 ﻿using FredagsCafeUWP.Models;
-using FredagsCafeUWP.Models.UserPage;
 using GalaSoft.MvvmLight.Command;
 
 namespace FredagsCafeUWP.ViewModels

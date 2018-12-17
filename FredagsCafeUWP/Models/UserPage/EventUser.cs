@@ -1,9 +1,4 @@
-﻿
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using FredagsCafeUWP.Annotations;
-
-namespace FredagsCafeUWP.Models
+﻿namespace FredagsCafeUWP.Models
 {
     public class EventUser
     {

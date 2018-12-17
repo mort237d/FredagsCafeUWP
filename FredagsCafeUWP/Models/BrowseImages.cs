@@ -4,7 +4,7 @@ using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.UI.Xaml.Controls;
 
-namespace FredagsCafeUWP.Models
+namespace FredagsCafeUWP
 {
     class BrowseImages
     {

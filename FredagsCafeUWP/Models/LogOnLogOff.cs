@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using FredagsCafeUWP.Annotations;
-using FredagsCafeUWP.Models;
 
 namespace FredagsCafeUWP
 {
@@ -60,16 +57,16 @@ namespace FredagsCafeUWP
 
         #region Singleton
 
-        private static LogOnLogOff instance;
+        private static LogOnLogOff _instance;
         public static LogOnLogOff Instance
         {
             get
             {
-                if (instance == null)
+                if (_instance == null)
                 {
-                    instance = new LogOnLogOff();
+                    _instance = new LogOnLogOff();
                 }
-                return instance;
+                return _instance;
             }
         }
 
@@ -82,7 +79,7 @@ namespace FredagsCafeUWP
             LogInLogOutList.Add(_userAdministrator.CurrentUser.Name + " logged off at " + DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy"));
             
             Frame currentFrame = Window.Current.Content as Frame;
-            currentFrame.Navigate(typeof(LoginPage));
+            currentFrame?.Navigate(typeof(LoginPage));
         }
 
         public void CheckLogin()
@@ -106,7 +103,7 @@ namespace FredagsCafeUWP
             if (temp)
             {
                 Frame currentFrame = Window.Current.Content as Frame;
-                currentFrame.Navigate(typeof(UserPage));
+                currentFrame?.Navigate(typeof(UserPage));
             }
             else
             {

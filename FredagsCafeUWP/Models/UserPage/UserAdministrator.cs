@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 using FredagsCafeUWP.Annotations;
+using FredagsCafeUWP.Models;
 
-namespace FredagsCafeUWP.Models
+namespace FredagsCafeUWP
 {
     public class UserAdministrator : INotifyPropertyChanged
     {
@@ -15,7 +13,7 @@ namespace FredagsCafeUWP.Models
         private static Message _message;
         BrowseImages _browseImages = new BrowseImages();
 
-        public readonly string _standardImage = "UserImages/Profile-icon.png";
+        public readonly string StandardImage = "UserImages/Profile-icon.png";
 
         private string _nameTb,_gradeTb,_educationTb,_emailTb,_telephoneNumberTb,_userNameTb,_passwordTb,_confirmPasswordTb;
         private string _imageTb = "";
@@ -26,8 +24,6 @@ namespace FredagsCafeUWP.Models
 
         private ObservableCollection<User> _users;
         private User _selectedUser, _currentUser;
-
-        private Encrypt _encrypt = new Encrypt();
 
         #endregion
 
@@ -218,7 +214,7 @@ namespace FredagsCafeUWP.Models
                     {
                         if (PasswordTb == ConfirmPasswordTb)
                         {
-                            if (string.IsNullOrEmpty(ImageTb)) Users.Add(new User(NameTb, GradeTb, EducationTb, EmailTb, TelephoneNumberTb, UserNameTb, PasswordTb, _standardImage, ""));
+                            if (string.IsNullOrEmpty(ImageTb)) Users.Add(new User(NameTb, GradeTb, EducationTb, EmailTb, TelephoneNumberTb, UserNameTb, PasswordTb, StandardImage, ""));
                             else Users.Add(new User(NameTb, GradeTb, EducationTb, EmailTb, TelephoneNumberTb, UserNameTb, PasswordTb, ImageTb, ""));
 
                             NameTb = GradeTb = EducationTb = EmailTb = TelephoneNumberTb = UserNameTb = ImageTb = PasswordTb = ConfirmPasswordTb = null;                            

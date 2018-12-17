@@ -1,7 +1,6 @@
-﻿using FredagsCafeUWP.Models;
-using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight.Command;
 
-namespace FredagsCafeUWP
+namespace FredagsCafeUWP.ViewModels
 {
     internal class LoginViewModel
     {

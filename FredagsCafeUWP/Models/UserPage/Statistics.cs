@@ -1,4 +1,4 @@
-﻿namespace FredagsCafeUWP.Models
+﻿namespace FredagsCafeUWP
 {
     public class Statistics
     {

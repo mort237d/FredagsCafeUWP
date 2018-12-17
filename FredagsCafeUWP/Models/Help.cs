@@ -4,8 +4,9 @@ using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using FredagsCafeUWP.Models;
 
-namespace FredagsCafeUWP.Models
+namespace FredagsCafeUWP
 {
     public class Help
     {
@@ -22,7 +23,7 @@ namespace FredagsCafeUWP.Models
 
                 newViewId = ApplicationView.GetForCurrentView().Id;
             });
-            bool viewShown = await ApplicationViewSwitcher.TryShowAsStandaloneAsync(newViewId);
+            await ApplicationViewSwitcher.TryShowAsStandaloneAsync(newViewId);
         }
     }
 }

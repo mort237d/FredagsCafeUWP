@@ -48,6 +48,7 @@ namespace FredagsCafeUWP
                 if (e.PreviousExecutionState == ApplicationExecutionState.NotRunning || e.PreviousExecutionState == ApplicationExecutionState.ClosedByUser)
                 {
                     //TODO: Load state from previously suspended application
+                    //await XmlReadWrite.LoadAsync(UserAdministrator.Instance.Users, new ObservableCollection<User>() { new User("Benjo", "", "", "Benjo@fev.fbtk.el", "", "Benjo", "Benjo", "VtfsJnbhft/Qspgjmf-jdpo.qoh", "Benjo") }, "userAdministrator");
                     try
                     {
                         Debug.WriteLine("loading user async...");
@@ -56,8 +57,7 @@ namespace FredagsCafeUWP
                     }
                     catch (Exception)
                     {
-                        UserAdministrator.Instance.Users = new ObservableCollection<User>()
-                        {new User("Benjo", "", "", "Benjo@fev.fbtk.el", "", "Benjo", "Benjo", "VtfsJnbhft/Qspgjmf-jdpo.qoh", "Benjo")};
+                        UserAdministrator.Instance.Users = new ObservableCollection<User>() { new User("Benjo", "", "", "Benjo@fev.fbtk.el", "", "Benjo", "Benjo", "VtfsJnbhft/Qspgjmf-jdpo.qoh", "Benjo") };
                     }
                     try
                     {
@@ -170,6 +170,7 @@ namespace FredagsCafeUWP
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
             _encrypt.EncryptUsers();
+
             await XmlReadWrite.SaveAsync(UserAdministrator.Instance.Users, "userAdministrator");
             await XmlReadWrite.SaveAsync(StockAdministrator.Instance.Products, "stockAdministrator");
             await XmlReadWrite.SaveAsync(SaleAdministrator.Instance.Receipts, "receipt");

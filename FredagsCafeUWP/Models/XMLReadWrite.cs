@@ -36,8 +36,22 @@ namespace FredagsCafeUWP
         public static async Task SaveAsync<T>(ObservableCollection<T> collection, string fileName)
         {
             Debug.WriteLine("Saving " + fileName + " async...");
-            await XmlReadWrite.SaveObjectToXml(collection, fileName + ".xml");
+            await SaveObjectToXml(collection, fileName + ".xml");
             Debug.WriteLine(fileName + ".count: " + collection.Count);
+        }
+
+        public static async Task LoadAsync<T>(ObservableCollection<T> collection, ObservableCollection<T> addCollection, string fileName)
+        {
+            try
+            {
+                Debug.WriteLine("loading " + fileName + " async...");
+                collection = await ReadObjectFromXmlFileAsync<ObservableCollection<T>>(fileName + ".xml");
+                Debug.WriteLine(fileName + ".count:" + collection.Count);
+            }
+            catch (Exception)
+            {
+                collection = addCollection;
+            }
         }
     }
 }

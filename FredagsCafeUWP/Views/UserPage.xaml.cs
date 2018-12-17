@@ -1,12 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using Windows.ApplicationModel.Core;
-using Windows.UI;
-using Windows.UI.Core.Preview;
-using Windows.UI.ViewManagement;
-using Windows.UI.Xaml.Controls;
-using FredagsCafeUWP.Models;
-using FredagsCafeUWP.Models.UserPage;
+﻿using Windows.UI.Xaml.Controls;
 
 namespace FredagsCafeUWP
 {
@@ -22,19 +14,19 @@ namespace FredagsCafeUWP
             if (Comboboxo.SelectedItem != null)
             {
                 string selectedContent = ((ComboBoxItem)Comboboxo.SelectedItem).Content.ToString();
-                tbcombo.Text = selectedContent;
+                Tbcombo.Text = selectedContent;
                 Comboboxo.SelectedItem = null;
             }
             if (JohnHitler.SelectedItem != null)
             {
                 string selectedContent = ((ComboBoxItem)JohnHitler.SelectedItem).Content.ToString();
-                tcombo.Text = selectedContent;
+                Tcombo.Text = selectedContent;
                 JohnHitler.SelectedItem = null;
             }
             if (ComboboxSort.SelectedItem != null)
             {
                 string selectedContent = ((ComboBoxItem)ComboboxSort.SelectedItem).Content.ToString();
-                TBComboboxSorted.Text = selectedContent;
+                TbComboboxSorted.Text = selectedContent;
                 ComboboxSort2.SelectedItem = null;
             }
         }
@@ -44,7 +36,7 @@ namespace FredagsCafeUWP
             if (ComboboxSort2.SelectedItem != null)
             {
                 string selectedContent = ((ComboBoxItem)ComboboxSort2.SelectedItem).Content.ToString();
-                TBComboboxSorted.Text = selectedContent;
+                TbComboboxSorted.Text = selectedContent;
                 ComboboxSort.SelectedItem = null;
             }
         }

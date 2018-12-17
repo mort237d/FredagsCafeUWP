@@ -4,8 +4,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using FredagsCafeUWP.Annotations;
+using FredagsCafeUWP.Models;
 
-namespace FredagsCafeUWP.Models.UserPage
+namespace FredagsCafeUWP
 {
     public class SortProducts : INotifyPropertyChanged
     {
@@ -68,17 +69,17 @@ namespace FredagsCafeUWP.Models.UserPage
             return outPutObservableCollection;
         }
 
-        private int ConvertMethod(string SortProductsTb)
+        private int ConvertMethod(string sortProductsTb)
         {
             int temp = 0;
 
-            if (SortProductsTb == "Øl") temp = 1;
-            else if (SortProductsTb == "Sodavand") temp = 2;
-            else if (SortProductsTb == "Cider") temp = 3;
-            else if (SortProductsTb == "Drink") temp = 4;
-            else if (SortProductsTb == "Flaske") temp = 5;
-            else if (SortProductsTb == "Shot") temp = 6;
-            else if (SortProductsTb == "Andet") temp = 7;
+            if (sortProductsTb == "Øl") temp = 1;
+            else if (sortProductsTb == "Sodavand") temp = 2;
+            else if (sortProductsTb == "Cider") temp = 3;
+            else if (sortProductsTb == "Drink") temp = 4;
+            else if (sortProductsTb == "Flaske") temp = 5;
+            else if (sortProductsTb == "Shot") temp = 6;
+            else if (sortProductsTb == "Andet") temp = 7;
 
             return temp;
         }

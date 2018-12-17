@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using FredagsCafeUWP.Annotations;
 
-namespace FredagsCafeUWP.Models
+namespace FredagsCafeUWP.Models.UserPage
 {
     public class Event : INotifyPropertyChanged
     {

@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 using FredagsCafeUWP.Annotations;
 using FredagsCafeUWP.Models;
 using FredagsCafeUWP.Models.UserPage;
@@ -23,16 +20,16 @@ namespace FredagsCafeUWP
 
         #region Singleton
 
-        private static StatisticsAdministrator instance;
+        private static StatisticsAdministrator _instance;
         public static StatisticsAdministrator Instance
         {
             get
             {
-                if (instance == null)
+                if (_instance == null)
                 {
-                    instance = new StatisticsAdministrator();
+                    _instance = new StatisticsAdministrator();
                 }
-                return instance;
+                return _instance;
             }
         }
 

@@ -12,8 +12,6 @@ namespace FredagsCafeUWP
         private UserAdministrator _userAdministrator = UserAdministrator.Instance;
         private Message _message;
 
-        private readonly string _standardImage = "UserImages/Profile-icon.png";
-
         private string _nameTb, _gradeTb, _educationTb, _emailTb, _telephoneNumberTb, _userNameTb, _passwordTb, _confirmPasswordTb;
 
         private bool _showAccountSettingsPopUp, _showAdminAccountPopup;
@@ -126,7 +124,6 @@ namespace FredagsCafeUWP
 
         public AccountSettings()
         {
-            _message = new Message(this);
         }
 
         #region ButtonMethods
@@ -210,7 +207,7 @@ namespace FredagsCafeUWP
             ShowAccountSettingsPopUp = true;
         }
 
-        public void ShowAdminAccountPopUpMethod()
+        public async void ShowAdminAccountPopUpMethod()
         {
             if (_userAdministrator.SelectedUser != null)
             {
@@ -224,7 +221,7 @@ namespace FredagsCafeUWP
 
                 ShowAdminAccountPopup = true;
             }
-            else _message.Error("Ingen bruger valgt", "Vælg venligst en bruger du vil ændre.");
+            else await _message.Error("Ingen bruger valgt", "Vælg venligst en bruger du vil ændre.");
         }
 
         #endregion
