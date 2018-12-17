@@ -16,7 +16,7 @@
             <PivotItem Header="Lager">
                 <TextBlock Text="Lager hjælp" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
             </PivotItem>
-            <PivotItem Header="UserAdministrator">
+            <PivotItem Header="Administration">
                 <TextBlock Text="UserAdministrator hjælp" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
             </PivotItem>
             <PivotItem Header="Event">
