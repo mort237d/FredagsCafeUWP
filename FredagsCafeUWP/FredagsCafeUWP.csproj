@@ -145,6 +145,11 @@
     <Content Include="Views\EventImages\TableSocker.png" />
     <Content Include="Views\EventImages\TableTennis.png" />
     <Content Include="Views\EventImages\ØlBowling.png" />
+    <Content Include="Views\HelpImages\Administration Help.png" />
+    <Content Include="Views\HelpImages\Event Help.png" />
+    <Content Include="Views\HelpImages\Lager Help.png" />
+    <Content Include="Views\HelpImages\Salg Help.png" />
+    <Content Include="Views\HelpImages\Statistik Help.png" />
     <Content Include="Views\UserImages\220px-John_Oliver_November_2016.jpg" />
     <Content Include="Views\UserImages\Profile-icon.png" />
     <Content Include="Assets\SmallTile.scale-100.png" />

@@ -10,19 +10,19 @@
     <Grid>
         <Pivot>
             <PivotItem Header="Salg">
-                <TextBlock Text="Salg hjælp" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                <Image Source="/Views/HelpImages/Salg Help.png" />
             </PivotItem>
             <PivotItem Header="Lager">
-                <TextBlock Text="Lager hjælp" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                <Image Source="/Views/HelpImages/Lager Help.png" />
             </PivotItem>
             <PivotItem Header="Administration">
-                <TextBlock Text="UserAdministrator hjælp" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                <Image Source="/Views/HelpImages/Administration Help.png" />
             </PivotItem>
             <PivotItem Header="Event">
-                <TextBlock Text="Event hjælp" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                <Image Source="/Views/HelpImages/Event Help.png" />
             </PivotItem>
             <PivotItem Header="Statistik">
-                <TextBlock Text="Statistik hjælp" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                <Image Source="/Views/HelpImages/Statistik Help.png" />
             </PivotItem>
             <PivotItem Header="LogIn">
                 <TextBlock Text="For at logge ind første gang skal du bruge UserName:'Admin' og Password:'Admin'" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
