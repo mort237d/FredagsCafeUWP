@@ -124,6 +124,7 @@ namespace FredagsCafeUWP
 
         public AccountSettings()
         {
+            _message = new Message(this);
         }
 
         #region ButtonMethods

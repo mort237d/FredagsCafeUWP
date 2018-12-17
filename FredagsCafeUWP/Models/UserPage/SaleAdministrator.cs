@@ -32,6 +32,7 @@ namespace FredagsCafeUWP
 
         private  SaleAdministrator()
         {
+            _message = new Message(this);
         }
 
         #region Singleton
@@ -123,7 +124,7 @@ namespace FredagsCafeUWP
         }
 
 
-        public async Task<double> SubTotal()
+        public double SubTotal()
         {
             double subTotal = 0;
             bool isNotInstuck = false;
@@ -154,7 +155,7 @@ namespace FredagsCafeUWP
             }
             else
             {
-                await _message.Error("Ikke nok på lager", "Det gælder disse produkter:\n" + productsNotInStuck);
+                _message.Error("Ikke nok på lager", "Det gælder disse produkter:\n" + productsNotInStuck);
                 return -1;
             }
             return Math.Round(subTotal);
@@ -163,7 +164,7 @@ namespace FredagsCafeUWP
         public async void CompleteSale()
         {
             string productAmountLow = null;
-            double total = await SubTotal();
+            double total = SubTotal();
 
             if (total > 0)
             {

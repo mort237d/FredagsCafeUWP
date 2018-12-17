@@ -12,6 +12,8 @@ namespace FredagsCafeUWP
         private StockAdministrator _stockAdministrator;
         private UserAdministrator _userAdministrator;
         private EventAdministrator _eventAdministrator;
+        private SaleAdministrator _saleAdministrator;
+        private AccountSettings _accountSettings;
 
         #endregion
 
@@ -28,6 +30,16 @@ namespace FredagsCafeUWP
         public Message(EventAdministrator eventAdministrator)
         {
             _eventAdministrator = eventAdministrator;
+        }
+
+        public Message(SaleAdministrator saleAdministrator)
+        {
+            _saleAdministrator = saleAdministrator;
+        }
+
+        public Message(AccountSettings accountSettings)
+        {
+            _accountSettings = accountSettings;
         }
 
         #region Methods
