@@ -9,19 +9,17 @@ namespace FredagsCafeUWP
             InitializeComponent();
         }
 
-        private void Comboboxo_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Cb_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (Comboboxo.SelectedItem != null)
+            if (AddTypeCb.SelectedItem != null)
             {
-                string selectedContent = ((ComboBoxItem)Comboboxo.SelectedItem).Content.ToString();
+                string selectedContent = ((ComboBoxItem)AddTypeCb.SelectedItem).Content.ToString();
                 Tbcombo.Text = selectedContent;
-                Comboboxo.SelectedItem = null;
             }
-            if (JohnHitler.SelectedItem != null)
+            if (ChangeTypeCb.SelectedItem != null)
             {
-                string selectedContent = ((ComboBoxItem)JohnHitler.SelectedItem).Content.ToString();
+                string selectedContent = ((ComboBoxItem)ChangeTypeCb.SelectedItem).Content.ToString();
                 Tcombo.Text = selectedContent;
-                JohnHitler.SelectedItem = null;
             }
             if (ComboboxSort.SelectedItem != null)
             {
@@ -31,7 +29,7 @@ namespace FredagsCafeUWP
             }
         }
 
-        private void Comboboxo_OnSelectionChanged2(object sender, SelectionChangedEventArgs e)
+        private void Cb_OnSelectionChanged2(object sender, SelectionChangedEventArgs e)
         {
             if (ComboboxSort2.SelectedItem != null)
             {
