@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using System.Diagnostics;
+using GalaSoft.MvvmLight.Command;
 
 namespace FredagsCafeUWP.ViewModels
 {
@@ -16,6 +17,8 @@ namespace FredagsCafeUWP.ViewModels
             LoginRelayCommand = new RelayCommand(LogOnLogOff.Instance.CheckLogin);
 
             GoToHelpPageCommand = new RelayCommand(Help.GoToHelpPage);
+
+            Windows.UI.Xaml.Window.Current.CoreWindow.KeyDown += (sender, arg) => {if (arg.VirtualKey == Windows.System.VirtualKey.Enter) LogOnLogOff.Instance.CheckLogin();};
         }
     }
 }
