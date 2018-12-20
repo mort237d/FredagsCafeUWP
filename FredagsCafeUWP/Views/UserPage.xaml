@@ -540,13 +540,13 @@
                     <Rectangle Fill="#6CA0DC" Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="1" Margin="-23,0,-23,-10"/>
 
                     <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" VerticalAlignment="Bottom" Margin="0,0,10,10" HorizontalAlignment="Right">
-                        <Button Command="{Binding RemoveEventCommand}" Style="{StaticResource RoundedButtonStyle}" Content="Fjern event"/>
-                        <Button Command="{Binding ShowAddEventPopUpCommand}" Style="{StaticResource RoundedButtonStyle}"  Content="Tilføj event"/>
+                        <Button Command="{Binding RemoveEventCommand}" Style="{StaticResource RoundedButtonStyle}" Margin="0,0,10,10" Content="Fjern event"/>
+                        <Button Command="{Binding ShowAddEventPopUpCommand}" Style="{StaticResource RoundedButtonStyle}" Margin="0,0,10,10"  Content="Tilføj event"/>
                     </StackPanel>
 
-                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
-                        <Button Command="{Binding RemoveEventUserCommand}" Style="{StaticResource RoundedButtonStyle}" VerticalAlignment="Bottom" Margin="0,0,10,10" Content="Fjern deltager"/>
-                        <Button Command="{Binding ShowAddEventUserPopUpCommand}" Style="{StaticResource RoundedButtonStyle}" VerticalAlignment="Bottom" Margin="0,0,10,10" Content="Tilføj deltager"/>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1"  VerticalAlignment="Bottom" Margin="0,0,10,10" HorizontalAlignment="Right">
+                        <Button Command="{Binding RemoveEventUserCommand}" Style="{StaticResource RoundedButtonStyle}" Margin="0,0,10,10" Content="Fjern deltager"/>
+                        <Button Command="{Binding ShowAddEventUserPopUpCommand}" Style="{StaticResource RoundedButtonStyle}" Margin="0,0,10,10" Content="Tilføj deltager"/>
                     </StackPanel>
                 </Grid>
             </PivotItem>
