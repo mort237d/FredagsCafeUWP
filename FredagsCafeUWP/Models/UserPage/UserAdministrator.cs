@@ -21,6 +21,7 @@ namespace FredagsCafeUWP
         private string _visible;
 
         private bool _showAddUserPopUp;
+        private bool _showLogPopUp;
 
         private ObservableCollection<User> _users;
         private User _selectedUser, _currentUser;
@@ -157,6 +158,16 @@ namespace FredagsCafeUWP
             }
         }
 
+        public bool ShowLogPopUp
+        {
+            get { return _showLogPopUp; }
+            set
+            {
+                _showLogPopUp = value;
+                OnPropertyChanged();
+            }
+        }
+
         #endregion
 
         private UserAdministrator()
@@ -187,6 +198,11 @@ namespace FredagsCafeUWP
         public void ShowAddUserPopUpMethod()
         {
             ShowAddUserPopUp = true;
+        }
+
+        public void ShowLogPopUpMethod()
+        {
+            ShowLogPopUp = true;
         }
 
         public async void BrowseImageButton()

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -76,7 +77,7 @@ namespace FredagsCafeUWP
 
         public void LogOffMethod()
         {
-            LogInLogOutList.Add(_userAdministrator.CurrentUser.Name + " logged off at " + DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy"));
+            LogInLogOutList.Insert(LogInLogOutList.IndexOf(LogInLogOutList.First()),_userAdministrator.CurrentUser.Name + " logged off at " + DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy"));
             
             Frame currentFrame = Window.Current.Content as Frame;
             currentFrame?.Navigate(typeof(LoginPage));
@@ -90,7 +91,7 @@ namespace FredagsCafeUWP
                 if (user.UserName == UserName && user.Password == PassWord)
                 {
                     _userAdministrator.CurrentUser = user;
-                    LogInLogOutList.Add(UserName + " logged in at " + DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy"));
+                    LogInLogOutList.Insert(LogInLogOutList.IndexOf(LogInLogOutList.First()), UserName + " logged in at " + DateTime.Now.ToString("HH:mm:ss - dd/MM/yyyy"));
 
                     _userAdministrator.ButtonVisibility(user);
 

@@ -94,6 +94,7 @@ namespace FredagsCafeUWP.ViewModels
         public RelayCommand ShowAddUserPopUpCommand { get; set; }
         public RelayCommand AddUserCommand { get; set; }
         public RelayCommand RemoveUserCommand { get; set; }
+        public RelayCommand ShowLogPopUp { get; set; }
         public RelayCommand SaveCommand { get; set; }
         public RelayCommand LoadCommand { get; set; }
         public RelayCommand CompleteSaleCommand { get; set; }
@@ -141,6 +142,7 @@ namespace FredagsCafeUWP.ViewModels
             RemoveUserCommand = new RelayCommand(UserAdministrator.RemoveUser);
             UserImageBrowserCommand = new RelayCommand(UserAdministrator.BrowseImageButton);
             ChangeAdminCommand = new RelayCommand(UserAdministrator.ChangeAdmin);
+            ShowLogPopUp = new RelayCommand(UserAdministrator.ShowLogPopUpMethod);
 
             CompleteSaleCommand = new RelayCommand(Sale.CompleteSale);
             CalculateTotalPriceCommand = new RelayCommand(Sale.DiscountedTotalcalculator);

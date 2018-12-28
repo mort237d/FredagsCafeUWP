@@ -146,6 +146,21 @@
             </StackPanel>
         </Popup>
 
+        <Popup IsOpen="{Binding UserAdministrator.ShowLogPopUp}" Grid.Row="0" Grid.RowSpan="2" Width="400" Height="1000" HorizontalAlignment="Right" LightDismissOverlayMode="On" IsLightDismissEnabled="True" Margin="-12,0,0,0">
+            <Popup.ChildTransitions>
+                <TransitionCollection>
+                    <PaneThemeTransition Edge="Right"/>
+                </TransitionCollection>
+            </Popup.ChildTransitions>
+
+            <StackPanel Background="#6CA0DC" Height="1000" Width="400">
+                <StackPanel Margin="40">
+                    <ListView ItemsSource="{Binding LogOnLogOff.LogInLogOutList}">
+                    </ListView>
+                </StackPanel>
+            </StackPanel>
+        </Popup>
+
         <Popup IsOpen="{Binding EventAdministrator.ShowAddEventPopUp}" Grid.Row="0" Grid.RowSpan="2" Width="400" Height="1000" HorizontalAlignment="Left" LightDismissOverlayMode="On" IsLightDismissEnabled="True" Margin="-12,0,0,0">
             <Popup.ChildTransitions>
                 <TransitionCollection>
@@ -480,7 +495,7 @@
                         <Button Style="{StaticResource RoundedButtonStyle}" Content="Tilføj medarbejder" Visibility="{Binding UserAdministrator.Visible}" Command="{Binding ShowAddUserPopUpCommand}"/>
                         <Button Style="{StaticResource RoundedButtonStyle}" Content="Giv admin" Visibility="{Binding UserAdministrator.Visible}" Command="{Binding ChangeAdminCommand}"/>
                         <Button Style="{StaticResource RoundedButtonStyle}" Content="Ændre bruger kontoindstillinger" Visibility="{Binding UserAdministrator.Visible}" Command="{Binding ShowAdminAccountPopUp}"/>
-
+                        <Button Style="{StaticResource RoundedButtonStyle}" Content="Vis log" Visibility="{Binding UserAdministrator.Visible}" Command="{Binding ShowLogPopUp}"/>
                     </StackPanel>
 
 
