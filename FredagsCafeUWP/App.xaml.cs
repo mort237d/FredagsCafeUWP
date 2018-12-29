@@ -1,4 +1,5 @@
-﻿using System;
+﻿#define autoLogin
+using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using Windows.ApplicationModel;
@@ -151,6 +152,12 @@ namespace FredagsCafeUWP
                 // Ensure the current window is active
                 Window.Current.Activate();
             }
+
+#if autoLogin
+            LogOnLogOff.Instance.UserName = "Admin";
+            LogOnLogOff.Instance.PassWord = "Admin";
+            LogOnLogOff.Instance.CheckLogin();
+#endif
         }
 
         /// <summary>

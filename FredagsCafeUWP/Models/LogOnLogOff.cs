@@ -53,7 +53,6 @@ namespace FredagsCafeUWP
 
         private LogOnLogOff()
         {
-            
         }
 
         #region Singleton
